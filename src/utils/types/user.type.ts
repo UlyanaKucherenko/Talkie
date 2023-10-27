@@ -15,6 +15,6 @@ export type UserResponse = {
 
 export type UserState = {
   user: UserResponse | null;
-  status: 'loading' | 'succeeded' | 'failed' | null;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 };
