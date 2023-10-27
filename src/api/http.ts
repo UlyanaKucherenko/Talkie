@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { apiRoutes } from './api-routes';
-import { UserRequest, UserResponse, User } from '../utils/types/user.type';
+import type { UserRequest, UserResponse, User } from '../utils/types/user.type';
 
-const baseUrl = process.env.SERVER_HOST;
+const baseUrl = import.meta.env.VITE_SERVER_HOST;
 
 export const registration = async (
   data: UserRequest

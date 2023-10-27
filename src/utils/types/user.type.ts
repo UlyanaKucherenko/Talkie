@@ -12,3 +12,9 @@ export type UserResponse = {
   token: string;
   user: User;
 };
+
+export type UserState = {
+  user: UserResponse | null;
+  status: 'loading' | 'succeeded' | 'failed' | null;
+  error: string | null;
+};
