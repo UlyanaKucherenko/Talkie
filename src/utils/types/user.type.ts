@@ -1,3 +1,5 @@
+import { Status } from '../enums/status.enum';
+
 export type UserRequest = {
   name: string;
 };
@@ -14,7 +16,7 @@ export type UserResponse = {
 };
 
 export type UserState = {
-  user: UserResponse | null;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  userData: UserResponse | null;
+  status: Status;
   error: string | null;
 };

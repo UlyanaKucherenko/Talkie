@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { auth } from '../../../store/user';
+import { authThunks } from '../../../store/user';
 import { UserRequest } from '../../../utils/types/user.type';
 import type { AppDispatch } from '../../../store';
 
@@ -17,7 +17,7 @@ export default function SingUp() {
     const request: UserRequest = {
       name: userName,
     };
-    await dispatch(auth.register(request));
+    await dispatch(authThunks.register(request));
   };
   return (
     <form onSubmit={signupSubmitHandler}>

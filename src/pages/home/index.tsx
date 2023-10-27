@@ -2,21 +2,22 @@ import { useSelector } from 'react-redux';
 import SingUp from '../../components/auth/signup';
 import { userSelector } from '../../store/user';
 import Logout from '../../components/auth/logout';
+import { Status } from '../../utils/enums/status.enum';
 
 export default function Home() {
-  const { user, status, error } = useSelector(userSelector);
+  const { userData, status, error } = useSelector(userSelector);
   return (
     <div>
-      {status === 'idle' && <SingUp />}
-      {status === 'loading' && <p>Loading...</p>}
-      {status === 'succeeded' && (
+      {status === Status.Idle && <SingUp />}
+      {status === Status.Loading && <p>Loading...</p>}
+      {status === Status.Succeeded && (
         <div>
-          <div>Name: {user?.user.name}</div>
-          <div>token: {user?.token}</div>
+          <div>Name: {userData?.user.name}</div>
+          <div>token: {userData?.token}</div>
           <Logout />
         </div>
       )}
-      {status === 'failed' && <p>{error}</p>}
+      {status === Status.Failed && <p>{error}</p>}
     </div>
   );
 }

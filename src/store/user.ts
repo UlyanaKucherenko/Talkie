@@ -1,24 +1,25 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import type { UserResponse, UserState } from '../utils/types/user.type';
-import { getCurrentUser, logout, registration } from '../api/http';
+import http from '../api/http';
 import { UserRequest } from '../utils/types/user.type';
 import type { RootState } from './index';
 import { deleteToken, getToken, saveToken } from '../utils/user-token';
+import { Status } from '../utils/enums/status.enum';
 
 const userInitialState: UserState = {
-  user: null,
-  status: 'idle',
+  userData: null,
+  status: Status.Idle,
   error: null,
 };
 
-export const auth = {
+export const authThunks = {
   register: createAsyncThunk('user/register', async (user: UserRequest) => {
-    const data = await registration(user);
+    const data = await http.user.registration(user);
     saveToken(data.token);
     return data;
   }),
   logout: createAsyncThunk('user/logout', async () => {
-    await logout();
+    await http.user.logout();
     deleteToken();
   }),
   currentUser: createAsyncThunk('user/current', async () => {
@@ -26,7 +27,7 @@ export const auth = {
     if (!token) {
       throw new Error();
     }
-    const data = await getCurrentUser(token);
+    const data = await http.user.getCurrentUser(token);
     return { token, user: { ...data } } as UserResponse;
   }),
 };
@@ -37,60 +38,60 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(auth.register.pending, (state) => ({
+      .addCase(authThunks.register.pending, (state) => ({
         ...state,
-        status: 'loading',
+        status: Status.Loading,
       }))
       .addCase(
-        auth.register.fulfilled,
+        authThunks.register.fulfilled,
         (state, action: PayloadAction<UserResponse>) => ({
           ...state,
-          status: 'succeeded',
-          user: action.payload,
+          status: Status.Succeeded,
+          userData: action.payload,
         })
       )
       .addCase(
-        auth.register.rejected,
+        authThunks.register.rejected,
         (state, action): UserState => ({
           ...state,
-          status: 'failed',
+          status: Status.Failed,
           error: action.error.message || null,
         })
       )
-      .addCase(auth.logout.pending, (state) => ({
+      .addCase(authThunks.logout.pending, (state) => ({
         ...state,
-        status: 'loading',
+        status: Status.Loading,
       }))
-      .addCase(auth.logout.fulfilled, () => ({
-        status: 'idle',
-        user: null,
+      .addCase(authThunks.logout.fulfilled, () => ({
+        status: Status.Idle,
+        userData: null,
         error: null,
       }))
       .addCase(
-        auth.logout.rejected,
+        authThunks.logout.rejected,
         (state, action): UserState => ({
           ...state,
-          status: 'idle',
+          status: Status.Idle,
           error: action.error.message || null,
         })
       )
-      .addCase(auth.currentUser.pending, (state) => ({
+      .addCase(authThunks.currentUser.pending, (state) => ({
         ...state,
-        status: 'loading',
+        status: Status.Loading,
       }))
       .addCase(
-        auth.currentUser.fulfilled,
+        authThunks.currentUser.fulfilled,
         (state, action: PayloadAction<UserResponse>) => ({
           ...state,
-          status: 'succeeded',
-          user: { user: action.payload.user, token: action.payload.token },
+          status: Status.Succeeded,
+          userData: { user: action.payload.user, token: action.payload.token },
         })
       )
       .addCase(
-        auth.currentUser.rejected,
+        authThunks.currentUser.rejected,
         (state, action): UserState => ({
           ...state,
-          status: 'idle',
+          status: Status.Idle,
           error: action.error.message || null,
         })
       );
