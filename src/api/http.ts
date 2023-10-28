@@ -6,6 +6,6 @@ const http = {
     logout,
     getCurrentUser,
   },
-};
+} as const;
 
 export default http;

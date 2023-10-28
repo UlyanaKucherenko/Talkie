@@ -28,7 +28,7 @@ export const authThunks = {
       throw new Error();
     }
     const data = await http.user.getCurrentUser(token);
-    return { token, user: { ...data } } as UserResponse;
+    return { token, user: { ...data } };
   }),
 };
 

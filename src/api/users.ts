@@ -16,7 +16,7 @@ export const logout = async (): Promise<void> => {
 export const getCurrentUser = async (token: string): Promise<User> => {
   const res = await axios.get(apiRoutes.current, {
     headers: {
-      Authorization: token,
+      ApiKey: token,
     },
   });
   return res.data;

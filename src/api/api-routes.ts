@@ -1,4 +1,4 @@
-const baseUrl: string = import.meta.env.VITE_SERVER_HOST;
+const baseUrl: string = `${import.meta.env.VITE_SERVER_HOST}/api`;
 
 export const apiRoutes = {
   register: `${baseUrl}/users/register`,
