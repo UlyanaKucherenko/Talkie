@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { AppDispatch } from './store';
 import { authThunks } from './store/user';
@@ -11,7 +11,10 @@ const App = () => {
   const toggleTheme = () => (theme === 'light' ? 'dark' : 'light');
 
   const dispatch = useDispatch<AppDispatch>();
-  dispatch(authThunks.currentUser());
+
+  useEffect(() => {
+    dispatch(authThunks.currentUser());
+  }, [dispatch]);
 
   return (
     <div className={`app ${theme === 'light' ? 'lightTheme' : ''}`}>
