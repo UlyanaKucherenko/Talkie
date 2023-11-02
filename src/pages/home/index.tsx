@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
-import SingUp from '../../components/auth/signup';
+
+import { SingUp } from '../../components/auth/signup';
+import { Logout } from '../../components/auth/logout';
 import { userSelector } from '../../store/user';
-import Logout from '../../components/auth/logout';
 import { Status } from '../../utils/enums/status.enum';
 
-export default function Home() {
+const Home = () => {
   const { userData, status, error } = useSelector(userSelector);
   return (
     <div>
@@ -20,4 +21,6 @@ export default function Home() {
       {status === Status.Failed && <p>{error}</p>}
     </div>
   );
-}
+};
+
+export default Home;

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import type { AppDispatch } from './store';
 import { authThunks } from './store/user';
 import './App.css';
+import Layout from './components/layout';
 import Home from './pages/home';
 
 const App = () => {
@@ -18,15 +19,17 @@ const App = () => {
 
   return (
     <div className={`app ${theme === 'light' ? 'lightTheme' : ''}`}>
-      <button
-        type="button"
-        onClick={() => {
-          setTheme(toggleTheme);
-        }}
-      >
-        toggle theme
-      </button>
-      <Home />
+      <Layout>
+        <button
+          type="button"
+          onClick={() => {
+            setTheme(toggleTheme);
+          }}
+        >
+          toggle theme
+        </button>
+        <Home />
+      </Layout>
     </div>
   );
 };
