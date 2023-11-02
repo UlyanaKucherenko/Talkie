@@ -1,14 +1,34 @@
 import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
 import type { AppDispatch } from './store';
 import { authThunks } from './store/user';
 import './App.css';
 import Home from './pages/home';
 
-function App() {
-  const dispatch = useDispatch<AppDispatch>();
-  dispatch(authThunks.currentUser());
+const App = () => {
+  const [theme, setTheme] = useState<string>('light');
+  const toggleTheme = () => (theme === 'light' ? 'dark' : 'light');
 
-  return <Home />;
-}
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(authThunks.currentUser());
+  }, [dispatch]);
+
+  return (
+    <div className={`app ${theme === 'light' ? 'lightTheme' : ''}`}>
+      <button
+        type="button"
+        onClick={() => {
+          setTheme(toggleTheme);
+        }}
+      >
+        toggle theme
+      </button>
+      <Home />
+    </div>
+  );
+};
 
 export default App;
