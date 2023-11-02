@@ -1,10 +1,11 @@
 import { FormEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { authThunks } from '../../../store/user';
 import { UserRequest } from '../../../utils/types/user.type';
 import type { AppDispatch } from '../../../store';
 
-export default function SingUp() {
+export const SingUp = () => {
   const userNameRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -25,4 +26,4 @@ export default function SingUp() {
       <button type="submit">SignUp</button>
     </form>
   );
-}
+};

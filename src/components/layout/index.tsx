@@ -5,14 +5,14 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-export default function Layout({ children }: LayoutProps) {
-  return (
-    <>
-      <Header />
-      <main>
-        <div className="container">{children}</div>
-      </main>
-      <Footer />
-    </>
-  );
-}
+const Layout = ({ children }: LayoutProps) => (
+  <>
+    <Header />
+    <main>
+      <div className="container">{children}</div>
+    </main>
+    <Footer />
+  </>
+);
+
+export default Layout;
