@@ -9,6 +9,7 @@ import Home from './pages/home';
 
 const App = () => {
   const [theme, setTheme] = useState<string>('light');
+
   const toggleTheme = () => (theme === 'light' ? 'dark' : 'light');
 
   const dispatch = useDispatch<AppDispatch>();
