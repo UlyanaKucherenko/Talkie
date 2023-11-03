@@ -15,7 +15,7 @@ export const AuthPopup = ({ open = false, setIsOpen }: AuthPopupProps) =>
   createPortal(
     <>
       <div className={style.authPopup}>
-        <AuthForm />
+        <AuthForm onSubmit={() => setIsOpen(false)} />
       </div>
       <Backdrop onClick={() => setIsOpen(false)} />
     </>,
