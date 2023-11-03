@@ -19,7 +19,11 @@ export const authThunks = {
     return data;
   }),
   logout: createAsyncThunk('user/logout', async () => {
-    await http.user.logout();
+    const token = getToken();
+    if (!token) {
+      throw new Error();
+    }
+    await http.user.logout(token);
     deleteToken();
   }),
   currentUser: createAsyncThunk('user/current', async () => {
