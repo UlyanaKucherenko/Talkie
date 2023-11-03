@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
+
 import { authThunks } from '../../../store/user';
 import type { AppDispatch } from '../../../store';
 
-export default function Logout() {
+export const Logout = () => {
   const dispatch = useDispatch<AppDispatch>();
   const logoutClickHanlder = () => {
     dispatch(authThunks.logout());
@@ -12,4 +13,4 @@ export default function Logout() {
       Logout
     </button>
   );
-}
+};

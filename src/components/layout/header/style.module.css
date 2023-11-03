@@ -1,9 +1,13 @@
 .header {
-  height: 56px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 56px;
   background-color: #d9d9d9;
 }
 
-.header__content {
+.headerContent {
   display: flex;
   justify-content: space-between;
 }
