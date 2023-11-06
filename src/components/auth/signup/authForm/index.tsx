@@ -19,7 +19,7 @@ export const AuthForm = () => {
 
     if (!userName || userName.length < 2 || userName.length > 26) {
       setErrorMessage(
-        'The username must have at least 3 characters, but no more than 26.'
+        'The username must have at least 2 characters, but no more than 26.'
       );
       return;
     }
