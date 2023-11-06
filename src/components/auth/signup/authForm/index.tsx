@@ -16,12 +16,8 @@ export const AuthForm = () => {
   const signupSubmitHandler = async (event: FormEvent) => {
     event.preventDefault();
     const userName = userNameRef.current?.value;
-    if (!userName) {
-      setErrorMessage('Enter you name');
-      return;
-    }
 
-    if (userName.length < 2 || userName.length > 26) {
+    if (!userName || userName.length < 2 || userName.length > 26) {
       setErrorMessage(
         'The username must have at least 3 characters, but no more than 26.'
       );
@@ -35,12 +31,13 @@ export const AuthForm = () => {
   };
   return (
     <form className={style.form} onSubmit={signupSubmitHandler}>
-      <div className={style.greeting}>enter your name to start</div>
+      <div className={style.formText}>enter your name to start</div>
       <input
         className={style.input}
         type="name"
         placeholder="Name"
         ref={userNameRef}
+        disabled={status === Status.Loading}
       />
       <div className={style.error}>{errorMessage || responseError}</div>
       <button
@@ -48,7 +45,7 @@ export const AuthForm = () => {
         type="submit"
         disabled={status === Status.Loading}
       >
-        {status === Status.Loading ? 'Loading...' : 'SignUp'}
+        {status === Status.Loading ? 'Loading...' : 'Join'}
       </button>
     </form>
   );

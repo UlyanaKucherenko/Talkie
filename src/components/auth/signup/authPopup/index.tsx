@@ -1,12 +1,14 @@
 import { createPortal } from 'react-dom';
-import { Dispatch, SetStateAction, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { Dispatch, SetStateAction } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Backdrop } from '../../../backdrop/Backdrop';
 import { AuthForm } from '../authForm';
-import style from './style.module.css';
-import { userSelector } from '../../../../store/user';
+import { authThunks, userSelector } from '../../../../store/user';
 import { Status } from '../../../../utils/enums/status.enum';
+import { AuthGreetings } from '../authGreetings';
+import { AppDispatch } from '../../../../store';
+import style from './style.module.css';
 
 type AuthPopupProps = {
   open: boolean;
@@ -15,19 +17,25 @@ type AuthPopupProps = {
 
 export const AuthPopup = ({ open = false, setIsOpen }: AuthPopupProps) => {
   const { status } = useSelector(userSelector);
+  const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    if (status === Status.Succeeded) {
-      setIsOpen(false);
-    }
-  }, [setIsOpen, status]);
+  const exitClickHandler = () => {
+    dispatch(authThunks.logout());
+    setIsOpen(false);
+  };
 
   return (
     open &&
     createPortal(
       <>
         <div className={style.authPopup}>
-          <AuthForm />
+          {status !== Status.Succeeded && <AuthForm />}
+          {status === Status.Succeeded && (
+            <AuthGreetings
+              okOnClick={() => setIsOpen(false)}
+              exitOnClick={exitClickHandler}
+            />
+          )}
         </div>
         <Backdrop onClick={() => setIsOpen(false)} />
       </>,
