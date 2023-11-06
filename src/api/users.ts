@@ -9,8 +9,12 @@ export const registration = async (
   return res.data;
 };
 
-export const logout = async (): Promise<void> => {
-  await axios.post(apiRoutes.logout);
+export const logout = async (token: string): Promise<void> => {
+  await axios.post(apiRoutes.logout, {
+    headers: {
+      ApiKey: token,
+    },
+  });
 };
 
 export const getCurrentUser = async (token: string): Promise<User> => {

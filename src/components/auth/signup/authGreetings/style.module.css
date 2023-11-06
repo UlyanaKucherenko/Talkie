@@ -1,0 +1,22 @@
+.greetings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 45px;
+}
+
+.greetingsText {
+  text-align: center;
+  color: #414453;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125.1%;
+  text-transform: uppercase;
+}
+
+.greetingsAction {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
