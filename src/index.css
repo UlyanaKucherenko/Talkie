@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -19,6 +20,8 @@
   --sidebar-bg-color: var(--black);
   --footer-bg-color: var(--gray);
   --footer-font-color: var(--black);
+  --room-bg-color: var(--white);
+  --room-font-color: var(--gray);
 
   /* theme light */
   .lightTheme {
@@ -29,6 +32,8 @@
     --sidebar-bg-color: var(--white);
     --footer-bg-color: var(--dark-gray-1);
     --footer-font-color: var(--white);
+    --room-bg-color: var(--gray);
+    --room-font-color: var(--white);
   }
 }
 
