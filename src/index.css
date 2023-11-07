@@ -7,6 +7,7 @@
 
   --white: #ffffff;
   --black: #000000;
+  --dark-gray-1: #6c6969;
   --dark-gray: #414453;
   --gray: #d9d9d9;
 
@@ -15,13 +16,19 @@
   --font-main-color: var(--white);
   --brn-background-color: var(--white);
   --brn-font-color: var(--black);
+  --sidebar-bg-color: var(--black);
+  --footer-bg-color: var(--gray);
+  --footer-font-color: var(--black);
 
   /* theme light */
   .lightTheme {
     --background-color: var(--white);
-    --font-main-color: var(--black);
+    --font-main-color: var(--dark-gray);
     --brn-background-color: var(--gray);
     --brn-font-color: var(--dark-gray);
+    --sidebar-bg-color: var(--white);
+    --footer-bg-color: var(--dark-gray-1);
+    --footer-font-color: var(--white);
   }
 }
 
@@ -45,7 +52,7 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.6em 1em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -53,6 +60,9 @@ button {
   background-color: var(--brn-background-color);
   cursor: pointer;
   transition: border-color 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 button:hover {
   border-color: #646cff;

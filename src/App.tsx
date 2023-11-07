@@ -1,16 +1,15 @@
-import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import type { AppDispatch } from './store';
 import { authThunks } from './store/user';
+import { themeSelector } from './store/theme';
 import './App.css';
 import Layout from './components/layout';
-import Home from './pages/home';
+import { ThemeEnum } from './utils/const';
 
 const App = () => {
-  const [theme, setTheme] = useState<string>('light');
-
-  const toggleTheme = () => (theme === 'light' ? 'dark' : 'light');
+  const { mode } = useSelector(themeSelector);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -19,18 +18,8 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className={`app ${theme === 'light' ? 'lightTheme' : ''}`}>
-      <Layout>
-        <button
-          type="button"
-          onClick={() => {
-            setTheme(toggleTheme);
-          }}
-        >
-          toggle theme
-        </button>
-        <Home />
-      </Layout>
+    <div className={`app ${mode === ThemeEnum.LIGHT ? 'lightTheme' : ''}`}>
+      <Layout />
     </div>
   );
 };
