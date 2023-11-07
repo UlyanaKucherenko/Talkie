@@ -7,7 +7,7 @@
 
 .greetingsText {
   text-align: center;
-  color: #414453;
+  color: var(--brn-font-color);
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -18,5 +18,5 @@
 .greetingsAction {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
 }
