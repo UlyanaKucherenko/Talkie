@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { AuthPopup } from '../../auth/signup/authPopup';
 import style from './style.module.css';
 import { userSelector } from '../../../store/user';
 import { Status } from '../../../utils/enums/status.enum';
-import { Logout } from '../../auth/logout';
 
 const Header = () => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);
@@ -17,8 +17,10 @@ const Header = () => {
       <header className={style.header}>
         <div className="container">
           <div className={style.headerContent}>
-            <div>Menu</div>
-            <div>Logo</div>
+            <div style={{ opacity: 0, width: '30px' }}>Menu</div>
+            <NavLink to="/">
+              <div>Logo</div>
+            </NavLink>
             <div>
               {status === Status.Idle && (
                 <button type="button" onClick={() => setOpenPopup(true)}>
@@ -26,9 +28,7 @@ const Header = () => {
                 </button>
               )}
               {userData && status === Status.Succeeded && (
-                <div>
-                  {userData.user.name} <Logout />
-                </div>
+                <div>{userData.user.name}</div>
               )}
             </div>
           </div>
