@@ -1,8 +1,13 @@
 .footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
   min-height: 50px;
   background-color: var(--footer-bg-color);
   color: var(--footer-font-color);
 }
+
 .footerContainer {
   display: flex;
   justify-content: space-between;
