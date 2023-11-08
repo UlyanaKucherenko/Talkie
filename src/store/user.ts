@@ -23,8 +23,8 @@ export const authThunks = {
     if (!token) {
       throw new Error();
     }
-    await http.user.logout(token);
     deleteToken();
+    await http.user.logout(token);
   }),
   currentUser: createAsyncThunk('user/current', async () => {
     const token = getToken();
