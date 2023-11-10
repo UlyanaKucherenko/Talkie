@@ -62,7 +62,7 @@ const Home = () => {
           </div>
 
           <div>
-            <h2>Public Rooms</h2>
+            <h2>{t('rooms.public')}</h2>
             <div className={styles.list}>
               {userData && status === Status.Succeeded
                 ? publicList.map((item) => (
@@ -86,7 +86,9 @@ const Home = () => {
                   ))}
             </div>
           </div>
-          {userData && status === Status.Succeeded && <h2>Private Rooms</h2>}
+          {userData && status === Status.Succeeded && (
+            <h2>{t('rooms.private')}</h2>
+          )}
         </section>
       </div>
     </>
