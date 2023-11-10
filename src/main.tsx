@@ -7,7 +7,6 @@ import App from './App';
 import store from './store';
 import './index.css';
 import Home from './pages/Home';
-import About from './pages/About';
 import './libs/i18n';
 
 const router = createBrowserRouter([
@@ -18,10 +17,6 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
-      },
-      {
-        path: '/about',
-        element: <About />,
       },
 
       {
