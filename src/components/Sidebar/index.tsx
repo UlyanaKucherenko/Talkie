@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import styles from './index.module.css';
 import { AppDispatch } from '../../store';
@@ -28,6 +29,7 @@ const Sidebar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { status, userData } = useSelector(userSelector);
+  const { i18n } = useTranslation();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -84,7 +86,14 @@ const Sidebar = () => {
         ))}
       </nav>
       <div className={styles.wrapThemLang}>
-        <button type="button">lang</button>
+        <button
+          type="button"
+          onClick={() =>
+            i18n.changeLanguage(i18n.language === 'en' ? 'ua' : 'en')
+          }
+        >
+          {i18n.language === 'en' ? 'UA >' : 'EN >'}
+        </button>
         <button type="button" onClick={() => onSwitchTheme()}>
           <IconLightTheme />
         </button>

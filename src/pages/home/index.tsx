@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './index.module.css';
 import { userSelector } from '../../store/user';
@@ -45,13 +46,15 @@ const Home = () => {
 
   const [openPopup, setOpenPopup] = useState<boolean>(false);
 
+  const { t } = useTranslation();
+
   return (
     <>
       <AuthPopup open={openPopup} setIsOpen={setOpenPopup} />
       <div className={`container ${styles.homeContainer}`}>
         <section className={styles.sectionHero}>
-          <h1>Welcome to chat</h1>
-          <h3>Chat, connect, Stay in touch and make communication simple.</h3>
+          <h1>{t('main.title')}</h1>
+          <h3>{t('main.description')}</h3>
         </section>
         <section>
           <div>
