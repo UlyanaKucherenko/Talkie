@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { userSelector } from '../../../store/user';
 import { Status } from '../../../utils/enums/status.enum';
@@ -43,12 +44,13 @@ const publicList = [
 export const SectionPublicRooms = () => {
   const { status, userData } = useSelector(userSelector);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   return (
     <section id="public-rooms">
       <AuthPopup open={openPopup} setIsOpen={setOpenPopup} />
 
-      <h2>Public Rooms</h2>
+      <h2>{t('rooms.public')}</h2>
       <div className={styles.list}>
         {userData && status === Status.Succeeded
           ? publicList.map((item) => (

@@ -13,26 +13,11 @@ import { Status } from '../../utils/enums/status.enum';
 import { Logout } from '../auth/logout';
 import imgDefaultAvatar from '../../assets/image/avatar.png';
 
-const routes = [
-  {
-    title: 'Public rooms',
-    path: '#public-rooms',
-  },
-  {
-    title: 'Private rooms',
-    path: '#private-rooms',
-  },
-  {
-    title: 'create a room',
-    path: '#create-room',
-  },
-];
-
 const Sidebar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { status, userData } = useSelector(userSelector);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -76,16 +61,27 @@ const Sidebar = () => {
       </div>
 
       <nav>
-        {routes.map((item) => (
-          <a
-            href={item.path}
-            onClick={closeSidebarMenu}
-            key={item.title}
-            className={styles.navLink}
-          >
-            <span>{item.title}</span>
-          </a>
-        ))}
+        <a
+          href="#public-rooms"
+          onClick={closeSidebarMenu}
+          className={styles.navLink}
+        >
+          <span>{t('sidebar.publicRooms')}</span>
+        </a>
+        <a
+          href="#private-rooms"
+          onClick={closeSidebarMenu}
+          className={styles.navLink}
+        >
+          <span>{t('sidebar.privateRooms')}</span>
+        </a>
+        <a
+          href="#create-room"
+          onClick={closeSidebarMenu}
+          className={styles.navLink}
+        >
+          <span>{t('sidebar.createRoom')}</span>
+        </a>
       </nav>
       <div className={styles.wrapThemLang}>
         <button

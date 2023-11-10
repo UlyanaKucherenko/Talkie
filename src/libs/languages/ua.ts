@@ -3,9 +3,12 @@ export const uaTranslation = {
     title: 'Вітаємо у чаті',
     description:
       "Спілкуйтеся, підключайтеся, залишайтеся на зв'язку і робіть спілкування простим.",
-    Rooms: 'Кімнати',
-    About: 'Про нас',
     ourTeem: 'Наша команда',
+  },
+  sidebar: {
+    publicRooms: 'Публічні кімнати',
+    privateRooms: 'Приватні кімнати',
+    createRoom: 'Створити кімнату',
   },
   auth: {
     join: 'Приєднатися',
