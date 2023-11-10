@@ -1,5 +1,6 @@
 import { FormEvent, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { authThunks, userSelector } from '../../../../store/user';
 import type { UserRequest } from '../../../../utils/types/user.type';
@@ -12,15 +13,14 @@ export const AuthForm = () => {
   const userNameRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch<AppDispatch>();
   const { status, error: responseError } = useSelector(userSelector);
+  const { t } = useTranslation();
 
   const signupSubmitHandler = async (event: FormEvent) => {
     event.preventDefault();
     const userName = userNameRef.current?.value;
 
     if (!userName || userName.length < 2 || userName.length > 26) {
-      setErrorMessage(
-        'The username must have at least 2 characters, but no more than 26.'
-      );
+      setErrorMessage(t('errors.inputValidation'));
       return;
     }
     const request: UserRequest = {
@@ -31,11 +31,11 @@ export const AuthForm = () => {
   };
   return (
     <form className={style.form} onSubmit={signupSubmitHandler}>
-      <div className={style.formText}>enter your name to start</div>
+      <div className={style.formText}>{t('auth.formText')}</div>
       <input
         className={style.input}
         type="name"
-        placeholder="Name"
+        placeholder={t('auth.inputPlaceholder')}
         ref={userNameRef}
         disabled={status === Status.Loading}
       />
@@ -45,7 +45,7 @@ export const AuthForm = () => {
         type="submit"
         disabled={status === Status.Loading}
       >
-        {status === Status.Loading ? 'Loading...' : 'Join'}
+        {status === Status.Loading ? 'Loading...' : t('auth.join')}
       </button>
     </form>
   );

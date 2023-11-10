@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { AuthPopup } from '../../auth/signup/authPopup';
 import style from './style.module.css';
@@ -11,6 +12,7 @@ const Header = () => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);
   const { status, userData } = useSelector(userSelector);
 
+  const { t } = useTranslation();
   return (
     <>
       <AuthPopup open={openPopup} setIsOpen={setOpenPopup} />
@@ -24,7 +26,7 @@ const Header = () => {
             <div>
               {status === Status.Idle && (
                 <button type="button" onClick={() => setOpenPopup(true)}>
-                  Join
+                  {t('auth.join')}
                 </button>
               )}
               {userData && status === Status.Succeeded && (

@@ -7,7 +7,7 @@ export type UserRequest = {
 export type User = {
   _id: string;
   name: string;
-  avatarUrl: string;
+  avatarURL: string;
 };
 
 export type UserResponse = {

@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { authThunks } from '../../../store/user';
 import type { AppDispatch } from '../../../store';
@@ -8,9 +9,12 @@ export const Logout = () => {
   const logoutClickHanlder = () => {
     dispatch(authThunks.logout());
   };
+
+  const { t } = useTranslation();
+
   return (
     <button type="button" onClick={logoutClickHanlder}>
-      Logout
+      {t('auth.logout')}
     </button>
   );
 };
