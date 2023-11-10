@@ -62,21 +62,23 @@ const Sidebar = () => {
 
       <nav>
         <a
-          href="#public-rooms"
+          href="/#public-rooms"
           onClick={closeSidebarMenu}
           className={styles.navLink}
         >
           <span>{t('sidebar.publicRooms')}</span>
         </a>
+        {userData && status === Status.Succeeded && (
+          <a
+            href="/#private-rooms"
+            onClick={closeSidebarMenu}
+            className={styles.navLink}
+          >
+            <span>{t('sidebar.privateRooms')}</span>
+          </a>
+        )}
         <a
-          href="#private-rooms"
-          onClick={closeSidebarMenu}
-          className={styles.navLink}
-        >
-          <span>{t('sidebar.privateRooms')}</span>
-        </a>
-        <a
-          href="#create-room"
+          href="/#create-room"
           onClick={closeSidebarMenu}
           className={styles.navLink}
         >

@@ -23,7 +23,11 @@ const Home = () => {
 
       <SectionPublicRooms />
 
-      {userData && status === Status.Succeeded && <h2>{t('rooms.private')}</h2>}
+      {userData && status === Status.Succeeded && (
+        <section id="private-rooms" style={{ marginTop: '50px' }}>
+          <h2>{t('rooms.private')}</h2>
+        </section>
+      )}
     </div>
   );
 };

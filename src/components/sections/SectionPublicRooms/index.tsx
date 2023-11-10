@@ -47,7 +47,7 @@ export const SectionPublicRooms = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="public-rooms">
+    <section id="public-rooms" className={styles.sectionPublic}>
       <AuthPopup open={openPopup} setIsOpen={setOpenPopup} />
 
       <h2>{t('rooms.public')}</h2>

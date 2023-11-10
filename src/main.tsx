@@ -21,7 +21,7 @@ const router = createBrowserRouter([
 
       {
         path: '*',
-        element: <div>Error 404</div>,
+        element: <div style={{ textAlign: 'center' }}>Error 404</div>,
       },
     ],
   },
