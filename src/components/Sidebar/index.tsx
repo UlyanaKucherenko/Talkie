@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -14,22 +13,11 @@ import { Status } from '../../utils/enums/status.enum';
 import { Logout } from '../auth/logout';
 import imgDefaultAvatar from '../../assets/image/avatar.png';
 
-const routes = [
-  {
-    title: 'Rooms',
-    path: '/',
-  },
-  {
-    title: 'About',
-    path: '/about',
-  },
-];
-
 const Sidebar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { status, userData } = useSelector(userSelector);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -57,33 +45,45 @@ const Sidebar = () => {
         </button>
       )}
 
-      {userData && status === Status.Succeeded && (
-        <div className={styles.user}>
-          <div className={styles.userAvatarWrap}>
-            <img
-              className={styles.userAvatar}
-              src={userData?.user.avatarURL || imgDefaultAvatar}
-              alt={userData.user.name}
-            />
+      <div className={styles.userWrap}>
+        {userData && status === Status.Succeeded && (
+          <div className={styles.user}>
+            <div className={styles.userAvatarWrap}>
+              <img
+                className={styles.userAvatar}
+                src={userData?.user.avatarURL || imgDefaultAvatar}
+                alt={userData.user.name}
+              />
+            </div>
+            <div>{userData.user.name}</div>
           </div>
-          <div>{userData.user.name}</div>
-        </div>
-      )}
+        )}
+      </div>
+
       <nav>
-        {routes.map((item) => (
-          <NavLink
-            to={item.path}
+        <a
+          href="/#public-rooms"
+          onClick={closeSidebarMenu}
+          className={styles.navLink}
+        >
+          <span>{t('sidebar.publicRooms')}</span>
+        </a>
+        {userData && status === Status.Succeeded && (
+          <a
+            href="/#private-rooms"
             onClick={closeSidebarMenu}
-            key={item.title}
             className={styles.navLink}
           >
-            {({ isActive }) => (
-              <span className={`${isActive ? styles.navLinkActive : null}`}>
-                {item.title}
-              </span>
-            )}
-          </NavLink>
-        ))}
+            <span>{t('sidebar.privateRooms')}</span>
+          </a>
+        )}
+        <a
+          href="/#create-room"
+          onClick={closeSidebarMenu}
+          className={styles.navLink}
+        >
+          <span>{t('sidebar.createRoom')}</span>
+        </a>
       </nav>
       <div className={styles.wrapThemLang}>
         <button

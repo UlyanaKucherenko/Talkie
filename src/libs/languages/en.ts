@@ -2,9 +2,12 @@ export const enTranslation = {
   main: {
     title: 'Welcome to chat',
     description: 'Chat, connect, Stay in touch and make communication simple.',
-    Rooms: 'Rooms',
-    About: 'About',
     ourTeem: 'Our Team',
+  },
+  sidebar: {
+    publicRooms: 'Public Rooms',
+    privateRooms: 'Private Rooms',
+    createRoom: 'Create Room',
   },
   auth: {
     join: 'Join',

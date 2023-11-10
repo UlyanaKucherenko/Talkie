@@ -49,12 +49,15 @@ nav {
   justify-content: center;
 }
 
+.userWrap {
+  min-height: 260px;
+}
+
 .user {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  margin-bottom: 100px;
 }
 
 .userAvatarWrap {
@@ -88,6 +91,10 @@ nav {
 }
 
 .navLink:hover {
+  text-decoration: underline;
+}
+
+.navLink:active {
   text-decoration: underline;
 }
 
