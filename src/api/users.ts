@@ -10,7 +10,7 @@ export const registration = async (
 };
 
 export const logout = async (token: string): Promise<void> => {
-  await axios.post(apiRoutes.logout, {
+  await axios.post(apiRoutes.logout, null, {
     headers: {
       ApiKey: token,
     },
