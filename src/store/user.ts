@@ -73,10 +73,10 @@ export const userSlice = createSlice({
       }))
       .addCase(
         authThunks.logout.rejected,
-        (state, action): UserState => ({
+        (state): UserState => ({
           ...state,
           status: Status.Idle,
-          error: action.error.message || null,
+          error: null,
         })
       )
       .addCase(authThunks.currentUser.pending, (state) => ({
