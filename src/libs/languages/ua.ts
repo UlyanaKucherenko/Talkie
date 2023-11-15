@@ -4,6 +4,7 @@ export const uaTranslation = {
     description:
       "Спілкуйтеся, підключайтеся, залишайтеся на зв'язку і робіть спілкування простим.",
     ourTeem: 'Наша команда',
+    version: 'Версія',
   },
   sidebar: {
     publicRooms: 'Публічні кімнати',
