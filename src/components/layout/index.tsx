@@ -2,11 +2,11 @@ import { Outlet } from 'react-router-dom';
 
 import Header from './header';
 import Footer from './footer';
-import style from './style.module.css';
 import Sidebar from '../Sidebar';
+import style from './style.module.css';
 
 const Layout = () => (
-  <div className="layout">
+  <div className={style.layout}>
     <Header />
     <Sidebar />
     <main className={style.main}>

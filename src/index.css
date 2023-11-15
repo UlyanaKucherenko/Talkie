@@ -11,6 +11,7 @@
   --dark-gray-1: #6c6969;
   --dark-gray: #414453;
   --gray: #d9d9d9;
+  --dark-blue: #0f3a5a;
 
   /* theme dark */
   --background-color: var(--black);
@@ -30,7 +31,9 @@
     --brn-background-color: var(--gray);
     --brn-font-color: var(--dark-gray);
     --sidebar-bg-color: var(--white);
-    --footer-bg-color: var(--dark-gray-1);
+    --header-bg-color: var(--dark-blue);
+    --header-font-color: var(--white);
+    --footer-bg-color: var(--dark-blue);
     --footer-font-color: var(--white);
     --room-bg-color: var(--gray);
     --room-font-color: var(--white);
