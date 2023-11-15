@@ -3,6 +3,7 @@ export const enTranslation = {
     title: 'Welcome to chat',
     description: 'Chat, connect, Stay in touch and make communication simple.',
     ourTeem: 'Our Team',
+    version: 'Version',
   },
   sidebar: {
     publicRooms: 'Public Rooms',
