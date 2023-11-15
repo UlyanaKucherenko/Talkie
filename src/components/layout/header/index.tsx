@@ -7,6 +7,7 @@ import { AuthPopup } from '../../auth/signup/authPopup';
 import style from './style.module.css';
 import { userSelector } from '../../../store/user';
 import { Status } from '../../../utils/enums/status.enum';
+import { Logo } from '../../Logo';
 
 const Header = () => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);
@@ -20,8 +21,8 @@ const Header = () => {
         <div className="container">
           <div className={style.headerContent}>
             <div style={{ opacity: 0, width: '30px' }}>Menu</div>
-            <NavLink to="/">
-              <div>Logo</div>
+            <NavLink className={style.logoLink} to="/">
+              <Logo />
             </NavLink>
             <div>
               {status === Status.Idle && (
