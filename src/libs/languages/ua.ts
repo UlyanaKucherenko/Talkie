@@ -22,6 +22,6 @@ export const uaTranslation = {
     private: 'Приватні кімнати',
   },
   errors: {
-    inputValidation: 'Імя має бути не менше 2 символів і не більше 26',
+    inputValidation: 'Імя має бути не менше 2 символів і не більше 30',
   },
 } as const;

@@ -19,7 +19,7 @@ export const AuthForm = () => {
     event.preventDefault();
     const userName = userNameRef.current?.value;
 
-    if (!userName || userName.length < 2 || userName.length > 26) {
+    if (!userName || userName.length < 2 || userName.length > 30) {
       setErrorMessage(t('errors.inputValidation'));
       return;
     }

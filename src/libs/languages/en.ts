@@ -22,6 +22,6 @@ export const enTranslation = {
   },
   errors: {
     inputValidation:
-      'The username must have at least 2 characters, but no more than 26.',
+      'The username must have at least 2 characters, but no more than 30.',
   },
 } as const;
