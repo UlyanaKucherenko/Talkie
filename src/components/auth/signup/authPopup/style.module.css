@@ -7,10 +7,11 @@
   justify-content: center;
   align-items: center;
   width: 90%;
-  max-width: 350px;
+  max-width: 347px;
   background-color: #fff;
   z-index: 3;
-  padding: 45px 31px;
+  padding: 36px 28px;
+  background: var(--popup-bg-color);
 }
 
 .exitButton {
@@ -20,5 +21,10 @@
   padding: 0px;
   border: none;
   background: none;
+  outline: 0;
   color: var(--brn-font-color);
+}
+
+.exitButton:focus {
+  outline: none;
 }
