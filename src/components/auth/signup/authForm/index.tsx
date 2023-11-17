@@ -7,7 +7,7 @@ import type { UserRequest } from '../../../../utils/types/user.type';
 import type { AppDispatch } from '../../../../store';
 import styles from './style.module.css';
 import { Status } from '../../../../utils/enums/status.enum';
-import { JButton } from '../../../JButton';
+import { RButton } from '../../../RButton';
 
 export const AuthForm = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -49,13 +49,13 @@ export const AuthForm = () => {
         <div className={styles.error}>{errorMessage || responseError}</div>
       </div>
       <div className={styles.formActions}>
-        <JButton
+        <RButton
           type="submit"
           size="large"
           disabled={status === Status.Loading}
         >
           {status === Status.Loading ? 'Loading...' : t('auth.join')}
-        </JButton>
+        </RButton>
       </div>
     </form>
   );

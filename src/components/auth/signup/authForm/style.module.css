@@ -7,7 +7,7 @@
 
 .formControl {
   display: flex;
-  margin-top: 44px;
+  margin-top: 40px;
   flex-direction: column;
   gap: 5px;
   width: 100%;
@@ -35,7 +35,7 @@
 }
 
 .formText {
-  color: var(--font-secondary-color);
+  color: var(--popup-primary-font-color);
   text-align: center;
   font-size: 16px;
   font-style: normal;

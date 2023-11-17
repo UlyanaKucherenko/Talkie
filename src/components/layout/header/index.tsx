@@ -8,7 +8,7 @@ import style from './style.module.css';
 import { userSelector } from '../../../store/user';
 import { Status } from '../../../utils/enums/status.enum';
 import { Logo } from '../../Logo';
-import { JButton } from '../../JButton';
+import { RButton } from '../../RButton';
 
 const Header = () => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);
@@ -27,9 +27,9 @@ const Header = () => {
             </NavLink>
             <div>
               {status === Status.Idle && (
-                <JButton onClick={() => setOpenPopup(true)}>
+                <RButton onClick={() => setOpenPopup(true)}>
                   {t('auth.join')}
-                </JButton>
+                </RButton>
               )}
               {userData && status === Status.Succeeded && (
                 <div>{userData.user.name}</div>
