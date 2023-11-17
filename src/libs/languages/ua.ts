@@ -16,6 +16,8 @@ export const uaTranslation = {
     logout: 'Вихід',
     inputPlaceholder: "Ім'я",
     formText: "Введіть своє ім'я",
+    formDesc:
+      'Якщо ви хочете приєднатися до кімнати, то ви повинні зареєструватися',
     greetingText: 'Дякуємо, що приєдналися до Talkie',
   },
   rooms: {
@@ -23,6 +25,6 @@ export const uaTranslation = {
     private: 'Приватні кімнати',
   },
   errors: {
-    inputValidation: 'Імя має бути не менше 2 символів і не більше 30',
+    inputValidation: "Ім'я має мати 2-30 символів",
   },
 } as const;

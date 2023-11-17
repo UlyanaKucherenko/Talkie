@@ -8,14 +8,21 @@
 
   --white: #ffffff;
   --black: #000000;
+  --black-2: #000e08;
   --dark-gray-1: #6c6969;
   --dark-gray: #414453;
   --gray: #d9d9d9;
   --dark-blue: #0f3a5a;
+  --dark-blue-2: #0b3152;
+  --green: #aeff57;
+  --blue: #00f0ff;
+  --light-blue: #f1fcf8;
+  --red: #d7224d;
 
   /* theme dark */
   --background-color: var(--black);
   --font-main-color: var(--white);
+  --font-secondary-color: var(--gray);
   --brn-background-color: var(--white);
   --brn-font-color: var(--black);
   --sidebar-bg-color: var(--black);
@@ -23,11 +30,16 @@
   --footer-font-color: var(--black);
   --room-bg-color: var(--white);
   --room-font-color: var(--gray);
+  --popup-bg-color: var(--dark-gray);
+  --jbutton-bg-color: var(--green);
+  --jbutton-bg-color-hover: var(--blue);
+  --jbutton-font-color: var(--dark-blue-2);
 
   /* theme light */
   .lightTheme {
     --background-color: var(--white);
     --font-main-color: var(--dark-gray);
+    --font-secondary-color: var(--black-2);
     --brn-background-color: var(--gray);
     --brn-font-color: var(--dark-gray);
     --sidebar-bg-color: var(--white);
@@ -37,6 +49,11 @@
     --footer-font-color: var(--white);
     --room-bg-color: var(--gray);
     --room-font-color: var(--white);
+    --jbutton-bg-color: var(--green);
+    --jbutton-bg-color-hover: var(--blue);
+    --jbutton-font-color: var(--dark-blue-2);
+    --warning-color: var(--red);
+    --popup-bg-color: var(--light-blue);
   }
 }
 
@@ -76,7 +93,7 @@ button {
 button:hover {
   border-color: #646cff;
 }
-button:focus,
+
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }

@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  padding: 8px 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 11px;
+  text-transform: uppercase;
+  font-size: 14px;
+  background: var(--jbutton-bg-color);
+  color: var(--jbutton-font-color);
+  font-weight: 700;
+  transition: all 0.4s ease;
+  border: none;
+  outline: none;
+}
+
+.large {
+  padding: 10px 60px;
+}
+
+.button:hover {
+  background: var(--jbutton-bg-color-hover);
+}

@@ -1,17 +1,17 @@
 .greetings {
   display: flex;
+  height: max-content;
   flex-direction: column;
-  justify-content: center;
-  gap: 45px;
+  gap: 20px;
 }
 
 .greetingsText {
   text-align: center;
   color: var(--brn-font-color);
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 125.1%;
+  line-height: 18px;
   text-transform: uppercase;
 }
 

@@ -15,6 +15,7 @@ export const enTranslation = {
     logout: 'Logout',
     inputPlaceholder: 'Name',
     formText: 'Enter your name to start',
+    formDesc: 'If you want to enter the room, you must be logged in',
     greetingText: 'Thank you for joining Talkie',
   },
   rooms: {
@@ -22,7 +23,6 @@ export const enTranslation = {
     private: 'Private Rooms',
   },
   errors: {
-    inputValidation:
-      'The username must have at least 2 characters, but no more than 30.',
+    inputValidation: 'Username must be 2-30 characters.',
   },
 } as const;
