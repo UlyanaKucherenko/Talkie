@@ -1,0 +1,132 @@
+.sidebar {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 60px 15px 30px 15px;
+  background-color: transparent;
+  background-color: var(--sidebar-bg-color);
+  border-right: 1px solid;
+  border-color: var(--dark-gray-1);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.5s ease;
+}
+
+nav {
+  margin-bottom: 14px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.btnMenu {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: -20%;
+  top: 10px;
+  color: var(--brn-font-color);
+  background-color: var(--brn-background-color);
+  display: flex;
+  justify-content: center;
+}
+
+.btnClose {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: var(--brn-font-color);
+  background-color: var(--brn-background-color);
+  display: flex;
+  justify-content: center;
+}
+
+.userWrap {
+  min-height: 260px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.userAvatarWrap {
+  background-color: var(--gray);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.userAvatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.navLink {
+  font-size: 20px;
+  color: var(--font-main-color);
+  font-family: Poppins;
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.navLink:active {
+  text-decoration: underline;
+}
+
+.navLinkActive {
+  text-decoration: underline;
+}
+
+.wrapThemLang {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+.bottomWrap {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+.bottomList {
+  padding: 0 15px;
+}
+.logout {
+  color: var(--brn-font-color);
+  font-size: 16px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (min-width: 480px) {
+  .sidebar {
+    width: 380px;
+  }
+}
