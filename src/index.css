@@ -20,6 +20,8 @@
   --distant-horizon: #f1fcf8;
   --cosmic-red: #d7224d;
   --counts-black: #0e2030;
+  --candied-snow: #d8fff1;
+  --black-is-back: #091813;
 
   /* theme dark */
   --background-color: var(--black);
@@ -37,6 +39,8 @@
   --rbutton-bg-color-hover: var(--brain-freeze);
   --rbutton-font-color: var(--beyound-the-stars);
   --popup-bg-color: var(--dark-gray);
+  --room-header-bg-color: var(--candied-snow);
+  --room-header-member-font-color: var(--black-is-back);
 
   /* theme light */
   .lightTheme {
@@ -60,6 +64,8 @@
     --warning-color: var(--cosmic-red);
     --popup-primary-font-color: var(--jedi-night);
     --popup-bg-color: var(--distant-horizon);
+    --room-header-bg-color: var(--candied-snow);
+    --room-header-member-font-color: var(--black-is-back);
   }
 }
 
