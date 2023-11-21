@@ -8,6 +8,7 @@ import store from './store';
 import './index.css';
 import Home from './pages/Home';
 import './libs/i18n';
+import Room from './pages/Room';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />,
       },
-
+      {
+        path: 'public-chat/:roomId',
+        element: <Room />,
+      },
       {
         path: '*',
         element: <div style={{ textAlign: 'center' }}>Error 404</div>,
