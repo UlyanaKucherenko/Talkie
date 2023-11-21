@@ -1,5 +1,5 @@
 import { registration, logout, getCurrentUser } from './users';
-import { getPublicRooms } from './rooms';
+import { getPublicRooms, getRoomById } from './rooms';
 
 const http = {
   user: {
@@ -9,6 +9,7 @@ const http = {
   },
   rooms: {
     getPublicRooms,
+    getRoomById,
   },
 } as const;
 

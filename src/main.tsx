@@ -9,6 +9,7 @@ import './index.css';
 import Home from './pages/Home';
 import './libs/i18n';
 import Room from './pages/Room';
+import http from './api/http';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       },
       {
         path: 'public-chat/:roomId',
+        loader: async ({ params }) => {
+          const token = localStorage.getItem('userToken');
+          return http.rooms.getRoomById(params.roomId!, token!);
+        },
         element: <Room />,
       },
       {
