@@ -21,48 +21,48 @@ app.get("/", (req, res) => {
   res.send("Server is running!");
 });
 
-// Сховище  для кімнат
+// Room storage
 const rooms = new Map();
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
-  // Обработка входа в комнату
+  // Processing the entrance to the room
   socket.on("joinRoom", (room) => {
     try {
-      // Покидаем предыдущую комнату
+      // Leave the previous room
       if (socket.room) {
         socket.leave(socket.room);
       }
 
-      // Присоединяемся к новой комнате
+      // Joining the new room
       socket.join(room);
       socket.room = room;
 
-      // Создаем комнату, если ее нет
+      // Create a room if there is no room
       if (!rooms.has(room)) {
         rooms.set(room, []);
       }
 
-      // // Отправляем сообщение о входе в комнату
+      // // Send a message about entering the room
       // io.to(room).emit("message", "User joined the room");
 
-      // Отправляем клиенту список сообщений в комнате
+      // Send the list of messages in the room to the client
       io.to(socket.id).emit("messageList", rooms.get(room));
     } catch (error) {
       console.error("Error joining room:", error.message);
     }
   });
 
-  // Обработка отправки сообщения
+  // Process sending a message
   socket.on("sendMessage", (message) => {
     try {
       const room = socket.room;
 
-      // Добавляем сообщение в комнату
+      // Add a message to the room
       rooms.get(room).push(message);
 
-      // Отправляем сообщение всем участникам комнаты
+      // Send a message to all members of the room
       io.to(room).emit("message", message);
     } catch (error) {
       console.error("Error sending message:", error.message);
