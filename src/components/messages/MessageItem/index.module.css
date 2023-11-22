@@ -1,0 +1,19 @@
+.message {
+  display: flex;
+  gap: 9px;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #aaa1a1;
+}
+
+.messageBody {
+  background: #aaa1a1;
+}
