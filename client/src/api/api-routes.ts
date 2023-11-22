@@ -5,4 +5,5 @@ export const apiRoutes = {
   logout: `${baseUrl}/users/logout`,
   current: `${baseUrl}/users/current`,
   publicRooms: `${baseUrl}/rooms/public`,
+  rooms: `${baseUrl}/rooms`,
 } as const;

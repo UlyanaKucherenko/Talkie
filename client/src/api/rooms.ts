@@ -7,3 +7,15 @@ export const getPublicRooms = async (): Promise<PublicRoomsData> => {
   const res = await axios.get(apiRoutes.publicRooms);
   return res.data;
 };
+
+export const getRoomById = async (
+  id: string,
+  token: string
+): Promise<PublicRoomsData> => {
+  const res = await axios.get(`${apiRoutes.rooms}/${id}`, {
+    headers: {
+      ApiKey: token,
+    },
+  });
+  return res.data;
+};
