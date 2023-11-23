@@ -1,9 +1,11 @@
-import { MessagesList } from '../../messages/MessagesList';
-import { NewMessage } from '../../messages/NewMessage';
+import { Chat } from '../../messages/Chat';
+// import { MessagesList } from '../../messages/MessagesList';
+// import { NewMessage } from '../../messages/NewMessage';
 
 export const RoomBody = () => (
   <div className="container">
-    <MessagesList />
-    <NewMessage />
+    <Chat />
+    {/* <MessagesList />
+    <NewMessage /> */}
   </div>
 );
