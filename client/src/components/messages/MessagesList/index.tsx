@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useSelector } from 'react-redux';
 
 import { MessageItem } from '../MessageItem';
@@ -21,11 +22,11 @@ export const MessagesList = ({ messages, status }: Props) => {
       )}
       {messages.map((message) => (
         <MessageItem
+          key={message._id}
           username={message.owner.name}
           message={message.content}
           avatarUrl={message.owner.avatarURL}
           time={message.createdAt}
-          // eslint-disable-next-line no-underscore-dangle
           isSent={message.owner._id === userData?.user._id}
         />
       ))}

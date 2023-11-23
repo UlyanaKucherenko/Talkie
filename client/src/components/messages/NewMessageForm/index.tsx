@@ -14,6 +14,7 @@ export const NewMessageForm = ({ value, onSubmit, onChange }: Props) => (
       placeholder="Write a message..."
       onChange={onChange}
       value={value}
+      maxLength={1000}
     />
     <button type="submit">Send</button>
   </form>
