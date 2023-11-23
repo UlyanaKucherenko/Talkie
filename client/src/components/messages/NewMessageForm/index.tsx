@@ -1,17 +1,20 @@
 import styles from './index.module.css';
 
-export const NewMessage = () => {
-  const formSubmitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-  };
-  return (
-    <form className={styles.messageForm} onSubmit={formSubmitHandler}>
-      <input
-        className={styles.messageInput}
-        type="text"
-        placeholder="Write a message..."
-      />
-      <button type="submit">Send</button>
-    </form>
-  );
+type Props = {
+  value: string;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
+
+export const NewMessageForm = ({ value, onSubmit, onChange }: Props) => (
+  <form className={styles.messageForm} onSubmit={onSubmit}>
+    <input
+      className={styles.messageInput}
+      type="text"
+      placeholder="Write a message..."
+      onChange={onChange}
+      value={value}
+    />
+    <button type="submit">Send</button>
+  </form>
+);

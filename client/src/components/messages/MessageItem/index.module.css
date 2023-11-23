@@ -24,10 +24,11 @@
 }
 
 .sent {
-  justify-self: right;
+  align-self: flex-end;
 }
 
 .received {
+  align-self: flex-start;
   justify-self: left;
 }
 

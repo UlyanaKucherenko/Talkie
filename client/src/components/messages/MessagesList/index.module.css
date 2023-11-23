@@ -1,6 +1,17 @@
 .messageList {
-  display: grid;
-  flex-direction: column;
+  display: flex;
+  grid-auto-flow: dense;
+  flex-direction: column-reverse;
   gap: 18px;
   margin-top: 21px;
+  overflow: hidden scroll;
+  height: calc(100vh - 44px - 48px - 48px - 36px - 36px - 36px - 48px);
+}
+
+.noMessages, .loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

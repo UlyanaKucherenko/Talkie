@@ -5,7 +5,7 @@ type Props = {
   avatarUrl: string;
   message: string;
   time: string;
-  status?: 'sent' | 'received';
+  isSent?: boolean;
 };
 
 export const MessageItem = ({
@@ -13,10 +13,9 @@ export const MessageItem = ({
   avatarUrl,
   message,
   time,
-  status = 'sent',
+  isSent = false,
 }: Props) => {
-  const messageStatusClassName =
-    status === 'received' ? styles.received : styles.sent;
+  const messageStatusClassName = isSent ? styles.sent : styles.received;
   return (
     <div className={`${styles.message} ${messageStatusClassName}`}>
       <div className={styles.messageBody}>
