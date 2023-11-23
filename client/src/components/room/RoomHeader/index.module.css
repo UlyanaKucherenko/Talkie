@@ -8,6 +8,12 @@
   background: var(--room-header-bg-color);
 }
 
+.headerWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
   display: flex;
   flex-direction: column;
