@@ -3,6 +3,7 @@
   align-items: end;
   gap: 9px;
   width: max-content;
+  white-space: pre-wrap;
 }
 
 .sent {

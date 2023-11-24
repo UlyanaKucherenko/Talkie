@@ -1,16 +1,25 @@
+import TextareaAutosize from 'react-textarea-autosize';
+
 import styles from './index.module.css';
 
 type Props = {
   value: string;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
 };
 
-export const NewMessageForm = ({ value, onSubmit, onChange }: Props) => (
+export const NewMessageForm = ({
+  value,
+  onSubmit,
+  onChange,
+  onKeyDown,
+}: Props) => (
   <form className={styles.messageForm} onSubmit={onSubmit}>
-    <input
+    <TextareaAutosize
+      onKeyDown={onKeyDown}
+      maxRows={5}
       className={styles.messageInput}
-      type="text"
       placeholder="Write a message..."
       onChange={onChange}
       value={value}

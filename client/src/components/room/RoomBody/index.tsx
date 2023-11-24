@@ -9,6 +9,7 @@ import { NewMessageForm } from '../../messages/NewMessageForm';
 // import { Chat } from '../../messages/Chat';
 import { chatSelector, chatThunks } from '../../../store/chat';
 import { AppDispatch } from '../../../store';
+import styles from './index.module.css';
 
 const socket: Socket = io('http://localhost:3001');
 
@@ -49,7 +50,9 @@ export const RoomBody = () => {
     getMessages();
   }, [dispatch, roomId]);
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const inputChangeHandler = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const message = event.target.value;
     setInputMessage(message);
   };
@@ -81,8 +84,13 @@ export const RoomBody = () => {
     setInputMessage('');
   };
 
+  const keyDownHandler = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      formSubmitHandler(event);
+    }
+  };
   return (
-    <div className="container">
+    <div className={`container ${styles.chatRoom}`}>
       {/* <Chat /> */}
 
       <MessagesList messages={messages} status={messagesStatus} />
@@ -91,6 +99,7 @@ export const RoomBody = () => {
         value={inputMessage}
         onSubmit={formSubmitHandler}
         onChange={inputChangeHandler}
+        onKeyDown={keyDownHandler}
       />
     </div>
   );

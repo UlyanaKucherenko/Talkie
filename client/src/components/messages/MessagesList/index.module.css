@@ -1,11 +1,11 @@
 .messageList {
   display: flex;
+  flex-grow: 1;
   grid-auto-flow: dense;
   flex-direction: column-reverse;
   gap: 18px;
   margin-top: 21px;
   overflow: hidden scroll;
-  height: calc(100vh - 44px - 48px - 48px - 36px - 36px - 36px - 48px);
 }
 
 .noMessages, .loading {
