@@ -57,8 +57,7 @@ export const RoomBody = () => {
     setInputMessage(message);
   };
 
-  const formSubmitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const sendMessage = async () => {
     if (!inputMessage || inputMessage.trim() === '') {
       return;
     }
@@ -84,11 +83,18 @@ export const RoomBody = () => {
     setInputMessage('');
   };
 
-  const keyDownHandler = (event: React.KeyboardEvent) => {
+  const formSubmitHandler = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await sendMessage();
+  };
+
+  const keyDownHandler = async (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' && !event.shiftKey) {
-      formSubmitHandler(event);
+      event.preventDefault();
+      await sendMessage();
     }
   };
+
   return (
     <div className={`container ${styles.chatRoom}`}>
       {/* <Chat /> */}
