@@ -26,8 +26,8 @@ export const MessageItem = ({
         <div className={styles.messageText}>{message}</div>
         <div className={styles.messageTime}>{messageTime}</div>
       </div>
-      <div className={styles.avatar}>
-        <img src={avatarUrl} alt={username} />
+      <div>
+        <img className={styles.avatar} src={avatarUrl} alt={username} />
       </div>
     </div>
   );
