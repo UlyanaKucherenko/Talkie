@@ -11,15 +11,17 @@ type Props = {
 
 export const RoomHeader = ({ name, membersNum }: Props) => (
   <div className={styles.header}>
-    <NavLink to="/" className={styles.button}>
-      <IconBack />
-    </NavLink>
-    <div className={styles.title}>
-      <div className={styles.name}>{name}</div>
-      <div className={styles.members}>{membersNum} members</div>
+    <div className={`container ${styles.headerWrap}`}>
+      <NavLink to="/" className={styles.button}>
+        <IconBack />
+      </NavLink>
+      <div className={styles.title}>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.members}>{membersNum} members</div>
+      </div>
+      <button type="button" className={styles.button}>
+        <IconDetails />
+      </button>
     </div>
-    <button type="button" className={styles.button}>
-      <IconDetails />
-    </button>
   </div>
 );
