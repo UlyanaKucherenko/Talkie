@@ -12,7 +12,7 @@ import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
 
 // const socket: Socket = io('http://localhost:3001');
-const server = 'https://teamchallenge-chat-api.onrender.com';
+const server = `${import.meta.env.VITE_SERVER_HOST}`;
 const socket: Socket = io(`${server}/roomNameSpace`, {
   transports: ['websocket'],
   withCredentials: true,
@@ -141,7 +141,7 @@ export const RoomBody = () => {
     <div className={`container ${styles.chatRoom}`}>
       <MessagesList messages={messages} status={messagesStatus} />
 
-      {isTyping && <div>user type..</div>}
+      {isTyping && <div>user is typing..</div>}
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}
