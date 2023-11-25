@@ -5,10 +5,9 @@ import http from '../../api/http';
 import { Status } from '../../utils/enums/status.enum';
 import { Message, ResponseMessages } from '../../utils/types/chat.type';
 
-export type IMessage = {
-  id: string;
-  msg: string;
+export type INewMessage = {
   nick: string;
+  msg: string;
   date: string;
 };
 
