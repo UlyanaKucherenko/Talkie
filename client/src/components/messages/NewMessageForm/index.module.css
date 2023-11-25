@@ -23,6 +23,12 @@
   padding: 10px 8px;
   padding-right: 36px;
   background: #ccc;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.messageInput::-webkit-scrollbar {
+  display: none;
 }
 
 .send {
