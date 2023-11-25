@@ -18,11 +18,17 @@ const socket: Socket = io(`${server}/roomNameSpace`, {
   withCredentials: true,
 });
 
+export type TypeEventUserType = {
+  nick: string;
+  room: string;
+};
+
 export const RoomBody = () => {
   const { messages, messagesStatus } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
+  const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const params = useParams();
@@ -58,7 +64,8 @@ export const RoomBody = () => {
   }, [dispatch, roomId]);
 
   useEffect(() => {
-    const handleTyping = () => {
+    const handleTyping = ({ nick, room }: TypeEventUserType) => {
+      setUserTyping(nick);
       setIsTyping(true);
       typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
     };
@@ -141,7 +148,7 @@ export const RoomBody = () => {
     <div className={`container ${styles.chatRoom}`}>
       <MessagesList messages={messages} status={messagesStatus} />
 
-      {isTyping && <div>user is typing..</div>}
+      {isTyping && <div>{userTyping} is typing..</div>}
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}
