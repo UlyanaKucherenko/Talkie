@@ -77,20 +77,17 @@ export const Chat = () => {
   return (
     <div>
       <h3>Room-ID: {roomId}</h3>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <input
-          type="text"
-          placeholder="massage.."
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-        />
-        <button type="button" onClick={sendMessage}>
-          send
-        </button>
-      </div>
       <hr />
 
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          height: '400px',
+          overflow: 'scroll',
+          overflowX: 'hidden',
+        }}
+      >
         {messagesStatus === Status.Loading && <RLoader />}
 
         {messages &&
@@ -102,6 +99,18 @@ export const Chat = () => {
               </span>
             </p>
           ))}
+      </div>
+      <hr />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <input
+          type="text"
+          placeholder="massage.."
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+        />
+        <button type="button" onClick={sendMessage}>
+          send
+        </button>
       </div>
     </div>
   );

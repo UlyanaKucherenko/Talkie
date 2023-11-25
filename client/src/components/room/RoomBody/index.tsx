@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,41 +6,54 @@ import io, { Socket } from 'socket.io-client';
 
 import { MessagesList } from '../../messages/MessagesList';
 import { NewMessageForm } from '../../messages/NewMessageForm';
-// import { Chat } from '../../messages/Chat';
-import { chatSelector, chatThunks } from '../../../store/chat';
+import { INewMessage, chatSelector, chatThunks } from '../../../store/chat';
 import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
+import { userSelector } from '../../../store/user';
 
-const socket: Socket = io('http://localhost:3001');
+// const socket: Socket = io('http://localhost:3001');
+const server = `${import.meta.env.VITE_SERVER_HOST}`;
+const socket: Socket = io(`${server}/roomNameSpace`, {
+  transports: ['websocket'],
+  withCredentials: true,
+});
+
+export type TypeEventUserType = {
+  nick: string;
+  room: string;
+};
 
 export const RoomBody = () => {
   const { messages, messagesStatus } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
+  const { userData } = useSelector(userSelector);
+  const [isTyping, setIsTyping] = useState(false);
+  const [userTyping, setUserTyping] = useState<string>('');
+  const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
 
   const roomId = params.roomId!;
   useEffect(() => {
-    //   // Subscribe to the new message event
-    //   socket.on('message', (message: IMessage) => {
-    //     setMessages((prevMessages) => [...prevMessages, message]);
-    //   });
-
-    //   // Subscribe to the event of receiving the list of messages
-    //   socket.on('messageList', (messageList: IMessage[]) => {
-    //     setMessages(messageList);
-    //   });
-
     // Send a request to enter the room
-    socket.emit('joinRoom', roomId);
+    socket.emit('join', {
+      room: roomId,
+      nick: userData?.user.name,
+      date: Date.now(),
+    });
 
-    //   // Unsubscribe from events when unmounting the component
-    //   return () => {
-    //     socket.off('message');
-    //     socket.off('messageList');
-    //   };
-  }, [roomId]);
+    // Subscribe to the new message event
+    const handleMessage = (message: INewMessage) => {
+      if (message) dispatch(chatThunks.getMessages(roomId));
+    };
+    socket.on('message', handleMessage);
+
+    // Unsubscribe from events when unmounting the component
+    return () => {
+      socket.off('message', handleMessage);
+    };
+  }, [dispatch, roomId, userData]);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -50,11 +63,50 @@ export const RoomBody = () => {
     getMessages();
   }, [dispatch, roomId]);
 
+  useEffect(() => {
+    const handleTyping = ({ nick, room }: TypeEventUserType) => {
+      setUserTyping(nick);
+      setIsTyping(true);
+      typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
+    };
+
+    const handleStopTyping = () => {
+      setIsTyping(false);
+    };
+
+    // Listen for 'typing'  events
+    socket.on('user-start-write', handleTyping);
+    socket.on('user-end-write', handleStopTyping);
+
+    // Clean up event listeners
+    return () => {
+      socket.off('user-start-write', handleTyping);
+      socket.off('user-end-write', handleStopTyping);
+      clearTimeout(typingTimeout.current!);
+    };
+  }, [typingTimeout]);
+
   const inputChangeHandler = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const message = event.target.value;
     setInputMessage(message);
+
+    // event user starts typing
+    if (!isTyping) {
+      socket.emit('user-start-write', {
+        nick: userData?.user.name,
+        room: roomId,
+      });
+    }
+
+    clearTimeout(typingTimeout.current!);
+    typingTimeout.current = setTimeout(() => {
+      socket.emit('user-end-write', {
+        nick: userData?.user.name,
+        room: roomId,
+      });
+    }, 2000);
   };
 
   const sendMessage = async () => {
@@ -66,19 +118,16 @@ export const RoomBody = () => {
       content: inputMessage,
     };
 
-    await dispatch(chatThunks.createMessage(message));
+    const res = await dispatch(chatThunks.createMessage(message));
 
-    await dispatch(chatThunks.getMessages(roomId));
+    const messageSocket = {
+      msg: inputMessage,
+      room: roomId,
+      nick: userData?.user.name,
+      date: Date.now(),
+    };
 
-    //  const messageSocket = {
-    //   id: Date.now(),
-    //   msg: inputMessage,
-    //   roomId,
-    //   nick: userData?.user.name,
-    //   date: Date.now(),
-    // };
-
-    // socket.emit('sendMessage', messageSocket);
+    if (res) socket.emit('message', messageSocket);
 
     setInputMessage('');
   };
@@ -97,10 +146,9 @@ export const RoomBody = () => {
 
   return (
     <div className={`container ${styles.chatRoom}`}>
-      {/* <Chat /> */}
-
       <MessagesList messages={messages} status={messagesStatus} />
 
+      {isTyping && <div>{userTyping} is typing..</div>}
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}

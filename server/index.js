@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   // Processing the entrance to the room
-  socket.on("joinRoom", (room) => {
+  socket.on("join", ({ room, nick, date }) => {
     try {
       // Leave the previous room
       if (socket.room) {
@@ -43,12 +43,6 @@ io.on("connection", (socket) => {
       if (!rooms.has(room)) {
         rooms.set(room, []);
       }
-
-      // // Send a message about entering the room
-      // io.to(room).emit("message", "User joined the room");
-
-      // Send the list of messages in the room to the client
-      io.to(socket.id).emit("messageList", rooms.get(room));
     } catch (error) {
       console.error("Error joining room:", error.message);
     }
