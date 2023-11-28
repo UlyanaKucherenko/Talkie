@@ -22,6 +22,9 @@ export const enTranslation = {
     public: 'Public Rooms',
     private: 'Private Rooms',
   },
+  chat: {
+    placeholder: 'Write a message...',
+  },
   errors: {
     inputValidation: 'Username must be 2-30 characters.',
   },
