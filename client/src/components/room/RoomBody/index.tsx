@@ -23,12 +23,19 @@ export type TypeEventUserType = {
   room: string;
 };
 
+// export type NewTypeEventUserType = {
+//   typingUsers: string[];
+//   room: string;
+// };
+
 export const RoomBody = () => {
   const { messages, messagesStatus } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
   const [userTyping, setUserTyping] = useState<string>('');
+  // const [usersTyping, setUsersTyping] = useState<string[]>([]);
+
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const params = useParams();
@@ -70,9 +77,20 @@ export const RoomBody = () => {
       typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
     };
 
+    // const handleTyping = ({ typingUsers, room }: NewTypeEventUserType) => {
+    //   // setUserTyping(typingUsers);
+    //   setUsersTyping(typingUsers);
+    //   setIsTyping(true);
+    //   typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
+    // };
+
     const handleStopTyping = () => {
       setIsTyping(false);
     };
+
+    // const handleStopTyping = ({ typingUsers }: NewTypeEventUserType) => {
+    //   setUsersTyping(typingUsers);
+    // };
 
     // Listen for 'typing'  events
     socket.on('user-start-write', handleTyping);
@@ -148,7 +166,11 @@ export const RoomBody = () => {
     <div className={`container ${styles.chatRoom}`}>
       <MessagesList messages={messages} status={messagesStatus} />
 
-      {isTyping && <div>{userTyping} is typing..</div>}
+      {/* {isTyping && <div>{userTyping} is typing..</div>} */}
+      {/* {usersTyping &&
+        isTyping &&
+        usersTyping.map((user, idx) => <div key={idx}>{user} is typing..</div>)} */}
+
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}
