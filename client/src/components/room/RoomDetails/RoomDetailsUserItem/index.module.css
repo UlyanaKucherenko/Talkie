@@ -1,0 +1,18 @@
+.user {
+  display: flex;
+  gap: 7px;
+  width: 100%;
+}
+
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+}
+
+.owner {
+  text-transform: lowercase;
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--font-main-color)
+}

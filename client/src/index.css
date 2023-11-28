@@ -41,6 +41,8 @@
   --popup-bg-color: var(--dark-gray);
   --room-header-bg-color: var(--candied-snow);
   --room-header-member-font-color: var(--black-is-back);
+  --chat-details-desc-font-color: var(--counts-black);
+
 
   /* theme light */
   .lightTheme {
@@ -66,6 +68,8 @@
     --popup-bg-color: var(--distant-horizon);
     --room-header-bg-color: var(--candied-snow);
     --room-header-member-font-color: var(--black-is-back);
+    --chat-details-desc-font-color: var(--counts-black);
+
   }
 }
 

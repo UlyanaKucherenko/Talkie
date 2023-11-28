@@ -13,6 +13,7 @@ export type PublicRooms = {
 
 export type Room = {
   users: User[];
+  owner: User;
 } & PublicRooms;
 
 export type PublicRoomsData = {

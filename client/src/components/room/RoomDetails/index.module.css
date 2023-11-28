@@ -1,0 +1,66 @@
+.roomDetails {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 307px;
+  max-width: 100%;
+  height: calc(100% - 48px);
+  padding: 44px 19px;
+  z-index: 10;
+  background: var(--background-color);
+  transition: all 0.3s ease;
+  overflow: scroll;
+}
+
+@media screen and (min-width: 768px) {
+  .roomDetails {
+    top: 11px;
+    right: 9px;
+    left: auto;
+    height: calc(100% - 11px);
+    transform: none;
+  }
+}
+.roomTitle {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--font-main-color);
+  padding: 0;
+  margin: 0;
+}
+
+.roomCreatedAt {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--font-main-color);
+  margin-top: 5px;
+}
+
+.roomDescription {
+  font-size: 14px;
+  text-align: center;
+  color: var(--chat-details-desc-font-color);
+  margin-top: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.members {
+  margin-top: 24px;
+}
+
+.membersTitle {
+  text-align: center;
+}
+
+
