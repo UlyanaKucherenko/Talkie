@@ -3,4 +3,9 @@
   flex-direction: column;
   gap: 16px; 
   margin-top: 12px;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 0 19px;
+
 }

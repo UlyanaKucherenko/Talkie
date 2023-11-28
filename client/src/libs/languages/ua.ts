@@ -24,6 +24,9 @@ export const uaTranslation = {
     public: 'Публічні кімнати',
     private: 'Приватні кімнати',
   },
+  chat: {
+    placeholder: 'Напишіть повідомлення...',
+  },
   errors: {
     inputValidation: "Ім'я має мати 2-30 символів",
   },

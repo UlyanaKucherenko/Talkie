@@ -22,6 +22,8 @@
   --counts-black: #0e2030;
   --candied-snow: #d8fff1;
   --black-is-back: #091813;
+  --placebo-turquoise: #e7fff6;
+  --river-styx: #161821;
 
   /* theme dark */
   --background-color: var(--black);
@@ -41,8 +43,11 @@
   --popup-bg-color: var(--dark-gray);
   --room-header-bg-color: var(--candied-snow);
   --room-header-member-font-color: var(--black-is-back);
+  --message-received-bg-color: var(--dawn-departs);
+  --message-sent-bg-color: var(--placebo-turquoise);
+  --message-input-bg-color: var(--dark-blue);
+  --message-font-color: var(--river-styx);
   --chat-details-desc-font-color: var(--counts-black);
-
 
   /* theme light */
   .lightTheme {
@@ -68,8 +73,10 @@
     --popup-bg-color: var(--distant-horizon);
     --room-header-bg-color: var(--candied-snow);
     --room-header-member-font-color: var(--black-is-back);
+    --message-received-bg-color: var(--dawn-departs);
+    --message-sent-bg-color: var(--placebo-turquoise);
+    --message-input-bg-color: var(--dark-blue);
     --chat-details-desc-font-color: var(--counts-black);
-
   }
 }
 
