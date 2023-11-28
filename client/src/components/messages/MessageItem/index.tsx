@@ -16,9 +16,10 @@ export const MessageItem = ({
   isSent = false,
 }: Props) => {
   const messageStatusClassName = isSent ? styles.sent : styles.received;
-  const messageTime = `${new Date(time).getHours()}:${new Date(
-    time
-  ).getMinutes()}`;
+  const date = new Date(time);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const messageTime = `${hours}:${String(minutes).padStart(2, '0')}`;
   return (
     <div className={`${styles.message} ${messageStatusClassName}`}>
       <div className={styles.messageBody}>

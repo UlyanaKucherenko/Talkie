@@ -22,9 +22,15 @@
   resize: none;
   padding: 10px 8px;
   padding-right: 36px;
-  background: #ccc;
+  background: var(--message-input-bg-color);
+  color: #fff;
+  border-radius: 5px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.messageInput::placeholder {
+  color: #fff;
 }
 
 .messageInput::-webkit-scrollbar {

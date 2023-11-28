@@ -1,7 +1,7 @@
 import TextareaAutosize from 'react-textarea-autosize';
 
 import styles from './index.module.css';
-import { IconSend } from '../../icons/iconSend';
+import { IconSend } from '../../icons/IconSend';
 
 type Props = {
   value: string;
@@ -20,7 +20,7 @@ export const NewMessageForm = ({
     <div className={styles.formWrap}>
       <TextareaAutosize
         onKeyDown={onKeyDown}
-        maxRows={5}
+        maxRows={3}
         className={styles.messageInput}
         placeholder="Write a message..."
         onChange={onChange}
