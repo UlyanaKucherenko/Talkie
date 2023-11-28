@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-
 import TextareaAutosize from 'react-textarea-autosize';
+
 import styles from './index.module.css';
 import { IconSend } from '../../icons/IconSend';
 

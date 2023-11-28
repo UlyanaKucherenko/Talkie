@@ -1,3 +1,4 @@
+import { getFormatTime } from '../../../utils/format-time';
 import styles from './index.module.css';
 
 type Props = {
@@ -16,16 +17,13 @@ export const MessageItem = ({
   isSent = false,
 }: Props) => {
   const messageStatusClassName = isSent ? styles.sent : styles.received;
-  const date = new Date(time);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const messageTime = `${hours}:${String(minutes).padStart(2, '0')}`;
+
   return (
     <div className={`${styles.message} ${messageStatusClassName}`}>
       <div className={styles.messageBody}>
         <div className={styles.username}>{username}</div>
         <div className={styles.messageText}>{message}</div>
-        <div className={styles.messageTime}>{messageTime}</div>
+        <div className={styles.messageTime}>{getFormatTime(time)}</div>
       </div>
       <div>
         <img className={styles.avatar} src={avatarUrl} alt={username} />
