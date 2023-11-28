@@ -33,7 +33,7 @@ export const RoomBody = () => {
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
-  const [userTyping, setUserTyping] = useState<string>('');
+  // const [userTyping, setUserTyping] = useState<string>('');
   // const [usersTyping, setUsersTyping] = useState<string[]>([]);
 
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -71,8 +71,8 @@ export const RoomBody = () => {
   }, [dispatch, roomId]);
 
   useEffect(() => {
-    const handleTyping = ({ nick, room }: TypeEventUserType) => {
-      setUserTyping(nick);
+    const handleTyping = (/* nick : TypeEventUserType */) => {
+      // setUserTyping(nick);
       setIsTyping(true);
       typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
     };
