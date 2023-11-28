@@ -1,7 +1,7 @@
 import TextareaAutosize from 'react-textarea-autosize';
 
 import styles from './index.module.css';
-import { IconSend } from '../../icons/iconSend';
+import { IconSend } from '../../icons/IconSend';
 
 type Props = {
   value: string;
