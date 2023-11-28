@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+:root {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* COLORS */
+
+  --white: #ffffff;
+  --black: #000000;
+  --jedi-night: #000e08;
+  --dark-gray-1: #6c6969;
+  --dark-gray: #414453;
+  --gray: #d9d9d9;
+  --dark-blue: #0f3a5a;
+  --beyound-the-stars: #0b3152;
+  --irradiated-green: #aeff57;
+  --brain-freeze: #00f0ff;
+  --dawn-departs: #ccfcff;
+  --distant-horizon: #f1fcf8;
+  --cosmic-red: #d7224d;
+  --counts-black: #0e2030;
+  --candied-snow: #d8fff1;
+  --black-is-back: #091813;
+  --placebo-turquoise: #e7fff6;
+  --river-styx: #161821;
+
+  /* theme dark */
+  --background-color: var(--black);
+  --font-main-color: var(--white);
+  --font-secondary-color: var(--gray);
+  --brn-background-color: var(--white);
+  --brn-font-color: var(--black);
+  --sidebar-bg-color: var(--black);
+  --footer-bg-color: var(--gray);
+  --footer-font-color: var(--black);
+  --room-bg-color: var(--white);
+  --room-font-color: var(--gray);
+  --warning-color: var(--cosmic-red);
+  --rbutton-bg-color: var(--irradiated-green);
+  --rbutton-bg-color-hover: var(--brain-freeze);
+  --rbutton-font-color: var(--beyound-the-stars);
+  --popup-bg-color: var(--dark-gray);
+  --room-header-bg-color: var(--candied-snow);
+  --room-header-member-font-color: var(--black-is-back);
+  --message-received-bg-color: var(--dawn-departs);
+  --message-sent-bg-color: var(--placebo-turquoise);
+  --message-input-bg-color: var(--dark-blue);
+  --message-font-color: var(--river-styx);
+
+  /* theme light */
+  .lightTheme {
+    --background-color: var(--white);
+    --font-main-color: var(--dark-gray);
+    --brn-background-color: var(--gray);
+    --brn-font-color: var(--dark-gray);
+    --sidebar-bg-color: var(--white);
+    --header-bg-color: var(--dark-blue);
+    --header-font-color: var(--white);
+    --footer-bg-color: var(--dark-blue);
+    --footer-font-color: var(--white);
+    --room-bg-color: var(--gray);
+    --room-font-color: var(--white);
+    --jbutton-primary-bg: var(--irradiated-green);
+    --rbutton-primary-bg-hover: var(--brain-freeze);
+    --rbutton-primary-color: var(--beyound-the-stars);
+    --jbutton-secondary-bg: transparent;
+    --rbutton-secondary-bg-hover: var(--dawn-departs);
+    --rbutton-secondary-color: var(--counts-black);
+    --warning-color: var(--cosmic-red);
+    --popup-primary-font-color: var(--jedi-night);
+    --popup-bg-color: var(--distant-horizon);
+    --room-header-bg-color: var(--candied-snow);
+    --room-header-member-font-color: var(--black-is-back);
+    --message-received-bg-color: var(--dawn-departs);
+    --message-sent-bg-color: var(--placebo-turquoise);
+    --message-input-bg-color: var(--dark-blue);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--brn-font-color);
+  background-color: var(--brn-background-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
