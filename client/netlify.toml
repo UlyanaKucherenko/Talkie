@@ -1,3 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "client/dist"
+  publish = "dist"  # or the specific directory where your build artifacts are generated
+
+[build.settings]
+  base = "client"
