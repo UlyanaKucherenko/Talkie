@@ -1,4 +1,6 @@
 [build]
-  command = "cd client && npm run build"
-  publish = "client/dist"  # or the specific directory where your build artifacts are generated
+  command = "cd client && ./node_modules/.bin/tsc && npm run build"
+  publish = "client/dist"
 
+[build.environment]
+  NODE_ENV = "production"
