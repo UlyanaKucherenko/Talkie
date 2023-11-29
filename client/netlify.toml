@@ -1,4 +1,4 @@
 [build]
-  command = "cd client && npm run build"
+  command = "npm run build"
   publish = "client/dist"  # or the specific directory where your build artifacts are generated
 
