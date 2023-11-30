@@ -24,7 +24,8 @@ const router = createBrowserRouter([
         path: 'public-chat/:roomId',
         loader: async ({ params }) => {
           const token = localStorage.getItem('userToken');
-          return http.rooms.getRoomById(params.roomId!, token!);
+          const room = await http.rooms.getRoomById(params.roomId!, token!);
+          return room;
         },
         element: <Room />,
       },
