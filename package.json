@@ -11,6 +11,11 @@
     "preview": "vite preview",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{ts,tsx,js}": [
       "prettier --write",
