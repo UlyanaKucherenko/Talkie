@@ -14,25 +14,26 @@ type Props = {
 
 export const MessagesList = ({ messages, status }: Props) => {
   const { userData } = useSelector(userSelector);
-
   return (
     <div className={styles.messageList}>
-      {messages.length === 0 && (
-        <div className={styles.noMessages}>No messages yet</div>
-      )}
-      {messages.map((message) => (
-        <MessageItem
-          key={message._id}
-          username={message.owner.name}
-          message={message.content}
-          avatarUrl={message.owner.avatarURL}
-          time={message.createdAt}
-          isSent={message.owner._id === userData?.user._id}
-        />
-      ))}
-      {status === Status.Loading && messages.length === 0 && (
+      {status === Status.Loading && (
         <div className={styles.loading}>Loading ...</div>
       )}
+      {status === Status.Succeeded && messages.length === 0 && (
+        <div className={styles.noMessages}>No messages yet</div>
+      )}
+      {status === Status.Succeeded &&
+        messages.length > 0 &&
+        messages.map((message) => (
+          <MessageItem
+            key={message._id}
+            username={message.owner.name}
+            message={message.content}
+            avatarUrl={message.owner.avatarURL}
+            time={message.createdAt}
+            isSent={message.owner._id === userData?.user._id}
+          />
+        ))}
     </div>
   );
 };
