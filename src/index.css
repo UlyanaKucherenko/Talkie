@@ -8,6 +8,7 @@
 
   --white: #ffffff;
   --black: #000000;
+  --dark-white: #f6f6f6;
   --jedi-night: #000e08;
   --dark-gray-1: #6c6969;
   --dark-gray: #414453;
@@ -47,14 +48,15 @@
   --message-sent-bg-color: var(--placebo-turquoise);
   --message-input-bg-color: var(--dark-blue);
   --message-font-color: var(--river-styx);
+  --text-users-typing-color: var(--gray);
 
   /* theme light */
   .lightTheme {
-    --background-color: var(--white);
+    --background-color: var(--dark-white);
     --font-main-color: var(--dark-gray);
     --brn-background-color: var(--gray);
     --brn-font-color: var(--dark-gray);
-    --sidebar-bg-color: var(--white);
+    --sidebar-bg-color: var(--dark-white);
     --header-bg-color: var(--dark-blue);
     --header-font-color: var(--white);
     --footer-bg-color: var(--dark-blue);
@@ -75,6 +77,7 @@
     --message-received-bg-color: var(--dawn-departs);
     --message-sent-bg-color: var(--placebo-turquoise);
     --message-input-bg-color: var(--dark-blue);
+    --text-users-typing-color: var(--gray);
   }
 }
 
