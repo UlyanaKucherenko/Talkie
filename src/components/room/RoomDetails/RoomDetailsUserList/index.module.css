@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 16px; 
   margin-top: 12px;
-  height: 100%;
+  height: calc(100% - 44px);
   overflow: hidden;
   overflow-y: scroll;
   padding: 0 19px;
