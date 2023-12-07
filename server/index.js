@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 
 // Room storage
 const rooms = new Map();
+const typingUsersMap = new Map();
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
@@ -60,6 +61,57 @@ io.on("connection", (socket) => {
       io.to(room).emit("message", message);
     } catch (error) {
       console.error("Error sending message:", error.message);
+    }
+  });
+
+  // Process start typing text
+  socket.on("user-start-write", ({ nick, room }) => {
+    try {
+      if (!typingUsersMap.has(room)) {
+        typingUsersMap.set(room, []);
+      }
+
+      const typingUsers = typingUsersMap.get(room);
+
+      if (!typingUsers.includes(nick)) {
+        typingUsers.push(nick);
+      }
+
+      const otherTypingUsers = typingUsers.filter((user) => user !== nick);
+
+      io.to(room).emit("user-start-write", {
+        typingUsers: otherTypingUsers,
+        room,
+      });
+
+      console.log("user-start-write", typingUsers, nick, room);
+    } catch (error) {
+      console.error("Error typing message:", error);
+    }
+  });
+
+  // Process end typing text
+  socket.on("user-end-write", ({ nick, room }) => {
+    try {
+      if (typingUsersMap.has(room)) {
+        const typingUsers = typingUsersMap.get(room);
+        const index = typingUsers.indexOf(nick);
+
+        if (index !== -1) {
+          typingUsers.splice(index, 1);
+
+          const otherTypingUsers = typingUsers.filter((user) => user !== nick);
+
+          io.to(room).emit("user-end-write", {
+            typingUsers: otherTypingUsers,
+            room,
+          });
+
+          console.log("user-end-write", otherTypingUsers, nick, room);
+        }
+      }
+    } catch (error) {
+      console.error("Error ending typing:", error);
     }
   });
 
