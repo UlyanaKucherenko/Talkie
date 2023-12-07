@@ -69,19 +69,23 @@ export const RoomBody = () => {
   const isUsersTyping = useCallback(
     (user: string, socketEvent: string) => {
       if (user === userData?.user.name) return;
-      const newMass = [...usersTyping];
-      if (socketEvent === 'user-start-write' && !usersTyping.includes(user)) {
-        newMass.push(user);
-        setUsersTyping(newMass);
-      } else if (socketEvent === 'user-end-write') {
-        const index = newMass.indexOf(user);
-        if (index !== -1) {
-          newMass.splice(index, 1);
-          setUsersTyping(newMass);
+
+      setUsersTyping((prevUsersTyping) => {
+        const newMass = [...prevUsersTyping];
+
+        if (socketEvent === 'user-start-write' && !usersTyping.includes(user)) {
+          newMass.push(user);
+        } else {
+          const index = newMass.indexOf(user);
+          if (index !== -1) {
+            newMass.splice(index, 1);
+          }
         }
-      }
+
+        return newMass;
+      });
     },
-    [userData, usersTyping, setUsersTyping]
+    [setUsersTyping, userData, usersTyping]
   );
 
   useEffect(() => {
@@ -104,7 +108,9 @@ export const RoomBody = () => {
     return () => {
       socket.off('user-start-write', handleTyping);
       socket.off('user-end-write', handleStopTyping);
-      clearTimeout(typingTimeout.current!);
+      if (typingTimeout.current) {
+        clearTimeout(typingTimeout.current);
+      }
     };
   }, [isUsersTyping, typingTimeout]);
 
