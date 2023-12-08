@@ -18,30 +18,24 @@ const socket: Socket = io(`${server}/roomNameSpace`, {
   withCredentials: true,
 });
 
-export type TypeEventUserType = {
+type TypeEventUsersType = {
+  id: string;
   nick: string;
-  room: string;
 };
-
-// export type NewTypeEventUserType = {
-//   typingUsers: string[];
-//   room: string;
-// };
 
 export const RoomBody = () => {
   const { messages, messagesStatus } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
-  // const [userTyping, setUserTyping] = useState<string>('');
-  // const [usersTyping, setUsersTyping] = useState<string[]>([]);
-
+  const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
 
   const roomId = params.roomId!;
+
   useEffect(() => {
     // Send a request to enter the room
     socket.emit('join', {
@@ -59,6 +53,7 @@ export const RoomBody = () => {
     // Unsubscribe from events when unmounting the component
     return () => {
       socket.off('message', handleMessage);
+      socket.emit('leave', { roomId });
     };
   }, [dispatch, roomId, userData]);
 
@@ -71,38 +66,34 @@ export const RoomBody = () => {
   }, [dispatch, roomId]);
 
   useEffect(() => {
-    const handleTyping = (/* nick : TypeEventUserType */) => {
-      // setUserTyping(nick);
+    const handleTyping = (data: TypeEventUsersType) => {
+      // eslint-disable-next-line no-underscore-dangle
+      if (data.id !== userData?.user._id) {
+        setUserTyping(data.id);
+      }
+
       setIsTyping(true);
       typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
     };
 
-    // const handleTyping = ({ typingUsers, room }: NewTypeEventUserType) => {
-    //   // setUserTyping(typingUsers);
-    //   setUsersTyping(typingUsers);
-    //   setIsTyping(true);
-    //   typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
-    // };
-
     const handleStopTyping = () => {
+      setUserTyping('');
       setIsTyping(false);
     };
-
-    // const handleStopTyping = ({ typingUsers }: NewTypeEventUserType) => {
-    //   setUsersTyping(typingUsers);
-    // };
 
     // Listen for 'typing'  events
     socket.on('user-start-write', handleTyping);
     socket.on('user-end-write', handleStopTyping);
 
-    // Clean up event listeners
+    // Clean up event listenerss
     return () => {
       socket.off('user-start-write', handleTyping);
       socket.off('user-end-write', handleStopTyping);
-      clearTimeout(typingTimeout.current!);
+      if (typingTimeout.current) {
+        clearTimeout(typingTimeout.current);
+      }
     };
-  }, [typingTimeout]);
+  }, [userData, typingTimeout]);
 
   const inputChangeHandler = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -113,6 +104,8 @@ export const RoomBody = () => {
     // event user starts typing
     if (!isTyping) {
       socket.emit('user-start-write', {
+        // eslint-disable-next-line no-underscore-dangle
+        userId: userData?.user._id,
         nick: userData?.user.name,
         room: roomId,
       });
@@ -121,6 +114,8 @@ export const RoomBody = () => {
     clearTimeout(typingTimeout.current!);
     typingTimeout.current = setTimeout(() => {
       socket.emit('user-end-write', {
+        // eslint-disable-next-line no-underscore-dangle
+        userId: userData?.user._id,
         nick: userData?.user.name,
         room: roomId,
       });
@@ -165,17 +160,12 @@ export const RoomBody = () => {
   return (
     <div className={styles.chatRoom}>
       <MessagesList messages={messages} status={messagesStatus} />
-
-      {/* {isTyping && <div>{userTyping} is typing..</div>} */}
-      {/* {usersTyping &&
-        isTyping &&
-        usersTyping.map((user, idx) => <div key={idx}>{user} is typing..</div>)} */}
-
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}
         onChange={inputChangeHandler}
         onKeyDown={keyDownHandler}
+        userTypingData={userTyping}
       />
     </div>
   );

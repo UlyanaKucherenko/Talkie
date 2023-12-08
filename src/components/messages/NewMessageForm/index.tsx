@@ -9,6 +9,7 @@ type Props = {
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
+  userTypingData: string;
 };
 
 export const NewMessageForm = ({
@@ -16,11 +17,15 @@ export const NewMessageForm = ({
   onSubmit,
   onChange,
   onKeyDown,
+  userTypingData,
 }: Props) => {
   const { t } = useTranslation();
-
   return (
     <form className={styles.messageForm} onSubmit={onSubmit}>
+      {userTypingData && (
+        <div className={styles.textUsersTyping}>Smb is typing...</div>
+      )}
+
       <div className={styles.formWrap}>
         <TextareaAutosize
           onKeyDown={onKeyDown}
