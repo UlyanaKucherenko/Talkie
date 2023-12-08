@@ -75,7 +75,7 @@ export const RoomBody = () => {
 
         if (socketEvent === 'user-start-write' && !usersTyping.includes(user)) {
           newMass.push(user);
-        } else {
+        } else if (socketEvent === 'user-end-write') {
           const index = newMass.indexOf(user);
           if (index !== -1) {
             newMass.splice(index, 1);
