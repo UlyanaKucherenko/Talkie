@@ -49,6 +49,7 @@
   --message-input-bg-color: var(--dark-blue);
   --message-font-color: var(--river-styx);
   --text-users-typing-color: var(--gray);
+  --chat-details-desc-font-color: var(--counts-black);
 
   /* theme light */
   .lightTheme {
@@ -78,6 +79,7 @@
     --message-sent-bg-color: var(--placebo-turquoise);
     --message-input-bg-color: var(--dark-blue);
     --text-users-typing-color: var(--gray);
+    --chat-details-desc-font-color: var(--counts-black);
   }
 }
 

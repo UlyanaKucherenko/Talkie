@@ -1,5 +1,10 @@
 .chatRoom {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 184px);
+  max-width: 979px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
 }

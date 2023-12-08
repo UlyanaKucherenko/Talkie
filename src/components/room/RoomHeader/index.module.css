@@ -8,9 +8,14 @@
 }
 
 .headerWrap {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 979px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .title {

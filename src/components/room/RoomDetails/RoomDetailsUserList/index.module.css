@@ -1,0 +1,19 @@
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+  margin-top: 12px;
+  height: 240px;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 0 19px;
+
+}
+
+@media screen and (min-width: 480px) {
+  .users {
+    gap: 12px;
+  }
+}
+
+

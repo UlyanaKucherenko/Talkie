@@ -158,7 +158,7 @@ export const RoomBody = () => {
   };
 
   return (
-    <div className={`container ${styles.chatRoom}`}>
+    <div className={styles.chatRoom}>
       <MessagesList messages={messages} status={messagesStatus} />
       <NewMessageForm
         value={inputMessage}
