@@ -32,8 +32,8 @@ export const RoomHeader = ({ name, membersNum }: Props) => {
         >
           <IconDetails />
         </button>
+        {showDetails && <RoomDetails onClose={() => setShowDetails(false)} />}
       </div>
-      {showDetails && <RoomDetails onClose={() => setShowDetails(false)} />}
     </div>
   );
 };

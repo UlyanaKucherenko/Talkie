@@ -11,7 +11,6 @@ type Props = {
 
 export const RoomDetails = ({ onClose }: Props) => {
   const room = useLoaderData() as Room;
-  console.log(room);
   return (
     <div className={styles.roomDetails}>
       <button

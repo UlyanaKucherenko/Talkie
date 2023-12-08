@@ -13,17 +13,6 @@
   transition: all 0.3s ease;
 }
 
-@media screen and (min-width: 480px) {
-  .roomDetails {
-    top: 59px;
-    right: 9px;
-    left: auto;
-    width: 307px;
-    height: 439px;
-    transform: none;
-    border: 1px solid #d3d6d7;
-  }
-}
 .roomTitle {
   font-size: 20px;
   font-weight: 400;
@@ -52,7 +41,12 @@
 
 .close {
   position: absolute;
-  top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+  top: 8px;
   right: 16px;
   background: none;
   border: none;
@@ -70,4 +64,21 @@
 
 .membersTitle {
   text-align: center;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 480px) {
+  .members {
+    margin-top: 30px;
+  }
+
+  .roomDetails {
+    top: 0;
+    right: 9px;
+    left: auto;
+    width: 307px;
+    min-height: 440px;
+    transform: none;
+    border: 1px solid #d3d6d7;
+  }
 }

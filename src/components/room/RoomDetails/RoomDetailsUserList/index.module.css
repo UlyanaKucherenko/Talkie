@@ -9,3 +9,11 @@
   padding: 0 19px;
 
 }
+
+@media screen and (min-width: 480px) {
+  .users {
+    gap: 12px;
+  }
+}
+
+
