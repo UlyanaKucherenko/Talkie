@@ -1,11 +1,11 @@
 .roomDetails {
   position: absolute;
-  top: 56px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 100%;
-  height: calc(100% - 56px - 48px);
+  height: calc(100vh - 56px - 48px - 8px);
   padding: 44px 16px;
   z-index: 10;
   background: var(--background-color);
@@ -57,7 +57,7 @@
   margin-top: 24px;
   border: 1px solid var(--font-main-color);
   padding-top: 12px;
-  height: calc(100% - (48px + (73px + 32px)));
+  height: 280px;
   overflow: hidden;
   border-radius: 10px;
 }
@@ -73,11 +73,12 @@
   }
 
   .roomDetails {
-    top: 0;
+    top: -5px;
     right: 9px;
     left: auto;
     width: 307px;
     min-height: 440px;
+    height: auto;
     transform: none;
     border: 1px solid #d3d6d7;
   }

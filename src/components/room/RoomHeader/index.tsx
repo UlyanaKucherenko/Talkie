@@ -16,7 +16,7 @@ export const RoomHeader = ({ name, membersNum }: Props) => {
 
   return (
     <div className={styles.header}>
-      <div className={`container ${styles.headerWrap}`}>
+      <div className={styles.headerWrap}>
         <NavLink to="/" className={styles.button}>
           <IconBack />
         </NavLink>
