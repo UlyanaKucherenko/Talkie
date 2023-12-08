@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +19,7 @@ const socket: Socket = io(`${server}/roomNameSpace`, {
 });
 
 type TypeEventUsersType = {
+  id: string;
   nick: string;
 };
 
@@ -27,13 +28,14 @@ export const RoomBody = () => {
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
-  const [usersTyping, setUsersTyping] = useState<string[]>([]);
+  const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
 
   const roomId = params.roomId!;
+
   useEffect(() => {
     // Send a request to enter the room
     socket.emit('join', {
@@ -51,6 +53,7 @@ export const RoomBody = () => {
     // Unsubscribe from events when unmounting the component
     return () => {
       socket.off('message', handleMessage);
+      socket.emit('leave', { roomId });
     };
   }, [dispatch, roomId, userData]);
 
@@ -63,40 +66,18 @@ export const RoomBody = () => {
   }, [dispatch, roomId]);
 
   useEffect(() => {
-    console.log('usersTyping =>', usersTyping);
-  }, [usersTyping]);
-
-  const isUsersTyping = useCallback(
-    (user: string, socketEvent: string) => {
-      if (user === userData?.user.name) return;
-
-      setUsersTyping((prevUsersTyping) => {
-        const newMass = [...prevUsersTyping];
-
-        if (socketEvent === 'user-start-write' && !usersTyping.includes(user)) {
-          newMass.push(user);
-        } else if (socketEvent === 'user-end-write') {
-          const index = newMass.indexOf(user);
-          if (index !== -1) {
-            newMass.splice(index, 1);
-          }
-        }
-
-        return newMass;
-      });
-    },
-    [setUsersTyping, userData, usersTyping]
-  );
-
-  useEffect(() => {
     const handleTyping = (data: TypeEventUsersType) => {
-      isUsersTyping(data.nick, 'user-start-write');
+      // eslint-disable-next-line no-underscore-dangle
+      if (data.id !== userData?.user._id) {
+        setUserTyping(data.id);
+      }
+
       setIsTyping(true);
       typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
     };
 
-    const handleStopTyping = (data: TypeEventUsersType) => {
-      isUsersTyping(data.nick, 'user-end-write');
+    const handleStopTyping = () => {
+      setUserTyping('');
       setIsTyping(false);
     };
 
@@ -112,7 +93,7 @@ export const RoomBody = () => {
         clearTimeout(typingTimeout.current);
       }
     };
-  }, [isUsersTyping, typingTimeout]);
+  }, [userData, typingTimeout]);
 
   const inputChangeHandler = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -184,7 +165,7 @@ export const RoomBody = () => {
         onSubmit={formSubmitHandler}
         onChange={inputChangeHandler}
         onKeyDown={keyDownHandler}
-        usersTypingList={usersTyping}
+        userTypingData={userTyping}
       />
     </div>
   );

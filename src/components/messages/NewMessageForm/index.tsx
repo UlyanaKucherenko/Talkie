@@ -9,7 +9,7 @@ type Props = {
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
-  usersTypingList: string[];
+  userTypingData: string;
 };
 
 export const NewMessageForm = ({
@@ -17,19 +17,13 @@ export const NewMessageForm = ({
   onSubmit,
   onChange,
   onKeyDown,
-  usersTypingList,
+  userTypingData,
 }: Props) => {
   const { t } = useTranslation();
   return (
     <form className={styles.messageForm} onSubmit={onSubmit}>
-      {usersTypingList.length > 0 && (
-        <div className={styles.textUsersTyping}>
-          {usersTypingList.map((user, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <span key={idx}>{user}</span>
-          ))}
-          is typing...
-        </div>
+      {userTypingData && (
+        <div className={styles.textUsersTyping}>Smb is typing...</div>
       )}
 
       <div className={styles.formWrap}>
