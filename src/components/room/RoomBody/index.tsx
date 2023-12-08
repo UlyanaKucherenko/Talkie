@@ -19,6 +19,7 @@ const socket: Socket = io(`${server}/roomNameSpace`, {
 });
 
 type TypeEventUsersType = {
+  id: string;
   nick: string;
 };
 
@@ -52,6 +53,7 @@ export const RoomBody = () => {
     // Unsubscribe from events when unmounting the component
     return () => {
       socket.off('message', handleMessage);
+      socket.emit('leave', { roomId });
     };
   }, [dispatch, roomId, userData]);
 
@@ -64,13 +66,10 @@ export const RoomBody = () => {
   }, [dispatch, roomId]);
 
   useEffect(() => {
-    console.log('userTyping =>', userTyping);
-  }, [userTyping]);
-
-  useEffect(() => {
     const handleTyping = (data: TypeEventUsersType) => {
-      if (data.nick !== userData?.user.name) {
-        setUserTyping(data.nick);
+      // eslint-disable-next-line no-underscore-dangle
+      if (data.id !== userData?.user._id) {
+        setUserTyping(data.id);
       }
 
       setIsTyping(true);
