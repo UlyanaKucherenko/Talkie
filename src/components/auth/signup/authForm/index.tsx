@@ -37,6 +37,11 @@ export const AuthForm = () => {
     if (errorMessage) {
       return;
     }
+
+    if (!userName) {
+      setErrorMessage(t('errors.userNameLengthValidation'));
+      return;
+    }
     const request: UserRequest = {
       name: userName,
     };
