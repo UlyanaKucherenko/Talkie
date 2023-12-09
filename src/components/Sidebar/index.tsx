@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-
 import { useEffect } from 'react';
+
 import styles from './index.module.css';
 import { AppDispatch } from '../../store';
 import { TOGGLE_THEME } from '../../store/theme';
