@@ -1,7 +1,7 @@
 import { Status } from '../enums/status.enum';
 import { User } from './user.type';
 
-export type PublicRooms = {
+export type Room = {
   _id: string;
   title: string;
   topic: string;
@@ -9,18 +9,15 @@ export type PublicRooms = {
   description: string;
   createdAt: string;
   updatedAt: string;
-};
-
-export type Room = {
   users: User[];
   owner: User;
-} & PublicRooms;
+};
 
 export type PublicRoomsData = {
   page: number;
   perPage: number;
   totalPages: number;
-  rooms: PublicRooms[];
+  rooms: Room[];
 };
 
 export type RoomsState = {

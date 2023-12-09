@@ -2,14 +2,14 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
-import { PublicRooms } from '../../../../utils/types/rooms.type';
+import type { Room } from '../../../../utils/types/rooms.type';
 import { userSelector } from '../../../../store/user';
 import { AuthPopup } from '../../../auth/signup/authPopup';
 import { Status } from '../../../../utils/enums/status.enum';
 import styles from './index.module.css';
 
 type PublicRoomsListProps = {
-  rooms: PublicRooms[];
+  rooms: Room[];
 };
 
 export const PublicRoomsList = ({ rooms }: PublicRoomsListProps) => {
