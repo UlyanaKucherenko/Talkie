@@ -3,6 +3,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import styles from './index.module.css';
 import { IconSend } from '../../icons/IconSend';
+import { RButtonIcon } from '../../ui/RButtonIcon';
 
 type Props = {
   value: string;
@@ -36,9 +37,7 @@ export const NewMessageForm = ({
           value={value}
           maxLength={1000}
         />
-        <button type="submit" className={styles.send}>
-          <IconSend />
-        </button>
+        <RButtonIcon icon={IconSend} type="submit" className={styles.send} />
       </div>
     </form>
   );

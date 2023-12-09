@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { authThunks } from '../../../store/user';
 import type { AppDispatch } from '../../../store';
+import { RButton } from '../../RButton';
 
 export const Logout = () => {
   const navigate = useNavigate();
@@ -16,8 +17,8 @@ export const Logout = () => {
   const { t } = useTranslation();
 
   return (
-    <button type="button" onClick={logoutClickHanlder}>
+    <RButton color="text" type="button" onClick={logoutClickHanlder}>
       {t('auth.logout')}
-    </button>
+    </RButton>
   );
 };
