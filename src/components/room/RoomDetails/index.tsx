@@ -1,5 +1,5 @@
+import { forwardRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
-
 import styles from './index.module.css';
 import { Room } from '../../../utils/types/rooms.type';
 import { IconClose } from '../../icons/IconClose';
@@ -9,10 +9,12 @@ type Props = {
   onClose: () => void;
 };
 
-export const RoomDetails = ({ onClose }: Props) => {
+export type Ref = HTMLDivElement;
+
+export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
   const room = useLoaderData() as Room;
   return (
-    <div className={styles.roomDetails}>
+    <div className={styles.roomDetails} ref={ref}>
       <button
         className={styles.close}
         type="button"
@@ -37,4 +39,4 @@ export const RoomDetails = ({ onClose }: Props) => {
       )}
     </div>
   );
-};
+});

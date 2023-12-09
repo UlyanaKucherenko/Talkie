@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { IconBack } from '../../icons/IconBack';
 import { IconDetails } from '../../icons/IconDetails';
 import { RoomDetails } from '../RoomDetails';
+import { useClickOutside } from '../../../hooks/use-click-outside';
 import styles from './index.module.css';
 
 type Props = {
@@ -13,6 +14,9 @@ type Props = {
 
 export const RoomHeader = ({ name, membersNum }: Props) => {
   const [showDetails, setShowDetails] = useState(false);
+  const detailsRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(detailsRef, () => setShowDetails(false));
 
   return (
     <div className={styles.header}>
@@ -32,7 +36,9 @@ export const RoomHeader = ({ name, membersNum }: Props) => {
         >
           <IconDetails />
         </button>
-        {showDetails && <RoomDetails onClose={() => setShowDetails(false)} />}
+        {showDetails && (
+          <RoomDetails ref={detailsRef} onClose={() => setShowDetails(false)} />
+        )}
       </div>
     </div>
   );
