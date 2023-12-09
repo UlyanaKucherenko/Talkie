@@ -4,13 +4,19 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { AuthPopup } from '../../auth/signup/authPopup';
-import style from './style.module.css';
+import styles from './style.module.css';
 import { userSelector } from '../../../store/user';
 import { Status } from '../../../utils/enums/status.enum';
 import { Logo } from '../../Logo';
 import { RButton } from '../../RButton';
+import { IconMenu } from '../../icons/IconMenu';
+import { RButtonIcon } from '../../ui/RButtonIcon';
 
-const Header = () => {
+type HeaderProps = {
+  openMenu: () => void;
+};
+
+const Header = ({ openMenu }: HeaderProps) => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);
   const { status, userData } = useSelector(userSelector);
 
@@ -18,11 +24,11 @@ const Header = () => {
   return (
     <>
       <AuthPopup open={openPopup} setIsOpen={setOpenPopup} />
-      <header className={style.header}>
+      <header className={styles.header}>
         <div className="container">
-          <div className={style.headerContent}>
-            <div style={{ opacity: 0, width: '30px' }}>Menu</div>
-            <NavLink className={style.logoLink} to="/">
+          <div className={styles.headerContent}>
+            <RButtonIcon type="button" onClick={openMenu} icon={IconMenu} />
+            <NavLink className={styles.logoLink} to="/">
               <Logo />
             </NavLink>
             <div>

@@ -17,6 +17,7 @@
   --beyound-the-stars: #0b3152;
   --irradiated-green: #aeff57;
   --brain-freeze: #00f0ff;
+  --clean-pool: #4dcbf2;
   --dawn-departs: #ccfcff;
   --distant-horizon: #f1fcf8;
   --cosmic-red: #d7224d;
@@ -32,15 +33,18 @@
   --font-secondary-color: var(--gray);
   --brn-background-color: var(--white);
   --brn-font-color: var(--black);
+  --header-bg-color: var(--dark-blue);
   --sidebar-bg-color: var(--black);
-  --footer-bg-color: var(--gray);
-  --footer-font-color: var(--black);
+  --footer-bg-color: var(--dark-blue);
+  --footer-font-color: var(--white);
   --room-bg-color: var(--white);
   --room-font-color: var(--gray);
   --warning-color: var(--cosmic-red);
   --rbutton-bg-color: var(--irradiated-green);
   --rbutton-bg-color-hover: var(--brain-freeze);
   --rbutton-font-color: var(--beyound-the-stars);
+  --rbutton-text-color: var(--counts-black);
+  --rbutton-text-color-hover: var(--clean-pool);
   --popup-bg-color: var(--dark-gray);
   --room-header-bg-color: var(--candied-snow);
   --room-header-member-font-color: var(--black-is-back);
@@ -50,6 +54,7 @@
   --message-font-color: var(--river-styx);
   --text-users-typing-color: var(--gray);
   --chat-details-desc-font-color: var(--counts-black);
+  --navlink-hover-color: var(--clean-pool);
 
   /* theme light */
   .lightTheme {
@@ -70,6 +75,8 @@
     --jbutton-secondary-bg: transparent;
     --rbutton-secondary-bg-hover: var(--dawn-departs);
     --rbutton-secondary-color: var(--counts-black);
+    --rbutton-text-color: var(--counts-black);
+    --rbutton-text-color-hover: var(--clean-pool);
     --warning-color: var(--cosmic-red);
     --popup-primary-font-color: var(--jedi-night);
     --popup-bg-color: var(--distant-horizon);
@@ -80,6 +87,7 @@
     --message-input-bg-color: var(--dark-blue);
     --text-users-typing-color: var(--gray);
     --chat-details-desc-font-color: var(--counts-black);
+    --navlink-hover-color: var(--clean-pool);
   }
 }
 
@@ -101,7 +109,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1em;
@@ -122,4 +130,4 @@ button:hover {
 
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
