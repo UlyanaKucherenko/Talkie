@@ -11,6 +11,7 @@ type RButtonIconProps = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: 'submit' | 'button';
   disabled?: boolean;
+  className?: string;
 };
 
 export const RButtonIcon = ({
@@ -19,11 +20,16 @@ export const RButtonIcon = ({
   onClick,
   type = 'button',
   disabled = false,
+  className,
 }: RButtonIconProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  let classNameRButton = styles.button;
+  if (className) {
+    classNameRButton = `${classNameRButton} ${className}`;
+  }
   return (
     <button
-      className={styles.button}
+      className={classNameRButton}
       type={type === 'submit' ? 'submit' : 'button'}
       onClick={onClick}
       disabled={disabled}

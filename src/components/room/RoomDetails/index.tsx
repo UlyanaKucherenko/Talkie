@@ -4,6 +4,7 @@ import styles from './index.module.css';
 import { Room } from '../../../utils/types/rooms.type';
 import { IconClose } from '../../icons/IconClose';
 import { RoomDetailsUserList } from './RoomDetailsUserList';
+import { RButtonIcon } from '../../ui/RButtonIcon';
 
 type Props = {
   onClose: () => void;
@@ -15,14 +16,13 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
   const room = useLoaderData() as Room;
   return (
     <div className={styles.roomDetails} ref={ref}>
-      <button
+      <RButtonIcon
         className={styles.close}
+        icon={IconClose}
         type="button"
         aria-label="close"
         onClick={onClose}
-      >
-        <IconClose />
-      </button>
+      />
       {!room && <p>No data</p>}
       {room && (
         <>

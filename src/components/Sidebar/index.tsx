@@ -52,9 +52,12 @@ const Sidebar = ({ menuOpen, closeMenu }: SidebarProps) => {
 
   return (
     <div className={styles.sidebar} style={sidebarStyle}>
-      <div className={styles.btnClose}>
-        <RButtonIcon icon={IconClose} type="button" onClick={closeMenu} />
-      </div>
+      <RButtonIcon
+        icon={IconClose}
+        type="button"
+        onClick={closeMenu}
+        className={styles.btnClose}
+      />
 
       <div className={styles.userWrap}>
         {userData && status === Status.Succeeded && (
