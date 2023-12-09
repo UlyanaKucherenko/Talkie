@@ -26,6 +26,7 @@ export const enTranslation = {
     placeholder: 'Write a message...',
   },
   errors: {
-    inputValidation: 'Username must be 2-30 characters.',
+    userNameLengthValidation: 'Username must be 2-30 characters.',
+    userNameCharacterValidation: 'You entered an invalid character',
   },
 } as const;

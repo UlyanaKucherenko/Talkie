@@ -28,6 +28,7 @@ export const uaTranslation = {
     placeholder: 'Напишіть повідомлення...',
   },
   errors: {
-    inputValidation: "Ім'я має мати 2-30 символів",
+    userNameLengthValidation: "Ім'я має мати 2-30 символів",
+    userNameCharacterValidation: 'Ви ввели не коректний символ',
   },
 } as const;
