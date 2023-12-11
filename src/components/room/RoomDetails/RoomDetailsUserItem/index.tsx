@@ -9,7 +9,7 @@ type Props = {
 export const RoomDetailsUserItem = ({ user, isOwner = false }: Props) => (
   <li className={styles.user}>
     <img className={styles.userAvatar} src={user.avatarURL} alt={user.name} />
-    {user.name}
+    <span className={styles.userName}>{user.name}</span>
     {isOwner && <span className={styles.owner}>Owner</span>}
   </li>
 );
