@@ -12,6 +12,7 @@ import { RButton } from '../../../RButton';
 export const AuthForm = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [userName, setUserName] = useState('');
+
   const dispatch = useDispatch<AppDispatch>();
   const { status, error: responseError } = useSelector(userSelector);
   const { t } = useTranslation();
@@ -20,12 +21,15 @@ export const AuthForm = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { value } = event.target;
+
     if (value.length > 30) {
       setErrorMessage(t('errors.userNameLengthValidation'));
       return;
     }
     if (!value.match(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s'’._-]*$/)) {
       setErrorMessage(t('errors.userNameCharacterValidation'));
+    } else if (value.length < 2) {
+      setErrorMessage(t('errors.userNameLengthValidation'));
     } else {
       setErrorMessage(null);
     }
@@ -71,7 +75,9 @@ export const AuthForm = () => {
         <RButton
           type="submit"
           size="large"
-          disabled={status === Status.Loading || !!errorMessage}
+          disabled={
+            status === Status.Loading || !!errorMessage || userName.length < 2
+          }
         >
           {status === Status.Loading ? 'Loading...' : t('auth.join')}
         </RButton>
