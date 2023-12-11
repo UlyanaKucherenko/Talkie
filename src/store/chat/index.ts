@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { RootState } from '../index';
@@ -21,8 +22,6 @@ export type IMessages = {
   messages: Message[];
   messagesStatus: Status;
   pagination: IPagination;
-  // message: Message | null;
-  // messageStatus: Status;
 };
 
 const initialState: IMessages = {
@@ -33,8 +32,6 @@ const initialState: IMessages = {
     totalPages: 0,
   },
   messagesStatus: Status.Idle,
-  // message: null,
-  // messageStatus: Status.Idle,
 };
 
 export const chatThunks = {
@@ -57,7 +54,13 @@ export const chatThunks = {
 export const chatSlice = createSlice({
   name: 'chat',
   initialState,
-  reducers: {},
+  reducers: {
+    RESET_MESSAGES: (state) => {
+      state.messages = [];
+      state.pagination = { page: 0, perPage: 0, totalPages: 0 };
+      state.messagesStatus = Status.Idle;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(chatThunks.getMessages.pending, (state) => ({
@@ -85,32 +88,8 @@ export const chatSlice = createSlice({
         ...state,
         messagesStatus: Status.Failed,
       }));
-
-    // response new message //
-
-    // .addCase(chatThunks.createMessage.pending, (state) => ({
-    //   ...state,
-    //   messageStatus: Status.Loading,
-    // }))
-    // .addCase(
-    //   chatThunks.createMessage.fulfilled,
-    //   (state, action: PayloadAction<Message>) => {
-    //     const { payload } = action;
-
-    //     return {
-    //       ...state,
-    //       messageStatus: Status.Succeeded,
-    //       message: payload,
-    //     };
-    //   }
-    // )
-    // .addCase(chatThunks.createMessage.rejected, (state) => ({
-    //   ...state,
-    //   messageStatus: Status.Failed,
-    // }));
-
-    //
   },
 });
 
+export const { RESET_MESSAGES } = chatSlice.actions;
 export const chatSelector = (state: RootState) => state.chat;
