@@ -6,7 +6,8 @@
   height: 240px;
   overflow: hidden;
   overflow-y: scroll;
-  padding: 0 19px;
+  padding: 19px;
+  padding-bottom: 10px;
 
 }
 
