@@ -6,7 +6,12 @@ import io, { Socket } from 'socket.io-client';
 
 import { MessagesList } from '../../messages/MessagesList';
 import { NewMessageForm } from '../../messages/NewMessageForm';
-import { INewMessage, chatSelector, chatThunks } from '../../../store/chat';
+import {
+  INewMessage,
+  RESET_MESSAGES,
+  chatSelector,
+  chatThunks,
+} from '../../../store/chat';
 import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
@@ -24,7 +29,7 @@ type TypeEventUsersType = {
 };
 
 export const RoomBody = () => {
-  const { messages, messagesStatus } = useSelector(chatSelector);
+  const { messages /* messagesStatus */ } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
@@ -54,6 +59,7 @@ export const RoomBody = () => {
     return () => {
       socket.off('message', handleMessage);
       socket.emit('leave', { roomId });
+      dispatch(RESET_MESSAGES());
     };
   }, [dispatch, roomId, userData]);
 
@@ -159,7 +165,7 @@ export const RoomBody = () => {
 
   return (
     <div className={styles.chatRoom}>
-      <MessagesList messages={messages} status={messagesStatus} />
+      <MessagesList messages={messages} />
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}
