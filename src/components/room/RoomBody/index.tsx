@@ -15,6 +15,7 @@ import {
 import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
+import { RButton } from '../../RButton';
 
 // const socket: Socket = io('http://localhost:3001');
 const server = `${import.meta.env.VITE_SERVER_HOST}`;
@@ -163,8 +164,16 @@ export const RoomBody = () => {
     }
   };
 
+  const loadMoreMessages = async () => {
+    console.log('page: 2');
+    await dispatch(chatThunks.getMessages({ roomId, page: 2 }));
+  };
+
   return (
     <div className={styles.chatRoom}>
+      <RButton color="primary" onClick={loadMoreMessages}>
+        loadMoreMessages
+      </RButton>
       <MessagesList messages={messages} />
       <NewMessageForm
         value={inputMessage}

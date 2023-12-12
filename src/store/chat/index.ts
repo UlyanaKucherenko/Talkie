@@ -40,15 +40,16 @@ export const chatThunks = {
   getMessages: createAsyncThunk(
     'chat/getMessages',
     async ({
-      roomId, // page,
-      // limit = 10,
+      roomId,
+      page,
+      limit = 10,
     }: {
       roomId: string;
       page?: number;
       limit?: number;
     }) => {
-      const data = await http.chat.getMessages(roomId /* page, limit */);
-      console.log('data =>', data);
+      const data = await http.chat.getMessages({ roomId, page, limit });
+      // console.log('data =>', data);
       return data;
     }
   ),
@@ -89,7 +90,8 @@ export const chatSlice = createSlice({
           return {
             ...state,
             messagesStatus: Status.Succeeded,
-            messages: [...state.messages, ...payload.messages],
+            messages: [...payload.messages, ...state.messages],
+
             pagination: {
               page: Number(payload.page),
               perPage: Number(payload.perPage),
