@@ -1,10 +1,10 @@
-.messageList {
+.messageListWrap {
   display: flex;
   flex-grow: 1;
   grid-auto-flow: dense;
   flex-direction: column-reverse;
   gap: 12px;
-  margin-top: 21px;
+  /* margin-top: 21px; */
   overflow: hidden scroll;
 }
 
@@ -15,4 +15,21 @@
   justify-content: center;
   align-items: center;
   color: var(--gray);
+}
+
+.messageList {
+  display: flex;
+  flex-grow: 1;
+  grid-auto-flow: dense;
+  flex-direction: column-reverse;
+  gap: 12px;
+  /* margin-top: 21px; */
+  /* overflow: hidden scroll; */
+}
+
+.dayDate {
+  text-align: center;
+  color: var(--font-main-color);
+  font-family: Inter;
+  font-size: 20px;
 }

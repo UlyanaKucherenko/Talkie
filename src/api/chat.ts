@@ -9,15 +9,24 @@ import {
 
 const token = localStorage.getItem('userToken');
 
-export const getMessages = async (
-  roomId: string
-): Promise<ResponseMessages> => {
+export const getMessages = async ({
+  roomId,
+  page = 1,
+  limit = 10,
+}: {
+  roomId: string;
+  page?: number;
+  limit?: number;
+}): Promise<ResponseMessages> => {
   try {
-    const res = await axios.get(`${apiRoutes.messages}/${roomId}`, {
-      headers: {
-        ApiKey: token,
-      },
-    });
+    const res = await axios.get(
+      `${apiRoutes.messages}/${roomId}?page=${page}&limit=${limit}`,
+      {
+        headers: {
+          ApiKey: token,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.error('Error fetching messages:', error);
