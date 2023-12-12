@@ -51,7 +51,7 @@ export const RoomBody = () => {
 
     // Subscribe to the new message event
     const handleMessage = (message: INewMessage) => {
-      if (message) dispatch(chatThunks.getMessages(roomId));
+      if (message) dispatch(chatThunks.getMessages({ roomId }));
     };
     socket.on('message', handleMessage);
 
@@ -65,7 +65,7 @@ export const RoomBody = () => {
 
   useEffect(() => {
     const getMessages = async () => {
-      await dispatch(chatThunks.getMessages(roomId));
+      await dispatch(chatThunks.getMessages({ roomId }));
     };
 
     getMessages();

@@ -11,6 +11,8 @@ const token = localStorage.getItem('userToken');
 
 export const getMessages = async (
   roomId: string
+  // page?: number,
+  // limit?: number
 ): Promise<ResponseMessages> => {
   try {
     const res = await axios.get(`${apiRoutes.messages}/${roomId}`, {
@@ -18,6 +20,7 @@ export const getMessages = async (
         ApiKey: token,
       },
     });
+    console.log('teeeest');
     return res.data;
   } catch (error) {
     console.error('Error fetching messages:', error);
