@@ -17,7 +17,22 @@
   position: relative;
 }
 
+.wrapThemLang {
+  display: flex;
+  gap: 12px;
+}
+
+.themeButton {
+  color: var(--header-font-color)
+}
+
 .logoLink {
   display: flex;
   align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapThemLang {
+    gap: 30px;
+  }
 }
