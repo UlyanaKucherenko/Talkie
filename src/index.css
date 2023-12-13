@@ -9,6 +9,7 @@
   --white: #ffffff;
   --black: #000000;
   --dark-white: #f6f6f6;
+  --light-white: #f2f4f5;
   --jedi-night: #000e08;
   --dark-gray-1: #6c6969;
   --dark-gray: #414453;
@@ -55,6 +56,7 @@
   --message-font-color: var(--river-styx);
   --text-users-typing-color: var(--gray);
   --chat-details-desc-font-color: var(--counts-black);
+  --navlink-color: var(--light-white);
   --navlink-hover-color: var(--clean-pool);
 
   /* theme light */
@@ -88,6 +90,7 @@
     --message-input-bg-color: var(--dark-blue);
     --text-users-typing-color: var(--gray);
     --chat-details-desc-font-color: var(--counts-black);
+    --navlink-color: var(--counts-black);
     --navlink-hover-color: var(--clean-pool);
   }
 }
