@@ -9,6 +9,10 @@ import { NewMessageForm } from '../../messages/NewMessageForm';
 import {
   INewMessage,
   RESET_MESSAGES,
+  // SET_CURRENT_PAGE,
+  // SET_GROUP_MESSAGES,
+  // SET_MESSAGE,
+  SET_MESSAGES,
   chatSelector,
   chatThunks,
 } from '../../../store/chat';
@@ -36,6 +40,7 @@ export const RoomBody = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1); // Track the current page of messages
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -52,7 +57,10 @@ export const RoomBody = () => {
 
     // Subscribe to the new message event
     const handleMessage = (message: INewMessage) => {
-      if (message) dispatch(chatThunks.getMessages({ roomId }));
+      if (message) {
+        dispatch(chatThunks.getMessages({ roomId }));
+        dispatch(SET_MESSAGES());
+      }
     };
     socket.on('message', handleMessage);
 
@@ -67,6 +75,7 @@ export const RoomBody = () => {
   useEffect(() => {
     const getMessages = async () => {
       await dispatch(chatThunks.getMessages({ roomId }));
+      await dispatch(SET_MESSAGES());
     };
 
     getMessages();
@@ -130,9 +139,8 @@ export const RoomBody = () => {
   };
 
   const sendMessage = async () => {
-    if (!inputMessage || inputMessage.trim() === '') {
-      return;
-    }
+    if (!inputMessage || inputMessage.trim() === '') return;
+
     const message = {
       roomId,
       content: inputMessage,
@@ -165,8 +173,10 @@ export const RoomBody = () => {
   };
 
   const loadMoreMessages = async () => {
-    console.log('page: 2');
-    await dispatch(chatThunks.getMessages({ roomId, page: 2 }));
+    console.log('Load more messages for page:', currentPage + 1);
+    await dispatch(chatThunks.getMessages({ roomId, page: currentPage + 1 }));
+    setCurrentPage(currentPage + 1);
+    // dispatch(SET_CURRENT_PAGE(currentPage + 1));
   };
 
   return (

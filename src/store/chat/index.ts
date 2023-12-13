@@ -5,6 +5,10 @@ import type { RootState } from '../index';
 import http from '../../api/http';
 import { Status } from '../../utils/enums/status.enum';
 import { Message, ResponseMessages } from '../../utils/types/chat.type';
+import {
+  TypeGroupedMessages,
+  groupMessagesByDate,
+} from '../../utils/groupMessagesByDate';
 
 export type INewMessage = {
   nick: string;
@@ -23,6 +27,7 @@ export type IMessages = {
   messagesStatus: Status;
   currentPage: number;
   pagination: IPagination;
+  groupedMessages: TypeGroupedMessages;
 };
 
 const initialState: IMessages = {
@@ -34,6 +39,7 @@ const initialState: IMessages = {
     totalPages: 0,
   },
   messagesStatus: Status.Idle,
+  groupedMessages: {},
 };
 
 export const chatThunks = {
@@ -75,6 +81,9 @@ export const chatSlice = createSlice({
       const { page } = payload;
       state.currentPage = page;
     },
+    SET_MESSAGES: (state) => {
+      state.groupedMessages = groupMessagesByDate(state.messages);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -90,7 +99,7 @@ export const chatSlice = createSlice({
           return {
             ...state,
             messagesStatus: Status.Succeeded,
-            messages: [...payload.messages, ...state.messages],
+            messages: [...state.messages, ...payload.messages],
 
             pagination: {
               page: Number(payload.page),
@@ -104,8 +113,36 @@ export const chatSlice = createSlice({
         ...state,
         messagesStatus: Status.Failed,
       }));
+
+    // response new message //
+
+    // .addCase(chatThunks.createMessage.pending, (state) => ({
+    //   ...state,
+    //   messageStatus: Status.Loading,
+    // }))
+    // .addCase(
+    //   chatThunks.createMessage.fulfilled,
+    //   (state, action: PayloadAction<Message>) => {
+    //     const { payload } = action;
+    //     console.log(payload);
+
+    //     return {
+    //       ...state,
+    //       messageStatus: Status.Succeeded,
+    //       message: payload,
+    //       // messages: [payload, ...state.messages],
+    //     };
+    //   }
+    // )
+    // .addCase(chatThunks.createMessage.rejected, (state) => ({
+    //   ...state,
+    //   messageStatus: Status.Failed,
+    // }));
+
+    //
   },
 });
 
-export const { RESET_MESSAGES, SET_CURRENT_PAGE } = chatSlice.actions;
+export const { RESET_MESSAGES, SET_CURRENT_PAGE, SET_MESSAGES } =
+  chatSlice.actions;
 export const chatSelector = (state: RootState) => state.chat;
