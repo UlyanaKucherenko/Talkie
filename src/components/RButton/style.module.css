@@ -10,6 +10,19 @@
   transition: all 0.4s ease;
   border: none;
   outline: none;
+  cursor: pointer;
+}
+
+.button.small {
+  padding: 8px 30px;
+}
+
+.button.medium {
+  padding: 8px 50px;
+}
+
+.button.large {
+  padding: 10px 60px;
 }
 
 .button.primary {
@@ -32,16 +45,19 @@
   background: var(--rbutton-secondary-bg-hover);
 }
 
-.button.small {
-  padding: 8px 30px;
+.button.text {
+  background-color: transparent;
+  border-radius: 20px;
+  border: none;
+  color: var(---rbutton-text-color);
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-.button.medium {
-  padding: 8px 50px;
-}
-
-.button.large {
-  padding: 10px 60px;
+.button.text:hover:not([disabled]) {
+  color: var(--rbutton-text-color-hover);
+  background-color: transparent;
 }
 
 .button:disabled {

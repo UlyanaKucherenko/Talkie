@@ -1,45 +1,42 @@
+import { useState } from 'react';
 import styles from './style.module.css';
 
-type JButtonProps = {
-  size?: 'large' | 'medium' | 'small';
-  children: React.ReactNode;
+type IconProps = {
+  state: 'hover' | 'active' | 'default';
+};
+
+type RButtonIconProps = {
+  children?: React.ReactNode;
+  icon?: React.ComponentType<IconProps>;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: 'submit' | 'button';
   disabled?: boolean;
   className?: string;
-  color?: 'primary' | 'secondary' | 'text';
 };
 
-export const RButton = ({
-  size = 'small',
+export const RButtonIcon = ({
   children,
+  icon: Icon,
   onClick,
-  className,
-  type,
+  type = 'button',
   disabled = false,
-  color = 'primary',
-}: JButtonProps) => {
+  className,
+}: RButtonIconProps) => {
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   let classNameRButton = styles.button;
-
-  if (size) {
-    classNameRButton = `${classNameRButton} ${styles[size]}`;
-  }
-
-  if (color) {
-    classNameRButton = `${classNameRButton} ${styles[color]}`;
-  }
-
   if (className) {
     classNameRButton = `${classNameRButton} ${className}`;
   }
-
   return (
     <button
       className={classNameRButton}
       type={type === 'submit' ? 'submit' : 'button'}
       onClick={onClick}
       disabled={disabled}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
+      {Icon && <Icon state={isHovered ? 'hover' : 'default'} />}
       {children}
     </button>
   );

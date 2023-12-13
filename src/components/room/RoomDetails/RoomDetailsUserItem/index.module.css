@@ -1,0 +1,37 @@
+.user {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  height: min-content;
+}
+
+.userName {
+  word-wrap: break-word;
+  width: 100%;
+  padding-right: 15px;
+}
+
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+}
+
+.owner {
+  text-transform: lowercase;
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--font-main-color);
+}
+
+@media screen and (min-width: 480px) {
+  .user {
+    gap: 5px;
+  }
+
+  .userAvatar {
+    width: 21px;
+    height: 21px;
+  }
+}

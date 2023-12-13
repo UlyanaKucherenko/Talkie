@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { RootState } from '../index';
@@ -20,29 +21,38 @@ export type IPagination = {
 export type IMessages = {
   messages: Message[];
   messagesStatus: Status;
+  currentPage: number;
   pagination: IPagination;
-  // message: Message | null;
-  // messageStatus: Status;
 };
 
 const initialState: IMessages = {
   messages: [],
+  currentPage: 1,
   pagination: {
     page: 0,
     perPage: 0,
     totalPages: 0,
   },
   messagesStatus: Status.Idle,
-  // message: null,
-  // messageStatus: Status.Idle,
 };
 
 export const chatThunks = {
-  getMessages: createAsyncThunk('chat/getMessages', async (roomId: string) => {
-    const data = await http.chat.getMessages(roomId);
-    // console.log('data', data);
-    return data;
-  }),
+  getMessages: createAsyncThunk(
+    'chat/getMessages',
+    async ({
+      roomId,
+      page,
+      limit = 10,
+    }: {
+      roomId: string;
+      page?: number;
+      limit?: number;
+    }) => {
+      const data = await http.chat.getMessages({ roomId, page, limit });
+      // console.log('data =>', data);
+      return data;
+    }
+  ),
 
   createMessage: createAsyncThunk(
     'chat/createMessage',
@@ -57,7 +67,15 @@ export const chatThunks = {
 export const chatSlice = createSlice({
   name: 'chat',
   initialState,
-  reducers: {},
+  reducers: {
+    RESET_MESSAGES: (state) => {
+      Object.assign(state, initialState);
+    },
+    SET_CURRENT_PAGE: (state, { payload }) => {
+      const { page } = payload;
+      state.currentPage = page;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(chatThunks.getMessages.pending, (state) => ({
@@ -72,11 +90,12 @@ export const chatSlice = createSlice({
           return {
             ...state,
             messagesStatus: Status.Succeeded,
-            messages: [...payload.messages],
+            messages: [...payload.messages, ...state.messages],
+
             pagination: {
-              page: payload.page,
-              perPage: payload.perPage,
-              totalPages: payload.totalPages,
+              page: Number(payload.page),
+              perPage: Number(payload.perPage),
+              totalPages: Number(payload.totalPages),
             },
           };
         }
@@ -85,32 +104,8 @@ export const chatSlice = createSlice({
         ...state,
         messagesStatus: Status.Failed,
       }));
-
-    // response new message //
-
-    // .addCase(chatThunks.createMessage.pending, (state) => ({
-    //   ...state,
-    //   messageStatus: Status.Loading,
-    // }))
-    // .addCase(
-    //   chatThunks.createMessage.fulfilled,
-    //   (state, action: PayloadAction<Message>) => {
-    //     const { payload } = action;
-
-    //     return {
-    //       ...state,
-    //       messageStatus: Status.Succeeded,
-    //       message: payload,
-    //     };
-    //   }
-    // )
-    // .addCase(chatThunks.createMessage.rejected, (state) => ({
-    //   ...state,
-    //   messageStatus: Status.Failed,
-    // }));
-
-    //
   },
 });
 
+export const { RESET_MESSAGES, SET_CURRENT_PAGE } = chatSlice.actions;
 export const chatSelector = (state: RootState) => state.chat;

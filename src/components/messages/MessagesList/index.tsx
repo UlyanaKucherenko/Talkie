@@ -5,35 +5,40 @@ import { MessageItem } from '../MessageItem';
 import type { Message } from '../../../utils/types/chat.type';
 import { userSelector } from '../../../store/user';
 import styles from './index.module.css';
-import { Status } from '../../../utils/enums/status.enum';
+import { groupMessagesByDate } from '../../../utils/groupMessagesByDate';
 
 type Props = {
   messages: Message[];
-  status: Status;
 };
 
-export const MessagesList = ({ messages, status }: Props) => {
+export const MessagesList = ({ messages }: Props) => {
   const { userData } = useSelector(userSelector);
+  const groupedMessages = groupMessagesByDate(messages);
+
   return (
-    <div className={styles.messageList}>
-      {status === Status.Loading && (
-        <div className={styles.loading}>Loading ...</div>
-      )}
-      {status === Status.Succeeded && messages.length === 0 && (
+    <div className={styles.messageListWrap}>
+      {/* {status === Status.Loading && <RLoader />} */}
+
+      {messages.length === 0 ? (
         <div className={styles.noMessages}>No messages yet</div>
+      ) : (
+        Object.keys(groupedMessages).map((date) => (
+          <div key={date} className={styles.messageList}>
+            {groupedMessages[date].map((message, idx) => (
+              <MessageItem
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${message._id}-${idx}`}
+                username={message.owner.name}
+                message={message.content}
+                avatarUrl={message.owner.avatarURL}
+                time={message.createdAt}
+                isSent={message.owner._id === userData?.user._id}
+              />
+            ))}
+            <h3 className={styles.dayDate}>{date}</h3>
+          </div>
+        ))
       )}
-      {status === Status.Succeeded &&
-        messages.length > 0 &&
-        messages.map((message) => (
-          <MessageItem
-            key={message._id}
-            username={message.owner.name}
-            message={message.content}
-            avatarUrl={message.owner.avatarURL}
-            time={message.createdAt}
-            isSent={message.owner._id === userData?.user._id}
-          />
-        ))}
     </div>
   );
 };

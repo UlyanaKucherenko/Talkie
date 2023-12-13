@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -11,17 +11,39 @@ import { RButton } from '../../../RButton';
 
 export const AuthForm = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const userNameRef = useRef<HTMLInputElement>(null);
+  const [userName, setUserName] = useState('');
+
   const dispatch = useDispatch<AppDispatch>();
   const { status, error: responseError } = useSelector(userSelector);
   const { t } = useTranslation();
 
+  const nameInputChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { value } = event.target;
+
+    if (value.length > 30) {
+      setErrorMessage(t('errors.userNameLengthValidation'));
+      return;
+    }
+    if (!value.match(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s'’._-]*$/)) {
+      setErrorMessage(t('errors.userNameCharacterValidation'));
+    } else if (value.length < 2) {
+      setErrorMessage(t('errors.userNameLengthValidation'));
+    } else {
+      setErrorMessage(null);
+    }
+    setUserName(value);
+  };
   const signupSubmitHandler = async (event: FormEvent) => {
     event.preventDefault();
-    const userName = userNameRef.current?.value;
 
-    if (!userName || userName.length < 2 || userName.length > 30) {
-      setErrorMessage(t('errors.inputValidation'));
+    if (errorMessage) {
+      return;
+    }
+
+    if (!userName) {
+      setErrorMessage(t('errors.userNameLengthValidation'));
       return;
     }
     const request: UserRequest = {
@@ -43,7 +65,8 @@ export const AuthForm = () => {
           }
           type="name"
           placeholder={t('auth.inputPlaceholder')}
-          ref={userNameRef}
+          value={userName}
+          onChange={nameInputChangeHandler}
           disabled={status === Status.Loading}
         />
         <div className={styles.error}>{errorMessage || responseError}</div>
@@ -52,7 +75,9 @@ export const AuthForm = () => {
         <RButton
           type="submit"
           size="large"
-          disabled={status === Status.Loading}
+          disabled={
+            status === Status.Loading || !!errorMessage || userName.length < 2
+          }
         >
           {status === Status.Loading ? 'Loading...' : t('auth.join')}
         </RButton>

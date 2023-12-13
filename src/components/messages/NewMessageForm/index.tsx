@@ -3,12 +3,14 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import styles from './index.module.css';
 import { IconSend } from '../../icons/IconSend';
+import { RButtonIcon } from '../../ui/RButtonIcon';
 
 type Props = {
   value: string;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
+  userTypingData: string;
 };
 
 export const NewMessageForm = ({
@@ -16,11 +18,15 @@ export const NewMessageForm = ({
   onSubmit,
   onChange,
   onKeyDown,
+  userTypingData,
 }: Props) => {
   const { t } = useTranslation();
-
   return (
     <form className={styles.messageForm} onSubmit={onSubmit}>
+      {userTypingData && (
+        <div className={styles.textUsersTyping}>Smb is typing...</div>
+      )}
+
       <div className={styles.formWrap}>
         <TextareaAutosize
           onKeyDown={onKeyDown}
@@ -31,9 +37,7 @@ export const NewMessageForm = ({
           value={value}
           maxLength={1000}
         />
-        <button type="submit" className={styles.send}>
-          <IconSend />
-        </button>
+        <RButtonIcon icon={IconSend} type="submit" className={styles.send} />
       </div>
     </form>
   );
