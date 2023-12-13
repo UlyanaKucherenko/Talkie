@@ -12,7 +12,7 @@ export const enTranslation = {
   },
   auth: {
     join: 'Join',
-    logout: 'Logout',
+    logout: 'Log Out',
     inputPlaceholder: 'Name',
     formText: 'Enter your name to start',
     formDesc: 'If you want to enter the room, you must be logged in',
