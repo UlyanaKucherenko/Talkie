@@ -21,11 +21,13 @@ export type IPagination = {
 export type IMessages = {
   messages: Message[];
   messagesStatus: Status;
+  currentPage: number;
   pagination: IPagination;
 };
 
 const initialState: IMessages = {
   messages: [],
+  currentPage: 1,
   pagination: {
     page: 0,
     perPage: 0,
@@ -35,11 +37,22 @@ const initialState: IMessages = {
 };
 
 export const chatThunks = {
-  getMessages: createAsyncThunk('chat/getMessages', async (roomId: string) => {
-    const data = await http.chat.getMessages(roomId);
-    // console.log('data', data);
-    return data;
-  }),
+  getMessages: createAsyncThunk(
+    'chat/getMessages',
+    async ({
+      roomId,
+      page,
+      limit = 10,
+    }: {
+      roomId: string;
+      page?: number;
+      limit?: number;
+    }) => {
+      const data = await http.chat.getMessages({ roomId, page, limit });
+      // console.log('data =>', data);
+      return data;
+    }
+  ),
 
   createMessage: createAsyncThunk(
     'chat/createMessage',
@@ -56,9 +69,11 @@ export const chatSlice = createSlice({
   initialState,
   reducers: {
     RESET_MESSAGES: (state) => {
-      state.messages = [];
-      state.pagination = { page: 0, perPage: 0, totalPages: 0 };
-      state.messagesStatus = Status.Idle;
+      Object.assign(state, initialState);
+    },
+    SET_CURRENT_PAGE: (state, { payload }) => {
+      const { page } = payload;
+      state.currentPage = page;
     },
   },
   extraReducers: (builder) => {
@@ -75,11 +90,12 @@ export const chatSlice = createSlice({
           return {
             ...state,
             messagesStatus: Status.Succeeded,
-            messages: [...payload.messages],
+            messages: [...payload.messages, ...state.messages],
+
             pagination: {
-              page: payload.page,
-              perPage: payload.perPage,
-              totalPages: payload.totalPages,
+              page: Number(payload.page),
+              perPage: Number(payload.perPage),
+              totalPages: Number(payload.totalPages),
             },
           };
         }
@@ -91,5 +107,5 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { RESET_MESSAGES } = chatSlice.actions;
+export const { RESET_MESSAGES, SET_CURRENT_PAGE } = chatSlice.actions;
 export const chatSelector = (state: RootState) => state.chat;
