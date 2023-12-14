@@ -22,7 +22,6 @@ export type IPagination = {
 export type IMessages = {
   messages: Message[];
   messagesStatus: Status;
-  newMessageStatus: Status;
   currentPage: number;
   pagination: IPagination;
 };
@@ -36,7 +35,6 @@ const initialState: IMessages = {
     totalPages: 0,
   },
   messagesStatus: Status.Idle,
-  newMessageStatus: Status.Idle,
 };
 
 export const chatThunks = {
@@ -79,31 +77,19 @@ export const chatSlice = createSlice({
       state.currentPage = page;
     },
     SET_MESSAGES: (state, { payload }) => {
-      console.log('payload', payload.payload.msg);
-      const { msg } = payload.payload;
+      // console.log('payload', payload);
+      const msg = payload;
 
       const newMsg: Message = {
         _id: msg._id,
         roomId: msg.roomId,
         content: msg.content,
         owner: {
-          _id: msg._id,
-          name: msg.name,
-          avatarURL: msg.avatarURL,
+          _id: msg.owner._id,
+          name: msg.owner.name,
+          avatarURL: msg.owner.avatarURL,
         },
-        replys: [
-          {
-            _id: msg._id,
-            content: msg.content,
-            owner: {
-              _id: msg.id,
-              name: msg.name,
-              avatarURL: msg.avatarURL,
-            },
-            createdAt: msg.createdAt,
-            updatedAt: msg.createdAt,
-          },
-        ],
+        replys: msg.replys,
         createdAt: msg.createdAt,
         updatedAt: msg.updatedAt,
       };
@@ -137,59 +123,7 @@ export const chatSlice = createSlice({
       .addCase(chatThunks.getMessages.rejected, (state) => ({
         ...state,
         messagesStatus: Status.Failed,
-      }))
-
-      // response new message //
-
-      .addCase(chatThunks.createMessage.pending, (state) => ({
-        ...state,
-        newMessageStatus: Status.Loading,
-      }))
-      .addCase(
-        chatThunks.createMessage.fulfilled,
-        (state, { payload }: PayloadAction<Message>) => {
-          console.log('createMessage', payload);
-          const { msg } = payload;
-
-          const newMsg: Message = {
-            _id: msg._id,
-            roomId: msg.roomId,
-            content: msg.content,
-            owner: {
-              _id: msg._id,
-              name: msg.name,
-              avatarURL: msg.avatarURL,
-            },
-            replys: [
-              {
-                _id: msg._id,
-                content: msg.content,
-                owner: {
-                  _id: msg.id,
-                  name: msg.name,
-                  avatarURL: msg.avatarURL,
-                },
-                createdAt: msg.createdAt,
-                updatedAt: msg.createdAt,
-              },
-            ],
-            createdAt: msg.createdAt,
-            updatedAt: msg.updatedAt,
-          };
-
-          return {
-            ...state,
-            newMessageStatus: Status.Succeeded,
-            messages: [newMsg, ...state.messages],
-          };
-        }
-      )
-      .addCase(chatThunks.createMessage.rejected, (state) => ({
-        ...state,
-        newMessageStatus: Status.Failed,
       }));
-
-    //
   },
 });
 

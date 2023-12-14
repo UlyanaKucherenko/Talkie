@@ -8,12 +8,8 @@ import io, { Socket } from 'socket.io-client';
 import { MessagesList } from '../../messages/MessagesList';
 import { NewMessageForm } from '../../messages/NewMessageForm';
 import {
-  INewMessage,
   RESET_MESSAGES,
-  // SET_CURRENT_PAGE,
-  // SET_GROUP_MESSAGES,
-  // SET_MESSAGE,
-  // SET_MESSAGES,
+  SET_MESSAGES,
   chatSelector,
   chatThunks,
 } from '../../../store/chat';
@@ -21,8 +17,7 @@ import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
 import { RButton } from '../../RButton';
-// import { Message } from '../../../utils/types/chat.type';
-// import { Message } from '../../../utils/types/chat.type';
+import { Message } from '../../../utils/types/chat.type';
 
 // const socket: Socket = io('http://localhost:3001');
 const server = `${import.meta.env.VITE_SERVER_HOST}`;
@@ -36,6 +31,10 @@ type TypeEventUsersType = {
   nick: string;
 };
 
+type TypeEventMessage = {
+  data: Message;
+};
+
 export const RoomBody = () => {
   const { messages /* messagesStatus */ } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
@@ -43,8 +42,7 @@ export const RoomBody = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
-  const [currentPage, setCurrentPage] = useState<number>(1); // Track the current page of messages
-  // const [newMessage, setNewMessage] = useState(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -60,11 +58,9 @@ export const RoomBody = () => {
     });
 
     // Subscribe to the new message event
-    const handleMessage = (message: INewMessage) => {
+    const handleMessage = (message: TypeEventMessage) => {
       if (message) {
-        console.log('message', message);
-        // console.log('newMessage', newMessage);
-        // dispatch(SET_MESSAGES(message));
+        dispatch(SET_MESSAGES(message.data));
       }
     };
     socket.on('message', handleMessage);
@@ -151,18 +147,14 @@ export const RoomBody = () => {
     };
 
     const res = await dispatch(chatThunks.createMessage(message));
-    console.log('message', res);
-    // setNewMessage(res);
-    // dispatch(SET_MESSAGES(res));
+    const { msg } = res.payload as any;
 
     const messageSocket = {
-      msg: inputMessage,
+      msg,
       room: roomId,
-      nick: userData?.user.name,
-      date: Date.now(),
     };
 
-    socket.emit('message', messageSocket);
+    if (msg) socket.emit('message', messageSocket);
 
     setInputMessage('');
   };
