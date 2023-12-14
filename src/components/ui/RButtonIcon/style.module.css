@@ -8,3 +8,7 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.button:hover {
+  color: var(--rbutton-text-color-hover);
+}

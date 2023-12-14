@@ -16,6 +16,7 @@ import {
 import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
+
 import { RButton } from '../../RButton';
 import { Message } from '../../../utils/types/chat.type';
 
@@ -180,9 +181,9 @@ export const RoomBody = () => {
 
   return (
     <div className={styles.chatRoom}>
-      <RButton color="primary" onClick={loadMoreMessages}>
+      {/* <RButton color="primary" onClick={loadMoreMessages}>
         loadMoreMessages
-      </RButton>
+      </RButton> */}
       <MessagesList messages={messages} />
       <NewMessageForm
         value={inputMessage}
