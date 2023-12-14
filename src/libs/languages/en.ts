@@ -7,12 +7,13 @@ export const enTranslation = {
   },
   sidebar: {
     publicRooms: 'Public Rooms',
+    myPublicRooms: 'My Public rooms',
     privateRooms: 'Private Rooms',
     createRoom: 'Create Room',
   },
   auth: {
     join: 'Join',
-    logout: 'Logout',
+    logout: 'Log Out',
     inputPlaceholder: 'Name',
     formText: 'Enter your name to start',
     formDesc: 'If you want to enter the room, you must be logged in',
