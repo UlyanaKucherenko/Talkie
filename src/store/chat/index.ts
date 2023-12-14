@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
@@ -75,6 +76,25 @@ export const chatSlice = createSlice({
       const { page } = payload;
       state.currentPage = page;
     },
+    SET_MESSAGES: (state, { payload }) => {
+      // console.log('payload', payload);
+      const msg = payload;
+
+      const newMsg: Message = {
+        _id: msg._id,
+        roomId: msg.roomId,
+        content: msg.content,
+        owner: {
+          _id: msg.owner._id,
+          name: msg.owner.name,
+          avatarURL: msg.owner.avatarURL,
+        },
+        replys: msg.replys,
+        createdAt: msg.createdAt,
+        updatedAt: msg.updatedAt,
+      };
+      state.messages = [newMsg, ...state.messages];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -90,7 +110,7 @@ export const chatSlice = createSlice({
           return {
             ...state,
             messagesStatus: Status.Succeeded,
-            messages: [...payload.messages, ...state.messages],
+            messages: [...state.messages, ...payload.messages],
 
             pagination: {
               page: Number(payload.page),
@@ -107,5 +127,6 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { RESET_MESSAGES, SET_CURRENT_PAGE } = chatSlice.actions;
+export const { RESET_MESSAGES, SET_CURRENT_PAGE, SET_MESSAGES } =
+  chatSlice.actions;
 export const chatSelector = (state: RootState) => state.chat;

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,15 +8,17 @@ import io, { Socket } from 'socket.io-client';
 import { MessagesList } from '../../messages/MessagesList';
 import { NewMessageForm } from '../../messages/NewMessageForm';
 import {
-  INewMessage,
   RESET_MESSAGES,
+  SET_MESSAGES,
   chatSelector,
   chatThunks,
 } from '../../../store/chat';
 import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
-// import { RButton } from '../../RButton';
+
+import { RButton } from '../../RButton';
+import { Message } from '../../../utils/types/chat.type';
 
 // const socket: Socket = io('http://localhost:3001');
 const server = `${import.meta.env.VITE_SERVER_HOST}`;
@@ -29,6 +32,10 @@ type TypeEventUsersType = {
   nick: string;
 };
 
+type TypeEventMessage = {
+  data: Message;
+};
+
 export const RoomBody = () => {
   const { messages /* messagesStatus */ } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
@@ -36,6 +43,7 @@ export const RoomBody = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -51,8 +59,10 @@ export const RoomBody = () => {
     });
 
     // Subscribe to the new message event
-    const handleMessage = (message: INewMessage) => {
-      if (message) dispatch(chatThunks.getMessages({ roomId }));
+    const handleMessage = (message: TypeEventMessage) => {
+      if (message) {
+        dispatch(SET_MESSAGES(message.data));
+      }
     };
     socket.on('message', handleMessage);
 
@@ -130,24 +140,22 @@ export const RoomBody = () => {
   };
 
   const sendMessage = async () => {
-    if (!inputMessage || inputMessage.trim() === '') {
-      return;
-    }
+    if (!inputMessage || inputMessage.trim() === '') return;
+
     const message = {
       roomId,
       content: inputMessage,
     };
 
     const res = await dispatch(chatThunks.createMessage(message));
+    const { msg } = res.payload as any;
 
     const messageSocket = {
-      msg: inputMessage,
+      msg,
       room: roomId,
-      nick: userData?.user.name,
-      date: Date.now(),
     };
 
-    if (res) socket.emit('message', messageSocket);
+    if (msg) socket.emit('message', messageSocket);
 
     setInputMessage('');
   };
@@ -164,10 +172,12 @@ export const RoomBody = () => {
     }
   };
 
-  // const loadMoreMessages = async () => {
-  //   console.log('page: 2');
-  //   await dispatch(chatThunks.getMessages({ roomId, page: 2 }));
-  // };
+  const loadMoreMessages = async () => {
+    console.log('Load more messages for page:', currentPage + 1);
+    await dispatch(chatThunks.getMessages({ roomId, page: currentPage + 1 }));
+    setCurrentPage(currentPage + 1);
+    // dispatch(SET_CURRENT_PAGE(currentPage + 1));
+  };
 
   return (
     <div className={styles.chatRoom}>

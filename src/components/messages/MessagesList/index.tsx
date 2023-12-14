@@ -6,6 +6,7 @@ import type { Message } from '../../../utils/types/chat.type';
 import { userSelector } from '../../../store/user';
 import styles from './index.module.css';
 import { groupMessagesByDate } from '../../../utils/groupMessagesByDate';
+import { getFormattedDate } from '../../../utils/getFormattedDate';
 
 type Props = {
   messages: Message[];
@@ -35,7 +36,7 @@ export const MessagesList = ({ messages }: Props) => {
                 isSent={message.owner._id === userData?.user._id}
               />
             ))}
-            <h3 className={styles.dayDate}>{date}</h3>
+            <h3 className={styles.dayDate}>{getFormattedDate(date)}</h3>
           </div>
         ))
       )}
