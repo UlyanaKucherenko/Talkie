@@ -2,15 +2,15 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  padding: 60px 15px 48px 15px;
+  padding: 56px 16px 16px 16px;
   background-color: var(--sidebar-bg-color);
-  border-right: 1px solid;
-  border-color: var(--dark-gray-1);
+  box-shadow: 0px 4px 8.1px 8px rgba(11, 49, 82, 0.17);
   z-index: 5;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
   transition: transform 0.5s ease;
 }
 
@@ -47,7 +47,10 @@ nav {
 }
 
 .userWrap {
-  min-height: 260px;
+  min-height: 164px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .user {
@@ -77,14 +80,23 @@ nav {
   border-radius: 50%;
 }
 
+.userNick {
+  max-width: 250px;
+  color: var(--font-main-color);
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
 .navLink {
   font-size: 20px;
-  color: var(--font-main-color);
-  font-family: Poppins;
+  color: var(--navlink-color);
   font-size: 20px;
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .navLink:hover {
@@ -108,22 +120,49 @@ nav {
 }
 
 .bottomWrap {
-  position: absolute;
-  bottom: 30px;
-  left: 0;
+  position: relative;
   width: 100%;
 }
 .bottomList {
-  padding: 0 15px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 .logout {
   color: var(--brn-font-color);
   font-size: 16px;
   line-height: 1;
   text-transform: uppercase;
+}
+
+.linkOurTeam {
+  color: var(--navlink-color);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.linkOurTeam::before {
+  content: '';
+  display: inline-block;
+  background-color: var(--navlink-color);
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.linkOurTeam:hover::before {
+  background-color: var(--navlink-hover-color);
+}
+
+.linkOurTeam:hover,
+.linkOurTeam:active {
+  color: var(--navlink-hover-color);
 }
 
 @media (min-width: 480px) {

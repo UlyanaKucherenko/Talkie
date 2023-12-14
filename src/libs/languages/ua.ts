@@ -8,6 +8,7 @@ export const uaTranslation = {
   },
   sidebar: {
     publicRooms: 'Публічні кімнати',
+    myPublicRooms: 'Мої Публічні кімнати',
     privateRooms: 'Приватні кімнати',
     createRoom: 'Створити кімнату',
   },
