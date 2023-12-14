@@ -7,6 +7,7 @@ export const enTranslation = {
   },
   sidebar: {
     publicRooms: 'Public Rooms',
+    myPublicRooms: 'My Public rooms',
     privateRooms: 'Private Rooms',
     createRoom: 'Create Room',
   },

@@ -14,6 +14,8 @@ import { RButton } from '../../RButton';
 import { IconMenu } from '../../icons/IconMenu';
 import { RButtonIcon } from '../../ui/RButtonIcon';
 import { IconLightTheme } from '../../icons/IconLightTheme';
+import { IconUA } from '../../icons/IconUA';
+import { IconEN } from '../../icons/IconEN';
 
 type HeaderProps = {
   openMenu: () => void;
@@ -48,15 +50,14 @@ const Header = ({ openMenu }: HeaderProps) => {
               )}
               {userData && status === Status.Succeeded && (
                 <div className={styles.wrapThemLang}>
-                  <RButton
+                  <RButtonIcon
+                    icon={i18n.language === 'en' ? IconUA : IconEN}
                     type="button"
-                    color="text"
+                    defaultColorIcon="light"
                     onClick={() =>
                       i18n.changeLanguage(i18n.language === 'en' ? 'ua' : 'en')
                     }
-                  >
-                    {i18n.language === 'en' ? 'UA >' : 'EN >'}
-                  </RButton>
+                  />
                   <RButtonIcon
                     icon={IconLightTheme}
                     type="button"
