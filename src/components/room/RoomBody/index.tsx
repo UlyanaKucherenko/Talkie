@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +13,7 @@ import {
   // SET_CURRENT_PAGE,
   // SET_GROUP_MESSAGES,
   // SET_MESSAGE,
-  SET_MESSAGES,
+  // SET_MESSAGES,
   chatSelector,
   chatThunks,
 } from '../../../store/chat';
@@ -20,6 +21,8 @@ import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
 import { RButton } from '../../RButton';
+// import { Message } from '../../../utils/types/chat.type';
+// import { Message } from '../../../utils/types/chat.type';
 
 // const socket: Socket = io('http://localhost:3001');
 const server = `${import.meta.env.VITE_SERVER_HOST}`;
@@ -41,6 +44,7 @@ export const RoomBody = () => {
   const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1); // Track the current page of messages
+  // const [newMessage, setNewMessage] = useState(null);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -58,8 +62,9 @@ export const RoomBody = () => {
     // Subscribe to the new message event
     const handleMessage = (message: INewMessage) => {
       if (message) {
-        dispatch(chatThunks.getMessages({ roomId }));
-        dispatch(SET_MESSAGES());
+        console.log('message', message);
+        // console.log('newMessage', newMessage);
+        // dispatch(SET_MESSAGES(message));
       }
     };
     socket.on('message', handleMessage);
@@ -75,7 +80,6 @@ export const RoomBody = () => {
   useEffect(() => {
     const getMessages = async () => {
       await dispatch(chatThunks.getMessages({ roomId }));
-      await dispatch(SET_MESSAGES());
     };
 
     getMessages();
@@ -147,6 +151,9 @@ export const RoomBody = () => {
     };
 
     const res = await dispatch(chatThunks.createMessage(message));
+    console.log('message', res);
+    // setNewMessage(res);
+    // dispatch(SET_MESSAGES(res));
 
     const messageSocket = {
       msg: inputMessage,
@@ -155,7 +162,7 @@ export const RoomBody = () => {
       date: Date.now(),
     };
 
-    if (res) socket.emit('message', messageSocket);
+    socket.emit('message', messageSocket);
 
     setInputMessage('');
   };

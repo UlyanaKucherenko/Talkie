@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
@@ -5,10 +6,6 @@ import type { RootState } from '../index';
 import http from '../../api/http';
 import { Status } from '../../utils/enums/status.enum';
 import { Message, ResponseMessages } from '../../utils/types/chat.type';
-import {
-  TypeGroupedMessages,
-  groupMessagesByDate,
-} from '../../utils/groupMessagesByDate';
 
 export type INewMessage = {
   nick: string;
@@ -25,9 +22,9 @@ export type IPagination = {
 export type IMessages = {
   messages: Message[];
   messagesStatus: Status;
+  newMessageStatus: Status;
   currentPage: number;
   pagination: IPagination;
-  groupedMessages: TypeGroupedMessages;
 };
 
 const initialState: IMessages = {
@@ -39,7 +36,7 @@ const initialState: IMessages = {
     totalPages: 0,
   },
   messagesStatus: Status.Idle,
-  groupedMessages: {},
+  newMessageStatus: Status.Idle,
 };
 
 export const chatThunks = {
@@ -81,8 +78,36 @@ export const chatSlice = createSlice({
       const { page } = payload;
       state.currentPage = page;
     },
-    SET_MESSAGES: (state) => {
-      state.groupedMessages = groupMessagesByDate(state.messages);
+    SET_MESSAGES: (state, { payload }) => {
+      console.log('payload', payload.payload.msg);
+      const { msg } = payload.payload;
+
+      const newMsg: Message = {
+        _id: msg._id,
+        roomId: msg.roomId,
+        content: msg.content,
+        owner: {
+          _id: msg._id,
+          name: msg.name,
+          avatarURL: msg.avatarURL,
+        },
+        replys: [
+          {
+            _id: msg._id,
+            content: msg.content,
+            owner: {
+              _id: msg.id,
+              name: msg.name,
+              avatarURL: msg.avatarURL,
+            },
+            createdAt: msg.createdAt,
+            updatedAt: msg.createdAt,
+          },
+        ],
+        createdAt: msg.createdAt,
+        updatedAt: msg.updatedAt,
+      };
+      state.messages = [newMsg, ...state.messages];
     },
   },
   extraReducers: (builder) => {
@@ -112,32 +137,57 @@ export const chatSlice = createSlice({
       .addCase(chatThunks.getMessages.rejected, (state) => ({
         ...state,
         messagesStatus: Status.Failed,
+      }))
+
+      // response new message //
+
+      .addCase(chatThunks.createMessage.pending, (state) => ({
+        ...state,
+        newMessageStatus: Status.Loading,
+      }))
+      .addCase(
+        chatThunks.createMessage.fulfilled,
+        (state, { payload }: PayloadAction<Message>) => {
+          console.log('createMessage', payload);
+          const { msg } = payload;
+
+          const newMsg: Message = {
+            _id: msg._id,
+            roomId: msg.roomId,
+            content: msg.content,
+            owner: {
+              _id: msg._id,
+              name: msg.name,
+              avatarURL: msg.avatarURL,
+            },
+            replys: [
+              {
+                _id: msg._id,
+                content: msg.content,
+                owner: {
+                  _id: msg.id,
+                  name: msg.name,
+                  avatarURL: msg.avatarURL,
+                },
+                createdAt: msg.createdAt,
+                updatedAt: msg.createdAt,
+              },
+            ],
+            createdAt: msg.createdAt,
+            updatedAt: msg.updatedAt,
+          };
+
+          return {
+            ...state,
+            newMessageStatus: Status.Succeeded,
+            messages: [newMsg, ...state.messages],
+          };
+        }
+      )
+      .addCase(chatThunks.createMessage.rejected, (state) => ({
+        ...state,
+        newMessageStatus: Status.Failed,
       }));
-
-    // response new message //
-
-    // .addCase(chatThunks.createMessage.pending, (state) => ({
-    //   ...state,
-    //   messageStatus: Status.Loading,
-    // }))
-    // .addCase(
-    //   chatThunks.createMessage.fulfilled,
-    //   (state, action: PayloadAction<Message>) => {
-    //     const { payload } = action;
-    //     console.log(payload);
-
-    //     return {
-    //       ...state,
-    //       messageStatus: Status.Succeeded,
-    //       message: payload,
-    //       // messages: [payload, ...state.messages],
-    //     };
-    //   }
-    // )
-    // .addCase(chatThunks.createMessage.rejected, (state) => ({
-    //   ...state,
-    //   messageStatus: Status.Failed,
-    // }));
 
     //
   },
