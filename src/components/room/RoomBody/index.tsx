@@ -181,9 +181,9 @@ export const RoomBody = () => {
 
   return (
     <div className={styles.chatRoom}>
-      {/* <RButton color="primary" onClick={loadMoreMessages}>
+      <RButton color="primary" onClick={loadMoreMessages}>
         loadMoreMessages
-      </RButton> */}
+      </RButton>
       <MessagesList messages={messages} />
       <NewMessageForm
         value={inputMessage}
