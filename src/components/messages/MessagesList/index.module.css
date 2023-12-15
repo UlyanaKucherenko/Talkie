@@ -6,6 +6,7 @@
   gap: 12px;
   /* margin-top: 21px; */
   overflow: hidden scroll;
+  position: relative;
 }
 
 .noMessages {

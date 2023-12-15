@@ -127,6 +127,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  min-height: 90px;
 }
 .logout {
   color: var(--brn-font-color);
