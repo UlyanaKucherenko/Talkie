@@ -107,10 +107,19 @@ export const chatSlice = createSlice({
         (state, action: PayloadAction<ResponseMessages>) => {
           const { payload } = action;
 
+          const existingMessageIds = new Set(
+            state.messages.map((msg) => msg._id)
+          );
+
+          // Filter out messages that already exist in the state
+          const uniqueMessages = payload.messages.filter(
+            (msg) => !existingMessageIds.has(msg._id)
+          );
+
           return {
             ...state,
             messagesStatus: Status.Succeeded,
-            messages: [...state.messages, ...payload.messages],
+            messages: [...state.messages, ...uniqueMessages],
 
             pagination: {
               page: Number(payload.page),
