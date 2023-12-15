@@ -37,7 +37,7 @@ type TypeEventMessage = {
 };
 
 export const RoomBody = () => {
-  const { messages /* messagesStatus */ } = useSelector(chatSelector);
+  const { messages, messagesStatus } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
@@ -184,7 +184,8 @@ export const RoomBody = () => {
       <RButton color="primary" onClick={loadMoreMessages}>
         loadMoreMessages
       </RButton>
-      <MessagesList messages={messages} />
+
+      <MessagesList messages={messages} status={messagesStatus} />
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}

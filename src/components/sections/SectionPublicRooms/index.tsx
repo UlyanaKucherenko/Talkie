@@ -26,11 +26,13 @@ export const SectionPublicRooms = () => {
     <section id="public-rooms" className={styles.sectionPublic}>
       <h2>{t('rooms.public')}</h2>
 
-      {status === Status.Loading && <RLoader />}
+      <div className={styles.content}>
+        {status === Status.Loading && <RLoader />}
 
-      {publicRoomsData && status === Status.Succeeded && (
-        <PublicRoomsList rooms={publicRoomsData.rooms} />
-      )}
+        {publicRoomsData && status === Status.Succeeded && (
+          <PublicRoomsList rooms={publicRoomsData.rooms} />
+        )}
+      </div>
     </section>
   );
 };

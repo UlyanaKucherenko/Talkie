@@ -7,22 +7,27 @@ import { userSelector } from '../../../store/user';
 import styles from './index.module.css';
 import { groupMessagesByDate } from '../../../utils/groupMessagesByDate';
 import { getFormattedDate } from '../../../utils/getFormattedDate';
+import { Status } from '../../../utils/enums/status.enum';
+import { RLoader } from '../../RLoader';
 
 type Props = {
   messages: Message[];
+  status: Status;
 };
 
-export const MessagesList = ({ messages }: Props) => {
+export const MessagesList = ({ messages, status }: Props) => {
   const { userData } = useSelector(userSelector);
   const groupedMessages = groupMessagesByDate(messages);
 
   return (
     <div className={styles.messageListWrap}>
-      {/* {status === Status.Loading && <RLoader />} */}
+      {status === Status.Loading && <RLoader css={{ top: '10px' }} size="sm" />}
 
-      {messages.length === 0 ? (
+      {status !== Status.Loading && messages.length === 0 && (
         <div className={styles.noMessages}>No messages yet</div>
-      ) : (
+      )}
+
+      {messages.length > 0 &&
         Object.keys(groupedMessages).map((date) => (
           <div key={date} className={styles.messageList}>
             {groupedMessages[date].map((message, idx) => (
@@ -38,8 +43,7 @@ export const MessagesList = ({ messages }: Props) => {
             ))}
             <h3 className={styles.dayDate}>{getFormattedDate(date)}</h3>
           </div>
-        ))
-      )}
+        ))}
     </div>
   );
 };
