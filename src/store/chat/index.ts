@@ -22,13 +22,11 @@ export type IPagination = {
 export type IMessages = {
   messages: Message[];
   messagesStatus: Status;
-  currentPage: number;
   pagination: IPagination;
 };
 
 const initialState: IMessages = {
   messages: [],
-  currentPage: 1,
   pagination: {
     page: 0,
     perPage: 0,
@@ -72,10 +70,7 @@ export const chatSlice = createSlice({
     RESET_MESSAGES: (state) => {
       Object.assign(state, initialState);
     },
-    SET_CURRENT_PAGE: (state, { payload }) => {
-      const { page } = payload;
-      state.currentPage = page;
-    },
+
     SET_MESSAGES: (state, { payload }) => {
       // console.log('payload', payload);
       const msg = payload;
@@ -136,6 +131,5 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { RESET_MESSAGES, SET_CURRENT_PAGE, SET_MESSAGES } =
-  chatSlice.actions;
+export const { RESET_MESSAGES, SET_MESSAGES } = chatSlice.actions;
 export const chatSelector = (state: RootState) => state.chat;
