@@ -95,7 +95,6 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
               type="button"
               onClick={() => onSwitchTheme()}
             />
-            N
           </div>
         </div>
 

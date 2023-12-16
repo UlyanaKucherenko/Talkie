@@ -21,7 +21,7 @@
 .headerNav {
   display: none;
   gap: 35px;
-  margin-left: 75px;
+  margin-left: 110px;
 }
 
 .wrapThemLang {
@@ -42,9 +42,18 @@
   align-items: center;
 }
 
+.logoutBtn {
+  display: none !important;
+  color: var(--header-font-color)
+}
+
+.username {
+  display: none;
+  color: var(--rbutton-bg-color)
+}
 @media screen and (min-width: 768px) {
   .wrapThemLang {
-    gap: 30px;
+    gap: 22px;
   }
 }
 
@@ -57,5 +66,14 @@
   }
   .logoLink { 
     left: 0;
+    transform: translate(0, -50%);
+  }
+
+  .logoutBtn {
+    display: block !important;
+  }
+  
+  .username {
+    display: block;
   }
 }
