@@ -16,6 +16,7 @@ import { RButtonIcon } from '../../ui/RButtonIcon';
 import { IconLightTheme } from '../../icons/IconLightTheme';
 import { IconUA } from '../../icons/IconUA';
 import { IconEN } from '../../icons/IconEN';
+import { Navigation } from '../../Navigation';
 
 type HeaderProps = {
   openMenu: () => void;
@@ -38,7 +39,13 @@ const Header = ({ openMenu }: HeaderProps) => {
       <header className={styles.header}>
         <div className="container">
           <div className={styles.headerContent}>
-            <RButtonIcon type="button" onClick={openMenu} icon={IconMenu} />
+            <RButtonIcon
+              className={styles.burgerBtn}
+              type="button"
+              onClick={openMenu}
+              icon={IconMenu}
+            />
+            <Navigation className={styles.headerNav} />
             <NavLink className={styles.logoLink} to="/">
               <Logo />
             </NavLink>

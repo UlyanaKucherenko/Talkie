@@ -7,14 +7,15 @@ import { Status } from '../../utils/enums/status.enum';
 
 type Props = {
   closeMenu?: () => void;
+  className?: string;
 };
 
-export const Navigation = ({ closeMenu }: Props) => {
+export const Navigation = ({ closeMenu, className }: Props) => {
   const { status, userData } = useSelector(userSelector);
   const { t } = useTranslation();
 
   return (
-    <nav>
+    <nav className={className}>
       <a href="/#public-rooms" onClick={closeMenu} className={styles.navLink}>
         <span>{t('sidebar.publicRooms')}</span>
       </a>

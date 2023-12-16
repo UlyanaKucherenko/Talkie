@@ -18,6 +18,12 @@
   position: relative;
 }
 
+.headerNav {
+  display: none;
+  gap: 35px;
+  margin-left: 75px;
+}
+
 .wrapThemLang {
   display: flex;
   gap: 12px;
@@ -39,5 +45,17 @@
 @media screen and (min-width: 768px) {
   .wrapThemLang {
     gap: 30px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .burgerBtn {
+    display: none !important;
+  }
+  .headerNav {
+    display: flex;
+  }
+  .logoLink { 
+    left: 0;
   }
 }

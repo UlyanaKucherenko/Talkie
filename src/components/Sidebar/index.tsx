@@ -80,7 +80,7 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
         </div>
 
         <div>
-          <Navigation closeMenu={closeMenu} />
+          <Navigation className={styles.navigation} closeMenu={closeMenu} />
           <div className={styles.wrapThemLang}>
             <RButtonIcon
               icon={i18n.language === 'en' ? IconUA : IconEN}
