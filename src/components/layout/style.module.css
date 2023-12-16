@@ -1,5 +1,5 @@
 .layout {
-  min-height: 100vh;
+  min-height: 100dvh;
   color: var(--font-main-color);
   background-color: var(--background-color);
   display: flex;
@@ -17,5 +17,5 @@
 .main {
   padding-top: 60px;
   padding-bottom: 60px;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
