@@ -16,8 +16,6 @@ import {
 import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
-
-import { RButton } from '../../RButton';
 import { Message } from '../../../utils/types/chat.type';
 
 // const socket: Socket = io('http://localhost:3001');
@@ -173,19 +171,18 @@ export const RoomBody = () => {
   };
 
   const loadMoreMessages = async () => {
-    console.log('Load more messages for page:', currentPage + 1);
+    // console.log('Load more messages for page:', currentPage + 1);
     await dispatch(chatThunks.getMessages({ roomId, page: currentPage + 1 }));
     setCurrentPage(currentPage + 1);
-    // dispatch(SET_CURRENT_PAGE(currentPage + 1));
   };
 
   return (
     <div className={styles.chatRoom}>
-      <RButton color="primary" onClick={loadMoreMessages}>
-        loadMoreMessages
-      </RButton>
-
-      <MessagesList messages={messages} status={messagesStatus} />
+      <MessagesList
+        messages={messages}
+        status={messagesStatus}
+        loadMoreMessages={loadMoreMessages}
+      />
       <NewMessageForm
         value={inputMessage}
         onSubmit={formSubmitHandler}
