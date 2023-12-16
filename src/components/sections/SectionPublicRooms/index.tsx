@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Status } from '../../../utils/enums/status.enum';
@@ -9,7 +9,7 @@ import { PublicRoomsList } from './PublicRoomsList';
 import { RLoader } from '../../RLoader';
 import styles from './index.module.css';
 
-export const SectionPublicRooms = () => {
+export const SectionPublicRooms = forwardRef<HTMLDivElement>((props, ref) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { publicRoomsData, status } = useSelector(roomsSelector);
@@ -23,7 +23,7 @@ export const SectionPublicRooms = () => {
   }, [dispatch]);
 
   return (
-    <section id="public-rooms" className={styles.sectionPublic}>
+    <section id="public-rooms" className={styles.sectionPublic} ref={ref}>
       <h2>{t('rooms.public')}</h2>
 
       <div className={styles.content}>
@@ -35,4 +35,4 @@ export const SectionPublicRooms = () => {
       </div>
     </section>
   );
-};
+});

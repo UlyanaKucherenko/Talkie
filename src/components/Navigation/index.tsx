@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 import { userSelector } from '../../store/user';
-
 import styles from './index.module.css';
 import { Status } from '../../utils/enums/status.enum';
 
@@ -16,26 +16,30 @@ export const Navigation = ({ closeMenu, className }: Props) => {
 
   return (
     <nav className={className}>
-      <a href="/#public-rooms" onClick={closeMenu} className={styles.navLink}>
+      <NavLink
+        to="/#public-rooms"
+        onClick={closeMenu}
+        className={styles.navLink}
+      >
         <span>{t('sidebar.publicRooms')}</span>
-      </a>
+      </NavLink>
 
       {userData && status === Status.Succeeded && (
         <>
-          <a
-            href="/#my-public-rooms"
+          <NavLink
+            to="/#my-public-rooms"
             onClick={closeMenu}
             className={styles.navLink}
           >
             <span>{t('sidebar.myPublicRooms')}</span>
-          </a>
-          <a
-            href="/#private-rooms"
+          </NavLink>
+          <NavLink
+            to="/#private-rooms"
             onClick={closeMenu}
             className={styles.navLink}
           >
             <span>{t('sidebar.privateRooms')}</span>
-          </a>
+          </NavLink>
         </>
       )}
       <a href="/#create-room" onClick={closeMenu} className={styles.navLink}>
