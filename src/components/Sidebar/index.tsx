@@ -4,7 +4,7 @@ import { useEffect, forwardRef } from 'react';
 
 import styles from './index.module.css';
 import { AppDispatch } from '../../store';
-import { TOGGLE_THEME } from '../../store/theme';
+import { TOGGLE_THEME, themeSelector } from '../../store/theme';
 import { userSelector } from '../../store/user';
 import { IconLightTheme } from '../icons/IconLightTheme';
 import { IconClose } from '../icons/IconClose';
@@ -15,6 +15,7 @@ import { RButtonIcon } from '../ui/RButtonIcon';
 import { IconUA } from '../icons/IconUA';
 import { IconEN } from '../icons/IconEN';
 import { Navigation } from '../Navigation';
+import { ThemeEnum } from '../../utils/const';
 
 type SidebarProps = {
   menuOpen: boolean;
@@ -27,6 +28,7 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
     const dispatch = useDispatch<AppDispatch>();
     const { status, userData } = useSelector(userSelector);
     const { t, i18n } = useTranslation();
+    const { mode } = useSelector(themeSelector);
 
     const sidebarStyle = {
       transform: menuOpen ? 'translate(0, 0)' : ' translate(-102%, 0)',
@@ -62,6 +64,7 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
           onClick={closeMenu}
           aria-label="close"
           className={styles.btnClose}
+          defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
         />
 
         <div className={styles.userWrap}>
@@ -85,15 +88,16 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
             <RButtonIcon
               icon={i18n.language === 'en' ? IconUA : IconEN}
               type="button"
-              defaultColorIcon="dark"
+              defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
               onClick={() =>
                 i18n.changeLanguage(i18n.language === 'en' ? 'ua' : 'en')
               }
             />
             <RButtonIcon
               icon={IconLightTheme}
+              defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
               type="button"
-              onClick={() => onSwitchTheme()}
+              onClick={onSwitchTheme}
             />
           </div>
         </div>
