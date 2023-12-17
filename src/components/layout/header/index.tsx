@@ -69,7 +69,7 @@ const Header = ({ openMenu }: HeaderProps) => {
                   <RButtonIcon
                     icon={IconLightTheme}
                     type="button"
-                    onClick={() => onSwitchTheme()}
+                    onClick={onSwitchTheme}
                     className={styles.themeButton}
                   />
                   <div className={styles.username}>{userData.user.name}</div>
