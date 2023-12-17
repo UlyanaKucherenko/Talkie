@@ -20,6 +20,10 @@ export const uaTranslation = {
     formDesc:
       'Якщо ви хочете приєднатися до кімнати, то ви повинні зареєструватися',
     greetingText: 'Дякуємо, що приєдналися до Talkie',
+    logoutWarningTitle: 'Ви впевнені що хочете вийти?',
+    logoutWarningDescription: 'Ви більше не зможете зайти в цей акаунт',
+    logoutWarningCloseButton: 'Закрити',
+    logoutWarningConfirmButton: 'Добре',
   },
   rooms: {
     public: 'Публічні кімнати',
