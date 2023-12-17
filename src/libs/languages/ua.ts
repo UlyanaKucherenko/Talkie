@@ -22,8 +22,8 @@ export const uaTranslation = {
     greetingText: 'Дякуємо, що приєдналися до Talkie',
     logoutWarningTitle: 'Ви впевнені що хочете вийти?',
     logoutWarningDescription: 'Ви більше не зможете зайти в цей акаунт',
-    logoutWarningCloseButton: 'Закрити',
-    logoutWarningConfirmButton: 'Добре',
+    logoutWarningCloseButton: 'Скасувати',
+    logoutWarningConfirmButton: 'Підтвердити',
   },
   rooms: {
     public: 'Публічні кімнати',
