@@ -2,8 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
   min-height: 48px;
+  width: 100%;
+  max-width: 979px;
+  margin: 0 auto;
   background: var(--room-header-bg-color);
 }
 
