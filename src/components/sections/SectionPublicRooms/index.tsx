@@ -9,7 +9,7 @@ import { PublicRoomsList } from './PublicRoomsList';
 import { RLoader } from '../../RLoader';
 import styles from './index.module.css';
 
-export const SectionPublicRooms = forwardRef<HTMLDivElement>((props, ref) => {
+export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { publicRoomsData, status } = useSelector(roomsSelector);

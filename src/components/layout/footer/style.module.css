@@ -33,6 +33,10 @@
   text-decoration: none;
 }
 
+.linkOurTeam:hover {
+  color: var(--navlink-hover-color)
+}
+
 @media screen and (min-width: 1280px) {
   .linkOurTeam {
     display: block;
