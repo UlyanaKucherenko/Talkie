@@ -70,6 +70,7 @@ export const userSlice = createSlice({
         status: Status.Idle,
         userData: null,
         error: null,
+        publicRoomsData: null,
       }))
       .addCase(
         authThunks.logout.rejected,
