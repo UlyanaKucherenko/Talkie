@@ -18,6 +18,11 @@ export const enTranslation = {
     formText: 'Enter your name to start',
     formDesc: 'If you want to enter the room, you must be logged in',
     greetingText: 'Thank you for joining Talkie',
+    logoutWarningTitle: 'Are you sure you want to log out?',
+    logoutWarningDescription:
+      'You will not be able to log in with this account',
+    logoutWarningCloseButton: 'Close',
+    logoutWarningConfirmButton: 'Сonfirm',
   },
   rooms: {
     public: 'Public Rooms',

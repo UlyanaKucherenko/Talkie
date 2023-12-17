@@ -18,7 +18,7 @@ export const PublicRoomsList = ({ rooms }: PublicRoomsListProps) => {
 
   return (
     <>
-      <AuthPopup open={openPopup} setIsOpen={setOpenPopup} />
+      <AuthPopup show={openPopup} setIsShow={setOpenPopup} />
       <div className={styles.list}>
         {userData && status === Status.Succeeded
           ? rooms.map((item) => (

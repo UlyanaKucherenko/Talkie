@@ -14,6 +14,7 @@ import imgDefaultAvatar from '../../assets/image/avatar.png';
 import { RButtonIcon } from '../ui/RButtonIcon';
 import { IconUA } from '../icons/IconUA';
 import { IconEN } from '../icons/IconEN';
+import { Navigation } from '../Navigation';
 
 type SidebarProps = {
   menuOpen: boolean;
@@ -79,41 +80,7 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
         </div>
 
         <div>
-          <nav>
-            <a
-              href="/#public-rooms"
-              onClick={closeMenu}
-              className={styles.navLink}
-            >
-              <span>{t('sidebar.publicRooms')}</span>
-            </a>
-
-            {userData && status === Status.Succeeded && (
-              <>
-                <a
-                  href="/#my-public-rooms"
-                  onClick={closeMenu}
-                  className={styles.navLink}
-                >
-                  <span>{t('sidebar.myPublicRooms')}</span>
-                </a>
-                <a
-                  href="/#private-rooms"
-                  onClick={closeMenu}
-                  className={styles.navLink}
-                >
-                  <span>{t('sidebar.privateRooms')}</span>
-                </a>
-              </>
-            )}
-            <a
-              href="/#create-room"
-              onClick={closeMenu}
-              className={styles.navLink}
-            >
-              <span>{t('sidebar.createRoom')}</span>
-            </a>
-          </nav>
+          <Navigation className={styles.navigation} closeMenu={closeMenu} />
           <div className={styles.wrapThemLang}>
             <RButtonIcon
               icon={i18n.language === 'en' ? IconUA : IconEN}

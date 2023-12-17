@@ -14,9 +14,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   height: 100%;
 }
 
 .version {
   text-transform: uppercase;
+}
+
+.linkOurTeam {
+  display: none;
+  color: var(--footer-font-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.linkOurTeam:hover {
+  color: var(--navlink-hover-color)
+}
+
+@media screen and (min-width: 1280px) {
+  .linkOurTeam {
+    display: block;
+  }
 }

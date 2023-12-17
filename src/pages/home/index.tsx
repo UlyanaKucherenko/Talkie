@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -8,8 +10,20 @@ import { SectionPublicRooms } from '../../components/sections/SectionPublicRooms
 
 const Home = () => {
   const { status, userData } = useSelector(userSelector);
-
+  const location = useLocation();
   const { t } = useTranslation();
+  const publicRooms = useRef<HTMLDivElement>(null);
+  const privateRooms = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (location.hash === '#public-rooms' && publicRooms.current) {
+      publicRooms.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (location.hash === '#private-rooms' && privateRooms.current) {
+      privateRooms.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [location]);
 
   return (
     <div className={`container ${styles.homeContainer}`}>
@@ -21,10 +35,14 @@ const Home = () => {
         </div>
       </section>
 
-      <SectionPublicRooms />
+      <SectionPublicRooms ref={publicRooms} />
 
       {userData && status === Status.Succeeded && (
-        <section id="private-rooms" style={{ marginTop: '50px' }}>
+        <section
+          id="private-rooms"
+          style={{ marginTop: '50px' }}
+          ref={privateRooms}
+        >
           <h2>{t('rooms.private')}</h2>
         </section>
       )}

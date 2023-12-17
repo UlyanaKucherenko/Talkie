@@ -18,6 +18,12 @@
   position: relative;
 }
 
+.headerNav {
+  display: none;
+  gap: 35px;
+  margin-left: 110px;
+}
+
 .wrapThemLang {
   display: flex;
   gap: 12px;
@@ -36,8 +42,38 @@
   align-items: center;
 }
 
+.logoutBtn {
+  display: none !important;
+  color: var(--header-font-color)
+}
+
+.username {
+  display: none;
+  color: var(--rbutton-bg-color)
+}
 @media screen and (min-width: 768px) {
   .wrapThemLang {
-    gap: 30px;
+    gap: 22px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .burgerBtn {
+    display: none !important;
+  }
+  .headerNav {
+    display: flex;
+  }
+  .logoLink { 
+    left: 0;
+    transform: translate(0, -50%);
+  }
+
+  .logoutBtn {
+    display: block !important;
+  }
+  
+  .username {
+    display: block;
   }
 }

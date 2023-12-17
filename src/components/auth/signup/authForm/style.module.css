@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 0 10px;
 }
 
 .formControl {
@@ -60,4 +61,21 @@
   font-size: 14px;
   line-height: 18px;
   min-height: 36px;
+}
+
+@media screen and (min-width: 1280px) {
+  .formText {
+    font-size: 20px;
+  }
+
+  .formDesc {
+    margin-top: 20px;
+  }
+
+  .formControl {
+    margin-top: 32px;
+  }
+  .formActions {
+    margin-top: 0;
+  }
 }
