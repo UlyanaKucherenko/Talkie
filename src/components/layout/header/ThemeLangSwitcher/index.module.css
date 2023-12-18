@@ -1,0 +1,8 @@
+.switcher {
+  display: flex;
+  gap: 12px;
+}
+
+.themeButton {
+  color: var(--header-font-color)
+}

@@ -1,7 +1,11 @@
 import axios from 'axios';
+import { getToken } from '../utils/user-token';
 
 import { apiRoutes } from './api-routes';
-import type { PublicRoomsData } from '../utils/types/rooms.type';
+import type {
+  CreateRoomData,
+  PublicRoomsData,
+} from '../utils/types/rooms.type';
 
 export const getPublicRooms = async (): Promise<PublicRoomsData> => {
   const res = await axios.get(apiRoutes.publicRooms);
@@ -18,4 +22,19 @@ export const getRoomById = async (
     },
   });
   return res.data;
+};
+
+export const createPublicRoom = async (data: CreateRoomData): Promise<any> => {
+  const token = getToken();
+  try {
+    const res = await axios.post(apiRoutes.publicRooms, data, {
+      headers: {
+        ApiKey: token,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log('Error creating public room', error);
+    throw error;
+  }
 };
