@@ -9,6 +9,7 @@
   --white: #ffffff;
   --black: #000000;
   --dark-white: #f6f6f6;
+  --light-white: #f2f4f5;
   --jedi-night: #000e08;
   --dark-gray-1: #6c6969;
   --dark-gray: #414453;
@@ -27,15 +28,19 @@
   --black-is-back: #091813;
   --placebo-turquoise: #e7fff6;
   --river-styx: #161821;
+  --alice-blue: #eef9fd;
+  --trapped-darkness: #0e2030;
+  --black-manga: #02101b;
+  --cascading-white: #F6F6F6;
 
   /* theme dark */
-  --background-color: var(--black);
+  --background-color: var(--black-manga);
   --font-main-color: var(--white);
   --font-secondary-color: var(--gray);
   --brn-background-color: var(--white);
   --brn-font-color: var(--black);
   --header-bg-color: var(--dark-blue);
-  --sidebar-bg-color: var(--black);
+  --sidebar-bg-color: var(--black-manga);
   --footer-bg-color: var(--dark-blue);
   --footer-font-color: var(--white);
   --room-bg-color: var(--white);
@@ -55,7 +60,12 @@
   --message-font-color: var(--river-styx);
   --text-users-typing-color: var(--gray);
   --chat-details-desc-font-color: var(--counts-black);
+  --navlink-color: var(--light-white);
   --navlink-hover-color: var(--clean-pool);
+  --icon-lang-light: var(--alice-blue);
+  --icon-lang-dark: var(--trapped-darkness);
+  --icon-theme-light: var(--alice-blue);
+  --icon-theme-dark: var(--trapped-darkness);
 
   /* theme light */
   .lightTheme {
@@ -80,7 +90,7 @@
     --rbutton-text-color-hover: var(--clean-pool);
     --warning-color: var(--cosmic-red);
     --popup-primary-font-color: var(--jedi-night);
-    --popup-bg-color: var(--distant-horizon);
+    --popup-bg-color: var(--cascading-white);
     --room-header-bg-color: var(--candied-snow);
     --room-header-member-font-color: var(--black-is-back);
     --message-received-bg-color: var(--dawn-departs);
@@ -88,7 +98,12 @@
     --message-input-bg-color: var(--dark-blue);
     --text-users-typing-color: var(--gray);
     --chat-details-desc-font-color: var(--counts-black);
+    --navlink-color: var(--counts-black);
     --navlink-hover-color: var(--clean-pool);
+    --icon-lang-light: var(--alice-blue);
+    --icon-lang-dark: var(--trapped-darkness);
+    --icon-theme-light: var(--alice-blue);
+    --icon-theme-dark: var(--trapped-darkness);
   }
 }
 
@@ -101,8 +116,9 @@
 
 body {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
+  font-family: 'Poppins', sans-serif;
 }
 
 h1 {

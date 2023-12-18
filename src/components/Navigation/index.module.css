@@ -1,0 +1,29 @@
+.navLink {
+  font-size: 20px;
+  color: var(--navlink-color);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.navLink:hover {
+  color: var(--navlink-hover-color);
+}
+
+.navLink:active {
+  color: var(--navlink-hover-color);
+}
+
+.navLinkActive {
+  color: var(--navlink-hover-color);
+}
+
+@media screen and (min-width: 1280px) {
+  .navLink {
+    color: var(--header-font-color);
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+}

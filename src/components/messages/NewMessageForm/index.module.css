@@ -1,5 +1,5 @@
 .messageForm {
-  margin-top: 36px;
+  margin: 32px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,4 +60,10 @@
   padding: 0;
   background: none;
   color: white;
+}
+
+@media screen and (min-width: 1280px) {
+  .messageForm {
+    margin: 40px 0;
+  }
 }

@@ -1,42 +1,25 @@
-import { createPortal } from 'react-dom';
-import { Dispatch, SetStateAction } from 'react';
 import { useSelector } from 'react-redux';
+import { Dispatch, SetStateAction } from 'react';
 
-import { Backdrop } from '../../../backdrop/Backdrop';
-import { AuthForm } from '../authForm';
-import { userSelector } from '../../../../store/user';
 import { Status } from '../../../../utils/enums/status.enum';
+import { Popup } from '../../../Popup';
+import { AuthForm } from '../authForm';
 import { AuthGreetings } from '../authGreetings';
-import style from './style.module.css';
+import { userSelector } from '../../../../store/user';
 
-type AuthPopupProps = {
-  open: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+type Props = {
+  show: boolean;
+  setIsShow: Dispatch<SetStateAction<boolean>>;
 };
 
-export const AuthPopup = ({ open = false, setIsOpen }: AuthPopupProps) => {
+export const AuthPopup = ({ show, setIsShow }: Props) => {
   const { status } = useSelector(userSelector);
-
   return (
-    open &&
-    createPortal(
-      <>
-        <div className={style.authPopup}>
-          <button
-            type="button"
-            className={style.exitButton}
-            onClick={() => setIsOpen(false)}
-          >
-            ✖
-          </button>
-          {status !== Status.Succeeded && <AuthForm />}
-          {status === Status.Succeeded && (
-            <AuthGreetings okOnClick={() => setIsOpen(false)} />
-          )}
-        </div>
-        <Backdrop onClick={() => setIsOpen(false)} />
-      </>,
-      document.querySelector('.app')!
-    )
+    <Popup show={show} setIsShow={() => setIsShow(false)}>
+      {status !== Status.Succeeded && <AuthForm />}
+      {status === Status.Succeeded && (
+        <AuthGreetings okOnClick={() => setIsShow(false)} />
+      )}
+    </Popup>
   );
 };

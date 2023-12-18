@@ -1,6 +1,6 @@
 import { Message } from './types/chat.type';
 
-type TypeGroupedMessages = {
+export type TypeGroupedMessages = {
   [date: string]: Message[];
 };
 

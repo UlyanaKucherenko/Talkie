@@ -1,9 +1,17 @@
 type IconCloseProps = {
   state: 'hover' | 'active' | 'default';
+  defaultColor?: 'light' | 'dark';
 };
 
-export const IconClose = ({ state = 'default' }: IconCloseProps) => {
-  let iconFill = 'var(--counts-black)';
+export const IconClose = ({
+  state = 'default',
+  defaultColor = 'light',
+}: IconCloseProps) => {
+  const iconFillDefault =
+    defaultColor === 'light'
+      ? 'var( --icon-lang-light)'
+      : 'var(--icon-lang-dark)';
+  let iconFill = iconFillDefault;
 
   switch (state) {
     case 'hover': {
@@ -15,7 +23,7 @@ export const IconClose = ({ state = 'default' }: IconCloseProps) => {
       break;
     }
     default: {
-      iconFill = 'var(--counts-black)';
+      iconFill = iconFillDefault;
       break;
     }
   }

@@ -1,4 +1,4 @@
-.authPopup {
+.popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -8,15 +8,15 @@
   align-items: center;
   width: 90%;
   max-width: 347px;
-  background-color: #fff;
-  z-index: 3;
-  padding: 36px 28px;
+  z-index: 7;
+  padding: 36px 18px;
+  border-radius: 10px;
   background: var(--popup-bg-color);
 }
 
 .exitButton {
   position: absolute;
-  top: 5px;
+  top: 10px;
   right: 10px;
   padding: 0px;
   border: none;
@@ -27,4 +27,15 @@
 
 .exitButton:focus {
   outline: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .popup {
+    max-width: 700px;
+    padding: 100px 190px;
+  }
+  .exitButton {
+    top: 15px;
+    right: 20px;
+  }
 }

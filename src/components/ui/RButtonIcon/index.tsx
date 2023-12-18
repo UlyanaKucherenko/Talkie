@@ -3,6 +3,7 @@ import styles from './style.module.css';
 
 type IconProps = {
   state: 'hover' | 'active' | 'default';
+  defaultColor: 'light' | 'dark';
 };
 
 type RButtonIconProps = {
@@ -12,6 +13,7 @@ type RButtonIconProps = {
   type?: 'submit' | 'button';
   disabled?: boolean;
   className?: string;
+  defaultColorIcon?: 'light' | 'dark';
 };
 
 export const RButtonIcon = ({
@@ -21,6 +23,7 @@ export const RButtonIcon = ({
   type = 'button',
   disabled = false,
   className,
+  defaultColorIcon = 'light',
 }: RButtonIconProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   let classNameRButton = styles.button;
@@ -36,7 +39,12 @@ export const RButtonIcon = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {Icon && <Icon state={isHovered ? 'hover' : 'default'} />}
+      {Icon && (
+        <Icon
+          state={isHovered ? 'hover' : 'default'}
+          defaultColor={defaultColorIcon}
+        />
+      )}
       {children}
     </button>
   );

@@ -14,3 +14,8 @@ h3 {
   line-height: 1.2;
   text-transform: capitalize;
 }
+
+.content {
+  min-height: 200px;
+  position: relative;
+}

@@ -7,7 +7,10 @@ import {
   SendMessage,
 } from '../utils/types/chat.type';
 
-const token = localStorage.getItem('userToken');
+const getToken = () => {
+  const token = localStorage.getItem('userToken');
+  return token;
+};
 
 export const getMessages = async ({
   roomId,
@@ -19,6 +22,7 @@ export const getMessages = async ({
   limit?: number;
 }): Promise<ResponseMessages> => {
   try {
+    const token = getToken();
     const res = await axios.get(
       `${apiRoutes.messages}/${roomId}?page=${page}&limit=${limit}`,
       {
@@ -39,6 +43,7 @@ export const postMessage = async (
   content: SendMessage
 ): Promise<Message> => {
   try {
+    const token = getToken();
     const res = await axios.post(`${apiRoutes.messages}/${roomId}`, content, {
       headers: {
         ApiKey: token,

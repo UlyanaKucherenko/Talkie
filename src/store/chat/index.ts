@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
@@ -21,13 +22,11 @@ export type IPagination = {
 export type IMessages = {
   messages: Message[];
   messagesStatus: Status;
-  currentPage: number;
   pagination: IPagination;
 };
 
 const initialState: IMessages = {
   messages: [],
-  currentPage: 1,
   pagination: {
     page: 0,
     perPage: 0,
@@ -71,9 +70,25 @@ export const chatSlice = createSlice({
     RESET_MESSAGES: (state) => {
       Object.assign(state, initialState);
     },
-    SET_CURRENT_PAGE: (state, { payload }) => {
-      const { page } = payload;
-      state.currentPage = page;
+
+    SET_MESSAGES: (state, { payload }) => {
+      // console.log('payload', payload);
+      const msg = payload;
+
+      const newMsg: Message = {
+        _id: msg._id,
+        roomId: msg.roomId,
+        content: msg.content,
+        owner: {
+          _id: msg.owner._id,
+          name: msg.owner.name,
+          avatarURL: msg.owner.avatarURL,
+        },
+        replys: msg.replys,
+        createdAt: msg.createdAt,
+        updatedAt: msg.updatedAt,
+      };
+      state.messages = [newMsg, ...state.messages];
     },
   },
   extraReducers: (builder) => {
@@ -87,10 +102,19 @@ export const chatSlice = createSlice({
         (state, action: PayloadAction<ResponseMessages>) => {
           const { payload } = action;
 
+          const existingMessageIds = new Set(
+            state.messages.map((msg) => msg._id)
+          );
+
+          // Filter out messages that already exist in the state
+          const uniqueMessages = payload.messages.filter(
+            (msg) => !existingMessageIds.has(msg._id)
+          );
+
           return {
             ...state,
             messagesStatus: Status.Succeeded,
-            messages: [...payload.messages, ...state.messages],
+            messages: [...state.messages, ...uniqueMessages],
 
             pagination: {
               page: Number(payload.page),
@@ -107,5 +131,5 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { RESET_MESSAGES, SET_CURRENT_PAGE } = chatSlice.actions;
+export const { RESET_MESSAGES, SET_MESSAGES } = chatSlice.actions;
 export const chatSelector = (state: RootState) => state.chat;
