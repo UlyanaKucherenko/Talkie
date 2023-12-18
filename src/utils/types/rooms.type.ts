@@ -1,4 +1,5 @@
 import { Status } from '../enums/status.enum';
+import { Topic } from '../enums/topic.enum';
 import { User } from './user.type';
 
 export type Room = {
@@ -24,4 +25,10 @@ export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
   status: Status;
   error: string | null;
+};
+
+export type CreateRoomData = {
+  title: string;
+  topic: Topic;
+  description: string;
 };

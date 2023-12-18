@@ -24,14 +24,20 @@
   margin-left: 110px;
 }
 
-.wrapThemLang {
+.headerAction {
   display: flex;
   gap: 12px;
 }
 
-.themeButton {
-  color: var(--header-font-color)
+.desctopSwitcher {
+  display: none;
 }
+
+.user {
+  display: flex;
+  gap: 12px;
+}
+
 
 .logoLink {
   display: flex;
@@ -67,6 +73,15 @@
   .logoLink { 
     left: 0;
     transform: translate(0, -50%);
+  }
+
+  .mobileSwitcher {
+    display: none;
+  }
+  
+  .desctopSwitcher {
+    margin-left: 10px;
+    display: flex;
   }
 
   .logoutBtn {
