@@ -40,11 +40,15 @@ export const Navigation = ({ closeMenu, className }: Props) => {
           >
             <span>{t('sidebar.privateRooms')}</span>
           </NavLink>
+          <a
+            href="/#create-room"
+            onClick={closeMenu}
+            className={styles.navLink}
+          >
+            <span>{t('sidebar.createRoom')}</span>
+          </a>
         </>
       )}
-      <a href="/#create-room" onClick={closeMenu} className={styles.navLink}>
-        <span>{t('sidebar.createRoom')}</span>
-      </a>
     </nav>
   );
 };
