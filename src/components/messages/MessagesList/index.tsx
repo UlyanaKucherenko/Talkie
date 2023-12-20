@@ -35,6 +35,7 @@ export const MessagesList = ({ messages, status, loadMoreMessages }: Props) => {
               <MessageItem
                 // eslint-disable-next-line react/no-array-index-key
                 key={`${message._id}-${idx}`}
+                id={message._id}
                 username={message.owner.name}
                 message={message.content}
                 avatarUrl={message.owner.avatarURL}

@@ -32,3 +32,18 @@ export type CreateRoomData = {
   topic: Topic;
   description: string;
 };
+
+// private rooms
+export type PrivateRoom = {
+  _id: string;
+  title: string;
+  type: string;
+  owner: {
+    _id: string;
+    name: string;
+    avatarURL: string;
+  };
+  users: string[];
+  createdAt: string;
+  updatedAt: string;
+};

@@ -1,7 +1,11 @@
+import { useDispatch } from 'react-redux';
 import { getFormatTime } from '../../../utils/format-time';
 import styles from './index.module.css';
+import { AppDispatch } from '../../../store';
+import { roomsThunks } from '../../../store/rooms';
 
 type Props = {
+  id: string;
   username: string;
   avatarUrl: string;
   message: string;
@@ -10,6 +14,7 @@ type Props = {
 };
 
 export const MessageItem = ({
+  id,
   username,
   avatarUrl,
   message,
@@ -17,6 +22,11 @@ export const MessageItem = ({
   isSent = false,
 }: Props) => {
   const messageStatusClassName = isSent ? styles.sent : styles.received;
+  const dispatch: AppDispatch = useDispatch();
+
+  const test = async () => {
+    await dispatch(roomsThunks.createPrivateRoom(id));
+  };
 
   return (
     <div className={`${styles.message} ${messageStatusClassName}`}>
@@ -24,10 +34,11 @@ export const MessageItem = ({
         <div className={styles.username}>{username}</div>
         <div className={styles.messageText}>{message}</div>
         <div className={styles.messageTime}>{getFormatTime(time)}</div>
+        <div className={styles.messageText}>{id}</div>
       </div>
-      <div>
+      <button type="button" onClick={() => test()}>
         <img className={styles.avatar} src={avatarUrl} alt={username} />
-      </div>
+      </button>
     </div>
   );
 };

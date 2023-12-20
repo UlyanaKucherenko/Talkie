@@ -15,6 +15,16 @@ export const roomsThunks = {
     const data = await http.rooms.getPublicRooms();
     return data;
   }),
+
+  // private
+  createPrivateRoom: createAsyncThunk(
+    'rooms/postPrivateRoom',
+    async (guestId: string) => {
+      const response = await http.rooms.postPrivateRoom(guestId);
+      // console.log('postPrivateRoom:', response);
+      return response;
+    }
+  ),
 };
 
 export const roomsSlice = createSlice({
