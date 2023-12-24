@@ -41,12 +41,12 @@ export const uaTranslation = {
   errors: {
     userNameLengthValidation: "Ім'я тільки з 2-30 символів",
     userNameCharacterValidation: "Введіть тільки допустимі символи('’._-)",
-    publicRoomTitleLengthValidation: 'Заголовок тільки з 2-30 символівs',
+    publicRoomTitleLengthValidation: 'Заголовок тільки з 2-30 символів',
     publicRoomTitleCharacterValidation:
       "Введіть тільки допустимі символи('’._-)",
     publicRoomDescriptionLengthValidation:
       'Опис не повинен бути довше 300 символів',
-    publicRoomDescriptionCharacterValidation:
-      "Введіть тільки допустимі символи('’._-)",
+    publicRoomDescriptionCharacterValidation: `Введіть тільки допустимі символи(.,&@'’():;!?"$*+/%-=_)`,
+    publicRoomTopicValidation: 'Виберіть тему',
   },
 } as const;

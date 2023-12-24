@@ -8,6 +8,7 @@ import z from 'zod';
 import type { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { i18n } from '../../../../libs/i18n';
 import styles from './index.module.css';
 import { Topic } from '../../../../utils/enums/topic.enum';
 import { RButton } from '../../../RButton';
@@ -19,16 +20,39 @@ import { IconPlus } from '../../../icons/IconPlus';
 
 const createPublicRoomSchema = z.object({
   title: z
-    .string({ required_error: t('errors') })
+    .string({
+      errorMap: (issue) => {
+        if (issue.code === z.ZodIssueCode.invalid_string) {
+          return {
+            message: i18n.t('errors.publicRoomTitleCharacterValidation'),
+          };
+        }
+        return {
+          message: i18n.t('errors.publicRoomTitleLengthValidation'),
+        };
+      },
+    })
     .min(2)
     .max(30)
     .regex(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s'’._-]*$/),
   description: z
-    .string()
+    .string({
+      errorMap: (issue) => {
+        if (issue.code === z.ZodIssueCode.invalid_string) {
+          return {
+            message: i18n.t('errors.publicRoomDescriptionCharacterValidation'),
+          };
+        }
+        return {
+          message: i18n.t('errors.publicRoomDescriptionLengthValidation'),
+        };
+      },
+    })
     .max(300)
-    .regex(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s.,&@'’():;!?"$*+/%-=_]*$/),
+    .regex(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s.,&@'’():;!?"$*+/%-=_]*$/)
+    .optional(),
   topic: z.nativeEnum(Topic, {
-    errorMap: () => ({ message: 'Choose a topic' }),
+    errorMap: () => ({ message: i18n.t('errors.publicRoomTopicValidation') }),
   }),
 });
 
@@ -47,7 +71,7 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
     resolver: zodResolver(createPublicRoomSchema),
   });
   const { t } = useTranslation();
-
+  console.log(errors);
   const dispatch = useDispatch<AppDispatch>();
 
   const submitHandler: SubmitHandler<CreatePublicRoom> = async (data) => {
@@ -64,7 +88,8 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
           className={`${styles.input} ${errors.title && styles.error}`}
           type="text"
           id="title"
-          {...(register('title'), { placeholder: t('rooms.titlePlaceholder') })}
+          placeholder={t('rooms.titlePlaceholder')}
+          {...register('title')}
         />
         <div className={styles.errorMessage}>
           {errors.title && errors.title.message}
@@ -76,8 +101,8 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
           className={`${styles.input} ${errors.description && styles.error}`}
           type="text"
           id="description"
-          {...(register('description'),
-          { placeholder: t('rooms.descriptionPlaceholder') })}
+          placeholder={t('rooms.descriptionPlaceholder')}
+          {...register('description')}
         />
         <div className={styles.errorMessage}>
           {errors.description && errors.description.message}

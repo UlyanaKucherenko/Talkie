@@ -44,6 +44,7 @@ export const enTranslation = {
     publicRoomTitleCharacterValidation: "Input only valid symbols('’._-)",
     publicRoomDescriptionLengthValidation:
       'Description must not be longer than 300 characters',
-    publicRoomDescriptionCharacterValidation: "Input only valid symbols('’._-)",
+    publicRoomDescriptionCharacterValidation: `Input only valid symbols(.,&@'’():;!?"$*+/%-=_)`,
+    publicRoomTopicValidation: 'Choose a topic',
   },
 } as const;
