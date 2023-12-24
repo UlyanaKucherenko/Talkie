@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+
 import { userSelector } from '../../store/user';
-import styles from './index.module.css';
 import { Status } from '../../utils/enums/status.enum';
+import styles from './index.module.css';
+import CreateRoomPopup from '../room/CreateRoom';
 
 type Props = {
   closeMenu?: () => void;
@@ -12,10 +15,17 @@ type Props = {
 
 export const Navigation = ({ closeMenu, className }: Props) => {
   const { status, userData } = useSelector(userSelector);
+  const [showPopup, setShowPopup] = useState(false);
+
   const { t } = useTranslation();
 
+  const showCreateRoomHandler = () => {
+    if (closeMenu) closeMenu();
+    setShowPopup(true);
+  };
   return (
     <nav className={className}>
+      <CreateRoomPopup show={showPopup} setIsShow={() => setShowPopup(false)} />
       <NavLink
         to="/#public-rooms"
         onClick={closeMenu}
@@ -40,13 +50,13 @@ export const Navigation = ({ closeMenu, className }: Props) => {
           >
             <span>{t('sidebar.privateRooms')}</span>
           </NavLink>
-          <a
-            href="/#create-room"
-            onClick={closeMenu}
+          <button
+            type="button"
+            onClick={showCreateRoomHandler}
             className={styles.navLink}
           >
             <span>{t('sidebar.createRoom')}</span>
-          </a>
+          </button>
         </>
       )}
     </nav>

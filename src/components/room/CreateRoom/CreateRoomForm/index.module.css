@@ -1,0 +1,56 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.formControl label {
+  color: rgba(121, 124, 123, 0.50);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14.637px; 
+}
+.input {
+  border: none;
+  height: 26px;
+  border-bottom: 1px solid var(--font-main-color);
+  background: none;
+  color: var(--font-main-color);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 45.74px;
+}
+
+select.input {
+  border: 1px solid var(--font-main-color);
+}
+
+.input.error {
+  border-color: var(--warning-color);
+}
+
+.formAction {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.formAction button {
+  height: 44px;
+  gap: 8px;
+}
+
+.errorMessage {
+  color: var(--warning-color);
+}
