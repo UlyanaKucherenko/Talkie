@@ -30,6 +30,11 @@ export const enTranslation = {
   },
   chat: {
     placeholder: 'Write a message...',
+    noMessagesYet: 'No messages yet',
+    members: 'members',
+    owner: 'owner',
+    today: 'today',
+    yesterday: 'yesterday',
   },
   errors: {
     userNameLengthValidation: 'Username must be 2-30 characters',

@@ -5,6 +5,7 @@ import { apiRoutes } from './api-routes';
 import type {
   CreateRoomData,
   PrivateRoom,
+  PrivateRoomsData,
   PublicRoomsData,
 } from '../utils/types/rooms.type';
 
@@ -40,6 +41,7 @@ export const createPublicRoom = async (data: CreateRoomData): Promise<any> => {
   }
 };
 
+// private
 export const postPrivateRoom = async (
   guestId: string
 ): Promise<PrivateRoom> => {
@@ -57,6 +59,50 @@ export const postPrivateRoom = async (
     return res.data;
   } catch (error) {
     console.log('Error creating private room', error);
+    throw error;
+  }
+};
+
+export const getPrivateRooms = async ({
+  page = 1,
+  limit = 10,
+  query = '',
+}: {
+  page?: number;
+  limit?: number;
+  query?: string;
+}): Promise<PrivateRoomsData> => {
+  const token = getToken();
+  try {
+    const res = await axios.get(
+      `${apiRoutes.privateRooms}?page=${page}&limit=${limit}&query=${query}`,
+
+      {
+        headers: {
+          ApiKey: token,
+        },
+      }
+    );
+    console.log('getPrivateRooms', res);
+    return res.data;
+  } catch (error) {
+    console.log('Error get private rooms', error);
+    throw error;
+  }
+};
+
+export const deleteRoom = async (id: string): Promise<unknown> => {
+  const token = getToken();
+  try {
+    const res = await axios.delete(`${apiRoutes.rooms}/${id}`, {
+      headers: {
+        ApiKey: token,
+      },
+    });
+    console.log('deleteRoom', res);
+    return res.data;
+  } catch (error) {
+    console.log('Error deleteRoom ', error);
     throw error;
   }
 };

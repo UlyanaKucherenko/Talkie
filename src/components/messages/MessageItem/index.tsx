@@ -1,4 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { useState } from 'react';
 import { getFormatTime } from '../../../utils/format-time';
 import styles from './index.module.css';
 import { AppDispatch } from '../../../store';
@@ -23,9 +27,28 @@ export const MessageItem = ({
 }: Props) => {
   const messageStatusClassName = isSent ? styles.sent : styles.received;
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showBtnSendPrivateMsg, setShowBtnSendPrivateMsg] = useState(false);
 
-  const test = async () => {
-    await dispatch(roomsThunks.createPrivateRoom(id));
+  const redirectToPrivateChat = (roomId: string) => {
+    navigate(`/private-chat/${roomId}`);
+  };
+
+  const createPrivateRoom = async () => {
+    try {
+      const res = await dispatch(roomsThunks.createPrivateRoom(id));
+      if (res.payload) {
+        const roomId = res.payload._id || res.payload?.roomId;
+        if (roomId) {
+          redirectToPrivateChat(roomId);
+          return;
+        }
+      }
+
+      console.warn('Invalid response payload:', res.payload);
+    } catch (error) {
+      console.error('Error executing createPrivateRoom thunk:', error);
+    }
   };
 
   return (
@@ -34,11 +57,25 @@ export const MessageItem = ({
         <div className={styles.username}>{username}</div>
         <div className={styles.messageText}>{message}</div>
         <div className={styles.messageTime}>{getFormatTime(time)}</div>
-        <div className={styles.messageText}>{id}</div>
       </div>
-      <button type="button" onClick={() => test()}>
+      <button
+        type="button"
+        onClick={() => setShowBtnSendPrivateMsg(!showBtnSendPrivateMsg)}
+        className={`${styles.avatarWrap} ${
+          showBtnSendPrivateMsg ? styles.active : ''
+        }`}
+      >
         <img className={styles.avatar} src={avatarUrl} alt={username} />
       </button>
+      {showBtnSendPrivateMsg && (
+        <button
+          type="button"
+          onClick={() => createPrivateRoom()}
+          className={styles.btnSendPrivateMsg}
+        >
+          send a private message
+        </button>
+      )}
     </div>
   );
 };

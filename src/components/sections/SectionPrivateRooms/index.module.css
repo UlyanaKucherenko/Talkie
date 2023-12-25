@@ -1,0 +1,24 @@
+.sectionPrivate {
+  padding-top: 40px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: var(--font-main-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+
+.content {
+  min-height: 200px;
+  position: relative;
+}
