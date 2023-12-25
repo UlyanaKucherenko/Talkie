@@ -19,7 +19,7 @@ type TypeUser = {
 export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
   const { _id: id, title, users } = item;
   const dispatch: AppDispatch = useDispatch();
-
+  // @ts-ignore
   const guest = users.find((user) => user._id !== id) as TypeUser | undefined;
 
   if (!guest) {

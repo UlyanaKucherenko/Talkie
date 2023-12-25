@@ -38,6 +38,7 @@ export const MessageItem = ({
     try {
       const res = await dispatch(roomsThunks.createPrivateRoom(id));
       if (res.payload) {
+        // @ts-ignore
         const roomId = res.payload._id || res.payload?.roomId;
         if (roomId) {
           redirectToPrivateChat(roomId);

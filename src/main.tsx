@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import store from './store';
 import './index.css';
-import Home from './pages/home';
+import Home from './pages/Home';
 import './libs/i18n';
 import Room from './pages/Room';
 import http from './api/http';
@@ -31,8 +31,7 @@ const router = createBrowserRouter([
       {
         path: 'private-chat/:roomId',
         loader: async ({ params }) => {
-          const token = localStorage.getItem('userToken');
-          const room = await http.rooms.getRoomById(params.roomId!, token!);
+          const room = await http.rooms.getRoomById(params.roomId!);
           return room;
         },
         element: <Room />,
