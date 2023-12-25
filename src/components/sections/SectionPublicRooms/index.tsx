@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, forwardRef, useState } from 'react';
+import { useEffect, forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Status } from '../../../utils/enums/status.enum';
@@ -9,11 +9,8 @@ import { PublicRoomsList } from './PublicRoomsList';
 import { RLoader } from '../../RLoader';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
-import { IconArrowUp } from '../../icons/IconArrowUp';
-import { IconArrowDown } from '../../icons/IconArrowDown';
 
 export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
-  const [isShow, setIsShow] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { publicRoomsData, status } = useSelector(roomsSelector);
@@ -33,25 +30,15 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <section id="public-rooms" className={styles.sectionPublic} ref={ref}>
-      <h2>
-        <button
-          type="button"
-          onClick={() => setIsShow((prevState) => !prevState)}
-        >
-          <span>{t('rooms.public')}</span>
-          {isShow ? <IconArrowUp /> : <IconArrowDown />}
-        </button>
-      </h2>
+      <h2>{t('rooms.public')}</h2>
 
-      {isShow && (
-        <div className={styles.content}>
-          {status === Status.Loading && <RLoader />}
+      <div className={styles.content}>
+        {status === Status.Loading && <RLoader />}
 
-          {publicRoomsData && status === Status.Succeeded && (
-            <PublicRoomsList rooms={publicRoomsData.rooms} />
-          )}
-        </div>
-      )}
+        {publicRoomsData && status === Status.Succeeded && (
+          <PublicRoomsList rooms={publicRoomsData.rooms} />
+        )}
+      </div>
     </section>
   );
 });
