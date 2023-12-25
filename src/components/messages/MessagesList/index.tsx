@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { MessageItem } from '../MessageItem';
 import type { Message } from '../../../utils/types/chat.type';
@@ -19,13 +20,14 @@ type Props = {
 export const MessagesList = ({ messages, status, loadMoreMessages }: Props) => {
   const { userData } = useSelector(userSelector);
   const groupedMessages = groupMessagesByDate(messages);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.messageListWrap}>
       {status === Status.Loading && <RLoader css={{ top: '10px' }} size="sm" />}
 
       {status !== Status.Loading && messages.length === 0 && (
-        <div className={styles.noMessages}>No messages yet</div>
+        <div className={styles.noMessages}> {t('chat.noMessagesYet')}</div>
       )}
 
       {messages.length > 0 &&
@@ -35,6 +37,7 @@ export const MessagesList = ({ messages, status, loadMoreMessages }: Props) => {
               <MessageItem
                 // eslint-disable-next-line react/no-array-index-key
                 key={`${message._id}-${idx}`}
+                id={message.owner._id}
                 username={message.owner.name}
                 message={message.content}
                 avatarUrl={message.owner.avatarURL}

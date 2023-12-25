@@ -24,6 +24,7 @@
   grid-auto-flow: dense;
   flex-direction: column-reverse;
   gap: 12px;
+  margin-bottom: 4px;
   /* margin-top: 21px; */
   /* overflow: hidden scroll; */
 }
@@ -32,5 +33,5 @@
   text-align: center;
   color: var(--font-main-color);
   font-family: Inter;
-  font-size: 20px;
+  font-size: 12px;
 }
