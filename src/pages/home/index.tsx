@@ -42,18 +42,21 @@ const Home = () => {
       </section>
 
       <SectionPublicRooms ref={publicRooms} />
-      <SectionMyPublicRooms />
+
       {userData && status === Status.Succeeded && (
-        <div className={styles.createRoom}>
-          <RButton
-            type="submit"
-            color="secondary"
-            onClick={() => setShowPopup(true)}
-          >
-            <IconPlus />
-            Create room
-          </RButton>
-        </div>
+        <>
+          <div className={styles.createRoom}>
+            <RButton
+              type="submit"
+              color="secondary"
+              onClick={() => setShowPopup(true)}
+            >
+              <IconPlus />
+              Create room
+            </RButton>
+          </div>
+          <SectionMyPublicRooms />
+        </>
       )}
 
       {userData && status === Status.Succeeded && (

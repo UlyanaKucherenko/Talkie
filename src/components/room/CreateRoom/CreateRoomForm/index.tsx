@@ -48,6 +48,7 @@ const createPublicRoomSchema = z.object({
         };
       },
     })
+    .min(1)
     .max(300)
     .regex(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s.,&@'’():;!?"$*+/%-=_]*$/)
     .optional(),

@@ -45,8 +45,7 @@ export const uaTranslation = {
     publicRoomTitleLengthValidation: 'Заголовок тільки з 2-30 символів',
     publicRoomTitleCharacterValidation:
       "Введіть тільки допустимі символи('’._-)",
-    publicRoomDescriptionLengthValidation:
-      'Опис не повинен бути довше 300 символів',
+    publicRoomDescriptionLengthValidation: 'Опис тільки з 1-300 символів',
     publicRoomDescriptionCharacterValidation: `Введіть тільки допустимі символи(.,&@'’():;!?"$*+/%-=_)`,
     publicRoomTopicValidation: 'Виберіть тему',
   },

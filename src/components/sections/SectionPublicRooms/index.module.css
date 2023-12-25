@@ -5,6 +5,22 @@
 h2 {
   margin-top: 20px;
   margin-bottom: 20px;
+  text-align: center;
+}
+
+h2 button {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  width: max-content;
 }
 
 h3 {
