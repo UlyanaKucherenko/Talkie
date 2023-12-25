@@ -27,6 +27,13 @@ export const enTranslation = {
   rooms: {
     public: 'Public Rooms',
     private: 'Private Rooms',
+    myPublicRooms: 'My Public rooms',
+    title: 'Title',
+    description: 'Description',
+    topic: 'Topic',
+    titlePlaceholder: 'Enter room title',
+    descriptionPlaceholder: 'Enter room description',
+    topicPlaceholder: 'Select room topic',
   },
   chat: {
     placeholder: 'Write a message...',
@@ -34,5 +41,11 @@ export const enTranslation = {
   errors: {
     userNameLengthValidation: 'Username must be 2-30 characters',
     userNameCharacterValidation: "Input only valid symbols('’._-)",
+    publicRoomTitleLengthValidation: 'Title must be 2-30 characters',
+    publicRoomTitleCharacterValidation: "Input only valid symbols('’._-)",
+    publicRoomDescriptionLengthValidation:
+      'Description must be 1-300 characters',
+    publicRoomDescriptionCharacterValidation: `Input only valid symbols(.,&@'’():;!?"$*+/%-=_)`,
+    publicRoomTopicValidation: 'Choose a topic',
   },
 } as const;

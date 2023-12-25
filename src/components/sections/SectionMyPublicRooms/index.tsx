@@ -5,31 +5,24 @@ import { useTranslation } from 'react-i18next';
 import { Status } from '../../../utils/enums/status.enum';
 import { AppDispatch } from '../../../store';
 import { roomsSelector, roomsThunks } from '../../../store/rooms';
-import { PublicRoomsList } from './PublicRoomsList';
+import { PublicRoomsList } from '../SectionPublicRooms/PublicRoomsList';
 import { RLoader } from '../../RLoader';
-import styles from './index.module.css';
-import { userSelector } from '../../../store/user';
+import styles from '../SectionPublicRooms/index.module.css';
 import { IconArrowUp } from '../../icons/IconArrowUp';
 import { IconArrowDown } from '../../icons/IconArrowDown';
 
-export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
+export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
   const [isShow, setIsShow] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const { publicRoomsData, status } = useSelector(roomsSelector);
-  const { userData, status: userStatus } = useSelector(userSelector);
+  const { myPublicRoomsData, status } = useSelector(roomsSelector);
 
   useEffect(() => {
     const getPublicRooms = async () => {
-      if (userData && userStatus === Status.Succeeded) {
-        await dispatch(roomsThunks.getPublicRoomsWithoutOwn());
-        return;
-      }
-      await dispatch(roomsThunks.getPublicRooms());
+      await dispatch(roomsThunks.getOwnPublicRooms());
     };
-
     getPublicRooms();
-  }, [dispatch, userData, userStatus]);
+  }, [dispatch]);
 
   return (
     <section id="public-rooms" className={styles.sectionPublic} ref={ref}>
@@ -38,7 +31,7 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
           type="button"
           onClick={() => setIsShow((prevState) => !prevState)}
         >
-          <span>{t('rooms.public')}</span>
+          <span>{t('rooms.myPublicRooms')}</span>
           {isShow ? <IconArrowUp /> : <IconArrowDown />}
         </button>
       </h2>
@@ -47,8 +40,8 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
         <div className={styles.content}>
           {status === Status.Loading && <RLoader />}
 
-          {publicRoomsData && status === Status.Succeeded && (
-            <PublicRoomsList rooms={publicRoomsData.rooms} />
+          {myPublicRoomsData && status === Status.Succeeded && (
+            <PublicRoomsList rooms={myPublicRoomsData.rooms} />
           )}
         </div>
       )}

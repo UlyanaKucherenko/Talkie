@@ -7,6 +7,7 @@ import http from '../../api/http.js';
 
 const initialState: RoomsState = {
   publicRoomsData: null,
+  myPublicRoomsData: null,
   status: Status.Idle,
   error: null,
 };
@@ -15,6 +16,17 @@ export const roomsThunks = {
     const data = await http.rooms.getPublicRooms();
     return data;
   }),
+  getOwnPublicRooms: createAsyncThunk('rooms/getOwnPublicRooms', async () => {
+    const data = await http.rooms.getOwnPublicRooms();
+    return data;
+  }),
+  getPublicRoomsWithoutOwn: createAsyncThunk(
+    'rooms/getPublicRoomsWithoutOwn',
+    async () => {
+      const data = await http.rooms.getPublicRoomsWithoutOwn();
+      return data;
+    }
+  ),
 };
 
 export const roomsSlice = createSlice({
@@ -37,6 +49,46 @@ export const roomsSlice = createSlice({
       )
       .addCase(
         roomsThunks.getPublicRooms.rejected,
+        (state, { error }): RoomsState => ({
+          ...state,
+          status: Status.Failed,
+          error: error.message || null,
+        })
+      )
+      .addCase(roomsThunks.getOwnPublicRooms.pending, (state) => ({
+        ...state,
+        status: Status.Loading,
+      }))
+      .addCase(
+        roomsThunks.getOwnPublicRooms.fulfilled,
+        (state, { payload }: PayloadAction<PublicRoomsData>) => ({
+          ...state,
+          myPublicRoomsData: payload,
+          status: Status.Succeeded,
+        })
+      )
+      .addCase(
+        roomsThunks.getOwnPublicRooms.rejected,
+        (state, { error }): RoomsState => ({
+          ...state,
+          status: Status.Failed,
+          error: error.message || null,
+        })
+      )
+      .addCase(roomsThunks.getPublicRoomsWithoutOwn.pending, (state) => ({
+        ...state,
+        status: Status.Loading,
+      }))
+      .addCase(
+        roomsThunks.getPublicRoomsWithoutOwn.fulfilled,
+        (state, { payload }: PayloadAction<PublicRoomsData>) => ({
+          ...state,
+          status: Status.Succeeded,
+          publicRoomsData: payload,
+        })
+      )
+      .addCase(
+        roomsThunks.getPublicRoomsWithoutOwn.rejected,
         (state, { error }): RoomsState => ({
           ...state,
           status: Status.Failed,

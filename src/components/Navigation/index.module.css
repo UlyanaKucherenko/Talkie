@@ -1,11 +1,14 @@
 .navLink {
   font-size: 20px;
   color: var(--navlink-color);
+  background: none;
+  border: none;
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.2s ease;
   width: fit-content;
+  cursor: pointer;
 }
 
 .navLink:hover {

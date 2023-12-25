@@ -3,5 +3,5 @@ export enum Topic {
   Exercises = 'EXERCISES',
   MentalHealth = 'MENTAL_HEALTH',
   Prevention = 'PREVENTION',
-  HEALTHY_HABITS = 'HEALTHY_HABITS',
+  HealthyHabits = 'HEALTHY_HABITS',
 }

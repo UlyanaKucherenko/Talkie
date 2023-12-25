@@ -28,6 +28,13 @@ export const uaTranslation = {
   rooms: {
     public: 'Публічні кімнати',
     private: 'Приватні кімнати',
+    myPublicRooms: 'Мої Публічні кімнати',
+    title: 'Назва',
+    description: 'Опис',
+    topic: 'Тема',
+    titlePlaceholder: 'Введіть назву кімнати',
+    descriptionPlaceholder: 'Введіть опис кімнати',
+    topicPlaceholder: 'Виберіть тему кімнати',
   },
   chat: {
     placeholder: 'Напишіть повідомлення...',
@@ -35,5 +42,11 @@ export const uaTranslation = {
   errors: {
     userNameLengthValidation: "Ім'я тільки з 2-30 символів",
     userNameCharacterValidation: "Введіть тільки допустимі символи('’._-)",
+    publicRoomTitleLengthValidation: 'Заголовок тільки з 2-30 символів',
+    publicRoomTitleCharacterValidation:
+      "Введіть тільки допустимі символи('’._-)",
+    publicRoomDescriptionLengthValidation: 'Опис тільки з 1-300 символів',
+    publicRoomDescriptionCharacterValidation: `Введіть тільки допустимі символи(.,&@'’():;!?"$*+/%-=_)`,
+    publicRoomTopicValidation: 'Виберіть тему',
   },
 } as const;

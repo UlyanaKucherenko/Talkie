@@ -12,10 +12,27 @@ export const getPublicRooms = async (): Promise<PublicRoomsData> => {
   return res.data;
 };
 
-export const getRoomById = async (
-  id: string,
-  token: string
-): Promise<PublicRoomsData> => {
+export const getOwnPublicRooms = async (): Promise<PublicRoomsData> => {
+  const token = getToken();
+  const res = await axios.get(apiRoutes.ownPublicRooms, {
+    headers: {
+      ApiKey: token,
+    },
+  });
+  return res.data;
+};
+export const getPublicRoomsWithoutOwn = async (): Promise<PublicRoomsData> => {
+  const token = getToken();
+  const res = await axios.get(apiRoutes.publicRoomsWithoutOwn, {
+    headers: {
+      ApiKey: token,
+    },
+  });
+  return res.data;
+};
+
+export const getRoomById = async (id: string): Promise<PublicRoomsData> => {
+  const token = getToken();
   const res = await axios.get(`${apiRoutes.rooms}/${id}`, {
     headers: {
       ApiKey: token,

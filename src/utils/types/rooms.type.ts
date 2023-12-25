@@ -7,7 +7,7 @@ export type Room = {
   title: string;
   topic: string;
   type: string;
-  description: string;
+  description?: string;
   createdAt: string;
   updatedAt: string;
   users: User[];
@@ -23,6 +23,7 @@ export type PublicRoomsData = {
 
 export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
+  myPublicRoomsData: PublicRoomsData | null;
   status: Status;
   error: string | null;
 };
@@ -30,5 +31,5 @@ export type RoomsState = {
 export type CreateRoomData = {
   title: string;
   topic: Topic;
-  description: string;
+  description?: string;
 };
