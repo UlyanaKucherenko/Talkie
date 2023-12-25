@@ -23,6 +23,7 @@ export type PublicRoomsData = {
 
 export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
+  myPublicRoomsData: PublicRoomsData | null;
   status: Status;
   error: string | null;
 };

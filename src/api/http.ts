@@ -1,5 +1,10 @@
 import { registration, logout, getCurrentUser } from './users';
-import { getPublicRooms, getRoomById } from './rooms';
+import {
+  getPublicRooms,
+  getOwnPublicRooms,
+  getPublicRoomsWithoutOwn,
+  getRoomById,
+} from './rooms';
 import { getMessages, postMessage } from './chat';
 
 const http = {
@@ -10,6 +15,8 @@ const http = {
   },
   rooms: {
     getPublicRooms,
+    getOwnPublicRooms,
+    getPublicRoomsWithoutOwn,
     getRoomById,
   },
   chat: {

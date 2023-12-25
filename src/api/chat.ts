@@ -6,11 +6,7 @@ import {
   ResponseMessages,
   SendMessage,
 } from '../utils/types/chat.type';
-
-const getToken = () => {
-  const token = localStorage.getItem('userToken');
-  return token;
-};
+import { getToken } from '../utils/user-token';
 
 export const getMessages = async ({
   roomId,

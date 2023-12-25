@@ -5,6 +5,8 @@ export const apiRoutes = {
   logout: `${baseUrl}/users/logout`,
   current: `${baseUrl}/users/current`,
   publicRooms: `${baseUrl}/rooms/public`,
+  ownPublicRooms: `${baseUrl}/rooms/public/owner`,
+  publicRoomsWithoutOwn: `${baseUrl}/rooms/public/notown`,
   rooms: `${baseUrl}/rooms`,
   messages: `${baseUrl}/messages`,
 } as const;

@@ -28,6 +28,7 @@ export const uaTranslation = {
   rooms: {
     public: 'Публічні кімнати',
     private: 'Приватні кімнати',
+    myPublicRooms: 'Мої Публічні кімнати',
     title: 'Назва',
     description: 'Опис',
     topic: 'Тема',

@@ -27,6 +27,7 @@ export const enTranslation = {
   rooms: {
     public: 'Public Rooms',
     private: 'Private Rooms',
+    myPublicRooms: 'My Public rooms',
     title: 'Title',
     description: 'Description',
     topic: 'Topic',

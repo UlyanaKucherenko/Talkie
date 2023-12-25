@@ -10,6 +10,7 @@ import { SectionPublicRooms } from '../../components/sections/SectionPublicRooms
 import { RButton } from '../../components/RButton';
 import { IconPlus } from '../../components/icons/IconPlus';
 import CreateRoomPopup from '../../components/room/CreateRoom';
+import { SectionMyPublicRooms } from '../../components/sections/SectionMyPublicRooms';
 
 const Home = () => {
   const { status, userData } = useSelector(userSelector);
@@ -41,6 +42,7 @@ const Home = () => {
       </section>
 
       <SectionPublicRooms ref={publicRooms} />
+      <SectionMyPublicRooms />
       {userData && status === Status.Succeeded && (
         <div className={styles.createRoom}>
           <RButton

@@ -71,12 +71,12 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
     resolver: zodResolver(createPublicRoomSchema),
   });
   const { t } = useTranslation();
-  console.log(errors);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const submitHandler: SubmitHandler<CreatePublicRoom> = async (data) => {
     await createPublicRoom(data);
-    await dispatch(roomsThunks.getPublicRooms());
+    await dispatch(roomsThunks.getOwnPublicRooms());
     onClosePopup(true);
   };
 
