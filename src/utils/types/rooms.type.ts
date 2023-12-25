@@ -7,7 +7,7 @@ export type Room = {
   title: string;
   topic: string;
   type: string;
-  description: string;
+  description?: string;
   createdAt: string;
   updatedAt: string;
   users: User[];
@@ -24,7 +24,7 @@ export type PublicRoomsData = {
 export type CreateRoomData = {
   title: string;
   topic: Topic;
-  description: string;
+  description?: string;
 };
 
 // private rooms
@@ -51,6 +51,7 @@ export type PrivateRoomsData = {
 
 export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
+  myPublicRoomsData: PublicRoomsData | null;
   status: Status;
   error: string | null;
 

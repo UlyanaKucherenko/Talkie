@@ -30,3 +30,13 @@ h3 {
   text-transform: capitalize;
   margin-bottom: 20px;
 }
+
+.createRoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 48px;
+}
+.createRoom button {
+  height: 44px;
+}
