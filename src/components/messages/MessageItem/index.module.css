@@ -55,7 +55,7 @@
 
 .btnSendPrivateMsg {
   position: absolute;
-  bottom: -16px;
+  bottom: 4px;
   left: 44px;
   display: flex;
   padding: 4px;
