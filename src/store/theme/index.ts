@@ -19,6 +19,9 @@ export const themeSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.mode =
         state.mode === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT;
+
+      // Update localStorage
+      localStorage.setItem('theme', state.mode);
     },
   },
 });
