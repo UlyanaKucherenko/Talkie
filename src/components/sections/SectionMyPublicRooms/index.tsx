@@ -10,19 +10,21 @@ import { RLoader } from '../../RLoader';
 import styles from '../SectionPublicRooms/index.module.css';
 import { IconArrowUp } from '../../icons/IconArrowUp';
 import { IconArrowDown } from '../../icons/IconArrowDown';
+import { Pagination } from '../../ui/Pagination';
 
 export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
   const [isShow, setIsShow] = useState(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { myPublicRoomsData, status } = useSelector(roomsSelector);
 
   useEffect(() => {
     const getPublicRooms = async () => {
-      await dispatch(roomsThunks.getOwnPublicRooms());
+      await dispatch(roomsThunks.getOwnPublicRooms(currentPage));
     };
     getPublicRooms();
-  }, [dispatch]);
+  }, [dispatch, currentPage]);
 
   return (
     <section id="public-rooms" className={styles.sectionPublic} ref={ref}>
@@ -45,6 +47,12 @@ export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
           )}
         </div>
       )}
+      <Pagination
+        pageCount={myPublicRoomsData?.totalPages}
+        handlePageClick={(paginationState) =>
+          setCurrentPage(paginationState.selected + 1)
+        }
+      />
     </section>
   );
 });
