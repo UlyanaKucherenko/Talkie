@@ -14,16 +14,10 @@ import { RLoader } from '../../RLoader';
 type Props = {
   messages: Message[];
   status: Status;
-  loadMoreMessages: () => void;
   divRef?: React.RefObject<HTMLDivElement>;
 };
 
-export const MessagesList = ({
-  messages,
-  status,
-  loadMoreMessages,
-  divRef,
-}: Props) => {
+export const MessagesList = ({ messages, status, divRef }: Props) => {
   const { userData } = useSelector(userSelector);
   const groupedMessages = groupMessagesByDate(messages);
   const { t } = useTranslation();
@@ -54,16 +48,6 @@ export const MessagesList = ({
             <p className={styles.dayDate}>{getFormattedDate(date)}</p>
           </div>
         ))}
-
-      {messages.length > 0 && (
-        <button
-          type="button"
-          className={styles.loadMoreButton}
-          onClick={loadMoreMessages}
-        >
-          Load More
-        </button>
-      )}
     </div>
   );
 };

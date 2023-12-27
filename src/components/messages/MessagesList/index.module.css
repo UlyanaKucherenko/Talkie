@@ -25,8 +25,7 @@
   flex-direction: column-reverse;
   gap: 12px;
   margin-bottom: 4px;
-  /* margin-top: 21px; */
-  /* overflow: hidden scroll; */
+  margin-top: 30px;
 }
 
 .dayDate {
