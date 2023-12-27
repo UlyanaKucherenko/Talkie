@@ -16,7 +16,7 @@ const store = configureStore({
 // Check local storage for theme preference on store initialization
 const storedTheme = localStorage.getItem('theme');
 if (storedTheme) {
-  store.dispatch(themeSlice.actions.TOGGLE_THEME());
+  store.dispatch(themeSlice.actions.TOGGLE_THEME(storedTheme === 'dark'));
 }
 
 export type AppDispatch = typeof store.dispatch;

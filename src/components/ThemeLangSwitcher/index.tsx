@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '../../store';
-import { TOGGLE_THEME } from '../../store/theme';
+import { TOGGLE_THEME, themeSelector } from '../../store/theme';
 import { IconUA } from '../icons/IconUA';
 import { IconEN } from '../icons/IconEN';
 import { RButtonIcon } from '../ui/RButtonIcon';
 import { IconLightTheme } from '../icons/IconLightTheme';
 import styles from './index.module.css';
+import { ThemeEnum } from '../../utils/const';
 
 type ThemeLangSwitcherProps = {
   colorIcon: 'dark' | 'light';
@@ -20,9 +21,11 @@ export const ThemeLangSwitcher = ({
 }: ThemeLangSwitcherProps) => {
   const { i18n } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+  const { mode } = useSelector(themeSelector);
 
   const onSwitchTheme = (): void => {
-    dispatch(TOGGLE_THEME());
+    const newTheme = mode === ThemeEnum.LIGHT ? 'dark' : 'light';
+    dispatch(TOGGLE_THEME(newTheme === 'dark'));
   };
 
   let classNameSwitcher = styles.switcher;
