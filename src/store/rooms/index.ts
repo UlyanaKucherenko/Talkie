@@ -12,18 +12,24 @@ const initialState: RoomsState = {
   error: null,
 };
 export const roomsThunks = {
-  getPublicRooms: createAsyncThunk('rooms/getPublicRooms', async () => {
-    const data = await http.rooms.getPublicRooms();
-    return data;
-  }),
-  getOwnPublicRooms: createAsyncThunk('rooms/getOwnPublicRooms', async () => {
-    const data = await http.rooms.getOwnPublicRooms();
-    return data;
-  }),
+  getPublicRooms: createAsyncThunk(
+    'rooms/getPublicRooms',
+    async (currentPage: number) => {
+      const data = await http.rooms.getPublicRooms(currentPage);
+      return data;
+    }
+  ),
+  getOwnPublicRooms: createAsyncThunk(
+    'rooms/getOwnPublicRooms',
+    async (currentPage: number) => {
+      const data = await http.rooms.getOwnPublicRooms(currentPage);
+      return data;
+    }
+  ),
   getPublicRoomsWithoutOwn: createAsyncThunk(
     'rooms/getPublicRoomsWithoutOwn',
-    async () => {
-      const data = await http.rooms.getPublicRoomsWithoutOwn();
+    async (currentPage: number) => {
+      const data = await http.rooms.getPublicRoomsWithoutOwn(currentPage);
       return data;
     }
   ),
