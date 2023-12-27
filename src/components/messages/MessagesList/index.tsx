@@ -15,15 +15,21 @@ type Props = {
   messages: Message[];
   status: Status;
   loadMoreMessages: () => void;
+  divRef?: React.RefObject<HTMLDivElement>;
 };
 
-export const MessagesList = ({ messages, status, loadMoreMessages }: Props) => {
+export const MessagesList = ({
+  messages,
+  status,
+  loadMoreMessages,
+  divRef,
+}: Props) => {
   const { userData } = useSelector(userSelector);
   const groupedMessages = groupMessagesByDate(messages);
   const { t } = useTranslation();
 
   return (
-    <div className={styles.messageListWrap}>
+    <div className={styles.messageListWrap} ref={divRef}>
       {status === Status.Loading && <RLoader css={{ top: '10px' }} size="sm" />}
 
       {status !== Status.Loading && messages.length === 0 && (

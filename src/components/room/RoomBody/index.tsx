@@ -42,6 +42,7 @@ export const RoomBody = () => {
   const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const chatBoxRef = useRef<HTMLDivElement>(null);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -137,6 +138,12 @@ export const RoomBody = () => {
     }, 2000);
   };
 
+  const scrollToBottom = () => {
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
+  };
+
   const sendMessage = async () => {
     if (!inputMessage || inputMessage.trim() === '') return;
 
@@ -156,6 +163,9 @@ export const RoomBody = () => {
     if (msg) socket.emit('message', messageSocket);
 
     setInputMessage('');
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
   };
 
   const formSubmitHandler = async (event: React.FormEvent) => {
@@ -179,6 +189,7 @@ export const RoomBody = () => {
   return (
     <div className={styles.chatRoom}>
       <MessagesList
+        divRef={chatBoxRef}
         messages={messages}
         status={messagesStatus}
         loadMoreMessages={loadMoreMessages}
