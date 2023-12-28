@@ -22,6 +22,7 @@ const initialState: RoomsState = {
   privateRoomsIds: [],
 };
 export const roomsThunks = {
+  // public
   getPublicRooms: createAsyncThunk(
     'rooms/getPublicRooms',
     async (currentPage: number) => {
@@ -31,7 +32,7 @@ export const roomsThunks = {
   ),
   getOwnPublicRooms: createAsyncThunk(
     'rooms/getOwnPublicRooms',
-    async (currentPage: number) => {
+    async (currentPage?: number) => {
       const data = await http.rooms.getOwnPublicRooms(currentPage);
       return data;
     }
@@ -43,6 +44,38 @@ export const roomsThunks = {
       return data;
     }
   ),
+  // private
+  createPrivateRoom: createAsyncThunk(
+    'rooms/postPrivateRoom',
+    async (guestId: string) => {
+      const response = await http.rooms.postPrivateRoom(guestId);
+      // console.log('createPrivateRoom Store:', response);
+      return response;
+    }
+  ),
+
+  getPrivateRooms: createAsyncThunk(
+    'rooms/getPrivateRooms',
+    async ({
+      page = 1,
+      limit = 6,
+      query,
+    }: {
+      page?: number;
+      limit?: number;
+      query?: string;
+    }) => {
+      const data = await http.rooms.getPrivateRooms({ page, limit, query });
+      console.log('getPrivateRooms data STORE =>', data);
+      return data;
+    }
+  ),
+
+  deleteRoom: createAsyncThunk('rooms/deleteRoom', async (roomId: string) => {
+    const response = await http.rooms.deleteRoom(roomId);
+    // console.log('createPrivateRoom Store:', response);
+    return response;
+  }),
 };
 
 export const roomsSlice = createSlice({

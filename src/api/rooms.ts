@@ -17,11 +17,11 @@ export const getPublicRooms = async (
 };
 
 export const getOwnPublicRooms = async (
-  currentPage: number
+  currentPage?: number
 ): Promise<PublicRoomsData> => {
   const token = getToken();
   const res = await axios.get(
-    `${apiRoutes.ownPublicRooms}?page=${currentPage}`,
+    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}`,
     {
       headers: {
         ApiKey: token,
