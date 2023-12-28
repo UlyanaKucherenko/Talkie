@@ -51,10 +51,11 @@ export type PrivateRoomsData = {
 
 export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
-  myPublicRoomsData: PublicRoomsData | null;
   status: Status;
   error: string | null;
-
+  myPublicRoomsData: PublicRoomsData | null;
+  myPublicRoomsStatus: Status;
+  myPublicRoomsError: string | null;
   privateRoomsData: PrivateRoomsData | null;
   privateRoomsStatus: Status;
   privateRoomsError: string | null;

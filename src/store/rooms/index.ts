@@ -12,10 +12,11 @@ import http from '../../api/http.js';
 
 const initialState: RoomsState = {
   publicRoomsData: null,
-  myPublicRoomsData: null,
   status: Status.Idle,
   error: null,
-
+  myPublicRoomsData: null,
+  myPublicRoomsStatus: Status.Idle,
+  myPublicRoomsError: null,
   privateRoomsData: null,
   privateRoomsStatus: Status.Idle,
   privateRoomsError: null,
@@ -130,14 +131,14 @@ export const roomsSlice = createSlice({
       }))
       .addCase(roomsThunks.getOwnPublicRooms.pending, (state) => ({
         ...state,
-        status: Status.Loading,
+        myPublicRoomsStatus: Status.Loading,
       }))
       .addCase(
         roomsThunks.getOwnPublicRooms.fulfilled,
         (state, { payload }: PayloadAction<PublicRoomsData>) => ({
           ...state,
           myPublicRoomsData: payload,
-          status: Status.Succeeded,
+          myPublicRoomsStatus: Status.Succeeded,
         })
       )
       .addCase(
@@ -145,7 +146,7 @@ export const roomsSlice = createSlice({
         (state, { error }): RoomsState => ({
           ...state,
           status: Status.Failed,
-          error: error.message || null,
+          myPublicRoomsError: error.message || null,
         })
       )
       .addCase(roomsThunks.getPublicRoomsWithoutOwn.pending, (state) => ({
