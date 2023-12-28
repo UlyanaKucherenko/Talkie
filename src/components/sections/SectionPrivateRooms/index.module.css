@@ -16,6 +16,10 @@
 .content {
   min-height: 200px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--industrial-revolution);
 }
 
 .btnEdit {

@@ -44,8 +44,8 @@ export const enTranslation = {
     yesterday: 'yesterday',
   },
   pageError: {
-    pageNotFound: 'сторінку не знайдено',
-    returnHome: 'Повернутися на головну сторінку',
+    pageNotFound: 'page not found',
+    returnHome: 'Return to the main page',
   },
   errors: {
     userNameLengthValidation: 'Username must be 2-30 characters',

@@ -44,7 +44,7 @@
   color: var(--clean-pool);
 }
 
-@media (min-width: 480px) {
+@media (min-width: 500px) {
   .wrap {
     gap: 60px;
     padding: 76px 16px 80px;

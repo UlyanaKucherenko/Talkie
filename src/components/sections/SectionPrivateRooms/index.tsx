@@ -39,12 +39,15 @@ export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
           defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
           className={styles.btnEdit}
         /> */}
-
         {privateRoomsStatus === Status.Loading && <RLoader />}
-
-        {privateRoomsData && privateRoomsStatus === Status.Succeeded && (
-          <PrivateRoomsList rooms={privateRoomsData.rooms} />
+        {privateRoomsData?.rooms.length === 0 && (
+          <div>there are no private rooms yet</div>
         )}
+        {privateRoomsData &&
+          privateRoomsData?.rooms.length > 0 &&
+          privateRoomsStatus === Status.Succeeded && (
+            <PrivateRoomsList rooms={privateRoomsData.rooms} />
+          )}
       </div>
     </section>
   );

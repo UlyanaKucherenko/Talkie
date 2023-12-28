@@ -157,6 +157,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
     const page = currentPage + 1;
     await dispatch(chatThunks.getMessages({ roomId, page }));
     setCurrentPage(page);
+    setLoadingMoreMessages(false);
     console.log('Load more messages for page:', currentPage);
   }, [currentPage, dispatch, roomId, pagination]);
 
