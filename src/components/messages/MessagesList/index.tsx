@@ -15,9 +15,10 @@ type Props = {
   messages: Message[];
   status: Status;
   divRef?: React.RefObject<HTMLDivElement>;
+  roomType: string;
 };
 
-export const MessagesList = ({ messages, status, divRef }: Props) => {
+export const MessagesList = ({ messages, status, divRef, roomType }: Props) => {
   const { userData } = useSelector(userSelector);
   const groupedMessages = groupMessagesByDate(messages);
   const { t } = useTranslation();
@@ -43,6 +44,7 @@ export const MessagesList = ({ messages, status, divRef }: Props) => {
                 avatarUrl={message.owner.avatarURL}
                 time={message.createdAt}
                 isSent={message.owner._id === userData?.user._id}
+                roomType={roomType}
               />
             ))}
             <p className={styles.dayDate}>{getFormattedDate(date)}</p>

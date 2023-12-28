@@ -23,6 +23,7 @@ h3 {
   align-items: center;
   column-gap: 24px;
   row-gap: 24px;
+  width: 100%;
 }
 
 @media (min-width: 480px) {

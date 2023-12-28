@@ -112,7 +112,7 @@ export const getPrivateRooms = async ({
         },
       }
     );
-    console.log('getPrivateRooms', res);
+    // console.log('getPrivateRooms', res);
     return res.data;
   } catch (error) {
     console.log('Error get private rooms', error);

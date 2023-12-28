@@ -44,6 +44,10 @@ export const uaTranslation = {
     today: 'сьогодні',
     yesterday: 'вчора',
   },
+  pageError: {
+    pageNotFound: 'сторінку не знайдено',
+    returnHome: 'Повернутися на головну сторінку',
+  },
   errors: {
     userNameLengthValidation: "Ім'я тільки з 2-30 символів",
     userNameCharacterValidation: "Введіть тільки допустимі символи('’._-)",

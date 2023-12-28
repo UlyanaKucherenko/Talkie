@@ -43,6 +43,10 @@ export const enTranslation = {
     today: 'today',
     yesterday: 'yesterday',
   },
+  pageError: {
+    pageNotFound: 'page not found',
+    returnHome: 'Return to the main page',
+  },
   errors: {
     userNameLengthValidation: 'Username must be 2-30 characters',
     userNameCharacterValidation: "Input only valid symbols('’._-)",
