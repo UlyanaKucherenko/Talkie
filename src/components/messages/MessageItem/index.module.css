@@ -88,6 +88,11 @@
   box-shadow: none;
 }
 
+.noActive:hover .avatar {
+  box-shadow: none;
+  cursor: auto;
+}
+
 .messageBody {
   background: var(--message-sent-bg-color);
   padding: 12px 16px;

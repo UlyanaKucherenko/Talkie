@@ -50,7 +50,7 @@ export const roomsThunks = {
       query?: string;
     }) => {
       const data = await http.rooms.getPrivateRooms({ page, limit, query });
-      console.log('getPrivateRooms data STORE =>', data);
+      // console.log('getPrivateRooms data STORE =>', data);
       return data;
     }
   ),

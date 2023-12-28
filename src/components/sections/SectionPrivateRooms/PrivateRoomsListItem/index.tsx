@@ -1,12 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { PrivateRoom } from '../../../../utils/types/rooms.type';
 import styles from './index.module.css';
 import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
 import { RButtonIcon } from '../../../ui/RButtonIcon';
 import { IconClose } from '../../../icons/IconClose';
+import { themeSelector } from '../../../../store/theme';
+import { ThemeEnum } from '../../../../utils/const';
 
 type PrivateRoomsListItemProps = {
   item: PrivateRoom;
@@ -19,6 +22,8 @@ type TypeUser = {
 export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
   const { _id: id, title, users } = item;
   const dispatch: AppDispatch = useDispatch();
+  const { mode } = useSelector(themeSelector);
+
   // @ts-ignore
   const guest = users.find((user) => user._id !== id) as TypeUser | undefined;
 
@@ -41,7 +46,7 @@ export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
       </NavLink>
       <RButtonIcon
         icon={IconClose}
-        defaultColorIcon="dark"
+        defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
         onClick={() => roomDelete()}
         className={styles.btnDelete}
       />

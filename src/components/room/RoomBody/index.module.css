@@ -9,10 +9,23 @@
   padding: 0 15px;
   background-color: var(--background-color);
 }
+
 .loadMore {
   position: relative;
   margin: 0 auto;
   width: 200px;
   height: 50px;
   background-color: var(--background-color);
+  z-index: 5;
+}
+
+@media (min-width: 480px) {
+  .chatRoom {
+    border-left: 1px solid var(--border-chat-room);
+    border-right: 1px solid var(--border-chat-room);
+  }
+  .chatRoomPrivate {
+    border-left: 1px solid var(--border-chat-room-private);
+    border-right: 1px solid var(--border-chat-room-private);
+  }
 }

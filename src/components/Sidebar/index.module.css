@@ -82,7 +82,8 @@
 }
 
 .userNick {
-  max-width: 250px;
+  max-width: 340px;
+  width: 100%;
   color: var(--font-main-color);
   font-size: 20px;
   line-height: 1;

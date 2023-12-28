@@ -36,7 +36,11 @@ type TypeEventMessage = {
   data: Message;
 };
 
-export const RoomBody = () => {
+type RoomBodyProps = {
+  roomType: string;
+};
+
+export const RoomBody = ({ roomType }: RoomBodyProps) => {
   const { messages, messagesStatus, pagination } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
@@ -92,7 +96,7 @@ export const RoomBody = () => {
       }
 
       setIsTyping(true);
-      typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
+      typingTimeout.current = setTimeout(() => setIsTyping(false), 4000);
     };
 
     const handleStopTyping = () => {
@@ -229,7 +233,11 @@ export const RoomBody = () => {
   };
 
   return (
-    <div className={styles.chatRoom}>
+    <div
+      className={`${styles.chatRoom} ${
+        roomType === 'private' ? styles.chatRoomPrivate : ''
+      }`}
+    >
       {loadingMoreMessages && (
         <div className={styles.loadMore}>
           <RLoader css={{ top: '8px', left: '44%' }} size="sm" />
@@ -240,6 +248,7 @@ export const RoomBody = () => {
         divRef={chatBoxRef}
         messages={messages}
         status={messagesStatus}
+        roomType={roomType}
       />
       <NewMessageForm
         value={inputMessage}
@@ -247,6 +256,7 @@ export const RoomBody = () => {
         onChange={inputChangeHandler}
         onKeyDown={keyDownHandler}
         userTypingData={userTyping}
+        roomType={roomType}
       />
     </div>
   );

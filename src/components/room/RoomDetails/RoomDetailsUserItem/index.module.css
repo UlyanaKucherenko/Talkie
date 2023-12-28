@@ -22,7 +22,7 @@
   text-transform: lowercase;
   margin-left: auto;
   font-size: 10px;
-  color: var(--font-main-color);
+  color: var(--dark-gray);
 }
 
 @media screen and (min-width: 480px) {
