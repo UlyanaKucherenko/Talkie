@@ -77,7 +77,7 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
 
   const submitHandler: SubmitHandler<CreatePublicRoom> = async (data) => {
     await createPublicRoom(data);
-    await dispatch(roomsThunks.getOwnPublicRooms());
+    await dispatch(roomsThunks.getOwnPublicRooms(1));
     onClosePopup(true);
   };
 
