@@ -9,27 +9,39 @@ import type {
   PublicRoomsData,
 } from '../utils/types/rooms.type';
 
-export const getPublicRooms = async (): Promise<PublicRoomsData> => {
-  const res = await axios.get(apiRoutes.publicRooms);
+export const getPublicRooms = async (
+  currentPage: number
+): Promise<PublicRoomsData> => {
+  const res = await axios.get(`${apiRoutes.publicRooms}?page=${currentPage}`);
   return res.data;
 };
 
-export const getOwnPublicRooms = async (): Promise<PublicRoomsData> => {
+export const getOwnPublicRooms = async (
+  currentPage?: number
+): Promise<PublicRoomsData> => {
   const token = getToken();
-  const res = await axios.get(apiRoutes.ownPublicRooms, {
-    headers: {
-      ApiKey: token,
-    },
-  });
+  const res = await axios.get(
+    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}`,
+    {
+      headers: {
+        ApiKey: token,
+      },
+    }
+  );
   return res.data;
 };
-export const getPublicRoomsWithoutOwn = async (): Promise<PublicRoomsData> => {
+export const getPublicRoomsWithoutOwn = async (
+  currentPage: number
+): Promise<PublicRoomsData> => {
   const token = getToken();
-  const res = await axios.get(apiRoutes.publicRoomsWithoutOwn, {
-    headers: {
-      ApiKey: token,
-    },
-  });
+  const res = await axios.get(
+    `${apiRoutes.publicRoomsWithoutOwn}?page=${currentPage}`,
+    {
+      headers: {
+        ApiKey: token,
+      },
+    }
+  );
   return res.data;
 };
 

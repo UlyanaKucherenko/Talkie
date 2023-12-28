@@ -19,6 +19,7 @@ const Home = () => {
   const location = useLocation();
   const { t } = useTranslation();
   const publicRooms = useRef<HTMLDivElement>(null);
+  const myPublicRooms = useRef<HTMLDivElement>(null);
   const privateRooms = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,6 +29,9 @@ const Home = () => {
 
     if (location.hash === '#private-rooms' && privateRooms.current) {
       privateRooms.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (location.hash === '#my-public-rooms' && myPublicRooms.current) {
+      myPublicRooms.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [location]);
 
@@ -56,7 +60,7 @@ const Home = () => {
               Create room
             </RButton>
           </div>
-          <SectionMyPublicRooms />
+          <SectionMyPublicRooms ref={myPublicRooms} />
         </>
       )}
 
