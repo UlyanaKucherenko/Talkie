@@ -38,6 +38,11 @@ export const uaTranslation = {
   },
   chat: {
     placeholder: 'Напишіть повідомлення...',
+    noMessagesYet: 'Повідомлень ще немає',
+    members: 'учасники',
+    owner: 'власник',
+    today: 'сьогодні',
+    yesterday: 'вчора',
   },
   errors: {
     userNameLengthValidation: "Ім'я тільки з 2-30 символів",

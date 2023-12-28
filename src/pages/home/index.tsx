@@ -7,6 +7,7 @@ import styles from './index.module.css';
 import { userSelector } from '../../store/user';
 import { Status } from '../../utils/enums/status.enum';
 import { SectionPublicRooms } from '../../components/sections/SectionPublicRooms';
+import { SectionPrivateRooms } from '../../components/sections/SectionPrivateRooms';
 import { RButton } from '../../components/RButton';
 import { IconPlus } from '../../components/icons/IconPlus';
 import CreateRoomPopup from '../../components/room/CreateRoom';
@@ -63,15 +64,7 @@ const Home = () => {
         </>
       )}
 
-      {userData && status === Status.Succeeded && (
-        <section
-          id="private-rooms"
-          style={{ marginTop: '50px' }}
-          ref={privateRooms}
-        >
-          <h2>{t('rooms.private')}</h2>
-        </section>
-      )}
+      {userData && status === Status.Succeeded && <SectionPrivateRooms />}
     </div>
   );
 };

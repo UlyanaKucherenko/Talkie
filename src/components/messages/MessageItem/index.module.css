@@ -3,15 +3,24 @@
   align-items: end;
   gap: 9px;
   max-width: 100%;
+  position: relative;
 }
 
 .sent {
   align-self: flex-end;
+  margin-right: 4px;
 }
 
 .received {
   align-self: flex-start;
   justify-self: left;
+  margin-left: 4px;
+}
+.avatarWrap {
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .avatar {
@@ -22,13 +31,61 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #aaa1a1;
+  background: var(--peptalk);
+  box-shadow: none;
+  border: 1px solid var(--clean-pool);
+}
+
+.avatarWrap:hover .avatar {
+  box-shadow: 0 0 4px 2px var(--brain-freeze);
+}
+
+.sent .avatarWrap:hover .avatar {
+  box-shadow: none;
+}
+.sent .avatarWrap:hover .avatar {
+  cursor: auto;
 }
 
 .avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.btnSendPrivateMsg {
+  position: absolute;
+  bottom: 4px;
+  left: 44px;
+  display: flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--dark-gray);
+  background: var(--peptalk);
+  color: var(--light-white);
+  font-size: 16px;
+  width: 200px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnSendPrivateMsg:hover {
+  background-color: var(--clean-pool);
+  color: var(--counts-black);
+}
+.sent .btnSendPrivateMsg {
+  display: none;
+}
+
+.active {
+  box-shadow: 0 0 4px 2px var(--brain-freeze);
+}
+
+.message .sent > .active {
+  box-shadow: none;
 }
 
 .messageBody {
@@ -48,7 +105,7 @@
 .username {
   font-size: 12px;
   font-weight: 500;
-  color: #000;
+  color: var(--black);
 }
 
 .sent .username {
@@ -69,7 +126,7 @@
 .messageTime {
   font-size: 10px;
   margin-top: 16px;
-  color: #000;
+  color: var(--black);
   opacity: 0.6;
 }
 

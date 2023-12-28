@@ -21,15 +21,42 @@ export type PublicRoomsData = {
   rooms: Room[];
 };
 
+export type CreateRoomData = {
+  title: string;
+  topic: Topic;
+  description?: string;
+};
+
+// private rooms
+export type PrivateRoom = {
+  _id: string;
+  title: string;
+  type: string;
+  owner: {
+    _id: string;
+    name: string;
+    avatarURL: string;
+  };
+  users: string[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PrivateRoomsData = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  rooms: PrivateRoom[];
+};
+
 export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
   myPublicRoomsData: PublicRoomsData | null;
   status: Status;
   error: string | null;
-};
 
-export type CreateRoomData = {
-  title: string;
-  topic: Topic;
-  description?: string;
+  privateRoomsData: PrivateRoomsData | null;
+  privateRoomsStatus: Status;
+  privateRoomsError: string | null;
+  privateRoomsIds: string[];
 };

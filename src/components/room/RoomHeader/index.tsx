@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { IconBack } from '../../icons/IconBack';
 import { IconDetails } from '../../icons/IconDetails';
@@ -16,6 +17,7 @@ type Props = {
 export const RoomHeader = ({ name, membersNum }: Props) => {
   const [showDetails, setShowDetails] = useState(false);
   const detailsRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useClickOutside(detailsRef, () => setShowDetails(false));
 
@@ -27,7 +29,9 @@ export const RoomHeader = ({ name, membersNum }: Props) => {
         </NavLink>
         <div className={styles.title}>
           <div className={styles.name}>{name}</div>
-          <div className={styles.members}>{membersNum} members</div>
+          <div className={styles.members}>
+            {membersNum} {t('chat.members')}
+          </div>
         </div>
         <RButtonIcon
           icon={IconDetails}

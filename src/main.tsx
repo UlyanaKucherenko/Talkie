@@ -28,6 +28,14 @@ const router = createBrowserRouter([
         },
         element: <Room />,
       },
+      {
+        path: 'private-chat/:roomId',
+        loader: async ({ params }) => {
+          const room = await http.rooms.getRoomById(params.roomId!);
+          return room;
+        },
+        element: <Room />,
+      },
 
       {
         path: '*',

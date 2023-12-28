@@ -32,7 +32,7 @@
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--rbutton-secondary-color);
+  color: var(--counts-black);
 }
 
 .members {
