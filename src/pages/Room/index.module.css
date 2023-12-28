@@ -1,3 +1,5 @@
 .wrap {
   background-color: var(--page-room-bg-color);
+  padding-top: 56px;
+  padding-bottom: 48px;
 }

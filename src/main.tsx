@@ -6,9 +6,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import store from './store';
 import './index.css';
-import Home from './pages/home';
 import './libs/i18n';
+import Home from './pages/home';
 import Room from './pages/Room';
+import Page404 from './pages/Page404';
 import http from './api/http';
 
 const router = createBrowserRouter([
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
 
       {
         path: '*',
-        element: <div style={{ textAlign: 'center' }}>Error 404</div>,
+        element: <Page404 />,
       },
     ],
   },
