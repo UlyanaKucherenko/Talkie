@@ -114,9 +114,10 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
         <select
           className={`${styles.input} ${errors.topic && styles.error}`}
           id="topic"
+          defaultValue="default"
           {...register('topic')}
         >
-          <option value="" disabled selected>
+          <option value="default" disabled>
             {t('rooms.topicPlaceholder')}
           </option>
           <option value={Topic.HealthyHabits}>Healthy habits</option>
