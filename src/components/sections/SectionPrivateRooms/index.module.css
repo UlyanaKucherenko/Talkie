@@ -2,6 +2,7 @@
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
+  margin-top: 40px;
 }
 
 .title {
@@ -11,6 +12,10 @@
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .content {

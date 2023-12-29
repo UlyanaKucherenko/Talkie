@@ -38,12 +38,8 @@ export const AuthForm = () => {
   const signupSubmitHandler = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (errorMessage) {
-      return;
-    }
-
-    if (!userName) {
-      setErrorMessage(t('errors.userNameLengthValidation'));
+    if (!userName || userName.length < 2 || userName.length > 30) {
+      setErrorMessage(t('errors.inputValidation'));
       return;
     }
     const request: UserRequest = {

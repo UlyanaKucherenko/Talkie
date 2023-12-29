@@ -64,7 +64,9 @@ const Home = () => {
         </>
       )}
 
-      {userData && status === Status.Succeeded && <SectionPrivateRooms />}
+      {userData && status === Status.Succeeded && (
+        <SectionPrivateRooms ref={privateRooms} />
+      )}
     </div>
   );
 };

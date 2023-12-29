@@ -56,5 +56,7 @@ export const enTranslation = {
       'Description must be 1-300 characters',
     publicRoomDescriptionCharacterValidation: `Input only valid symbols(.,&@'’():;!?"$*+/%-=_)`,
     publicRoomTopicValidation: 'Choose a topic',
+    inputValidation:
+      'The username must have at least 2 characters, but no more than 30.',
   },
 } as const;
