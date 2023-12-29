@@ -57,5 +57,6 @@ export const uaTranslation = {
     publicRoomDescriptionLengthValidation: 'Опис тільки з 1-300 символів',
     publicRoomDescriptionCharacterValidation: `Введіть тільки допустимі символи(.,&@'’():;!?"$*+/%-=_)`,
     publicRoomTopicValidation: 'Виберіть тему',
+    inputValidation: 'Імя має бути не менше 2 символів і не більше 30',
   },
 } as const;
