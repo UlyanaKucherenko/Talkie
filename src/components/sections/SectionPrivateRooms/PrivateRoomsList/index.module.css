@@ -1,0 +1,22 @@
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 24px;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 990px) {
+  .list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

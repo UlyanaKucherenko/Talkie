@@ -20,6 +20,7 @@
   --irradiated-green: #aeff57;
   --brain-freeze: #00f0ff;
   --clean-pool: #4dcbf2;
+  --peptalk: #065ca6;
   --dawn-departs: #ccfcff;
   --distant-horizon: #f1fcf8;
   --cosmic-red: #d7224d;
@@ -31,7 +32,9 @@
   --alice-blue: #eef9fd;
   --trapped-darkness: #0e2030;
   --black-manga: #02101b;
-  --cascading-white: #F6F6F6;
+  --cascading-white: #f6f6f6;
+  --olympus-white: #d3d6d7;
+  --industrial-revolution: #737373;
 
   /* theme dark */
   --background-color: var(--black-manga);
@@ -59,13 +62,19 @@
   --message-input-bg-color: var(--dark-blue);
   --message-font-color: var(--river-styx);
   --text-users-typing-color: var(--gray);
-  --chat-details-desc-font-color: var(--counts-black);
+  --chat-details-desc-font-color: var(--white);
   --navlink-color: var(--light-white);
   --navlink-hover-color: var(--clean-pool);
   --icon-lang-light: var(--alice-blue);
   --icon-lang-dark: var(--trapped-darkness);
   --icon-theme-light: var(--alice-blue);
   --icon-theme-dark: var(--trapped-darkness);
+  --icon-light: var(--alice-blue);
+  --icon-dark: var(--olympus-white);
+  --page-room-bg-color: var(--black-manga);
+  --border-chat-room: var(--room-header-bg-color);
+  --private-room-header-color: #c5ddf6;
+  --border-chat-room-private: var(--private-room-header-color);
 
   /* theme light */
   .lightTheme {
@@ -104,6 +113,12 @@
     --icon-lang-dark: var(--trapped-darkness);
     --icon-theme-light: var(--alice-blue);
     --icon-theme-dark: var(--trapped-darkness);
+    --icon-light: var(--alice-blue);
+    --icon-dark: var(--olympus-white);
+    --page-room-bg-color: #a2a1a159;
+    --border-chat-room: 'transparent';
+    --private-room-header-color: #c5ddf6;
+    --border-chat-room-private: var(--private-room-header-color);
   }
 }
 

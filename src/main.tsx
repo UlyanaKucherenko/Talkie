@@ -6,9 +6,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import store from './store';
 import './index.css';
-import Home from './pages/home';
 import './libs/i18n';
+import Home from './pages/home';
 import Room from './pages/Room';
+import Page404 from './pages/Page404';
 import http from './api/http';
 
 const router = createBrowserRouter([
@@ -23,8 +24,15 @@ const router = createBrowserRouter([
       {
         path: 'public-chat/:roomId',
         loader: async ({ params }) => {
-          const token = localStorage.getItem('userToken');
-          const room = await http.rooms.getRoomById(params.roomId!, token!);
+          const room = await http.rooms.getRoomById(params.roomId!);
+          return room;
+        },
+        element: <Room />,
+      },
+      {
+        path: 'private-chat/:roomId',
+        loader: async ({ params }) => {
+          const room = await http.rooms.getRoomById(params.roomId!);
           return room;
         },
         element: <Room />,
@@ -32,7 +40,7 @@ const router = createBrowserRouter([
 
       {
         path: '*',
-        element: <div style={{ textAlign: 'center' }}>Error 404</div>,
+        element: <Page404 />,
       },
     ],
   },

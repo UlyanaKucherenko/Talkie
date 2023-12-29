@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { IconBack } from '../../icons/IconBack';
 import { IconDetails } from '../../icons/IconDetails';
@@ -11,31 +12,44 @@ import { RButtonIcon } from '../../ui/RButtonIcon';
 type Props = {
   name: string;
   membersNum: number;
+  roomType: string;
 };
 
-export const RoomHeader = ({ name, membersNum }: Props) => {
+export const RoomHeader = ({ name, membersNum, roomType }: Props) => {
   const [showDetails, setShowDetails] = useState(false);
   const detailsRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useClickOutside(detailsRef, () => setShowDetails(false));
 
   return (
-    <div className={styles.header}>
+    <div
+      className={`${styles.header} ${
+        roomType === 'private' ? styles.headerPrivate : ''
+      }`}
+    >
       <div className={styles.headerWrap}>
-        <NavLink to="/" className={styles.button}>
-          <RButtonIcon icon={IconBack} />
-        </NavLink>
+        <div className={styles.button}>
+          <RButtonIcon icon={IconBack} onClick={() => navigate(-1)} />
+        </div>
         <div className={styles.title}>
           <div className={styles.name}>{name}</div>
-          <div className={styles.members}>{membersNum} members</div>
+          {roomType === 'public' && (
+            <div className={styles.members}>
+              {membersNum} {t('chat.members')}
+            </div>
+          )}
         </div>
-        <RButtonIcon
-          icon={IconDetails}
-          type="button"
-          aria-label="details"
-          className={styles.button}
-          onClick={() => setShowDetails(true)}
-        />
+        {roomType === 'public' && (
+          <RButtonIcon
+            icon={IconDetails}
+            type="button"
+            aria-label="details"
+            className={styles.button}
+            onClick={() => setShowDetails(true)}
+          />
+        )}
 
         {showDetails && (
           <RoomDetails ref={detailsRef} onClose={() => setShowDetails(false)} />

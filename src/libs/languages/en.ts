@@ -27,12 +27,36 @@ export const enTranslation = {
   rooms: {
     public: 'Public Rooms',
     private: 'Private Rooms',
+    myPublicRooms: 'My Public rooms',
+    title: 'Title',
+    description: 'Description',
+    topic: 'Topic',
+    titlePlaceholder: 'Enter room title',
+    descriptionPlaceholder: 'Enter room description',
+    topicPlaceholder: 'Select room topic',
   },
   chat: {
     placeholder: 'Write a message...',
+    noMessagesYet: 'No messages yet',
+    members: 'members',
+    owner: 'owner',
+    today: 'today',
+    yesterday: 'yesterday',
+  },
+  pageError: {
+    pageNotFound: 'page not found',
+    returnHome: 'Return to the main page',
   },
   errors: {
     userNameLengthValidation: 'Username must be 2-30 characters',
     userNameCharacterValidation: "Input only valid symbols('’._-)",
+    publicRoomTitleLengthValidation: 'Title must be 2-30 characters',
+    publicRoomTitleCharacterValidation: "Input only valid symbols('’._-)",
+    publicRoomDescriptionLengthValidation:
+      'Description must be 1-300 characters',
+    publicRoomDescriptionCharacterValidation: `Input only valid symbols(.,&@'’():;!?"$*+/%-=_)`,
+    publicRoomTopicValidation: 'Choose a topic',
+    inputValidation:
+      'The username must have at least 2 characters, but no more than 30.',
   },
 } as const;

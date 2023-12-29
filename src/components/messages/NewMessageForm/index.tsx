@@ -11,6 +11,7 @@ type Props = {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
   userTypingData: string;
+  roomType: string;
 };
 
 export const NewMessageForm = ({
@@ -19,12 +20,16 @@ export const NewMessageForm = ({
   onChange,
   onKeyDown,
   userTypingData,
+  roomType,
 }: Props) => {
   const { t } = useTranslation();
   return (
     <form className={styles.messageForm} onSubmit={onSubmit}>
-      {userTypingData && (
+      {userTypingData && roomType === 'public' && (
         <div className={styles.textUsersTyping}>Smb is typing...</div>
+      )}
+      {userTypingData && roomType === 'private' && (
+        <div className={styles.textUsersTyping}>Typing...</div>
       )}
 
       <div className={styles.formWrap}>

@@ -66,6 +66,7 @@
   height: 120px;
   border-radius: 50%;
   position: relative;
+  border: 1px solid var(--clean-pool);
 }
 
 .userAvatar {
@@ -81,7 +82,8 @@
 }
 
 .userNick {
-  max-width: 250px;
+  max-width: 340px;
+  width: 100%;
   color: var(--font-main-color);
   font-size: 20px;
   line-height: 1;

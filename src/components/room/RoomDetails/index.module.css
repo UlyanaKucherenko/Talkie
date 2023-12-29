@@ -1,6 +1,6 @@
 .roomDetails {
   position: absolute;
-  top: -3px;
+  top: -4px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -55,16 +55,19 @@
 
 .members {
   margin-top: 24px;
-  border: 1px solid var(--font-main-color);
+  border: 1px solid var(--dark-gray);
   padding-top: 12px;
   height: 280px;
   overflow: hidden;
   border-radius: 10px;
+  color: var(--dark-gray);
+  background-color: var(--dark-white);
 }
 
 .membersTitle {
   text-align: center;
   font-size: 12px;
+  text-transform: capitalize;
 }
 
 @media screen and (min-width: 480px) {
@@ -74,12 +77,12 @@
 
   .roomDetails {
     top: -4px;
-    right: 0;
+    right: 20px;
     left: auto;
     width: 307px;
     min-height: 440px;
     height: auto;
     transform: none;
-    border: 1px solid #d3d6d7;
+    border: 1px solid var(--olympus-white);
   }
 }

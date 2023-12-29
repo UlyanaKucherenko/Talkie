@@ -1,21 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useEffect, forwardRef } from 'react';
 
 import styles from './index.module.css';
-import { AppDispatch } from '../../store';
-import { TOGGLE_THEME, themeSelector } from '../../store/theme';
+import { themeSelector } from '../../store/theme';
 import { userSelector } from '../../store/user';
-import { IconLightTheme } from '../icons/IconLightTheme';
 import { IconClose } from '../icons/IconClose';
 import { Status } from '../../utils/enums/status.enum';
 import { Logout } from '../auth/logout';
 import imgDefaultAvatar from '../../assets/image/avatar.png';
 import { RButtonIcon } from '../ui/RButtonIcon';
-import { IconUA } from '../icons/IconUA';
-import { IconEN } from '../icons/IconEN';
 import { Navigation } from '../Navigation';
 import { ThemeEnum } from '../../utils/const';
+import { ThemeLangSwitcher } from '../ThemeLangSwitcher';
 
 type SidebarProps = {
   menuOpen: boolean;
@@ -25,17 +22,12 @@ export type Ref = HTMLDivElement;
 
 const Sidebar = forwardRef<Ref, SidebarProps>(
   ({ menuOpen, closeMenu }, ref) => {
-    const dispatch = useDispatch<AppDispatch>();
     const { status, userData } = useSelector(userSelector);
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const { mode } = useSelector(themeSelector);
 
     const sidebarStyle = {
       transform: menuOpen ? 'translate(0, 0)' : ' translate(-102%, 0)',
-    };
-
-    const onSwitchTheme = (): void => {
-      dispatch(TOGGLE_THEME());
     };
 
     useEffect(() => {
@@ -84,22 +76,10 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
 
         <div>
           <Navigation className={styles.navigation} closeMenu={closeMenu} />
-          <div className={styles.wrapThemLang}>
-            <RButtonIcon
-              icon={i18n.language === 'en' ? IconUA : IconEN}
-              type="button"
-              defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
-              onClick={() =>
-                i18n.changeLanguage(i18n.language === 'en' ? 'ua' : 'en')
-              }
-            />
-            <RButtonIcon
-              icon={IconLightTheme}
-              defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
-              type="button"
-              onClick={onSwitchTheme}
-            />
-          </div>
+          <ThemeLangSwitcher
+            colorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
+            className={styles.wrapThemLang}
+          />
         </div>
 
         <div className={styles.bottomWrap}>

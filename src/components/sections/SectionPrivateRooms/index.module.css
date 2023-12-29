@@ -1,0 +1,46 @@
+.sectionPrivate {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.title {
+  margin: 0 0 20px;
+  color: var(--font-main-color);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.content {
+  min-height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--industrial-revolution);
+}
+
+.btnEdit {
+  position: absolute;
+  right: 0;
+  top: -24px;
+}
+
+@media (min-width: 480px) {
+  .sectionPrivate {
+    border: 1px solid var(--olympus-white);
+    border-radius: 20px;
+    padding: 20px 10px;
+  }
+
+  .title {
+    margin: 0 0 20px;
+  }
+}

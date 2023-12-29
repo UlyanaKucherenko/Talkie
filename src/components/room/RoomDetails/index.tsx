@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import styles from './index.module.css';
 import { Room } from '../../../utils/types/rooms.type';
@@ -19,6 +20,7 @@ export type Ref = HTMLDivElement;
 export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
   const room = useLoaderData() as Room;
   const { mode } = useSelector(themeSelector);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.roomDetails} ref={ref}>
@@ -39,7 +41,7 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
           </div>
           <div className={styles.roomDescription}>{room.description}</div>
           <div className={styles.members}>
-            <div className={styles.membersTitle}>Members</div>
+            <div className={styles.membersTitle}>{t('chat.members')}</div>
             <RoomDetailsUserList owner={room.owner} members={room.users} />
           </div>
         </>

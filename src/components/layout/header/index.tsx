@@ -12,7 +12,7 @@ import { Navigation } from '../../Navigation';
 import styles from './style.module.css';
 import { Logout } from '../../auth/logout';
 import { AuthPopup } from '../../auth/signup/authPopup';
-import { ThemeLangSwitcher } from './ThemeLangSwitcher';
+import { ThemeLangSwitcher } from '../../ThemeLangSwitcher';
 
 type HeaderProps = {
   openMenu: () => void;
@@ -47,12 +47,12 @@ const Header = ({ openMenu }: HeaderProps) => {
                 </RButton>
               )}
               <div className={styles.desctopSwitcher}>
-                <ThemeLangSwitcher />
+                <ThemeLangSwitcher colorIcon="light" />
               </div>
               {userData && status === Status.Succeeded && (
                 <div className={styles.user}>
                   <div className={styles.mobileSwitcher}>
-                    <ThemeLangSwitcher />
+                    <ThemeLangSwitcher colorIcon="light" />
                   </div>
                   <div className={styles.username}>{userData.user.name}</div>
                   <Logout className={styles.logoutBtn} variant="icon" />

@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { debounce } from 'lodash';
 
 import io, { Socket } from 'socket.io-client';
 
@@ -17,6 +18,7 @@ import { AppDispatch } from '../../../store';
 import styles from './index.module.css';
 import { userSelector } from '../../../store/user';
 import { Message } from '../../../utils/types/chat.type';
+import { RLoader } from '../../RLoader';
 
 // const socket: Socket = io('http://localhost:3001');
 const server = `${import.meta.env.VITE_SERVER_HOST}`;
@@ -34,14 +36,20 @@ type TypeEventMessage = {
   data: Message;
 };
 
-export const RoomBody = () => {
-  const { messages, messagesStatus } = useSelector(chatSelector);
+type RoomBodyProps = {
+  roomType: string;
+};
+
+export const RoomBody = ({ roomType }: RoomBodyProps) => {
+  const { messages, messagesStatus, pagination } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
   const [userTyping, setUserTyping] = useState<string>('');
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const chatBoxRef = useRef<HTMLDivElement>(null);
+  const [loadingMoreMessages, setLoadingMoreMessages] = useState(false);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -88,7 +96,7 @@ export const RoomBody = () => {
       }
 
       setIsTyping(true);
-      typingTimeout.current = setTimeout(() => setIsTyping(false), 2000);
+      typingTimeout.current = setTimeout(() => setIsTyping(false), 4000);
     };
 
     const handleStopTyping = () => {
@@ -137,6 +145,58 @@ export const RoomBody = () => {
     }, 2000);
   };
 
+  // ---- SCROLL TO TOP ---
+
+  const loadMoreMessages = useCallback(async () => {
+    if (currentPage >= pagination.totalPages) {
+      setLoadingMoreMessages(false);
+      return;
+    }
+    setLoadingMoreMessages(true);
+
+    const page = currentPage + 1;
+    await dispatch(chatThunks.getMessages({ roomId, page }));
+    setCurrentPage(page);
+    setLoadingMoreMessages(false);
+    console.log('Load more messages for page:', currentPage);
+  }, [currentPage, dispatch, roomId, pagination]);
+
+  const scrollToTop = useCallback(() => {
+    const boxRef = chatBoxRef?.current;
+    if (boxRef) {
+      const isScrolledToTop =
+        boxRef.scrollHeight + boxRef.scrollTop === boxRef.clientHeight;
+      setLoadingMoreMessages(isScrolledToTop);
+
+      if (currentPage >= pagination.totalPages) {
+        setLoadingMoreMessages(false);
+        return;
+      }
+      if (isScrolledToTop) {
+        loadMoreMessages();
+      }
+    }
+  }, [chatBoxRef, loadMoreMessages, currentPage, pagination]);
+
+  useEffect(() => {
+    const boxRef = chatBoxRef?.current;
+    const debouncedScrollToTop = debounce(scrollToTop, 200);
+    if (boxRef) {
+      boxRef.addEventListener('scroll', debouncedScrollToTop);
+    }
+    return () => {
+      boxRef?.removeEventListener('scroll', debouncedScrollToTop);
+    };
+  }, [chatBoxRef, scrollToTop]);
+
+  /// ---- END SCROLL TO TOP ---
+
+  const scrollToBottom = () => {
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
+  };
+
   const sendMessage = async () => {
     if (!inputMessage || inputMessage.trim() === '') return;
 
@@ -156,6 +216,9 @@ export const RoomBody = () => {
     if (msg) socket.emit('message', messageSocket);
 
     setInputMessage('');
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
   };
 
   const formSubmitHandler = async (event: React.FormEvent) => {
@@ -170,18 +233,23 @@ export const RoomBody = () => {
     }
   };
 
-  const loadMoreMessages = async () => {
-    // console.log('Load more messages for page:', currentPage + 1);
-    await dispatch(chatThunks.getMessages({ roomId, page: currentPage + 1 }));
-    setCurrentPage(currentPage + 1);
-  };
-
   return (
-    <div className={styles.chatRoom}>
+    <div
+      className={`${styles.chatRoom} ${
+        roomType === 'private' ? styles.chatRoomPrivate : ''
+      }`}
+    >
+      {loadingMoreMessages && (
+        <div className={styles.loadMore}>
+          <RLoader css={{ top: '8px', left: '44%' }} size="sm" />
+        </div>
+      )}
+
       <MessagesList
+        divRef={chatBoxRef}
         messages={messages}
         status={messagesStatus}
-        loadMoreMessages={loadMoreMessages}
+        roomType={roomType}
       />
       <NewMessageForm
         value={inputMessage}
@@ -189,6 +257,7 @@ export const RoomBody = () => {
         onChange={inputChangeHandler}
         onKeyDown={keyDownHandler}
         userTypingData={userTyping}
+        roomType={roomType}
       />
     </div>
   );

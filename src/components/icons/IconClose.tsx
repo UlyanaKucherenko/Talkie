@@ -5,7 +5,7 @@ type IconCloseProps = {
 
 export const IconClose = ({
   state = 'default',
-  defaultColor = 'light',
+  defaultColor = 'dark',
 }: IconCloseProps) => {
   const iconFillDefault =
     defaultColor === 'light'

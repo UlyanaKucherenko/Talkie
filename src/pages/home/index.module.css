@@ -1,6 +1,7 @@
 .homeContainer {
-  padding-top: 45px;
-  padding-bottom: 45px;
+  min-height: 100dvh;
+  padding-top: 100px;
+  padding-bottom: 80px;
   text-align: center;
 }
 
@@ -29,4 +30,14 @@ h3 {
   line-height: 1.2;
   text-transform: capitalize;
   margin-bottom: 20px;
+}
+
+.createRoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 48px;
+}
+.createRoom button {
+  height: 44px;
 }
