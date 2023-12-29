@@ -17,7 +17,7 @@ export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const { myPublicRoomsData, status } = useSelector(roomsSelector);
+  const { myPublicRoomsData, myPublicRoomsStatus } = useSelector(roomsSelector);
 
   useEffect(() => {
     const getPublicRooms = async () => {
@@ -40,9 +40,9 @@ export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
 
       {isShow && (
         <div className={styles.content}>
-          {status === Status.Loading && <RLoader />}
+          {myPublicRoomsStatus === Status.Loading && <RLoader />}
 
-          {myPublicRoomsData && status === Status.Succeeded && (
+          {myPublicRoomsData && myPublicRoomsStatus === Status.Succeeded && (
             <PublicRoomsList rooms={myPublicRoomsData.rooms} />
           )}
         </div>
