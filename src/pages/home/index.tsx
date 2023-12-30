@@ -12,6 +12,7 @@ import { RButton } from '../../components/RButton';
 import { IconPlus } from '../../components/icons/IconPlus';
 import CreateRoomPopup from '../../components/room/CreateRoom';
 import { SectionMyPublicRooms } from '../../components/sections/SectionMyPublicRooms';
+import { Filter } from '../../components/Filter';
 
 const Home = () => {
   const { status, userData } = useSelector(userSelector);
@@ -42,7 +43,7 @@ const Home = () => {
         <h1>{t('main.title')}</h1>
         <h3>{t('main.description')}</h3>
         <div>
-          <input type="text" placeholder="search..." />
+          <Filter />
         </div>
       </section>
 
