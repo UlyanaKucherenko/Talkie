@@ -61,3 +61,8 @@ export type RoomsState = {
   privateRoomsError: string | null;
   privateRoomsIds: string[];
 };
+
+export type GetRoomsProps = {
+  currentPage: number;
+  topic?: typeof Topic | '';
+};

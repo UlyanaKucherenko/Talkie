@@ -1,6 +1,6 @@
 .filterMenu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -28,4 +28,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.resetForm {
+  position: absolute;
+  background: none;
+  border: none;
+  top: 8px;
+  right: 8px;
+  color: #d7224d;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
 }

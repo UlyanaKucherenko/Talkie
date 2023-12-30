@@ -4,6 +4,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../index.js';
 import { Status } from '../../utils/enums/status.enum.js';
 import {
+  GetRoomsProps,
   PrivateRoomsData,
   PublicRoomsData,
   RoomsState,
@@ -26,22 +27,25 @@ export const roomsThunks = {
   // public
   getPublicRooms: createAsyncThunk(
     'rooms/getPublicRooms',
-    async (currentPage: number) => {
-      const data = await http.rooms.getPublicRooms(currentPage);
+    async ({ currentPage, topic }: GetRoomsProps) => {
+      const data = await http.rooms.getPublicRooms({ currentPage, topic });
       return data;
     }
   ),
   getOwnPublicRooms: createAsyncThunk(
     'rooms/getOwnPublicRooms',
-    async (currentPage?: number) => {
-      const data = await http.rooms.getOwnPublicRooms(currentPage);
+    async ({ currentPage, topic }: GetRoomsProps) => {
+      const data = await http.rooms.getOwnPublicRooms({ currentPage, topic });
       return data;
     }
   ),
   getPublicRoomsWithoutOwn: createAsyncThunk(
     'rooms/getPublicRoomsWithoutOwn',
-    async (currentPage: number) => {
-      const data = await http.rooms.getPublicRoomsWithoutOwn(currentPage);
+    async ({ currentPage, topic }: GetRoomsProps) => {
+      const data = await http.rooms.getPublicRoomsWithoutOwn({
+        currentPage,
+        topic,
+      });
       return data;
     }
   ),
