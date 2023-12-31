@@ -1,3 +1,11 @@
+.filterBtn {
+  transition: all 0.1s ease-in-out;
+}
+
+.filterBtn:hover {
+  color: #00F0FF
+}
+
 .filters {
   position: absolute;
   top: calc(100% + 10px);
@@ -6,7 +14,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--Main-text, #0e2030);
+  color: #0e2030;
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
@@ -14,6 +22,7 @@
   line-height: 125%;
   text-transform: uppercase;
 }
+
 .resetBtn {
   font-size: 30px;
   background: none;

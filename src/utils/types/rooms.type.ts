@@ -5,7 +5,7 @@ import { User } from './user.type';
 export type Room = {
   _id: string;
   title: string;
-  topic: string;
+  topic: Topic;
   type: string;
   description?: string;
   createdAt: string;

@@ -1,6 +1,6 @@
 import { Topic } from '../enums/topic.enum';
 
-type TopicsType = Record<Topic, string>;
+export type TopicsType = Record<Topic, string>;
 
 export const Topics: TopicsType = {
   HEALTHY_HABITS: 'Healthy habits',

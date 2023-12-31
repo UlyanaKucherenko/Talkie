@@ -68,7 +68,11 @@ export const Filter = () => {
 
   return (
     <div className={styles.filter}>
-      <RButtonIcon icon={IconFilter} onClick={() => setShowFilter(true)} />
+      <RButtonIcon
+        className={styles.filterBtn}
+        icon={IconFilter}
+        onClick={() => setShowFilter(true)}
+      />
       <div className={styles.filters}>
         {filterTitle && (
           <>
