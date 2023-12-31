@@ -11,7 +11,7 @@ export type Room = {
   createdAt: string;
   updatedAt: string;
   users: User[];
-  owner: User;
+  owner: User | string;
 };
 
 export type PublicRoomsData = {

@@ -20,7 +20,6 @@ type Props = {
 export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
   const { userData } = useSelector(userSelector);
   const { mode } = useSelector(themeSelector);
-  console.log(item);
 
   const dispatch: AppDispatch = useDispatch();
   const roomDelete = async () => {
