@@ -10,6 +10,7 @@ import { RoomDetailsUserList } from './RoomDetailsUserList';
 import { RButtonIcon } from '../../ui/RButtonIcon';
 import { ThemeEnum } from '../../../utils/const';
 import { themeSelector } from '../../../store/theme';
+import { User } from '../../../utils/types/user.type';
 
 type Props = {
   onClose: () => void;
@@ -42,7 +43,10 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
           <div className={styles.roomDescription}>{room.description}</div>
           <div className={styles.members}>
             <div className={styles.membersTitle}>{t('chat.members')}</div>
-            <RoomDetailsUserList owner={room.owner} members={room.users} />
+            <RoomDetailsUserList
+              owner={room.owner as User}
+              members={room.users}
+            />
           </div>
         </>
       )}

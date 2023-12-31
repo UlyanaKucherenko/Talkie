@@ -21,10 +21,10 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
   useEffect(() => {
     const getPublicRooms = async () => {
       if (userData && userStatus === Status.Succeeded) {
-        await dispatch(roomsThunks.getPublicRoomsWithoutOwn(currentPage));
+        await dispatch(roomsThunks.getPublicRoomsWithoutOwn({ currentPage }));
         return;
       }
-      await dispatch(roomsThunks.getPublicRooms(currentPage));
+      await dispatch(roomsThunks.getPublicRooms({ currentPage }));
     };
 
     getPublicRooms();

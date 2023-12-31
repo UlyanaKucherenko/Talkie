@@ -36,6 +36,10 @@ export const uaTranslation = {
     descriptionPlaceholder: 'Введіть опис кімнати',
     topicPlaceholder: 'Виберіть тему кімнати',
   },
+  search: {
+    title: 'Результати пошуку',
+    notFound: 'Результатів не знайдено',
+  },
   chat: {
     placeholder: 'Напишіть повідомлення...',
     noMessagesYet: 'Повідомлень ще немає',

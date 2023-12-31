@@ -5,13 +5,13 @@ import { User } from './user.type';
 export type Room = {
   _id: string;
   title: string;
-  topic: string;
+  topic: Topic;
   type: string;
   description?: string;
   createdAt: string;
   updatedAt: string;
   users: User[];
-  owner: User;
+  owner: User | string;
 };
 
 export type PublicRoomsData = {
@@ -49,6 +49,13 @@ export type PrivateRoomsData = {
   rooms: PrivateRoom[];
 };
 
+export type SearchRoomData = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  rooms: PrivateRoom[] | Room[];
+};
+
 export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
   status: Status;
@@ -60,4 +67,12 @@ export type RoomsState = {
   privateRoomsStatus: Status;
   privateRoomsError: string | null;
   privateRoomsIds: string[];
+  foundRoomsData: SearchRoomData | null;
+  foundRoomsStatus: Status;
+  foundRoomsError: string | null;
+};
+
+export type GetRoomsProps = {
+  currentPage: number;
+  topic?: typeof Topic | '';
 };

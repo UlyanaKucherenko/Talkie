@@ -21,7 +21,9 @@ h3 {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 80%;
-  margin: 0 auto;
+}
+
+.list > * {
+  max-width: 300px;
 }
 

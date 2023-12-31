@@ -4,6 +4,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../index.js';
 import { Status } from '../../utils/enums/status.enum.js';
 import {
+  GetRoomsProps,
   PrivateRoomsData,
   PublicRoomsData,
   RoomsState,
@@ -21,27 +22,33 @@ const initialState: RoomsState = {
   privateRoomsStatus: Status.Idle,
   privateRoomsError: null,
   privateRoomsIds: [],
+  foundRoomsData: null,
+  foundRoomsStatus: Status.Idle,
+  foundRoomsError: null,
 };
 export const roomsThunks = {
   // public
   getPublicRooms: createAsyncThunk(
     'rooms/getPublicRooms',
-    async (currentPage: number) => {
-      const data = await http.rooms.getPublicRooms(currentPage);
+    async ({ currentPage, topic }: GetRoomsProps) => {
+      const data = await http.rooms.getPublicRooms({ currentPage, topic });
       return data;
     }
   ),
   getOwnPublicRooms: createAsyncThunk(
     'rooms/getOwnPublicRooms',
-    async (currentPage?: number) => {
-      const data = await http.rooms.getOwnPublicRooms(currentPage);
+    async ({ currentPage, topic }: GetRoomsProps) => {
+      const data = await http.rooms.getOwnPublicRooms({ currentPage, topic });
       return data;
     }
   ),
   getPublicRoomsWithoutOwn: createAsyncThunk(
     'rooms/getPublicRoomsWithoutOwn',
-    async (currentPage: number) => {
-      const data = await http.rooms.getPublicRoomsWithoutOwn(currentPage);
+    async ({ currentPage, topic }: GetRoomsProps) => {
+      const data = await http.rooms.getPublicRoomsWithoutOwn({
+        currentPage,
+        topic,
+      });
       return data;
     }
   ),
@@ -77,6 +84,14 @@ export const roomsThunks = {
     // console.log('createPrivateRoom Store:', response);
     return response;
   }),
+
+  searchRooms: createAsyncThunk(
+    'rooms/searchRoom',
+    async ({ query, currentPage }: { query: string; currentPage: number }) => {
+      const response = await http.rooms.searchRooms({ query, currentPage });
+      return response;
+    }
+  ),
 };
 
 export const roomsSlice = createSlice({
@@ -167,6 +182,26 @@ export const roomsSlice = createSlice({
           ...state,
           status: Status.Failed,
           error: error.message || null,
+        })
+      )
+      .addCase(roomsThunks.searchRooms.pending, (state) => ({
+        ...state,
+        foundRoomsStatus: Status.Loading,
+      }))
+      .addCase(
+        roomsThunks.searchRooms.fulfilled,
+        (state, { payload }: PayloadAction<PublicRoomsData>) => ({
+          ...state,
+          foundRoomsStatus: Status.Succeeded,
+          foundRoomsData: payload,
+        })
+      )
+      .addCase(
+        roomsThunks.searchRooms.rejected,
+        (state, { error }): RoomsState => ({
+          ...state,
+          status: Status.Failed,
+          foundRoomsError: error.message || null,
         })
       );
   },

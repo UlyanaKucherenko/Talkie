@@ -35,6 +35,10 @@ export const enTranslation = {
     descriptionPlaceholder: 'Enter room description',
     topicPlaceholder: 'Select room topic',
   },
+  search: {
+    title: 'Search Result',
+    notFound: 'No results found',
+  },
   chat: {
     placeholder: 'Write a message...',
     noMessagesYet: 'No messages yet',
