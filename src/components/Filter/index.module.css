@@ -1,38 +1,3 @@
 .filter {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 11px;
-}
 
-.searchInput {
-  width: 260px;
-  height: 34px;
-  border-radius: 10px;
-  border: 1px solid #0e2030;
-  background: #f6f6f6;
-  padding-left: 30px;
-}
-
-.searchInput::placeholder {
-  color: #0E2030;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.searchWrap {
-  position: relative;
-}
-.searchIcon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 7px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

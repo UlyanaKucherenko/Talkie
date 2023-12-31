@@ -2,7 +2,6 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { IconFilter } from '../icons/IconFilter';
-import { IconSearch } from '../icons/IconSearch';
 import { RButtonIcon } from '../ui/RButtonIcon';
 import { FilterForm } from './FilterForm';
 import styles from './index.module.css';
@@ -13,9 +12,11 @@ import { Status } from '../../utils/enums/status.enum';
 import { roomsThunks } from '../../store/rooms';
 import { Topic } from '../../utils/enums/topic.enum';
 
+type TopicState = typeof Topic | '';
+
 export const Filter = () => {
   const [showFilter, setShowFilter] = useState(false);
-  const [topicFilter, setTopicFilter] = useState<typeof Topic | ''>('');
+  const [topicFilter, setTopicFilter] = useState<TopicState>('');
   const [isFilterApplied, setIsFilterApplied] = useState(false);
 
   const filterRef = useRef<HTMLFormElement>(null);
@@ -25,49 +26,39 @@ export const Filter = () => {
 
   useClickOutside(filterRef, () => setShowFilter(false));
 
-  const dispatchFilters = async () => {
+  const dispatchFilters = async ({ topic }: { topic: TopicState }) => {
     if (userData && userStatus === Status.Succeeded) {
       await dispatch(
         roomsThunks.getPublicRoomsWithoutOwn({
           currentPage: 1,
-          topic: topicFilter,
+          topic,
         })
       );
       return;
     }
-    await dispatch(
-      roomsThunks.getPublicRooms({ currentPage: 1, topic: topicFilter })
-    );
+    await dispatch(roomsThunks.getPublicRooms({ currentPage: 1, topic }));
   };
 
   const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTopicFilter(event.target.value as any as typeof Topic);
+    setTopicFilter(event.target.value as TopicState);
   };
 
   const filterFormHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatchFilters();
+    dispatchFilters({ topic: topicFilter });
     setIsFilterApplied(true);
+    setShowFilter(false);
   };
 
   const filterResetHandler = () => {
     setTopicFilter('');
     setIsFilterApplied(false);
-    dispatchFilters();
+    setShowFilter(false);
+    dispatchFilters({ topic: '' });
   };
 
   return (
     <div className={styles.filter}>
-      <div className={styles.searchWrap}>
-        <input
-          className={styles.searchInput}
-          type="search"
-          placeholder="Search ..."
-        />
-        <div className={styles.searchIcon}>
-          <IconSearch />
-        </div>
-      </div>
       <RButtonIcon icon={IconFilter} onClick={() => setShowFilter(true)} />
       {showFilter && (
         <FilterForm

@@ -49,6 +49,13 @@ export type PrivateRoomsData = {
   rooms: PrivateRoom[];
 };
 
+export type SearchRoomData = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  rooms: PrivateRoom[] | Room[];
+};
+
 export type RoomsState = {
   publicRoomsData: PublicRoomsData | null;
   status: Status;
@@ -60,6 +67,9 @@ export type RoomsState = {
   privateRoomsStatus: Status;
   privateRoomsError: string | null;
   privateRoomsIds: string[];
+  foundRoomsData: SearchRoomData | null;
+  foundRoomsStatus: Status;
+  foundRoomsError: string | null;
 };
 
 export type GetRoomsProps = {

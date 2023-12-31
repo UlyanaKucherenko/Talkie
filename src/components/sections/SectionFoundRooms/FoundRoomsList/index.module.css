@@ -23,3 +23,7 @@ h3 {
   gap: 20px;
 }
 
+.list > * {
+  max-width: 300px;
+}
+

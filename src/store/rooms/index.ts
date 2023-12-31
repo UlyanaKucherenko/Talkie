@@ -22,6 +22,9 @@ const initialState: RoomsState = {
   privateRoomsStatus: Status.Idle,
   privateRoomsError: null,
   privateRoomsIds: [],
+  foundRoomsData: null,
+  foundRoomsStatus: Status.Idle,
+  foundRoomsError: null,
 };
 export const roomsThunks = {
   // public
@@ -81,6 +84,14 @@ export const roomsThunks = {
     // console.log('createPrivateRoom Store:', response);
     return response;
   }),
+
+  searchRooms: createAsyncThunk(
+    'rooms/searchRoom',
+    async ({ query, currentPage }: { query: string; currentPage: number }) => {
+      const response = await http.rooms.searchRooms({ query, currentPage });
+      return response;
+    }
+  ),
 };
 
 export const roomsSlice = createSlice({
@@ -171,6 +182,26 @@ export const roomsSlice = createSlice({
           ...state,
           status: Status.Failed,
           error: error.message || null,
+        })
+      )
+      .addCase(roomsThunks.searchRooms.pending, (state) => ({
+        ...state,
+        foundRoomsStatus: Status.Loading,
+      }))
+      .addCase(
+        roomsThunks.searchRooms.fulfilled,
+        (state, { payload }: PayloadAction<PublicRoomsData>) => ({
+          ...state,
+          foundRoomsStatus: Status.Succeeded,
+          foundRoomsData: payload,
+        })
+      )
+      .addCase(
+        roomsThunks.searchRooms.rejected,
+        (state, { error }): RoomsState => ({
+          ...state,
+          status: Status.Failed,
+          foundRoomsError: error.message || null,
         })
       );
   },

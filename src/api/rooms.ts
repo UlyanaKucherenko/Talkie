@@ -141,3 +141,22 @@ export const deleteRoom = async (id: string): Promise<unknown> => {
     throw error;
   }
 };
+
+export const searchRooms = async ({
+  query,
+  currentPage,
+}: {
+  query: string;
+  currentPage: number;
+}): Promise<PublicRoomsData> => {
+  const token = getToken();
+  const res = await axios.get(
+    `${apiRoutes.rooms}?query=${query}&page=${currentPage}`,
+    {
+      headers: {
+        ApiKey: token,
+      },
+    }
+  );
+  return res.data;
+};
