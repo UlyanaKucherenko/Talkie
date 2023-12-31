@@ -5,13 +5,17 @@ import styles from './index.module.css';
 
 type Ref = HTMLFormElement;
 type Props = {
-  onFilterChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onFilterChange: ({ key, title }: { key: string; title: string }) => void;
   onFilterSubmit: (event: React.FormEvent) => void;
   onFilterReset: () => void;
   isFilterApplied: boolean;
 };
 export const FilterForm = forwardRef<Ref, Props>(
-  ({ onFilterChange, onFilterSubmit, onFilterReset, isFilterApplied }, ref) => (
+  (
+    { value, onFilterChange, onFilterSubmit, onFilterReset, isFilterApplied },
+    ref
+  ) => (
     <form className={styles.filterMenu} ref={ref} onSubmit={onFilterSubmit}>
       {isFilterApplied && (
         <button
@@ -22,7 +26,7 @@ export const FilterForm = forwardRef<Ref, Props>(
           Cancel
         </button>
       )}
-      {Object.entries(Topics).map(([key, value]) => (
+      {Object.entries(Topics).map(([key, title]) => (
         <div key={key} className={styles.filterItem}>
           <label htmlFor={key}>
             <input
@@ -30,9 +34,10 @@ export const FilterForm = forwardRef<Ref, Props>(
               value={key}
               name="topic"
               id={key}
-              onChange={onFilterChange}
+              onChange={onFilterChange.bind(null, { key, title })}
+              checked={value === key}
             />
-            {value}
+            {title}
           </label>
         </div>
       ))}

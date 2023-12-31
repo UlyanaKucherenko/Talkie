@@ -1,8 +1,7 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { debounce } from 'lodash';
 
 import { userSelector } from '../../store/user';
 import { Status } from '../../utils/enums/status.enum';
@@ -40,10 +39,8 @@ const Home = () => {
     }
   }, [location]);
 
-  const debouncedSearchQuery = debounce(setSearchQuery, 500);
-
-  const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    debouncedSearchQuery(event.target.value);
+  const searchHandler = (value: string) => {
+    setSearchQuery(value);
   };
   return (
     <div className={`container ${styles.homeContainer}`}>

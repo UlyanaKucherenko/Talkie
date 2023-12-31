@@ -1,3 +1,23 @@
-.filter {
-
+.filters {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--Main-text, #0e2030);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%;
+  text-transform: uppercase;
+}
+.resetBtn {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #d7224d;
+  cursor: pointer;
 }

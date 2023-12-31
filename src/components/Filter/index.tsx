@@ -16,7 +16,8 @@ type TopicState = typeof Topic | '';
 
 export const Filter = () => {
   const [showFilter, setShowFilter] = useState(false);
-  const [topicFilter, setTopicFilter] = useState<TopicState>('');
+  const [topicFilter, setTopicFilter] = useState<string>('');
+  const [filterTitle, setFilterTitle] = useState<string | null>(null);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
 
   const filterRef = useRef<HTMLFormElement>(null);
@@ -39,19 +40,27 @@ export const Filter = () => {
     await dispatch(roomsThunks.getPublicRooms({ currentPage: 1, topic }));
   };
 
-  const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTopicFilter(event.target.value as TopicState);
+  const filterChangeHandler = ({
+    key,
+    title,
+  }: {
+    key: string;
+    title: string;
+  }) => {
+    setTopicFilter(key);
+    setFilterTitle(title);
   };
 
   const filterFormHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatchFilters({ topic: topicFilter });
+    dispatchFilters({ topic: topicFilter as TopicState });
     setIsFilterApplied(true);
     setShowFilter(false);
   };
 
   const filterResetHandler = () => {
     setTopicFilter('');
+    setFilterTitle('');
     setIsFilterApplied(false);
     setShowFilter(false);
     dispatchFilters({ topic: '' });
@@ -60,8 +69,23 @@ export const Filter = () => {
   return (
     <div className={styles.filter}>
       <RButtonIcon icon={IconFilter} onClick={() => setShowFilter(true)} />
+      <div className={styles.filters}>
+        {filterTitle && (
+          <>
+            {filterTitle}
+            <button
+              type="button"
+              onClick={filterResetHandler}
+              className={styles.resetBtn}
+            >
+              ×
+            </button>
+          </>
+        )}
+      </div>
       {showFilter && (
         <FilterForm
+          value={topicFilter}
           onFilterChange={filterChangeHandler}
           onFilterSubmit={filterFormHandler}
           onFilterReset={filterResetHandler}
