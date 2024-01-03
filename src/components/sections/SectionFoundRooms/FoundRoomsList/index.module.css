@@ -2,11 +2,6 @@
   padding-top: 40px;
 }
 
-h2 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 h3 {
   color: var(--font-main-color);
   font-size: 16px;
@@ -26,4 +21,3 @@ h3 {
 .list > * {
   max-width: 300px;
 }
-

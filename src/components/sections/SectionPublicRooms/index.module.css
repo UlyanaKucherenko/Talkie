@@ -2,12 +2,6 @@
   padding-top: 40px;
 }
 
-h2 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 h2 button {
   display: inline-flex;
   gap: 12px;

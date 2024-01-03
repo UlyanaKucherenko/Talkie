@@ -10,17 +10,12 @@ import { Status } from '../../../utils/enums/status.enum';
 import { RLoader } from '../../RLoader';
 import { Pagination } from '../../ui/Pagination';
 import { RListIsEmpty } from '../../RListIsEmpty';
-import { IconArrowUp } from '../../icons/IconArrowUp';
-// import { IconEdit } from '../../icons/IconEdit';
-// import { RButtonIcon } from '../../ui/RButtonIcon';
-// import { ThemeEnum } from '../../../utils/const';
-// import { themeSelector } from '../../../store/theme';
+import { RAccordion } from '../../RAccordion';
 
 export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  // const { mode } = useSelector(themeSelector);
 
   const { privateRoomsData, privateRoomsStatus } = useSelector(roomsSelector);
 
@@ -34,26 +29,24 @@ export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <section id="private-rooms" className={styles.sectionPrivate} ref={ref}>
-      <h2 className={styles.title}>
-        <span>{t('rooms.private')}</span> <IconArrowUp />
-      </h2>
+      <RAccordion title={t('rooms.private')}>
+        <div className={styles.content}>
+          {privateRoomsStatus === Status.Loading && <RLoader />}
+          {privateRoomsData?.rooms.length === 0 && <RListIsEmpty />}
+          {privateRoomsData &&
+            privateRoomsData?.rooms.length > 0 &&
+            privateRoomsStatus === Status.Succeeded && (
+              <PrivateRoomsList rooms={privateRoomsData.rooms} />
+            )}
+        </div>
 
-      <div className={styles.content}>
-        {privateRoomsStatus === Status.Loading && <RLoader />}
-        {privateRoomsData?.rooms.length === 0 && <RListIsEmpty />}
-        {privateRoomsData &&
-          privateRoomsData?.rooms.length > 0 &&
-          privateRoomsStatus === Status.Succeeded && (
-            <PrivateRoomsList rooms={privateRoomsData.rooms} />
-          )}
-      </div>
-
-      <Pagination
-        pageCount={privateRoomsData?.totalPages}
-        handlePageClick={(paginationState) =>
-          setCurrentPage(paginationState.selected + 1)
-        }
-      />
+        <Pagination
+          pageCount={privateRoomsData?.totalPages}
+          handlePageClick={(paginationState) =>
+            setCurrentPage(paginationState.selected + 1)
+          }
+        />
+      </RAccordion>
     </section>
   );
 });

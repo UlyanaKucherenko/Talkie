@@ -1,0 +1,23 @@
+.accordionTitle {
+  cursor: pointer;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.accordionBody {
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(1, 0, 1, 0);
+  height: auto;
+  max-height: 9999px;
+}
+
+.collapsed {
+  max-height: 0;
+  transition: max-height 0.65s cubic-bezier(0, 1, 0, 1);
+}
