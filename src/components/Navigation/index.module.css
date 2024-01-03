@@ -23,10 +23,23 @@
   color: var(--navlink-hover-color);
 }
 
+.navLinkDisabled,
+.navLinkDisabled:hover,
+.navLinkDisabled:active {
+  cursor: not-allowed;
+  color: var(--disabled);
+}
+
 @media screen and (min-width: 1280px) {
   .navLink {
     color: var(--header-font-color);
     font-size: 14px;
     text-transform: capitalize;
+  }
+  .navLinkDisabled,
+  .navLinkDisabled:hover,
+  .navLinkDisabled:active {
+    cursor: not-allowed;
+    color: var(--disabled);
   }
 }

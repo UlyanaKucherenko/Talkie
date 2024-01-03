@@ -10,6 +10,7 @@
   --jedi-night: #000e08;
   --dark-gray-1: #6c6969;
   --dark-gray: #414453;
+  --disabled: #6e6e6e;
   --gray: #d9d9d9;
   --dark-light-1: #a2a1a1;
   --dark-blue: #0f3a5a;
@@ -21,6 +22,7 @@
   --dawn-departs: #ccfcff;
   --distant-horizon: #f1fcf8;
   --cosmic-red: #d7224d;
+  --cosmic-red-light: #f9a3b7;
   --counts-black: #0e2030;
   --candied-snow: #d8fff1;
   --black-is-back: #091813;
@@ -46,12 +48,15 @@
   --room-bg-color: var(--white);
   --room-font-color: var(--gray);
   --warning-color: var(--cosmic-red);
-  --rbutton-bg-color: var(--irradiated-green);
-  --rbutton-bg-color-hover: var(--brain-freeze);
+  --rbutton-secondary-bg-hover: var(--dawn-departs);
+  --rbutton-secondary-color: var(--counts-black);
+  --rbutton-primary-bg: var(--irradiated-green);
+  --rbutton-primary-bg-hover: var(--brain-freeze);
+  --rbutton-primary-color: var(--beyound-the-stars);
   --rbutton-font-color: var(--beyound-the-stars);
   --rbutton-text-color: var(--counts-black);
   --rbutton-text-color-hover: var(--clean-pool);
-  --popup-bg-color: var(--dark-gray);
+  --popup-bg-color: var(--cascading-white);
   --room-header-bg-color: var(--candied-snow);
   --room-header-member-font-color: var(--black-is-back);
   --message-received-bg-color: var(--dawn-departs);
@@ -86,7 +91,7 @@
     --footer-font-color: var(--white);
     --room-bg-color: var(--gray);
     --room-font-color: var(--white);
-    --jbutton-primary-bg: var(--irradiated-green);
+    --rbutton-primary-bg: var(--irradiated-green);
     --rbutton-primary-bg-hover: var(--brain-freeze);
     --rbutton-primary-color: var(--beyound-the-stars);
     --jbutton-secondary-bg: transparent;
