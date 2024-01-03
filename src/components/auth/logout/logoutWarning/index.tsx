@@ -20,7 +20,7 @@ export const LogoutWarning = ({ onClose, onConfirm }: Props) => {
         <RButton onClick={onClose} color="secondary">
           {t('auth.logoutWarningCloseButton')}
         </RButton>
-        <RButton onClick={onConfirm} color="secondary">
+        <RButton onClick={onConfirm} color="warning">
           {t('auth.logoutWarningConfirmButton')}
         </RButton>
       </div>

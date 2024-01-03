@@ -38,7 +38,6 @@
   gap: 12px;
 }
 
-
 .logoLink {
   display: flex;
   position: absolute;
@@ -50,12 +49,12 @@
 
 .logoutBtn {
   display: none !important;
-  color: var(--header-font-color)
+  color: var(--header-font-color);
 }
 
 .username {
   display: none;
-  color: var(--rbutton-bg-color)
+  color: var(--rbutton-bg-color);
 }
 @media screen and (min-width: 768px) {
   .wrapThemLang {
@@ -70,7 +69,7 @@
   .headerNav {
     display: flex;
   }
-  .logoLink { 
+  .logoLink {
     left: 0;
     transform: translate(0, -50%);
   }
@@ -78,7 +77,7 @@
   .mobileSwitcher {
     display: none;
   }
-  
+
   .desctopSwitcher {
     margin-left: 10px;
     display: flex;
@@ -87,7 +86,7 @@
   .logoutBtn {
     display: block !important;
   }
-  
+
   .username {
     display: block;
   }

@@ -11,29 +11,21 @@
   gap: 4px;
 }
 .formControl label {
-  color: rgba(121, 124, 123, 0.50);
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Poppins;
+  color: rgba(121, 124, 123, 0.5);
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 14.637px; 
+  line-height: 1;
 }
 .input {
   border: none;
   height: 26px;
-  border-bottom: 1px solid var(--font-main-color);
   background: none;
-  color: var(--font-main-color);
-  font-family: Poppins;
+  color: var(--dark-gray);
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 45.74px;
+  line-height: 1;
 }
 
 select.input {
-  border: 1px solid var(--font-main-color);
+  border: 1px solid var(--dark-gray);
 }
 
 .input.error {
@@ -54,9 +46,8 @@ select.input {
 .errorMessage {
   height: 17px;
   color: var(--warning-color);
-  font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 17px;
+  line-height: 1;
 }

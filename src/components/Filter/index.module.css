@@ -3,7 +3,7 @@
 }
 
 .filterBtn:hover {
-  color: #00F0FF
+  color: #00f0ff;
 }
 
 .filters {
@@ -15,7 +15,6 @@
   align-items: center;
   gap: 8px;
   color: #0e2030;
-  font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
