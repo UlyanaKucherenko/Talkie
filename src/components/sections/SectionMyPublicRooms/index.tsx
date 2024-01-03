@@ -11,6 +11,7 @@ import styles from '../SectionPublicRooms/index.module.css';
 import { IconArrowUp } from '../../icons/IconArrowUp';
 import { IconArrowDown } from '../../icons/IconArrowDown';
 import { Pagination } from '../../ui/Pagination';
+import { RListIsEmpty } from '../../RListIsEmpty';
 
 export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
   const [isShow, setIsShow] = useState(true);
@@ -21,7 +22,7 @@ export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
 
   useEffect(() => {
     const getPublicRooms = async () => {
-      await dispatch(roomsThunks.getOwnPublicRooms(currentPage));
+      await dispatch(roomsThunks.getOwnPublicRooms({ currentPage }));
     };
     getPublicRooms();
   }, [dispatch, currentPage]);
@@ -43,7 +44,12 @@ export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
           {myPublicRoomsStatus === Status.Loading && <RLoader />}
 
           {myPublicRoomsData && myPublicRoomsStatus === Status.Succeeded && (
-            <PublicRoomsList rooms={myPublicRoomsData.rooms} />
+            <>
+              {myPublicRoomsData.rooms.length === 0 && <RListIsEmpty />}
+              {myPublicRoomsData.rooms.length > 0 && (
+                <PublicRoomsList rooms={myPublicRoomsData.rooms} />
+              )}
+            </>
           )}
         </div>
       )}

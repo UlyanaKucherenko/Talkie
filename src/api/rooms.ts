@@ -4,24 +4,29 @@ import { getToken } from '../utils/user-token';
 import { apiRoutes } from './api-routes';
 import type {
   CreateRoomData,
+  GetRoomsProps,
   PrivateRoom,
   PrivateRoomsData,
   PublicRoomsData,
 } from '../utils/types/rooms.type';
 
-export const getPublicRooms = async (
-  currentPage: number
-): Promise<PublicRoomsData> => {
-  const res = await axios.get(`${apiRoutes.publicRooms}?page=${currentPage}`);
+export const getPublicRooms = async ({
+  currentPage,
+  topic = '',
+}: GetRoomsProps): Promise<PublicRoomsData> => {
+  const res = await axios.get(
+    `${apiRoutes.publicRooms}?page=${currentPage}&topic=${topic}`
+  );
   return res.data;
 };
 
-export const getOwnPublicRooms = async (
-  currentPage?: number
-): Promise<PublicRoomsData> => {
+export const getOwnPublicRooms = async ({
+  currentPage,
+  topic = '',
+}: GetRoomsProps): Promise<PublicRoomsData> => {
   const token = getToken();
   const res = await axios.get(
-    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}`,
+    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}&topic=${topic}`,
     {
       headers: {
         ApiKey: token,
@@ -30,12 +35,13 @@ export const getOwnPublicRooms = async (
   );
   return res.data;
 };
-export const getPublicRoomsWithoutOwn = async (
-  currentPage: number
-): Promise<PublicRoomsData> => {
+export const getPublicRoomsWithoutOwn = async ({
+  currentPage,
+  topic = '',
+}: GetRoomsProps): Promise<PublicRoomsData> => {
   const token = getToken();
   const res = await axios.get(
-    `${apiRoutes.publicRoomsWithoutOwn}?page=${currentPage}`,
+    `${apiRoutes.publicRoomsWithoutOwn}?page=${currentPage}&topic=${topic}`,
     {
       headers: {
         ApiKey: token,
@@ -134,4 +140,23 @@ export const deleteRoom = async (id: string): Promise<unknown> => {
     console.log('Error deleteRoom ', error);
     throw error;
   }
+};
+
+export const searchRooms = async ({
+  query,
+  currentPage,
+}: {
+  query: string;
+  currentPage: number;
+}): Promise<PublicRoomsData> => {
+  const token = getToken();
+  const res = await axios.get(
+    `${apiRoutes.rooms}?query=${query}&page=${currentPage}`,
+    {
+      headers: {
+        ApiKey: token,
+      },
+    }
+  );
+  return res.data;
 };

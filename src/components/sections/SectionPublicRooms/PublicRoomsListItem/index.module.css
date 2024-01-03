@@ -1,0 +1,83 @@
+.listItem {
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid #8ef4ae;
+  background: linear-gradient(
+    126deg,
+    rgba(6, 92, 166, 0.5) -6.97%,
+    rgba(77, 203, 242, 0.5) 50.38%,
+    rgba(123, 223, 229, 0.5) 97.9%
+  );
+
+  width: 300px;
+  height: 160px;
+  overflow: hidden;
+
+  border-radius: 8px;
+
+  &:hover {
+    background: linear-gradient(
+      119deg,
+      rgba(5, 56, 101, 0.5) 1.19%,
+      rgba(36, 143, 176, 0.5) 50.97%,
+      rgba(67, 210, 219, 0.5) 100%
+    );
+  }
+}
+
+.listItem a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  height: 100%;
+  padding: 24px 10px 16px;
+}
+
+.title {
+  color: #0e2030;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+.description {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 6px;
+  color: #0e2030;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+.topic {
+  margin-top: 19px;
+  color: #0e2030;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125.1%; /* 20.016px */
+  text-transform: capitalize;
+}
+
+.btnDelete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+.listItem:hover .btnDelete {
+  display: block;
+}

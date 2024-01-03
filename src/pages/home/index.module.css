@@ -41,3 +41,11 @@ h3 {
 .createRoom button {
   height: 44px;
 }
+
+.searchFilter {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+}

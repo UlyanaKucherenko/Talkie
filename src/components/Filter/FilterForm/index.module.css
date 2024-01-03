@@ -1,0 +1,45 @@
+.filterMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  border-radius: 10px;
+  min-width: 315px;
+  background: #f1fcf8;
+  padding: 16px;
+  z-index: 2;
+}
+
+.filterItem label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  color: #0e2030;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
+}
+.formAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resetForm {
+  position: absolute;
+  background: none;
+  border: none;
+  top: 8px;
+  right: 8px;
+  color: #d7224d;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
+}

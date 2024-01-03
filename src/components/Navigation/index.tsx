@@ -16,6 +16,7 @@ type Props = {
 export const Navigation = ({ closeMenu, className }: Props) => {
   const { status, userData } = useSelector(userSelector);
   const [showPopup, setShowPopup] = useState(false);
+  const disabledLink = !(userData && status === Status.Succeeded);
 
   const { t } = useTranslation();
 
@@ -27,6 +28,7 @@ export const Navigation = ({ closeMenu, className }: Props) => {
     <nav className={className}>
       <CreateRoomPopup show={showPopup} setIsShow={() => setShowPopup(false)} />
       <NavLink
+        end
         to="/#public-rooms"
         onClick={closeMenu}
         className={styles.navLink}
@@ -34,30 +36,34 @@ export const Navigation = ({ closeMenu, className }: Props) => {
         <span>{t('sidebar.publicRooms')}</span>
       </NavLink>
 
+      <NavLink
+        to={disabledLink ? '' : '/#my-public-rooms'}
+        onClick={disabledLink ? undefined : closeMenu}
+        className={`${styles.navLink} ${
+          disabledLink ? styles.navLinkDisabled : ''
+        }`}
+      >
+        <span>{t('sidebar.myPublicRooms')}</span>
+      </NavLink>
+      <NavLink
+        to={disabledLink ? '' : '/#private-rooms'}
+        onClick={disabledLink ? undefined : closeMenu}
+        className={`${styles.navLink} ${
+          disabledLink ? styles.navLinkDisabled : ''
+        }`}
+      >
+        <span>{t('sidebar.privateRooms')}</span>
+      </NavLink>
       {userData && status === Status.Succeeded && (
-        <>
-          <NavLink
-            to="/#my-public-rooms"
-            onClick={closeMenu}
-            className={styles.navLink}
-          >
-            <span>{t('sidebar.myPublicRooms')}</span>
-          </NavLink>
-          <NavLink
-            to="/#private-rooms"
-            onClick={closeMenu}
-            className={styles.navLink}
-          >
-            <span>{t('sidebar.privateRooms')}</span>
-          </NavLink>
-          <button
-            type="button"
-            onClick={showCreateRoomHandler}
-            className={styles.navLink}
-          >
-            <span>{t('sidebar.createRoom')}</span>
-          </button>
-        </>
+        <button
+          type="button"
+          onClick={showCreateRoomHandler}
+          className={`${styles.navLink} ${
+            disabledLink ? styles.navLinkDisabled : ''
+          }`}
+        >
+          <span>{t('sidebar.createRoom')}</span>
+        </button>
       )}
     </nav>
   );

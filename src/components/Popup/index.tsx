@@ -21,6 +21,7 @@ export const Popup = ({ show = false, setIsShow, children }: Props) =>
           className={style.exitButton}
           onClick={() => setIsShow(false)}
           icon={IconClose}
+          defaultColorIcon="dark"
         />
         {children}
       </div>
