@@ -13,16 +13,18 @@
   color: var(--industrial-revolution);
 }
 
-.btnEdit {
-  position: absolute;
-  right: 0;
-  top: -24px;
+.filtersWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px 10px;
+  border-bottom: 1px solid var(--olympus-white);
 }
 
 @media (min-width: 480px) {
   .sectionPrivate {
     border: 1px solid var(--olympus-white);
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 0 10px;
   }
 }

@@ -1,10 +1,10 @@
 .searchInput {
-  width: 260px;
-  height: 34px;
-  border-radius: 10px;
+  width: 200px;
+  height: 30px;
+  border-radius: 8px;
   border: 1px solid #0e2030;
   background: #f6f6f6;
-  padding: 0 30px;
+  padding: 0 15px 0 24px;
 }
 
 .searchInput::placeholder {
@@ -26,6 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 16px;
 }
 
 .resetBtn {
