@@ -15,6 +15,11 @@ export type Room = {
   owner: User | string;
 };
 
+export type PublicRoomForRegisterUser = {
+  room: Room;
+  member: boolean;
+};
+
 export type PublicRoomsData = {
   page: number;
   perPage: number;

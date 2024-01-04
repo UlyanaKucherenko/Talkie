@@ -24,7 +24,9 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
         await dispatch(roomsThunks.getPublicRoomsWithoutOwn({ currentPage }));
         return;
       }
-      await dispatch(roomsThunks.getPublicRooms({ currentPage }));
+      if (!userData && userStatus === Status.Idle) {
+        await dispatch(roomsThunks.getPublicRooms({ currentPage }));
+      }
     };
 
     getPublicRooms();
