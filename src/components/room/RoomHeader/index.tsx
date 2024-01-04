@@ -35,13 +35,13 @@ export const RoomHeader = ({ name, membersNum, roomType, image }: Props) => {
           <RButtonIcon icon={IconBack} onClick={() => navigate(-1)} />
         </div>
         <div className={styles.title}>
-          <div className={styles.name}>
+          <div className={styles.nameWrap}>
             {roomType === 'private' && (
               <div className={styles.avatar}>
                 <img src={image} alt={name} />
               </div>
             )}
-            {name}
+            <div className={styles.name}> {name}</div>
           </div>
           {roomType === 'public' && (
             <div className={styles.members}>
