@@ -13,9 +13,10 @@ type Props = {
   name: string;
   membersNum: number;
   roomType: string;
+  image?: string;
 };
 
-export const RoomHeader = ({ name, membersNum, roomType }: Props) => {
+export const RoomHeader = ({ name, membersNum, roomType, image }: Props) => {
   const [showDetails, setShowDetails] = useState(false);
   const detailsRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
@@ -34,7 +35,14 @@ export const RoomHeader = ({ name, membersNum, roomType }: Props) => {
           <RButtonIcon icon={IconBack} onClick={() => navigate(-1)} />
         </div>
         <div className={styles.title}>
-          <div className={styles.name}>{name}</div>
+          <div className={styles.name}>
+            {roomType === 'private' && (
+              <div className={styles.avatar}>
+                <img src={image} alt={name} />
+              </div>
+            )}
+            {name}
+          </div>
           {roomType === 'public' && (
             <div className={styles.members}>
               {membersNum} {t('chat.members')}

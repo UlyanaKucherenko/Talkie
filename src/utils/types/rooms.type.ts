@@ -5,6 +5,7 @@ import { User } from './user.type';
 export type Room = {
   _id: string;
   title: string;
+  img?: string;
   topic: Topic;
   type: string;
   description?: string;
@@ -31,6 +32,8 @@ export type CreateRoomData = {
 export type PrivateRoom = {
   _id: string;
   title: string;
+  description: string;
+  img: string;
   type: string;
   owner: {
     _id: string;

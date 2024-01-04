@@ -7,14 +7,13 @@ import styles from './index.module.css';
 
 const Room = () => {
   const room = useLoaderData() as RoomType;
-  console.log('room.title', room.title);
-  console.log('room.type', room.type);
   return (
     <div className={styles.wrap}>
       <RoomHeader
         name={room.title}
         membersNum={room.users.length}
         roomType={room.type}
+        image={room.img}
       />
       <RoomBody roomType={room.type} />
     </div>
