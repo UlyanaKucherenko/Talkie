@@ -58,7 +58,7 @@ export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
         </div>
 
         <Pagination
-          pageCount={8}
+          pageCount={privateRoomsData?.totalPages}
           handlePageClick={(paginationState) =>
             setCurrentPage(paginationState.selected + 1)
           }
