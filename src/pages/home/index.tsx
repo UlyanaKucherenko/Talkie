@@ -70,7 +70,7 @@ const Home = () => {
                   onClick={() => setShowPopup(true)}
                 >
                   <IconPlus />
-                  Create room
+                  {t('sidebar.createRoom')}
                 </RButton>
               </div>
               <SectionMyPublicRooms ref={myPublicRooms} />

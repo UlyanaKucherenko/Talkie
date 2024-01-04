@@ -1,9 +1,9 @@
 .button {
   display: flex;
-  padding: 8px 30px;
+  padding: 8px 10px;
   justify-content: center;
   align-items: center;
-  border-radius: 11px;
+  border-radius: 10px;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 700;
@@ -12,14 +12,16 @@
   outline: none;
   cursor: pointer;
   font-family: 'Rubik', sans-serif;
+  min-width: 100px;
+  white-space: nowrap;
 }
 
 .button.small {
-  padding: 8px 30px;
+  padding: 8px 10px;
 }
 
 .button.medium {
-  padding: 8px 50px;
+  padding: 8px 30px;
 }
 
 .button.large {
@@ -33,7 +35,7 @@
 
 .button.secondary {
   background: none;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid var(--rbutton-secondary-color);
   color: var(--rbutton-secondary-color);
   font-weight: 500;
@@ -69,6 +71,7 @@
   padding: 0;
   font-size: 16px;
   font-weight: 400;
+  min-width: fit-content;
 }
 
 .button.text:hover:not([disabled]) {
