@@ -13,9 +13,12 @@ import type {
 export const getPublicRooms = async ({
   currentPage,
   topic = '',
+  query,
 }: GetRoomsProps): Promise<PublicRoomsData> => {
   const res = await axios.get(
-    `${apiRoutes.publicRooms}?page=${currentPage}&topic=${topic}`
+    `${apiRoutes.publicRooms}?page=${currentPage}&topic=${topic}&${
+      query && `query=${query}`
+    }`
   );
   return res.data;
 };
@@ -23,10 +26,13 @@ export const getPublicRooms = async ({
 export const getOwnPublicRooms = async ({
   currentPage,
   topic = '',
+  query,
 }: GetRoomsProps): Promise<PublicRoomsData> => {
   const token = getToken();
   const res = await axios.get(
-    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}&topic=${topic}`,
+    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}&topic=${topic}&${
+      query && `query=${query}`
+    }`,
     {
       headers: {
         ApiKey: token,
@@ -38,10 +44,13 @@ export const getOwnPublicRooms = async ({
 export const getPublicRoomsWithoutOwn = async ({
   currentPage,
   topic = '',
+  query,
 }: GetRoomsProps): Promise<PublicRoomsData> => {
   const token = getToken();
   const res = await axios.get(
-    `${apiRoutes.publicRoomsWithoutOwn}?page=${currentPage}&topic=${topic}`,
+    `${apiRoutes.publicRoomsWithoutOwn}?page=${currentPage}&topic=${topic}&${
+      query && `query=${query}`
+    }`,
     {
       headers: {
         ApiKey: token,
