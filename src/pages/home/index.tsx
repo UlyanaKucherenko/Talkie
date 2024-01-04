@@ -11,15 +11,12 @@ import { RButton } from '../../components/RButton';
 import { IconPlus } from '../../components/icons/IconPlus';
 import CreateRoomPopup from '../../components/room/CreateRoom';
 import { SectionMyPublicRooms } from '../../components/sections/SectionMyPublicRooms';
-import { Filter } from '../../components/Filter';
-import { Search } from '../../components/Search';
-import { SectionFoundRooms } from '../../components/sections/SectionFoundRooms';
 import styles from './index.module.css';
+import { SearchFilter } from '../../components/SearchFilter';
 
 const Home = () => {
   const { status, userData } = useSelector(userSelector);
   const [showPopup, setShowPopup] = useState(false);
-  const [searchQuery, setSearchQuery] = useState<string>('');
   const location = useLocation();
   const { t } = useTranslation();
   const publicRooms = useRef<HTMLDivElement>(null);
@@ -39,25 +36,17 @@ const Home = () => {
     }
   }, [location]);
 
-  const searchHandler = (value: string) => {
-    setSearchQuery(value);
-  };
   return (
     <div className={`container ${styles.homeContainer}`}>
       <CreateRoomPopup show={showPopup} setIsShow={() => setShowPopup(false)} />
       <section className={styles.sectionHero}>
         <h1>{t('main.title')}</h1>
         <h3>{t('main.description')}</h3>
-        <div className={styles.searchFilter}>
-          <Search onChange={searchHandler} />
-          <Filter />
-        </div>
       </section>
+      <SearchFilter />
+      <SectionPublicRooms ref={publicRooms} />
 
-      {searchQuery.trim().length >= 2 && (
-        <SectionFoundRooms searchQuery={searchQuery} />
-      )}
-      {searchQuery.trim().length < 2 && (
+      {userData && status === Status.Succeeded && (
         <>
           <SectionPublicRooms ref={publicRooms} />
 
@@ -81,6 +70,10 @@ const Home = () => {
             <SectionPrivateRooms ref={privateRooms} />
           )}
         </>
+      )}
+
+      {userData && status === Status.Succeeded && (
+        <SectionPrivateRooms ref={privateRooms} />
       )}
     </div>
   );

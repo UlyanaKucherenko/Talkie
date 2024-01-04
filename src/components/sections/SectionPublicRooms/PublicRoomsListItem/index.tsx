@@ -15,7 +15,7 @@ import { themeSelector } from '../../../../store/theme';
 
 type Props = {
   item: Room;
-  onUnauthorized: () => void;
+  onUnauthorized?: () => void;
 };
 export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
   const { userData } = useSelector(userSelector);
@@ -32,7 +32,9 @@ export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
         onClick={(event) => {
           if (!userData) {
             event.preventDefault();
-            onUnauthorized();
+            if (onUnauthorized) {
+              onUnauthorized();
+            }
           }
         }}
         // eslint-disable-next-line no-underscore-dangle
@@ -45,7 +47,7 @@ export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
         <div className={styles.description}>{item.description}</div>
         <div className={styles.topic}>{Topics[item.topic]}</div>
       </NavLink>
-      {item?.owner === userData?.user._id && (
+      {userData?.user._id && item?.owner === userData?.user._id && (
         <RButtonIcon
           icon={IconClose}
           defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
