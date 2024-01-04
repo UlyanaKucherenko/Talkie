@@ -15,6 +15,11 @@ export type Room = {
   owner: User | string;
 };
 
+export type PublicRoomForRegisteredUser = {
+  room: Room;
+  member: boolean;
+};
+
 export type PublicRoomsData = {
   page: number;
   perPage: number;
@@ -70,12 +75,10 @@ export type RoomsState = {
   privateRoomsStatus: Status;
   privateRoomsError: string | null;
   privateRoomsIds: string[];
-  foundRoomsData: SearchRoomData | null;
-  foundRoomsStatus: Status;
-  foundRoomsError: string | null;
 };
 
 export type GetRoomsProps = {
   currentPage: number;
   topic?: typeof Topic | '';
+  query?: string;
 };

@@ -48,7 +48,6 @@ const createPublicRoomSchema = z.object({
         };
       },
     })
-    .min(1)
     .max(300)
     .regex(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s.,&@'’():;!?"$*+/%-=_]*$/)
     .optional(),
@@ -76,7 +75,11 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const submitHandler: SubmitHandler<CreatePublicRoom> = async (data) => {
-    await createPublicRoom(data);
+    await createPublicRoom({
+      title: data.title,
+      topic: data.topic,
+      ...(data.description && { description: data.description }),
+    });
     await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
     onClosePopup(true);
   };
