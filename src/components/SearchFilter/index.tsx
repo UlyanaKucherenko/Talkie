@@ -45,9 +45,11 @@ export const SearchFilter = () => {
   const searchHandler = (value: string) => {
     if (value.length > 2) {
       setSearchQuery(value);
+    } else {
+      setSearchQuery('');
     }
   };
-  const debounced = debounce(searchHandler, 1000);
+  const debounced = debounce(searchHandler, 500);
 
   dispatchFilters({ topic: filter, query: searchQuery });
   return (
