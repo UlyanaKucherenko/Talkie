@@ -15,23 +15,12 @@ import { userSelector } from '../../../../store/user';
 type PrivateRoomsListItemProps = {
   item: PrivateRoom;
 };
-type TypeUser = {
-  avatarURL: string;
-  name: string;
-  _id: string;
-};
+
 export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
-  const { _id: id, title, users, owner } = item;
+  const { _id: id, title, img, owner } = item;
   const dispatch: AppDispatch = useDispatch();
   const { mode } = useSelector(themeSelector);
   const { userData } = useSelector(userSelector);
-
-  // @ts-ignore
-  const guest = users.find((user) => user._id !== id) as TypeUser | undefined;
-
-  if (!guest) {
-    return null;
-  }
 
   const roomDelete = async () => {
     await dispatch(roomsThunks.deleteRoom(id));
@@ -42,7 +31,7 @@ export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
     <div className={styles.listItem}>
       <NavLink to={`/private-chat/${id}`} className={styles.listItemLink}>
         <div className={styles.avatar}>
-          <img src={guest.avatarURL} alt={guest.name} />
+          <img src={img} alt={title} />
         </div>
         <div className={styles.title}>{title}</div>
       </NavLink>

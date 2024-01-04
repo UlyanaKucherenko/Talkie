@@ -54,7 +54,16 @@ const Header = ({ openMenu }: HeaderProps) => {
                   <div className={styles.mobileSwitcher}>
                     <ThemeLangSwitcher colorIcon="light" />
                   </div>
-                  <div className={styles.username}>{userData.user.name}</div>
+                  <div className={styles.usernameWrap}>
+                    <div className={styles.avatar}>
+                      <img
+                        src={userData.user.avatarURL}
+                        alt={userData.user.name}
+                      />
+                    </div>
+                    <div className={styles.username}>{userData.user.name}</div>
+                  </div>
+
                   <Logout className={styles.logoutBtn} variant="icon" />
                 </div>
               )}
