@@ -34,7 +34,7 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
   const debounced = debounce(searchHandler, 500);
-
+  console.log(userData);
   useEffect(() => {
     const getPublicRooms = async () => {
       if (userData && userStatus === Status.Succeeded) {

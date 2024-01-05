@@ -43,30 +43,26 @@ const Home = () => {
         <h3>{t('main.description')}</h3>
       </section>
 
+      <SectionPublicRooms ref={publicRooms} />
+
       {userData && status === Status.Succeeded && (
         <>
-          <SectionPublicRooms ref={publicRooms} />
-
-          {userData && status === Status.Succeeded && (
-            <>
-              <div className={styles.createRoom}>
-                <RButton
-                  type="submit"
-                  color="secondary"
-                  onClick={() => setShowPopup(true)}
-                >
-                  <IconPlus />
-                  {t('sidebar.createRoom')}
-                </RButton>
-              </div>
-              <SectionMyPublicRooms ref={myPublicRooms} />
-            </>
-          )}
-
-          {userData && status === Status.Succeeded && (
-            <SectionPrivateRooms ref={privateRooms} />
-          )}
+          <div className={styles.createRoom}>
+            <RButton
+              type="submit"
+              color="secondary"
+              onClick={() => setShowPopup(true)}
+            >
+              <IconPlus />
+              {t('sidebar.createRoom')}
+            </RButton>
+          </div>
+          <SectionMyPublicRooms ref={myPublicRooms} />
         </>
+      )}
+
+      {userData && status === Status.Succeeded && (
+        <SectionPrivateRooms ref={privateRooms} />
       )}
     </div>
   );
