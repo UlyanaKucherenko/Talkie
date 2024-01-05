@@ -10,7 +10,7 @@
   );
 
   width: 300px;
-  height: 160px;
+  height: 180px;
   overflow: hidden;
 
   border-radius: 8px;
@@ -32,16 +32,24 @@
   justify-content: space-between;
   text-decoration: none;
   height: 100%;
-  padding: 24px 10px 16px;
+  padding: 15px 10px 16px;
+}
+.image {
+  display: flex;
+  justify-content: center;
 }
 
+.image img {
+  width: 25px;
+  height: 25px;
+}
 .title {
   color: #0e2030;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 1;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .description {
@@ -61,9 +69,10 @@
 }
 
 .topic {
-  margin-top: 19px;
+  margin-top: 10px;
+  width: 100%;
   color: #0e2030;
-  text-align: center;
+  text-align: left;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -80,4 +89,14 @@
 
 .listItem:hover .btnDelete {
   display: block;
+}
+
+.member {
+  position: absolute;
+  display: flex;
+  bottom: 16px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  z-index: 2;
 }

@@ -83,6 +83,7 @@
   --search-border: var(--dark-white);
   --search-bg-hover: var(--brain-freeze);
   --search-border-hover: var(--brain-freeze);
+  --filter-btn: var(--distant-horizon);
 
   /* theme light */
   .lightTheme {
@@ -133,6 +134,7 @@
     --search-border: var(--counts-black);
     --search-bg-hover: var(--brain-freeze);
     --search-border-hover: var(--brain-freeze);
+    --filter-btn: var(--distant-horizon);
   }
 }
 

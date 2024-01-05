@@ -1,5 +1,8 @@
 .sectionPublic {
   padding-top: 50px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 h2 button {
@@ -28,4 +31,12 @@ h3 {
 .content {
   min-height: 200px;
   position: relative;
+}
+
+.searchFilter {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding: 20px 30px;
+  margin-bottom: 40px;
 }

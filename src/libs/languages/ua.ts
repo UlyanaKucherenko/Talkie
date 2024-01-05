@@ -39,6 +39,7 @@ export const uaTranslation = {
   search: {
     title: 'Результати пошуку',
     notFound: 'Результатів не знайдено',
+    placeholder: 'Пошук...',
   },
   chat: {
     placeholder: 'Напишіть повідомлення...',

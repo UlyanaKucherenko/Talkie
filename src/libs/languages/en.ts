@@ -38,6 +38,7 @@ export const enTranslation = {
   search: {
     title: 'Search Result',
     notFound: 'No results found',
+    placeholder: 'Search...',
   },
   chat: {
     placeholder: 'Write a message...',

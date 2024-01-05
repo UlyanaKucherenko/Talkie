@@ -17,7 +17,6 @@
 
 .searchInput::placeholder {
   color: var(--search-border);
-  opacity: 0.8;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
