@@ -42,7 +42,6 @@ const Home = () => {
         <h1>{t('main.title')}</h1>
         <h3>{t('main.description')}</h3>
       </section>
-      <SectionPublicRooms ref={publicRooms} />
 
       {userData && status === Status.Succeeded && (
         <>
