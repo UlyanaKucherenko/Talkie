@@ -7,6 +7,8 @@ import { userSelector } from '../../store/user';
 import { Status } from '../../utils/enums/status.enum';
 import styles from './index.module.css';
 import CreateRoomPopup from '../room/CreateRoom';
+import { RButton } from '../RButton';
+import { IconPlus } from '../icons/IconPlus';
 
 type Props = {
   closeMenu?: () => void;
@@ -55,15 +57,14 @@ export const Navigation = ({ closeMenu, className }: Props) => {
         <span>{t('sidebar.privateRooms')}</span>
       </NavLink>
       {userData && status === Status.Succeeded && (
-        <button
-          type="button"
+        <RButton
+          color="secondary"
           onClick={showCreateRoomHandler}
-          className={`${styles.navLink} ${
-            disabledLink ? styles.navLinkDisabled : ''
-          }`}
+          className={styles.createRoom}
         >
-          <span>{t('sidebar.createRoom')}</span>
-        </button>
+          <IconPlus />
+          {t('sidebar.createRoom')}
+        </RButton>
       )}
     </nav>
   );

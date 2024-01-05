@@ -99,6 +99,7 @@
   }
   .headerNav {
     display: flex;
+    align-items: center;
   }
   .logoLink {
     left: 0;
