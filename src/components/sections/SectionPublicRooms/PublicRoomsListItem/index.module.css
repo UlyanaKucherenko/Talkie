@@ -9,7 +9,7 @@
     rgba(123, 223, 229, 0.5) 97.9%
   );
 
-  width: 300px;
+  width: 100%;
   min-height: 180px;
   overflow: hidden;
 
@@ -110,4 +110,10 @@
   width: 25px;
   height: 25px;
   z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .listItem {
+    max-width: 350px;
+  }
 }
