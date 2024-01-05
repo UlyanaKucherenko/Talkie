@@ -81,3 +81,12 @@
 .listItem:hover .btnDelete {
   display: block;
 }
+
+.member {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  width: 25px;
+  height: 25px;
+  z-index: 2;
+}

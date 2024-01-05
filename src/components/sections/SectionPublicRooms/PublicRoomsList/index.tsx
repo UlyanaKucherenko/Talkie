@@ -25,6 +25,7 @@ export const PublicRoomsList = ({ rooms }: PublicRoomsListProps) => {
               <PublicRoomsListItem
                 key={(item as PublicRoomForRegisteredUser).room._id}
                 item={(item as PublicRoomForRegisteredUser).room}
+                isMember={(item as PublicRoomForRegisteredUser).member}
               />
             );
           }

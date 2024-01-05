@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { debounce } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 import { IconSearch } from '../icons/IconSearch';
 import styles from './index.module.css';
@@ -9,13 +9,12 @@ type Props = {
 };
 export const Search = ({ onChange }: Props) => {
   const [value, setValue] = useState<string>('');
-
-  const debouncedChange = debounce(onChange, 500);
+  const { t } = useTranslation();
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const enteredValue = event.target.value;
     setValue(enteredValue);
-    debouncedChange(enteredValue);
+    onChange(enteredValue);
   };
   const resetHandler = () => {
     setValue('');
@@ -26,7 +25,7 @@ export const Search = ({ onChange }: Props) => {
       <input
         className={styles.searchInput}
         type="text"
-        placeholder="Search ..."
+        placeholder={t('search.placeholder')}
         onChange={changeHandler}
         value={value}
       />

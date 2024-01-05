@@ -2,13 +2,13 @@
   width: 200px;
   height: 30px;
   border-radius: 8px;
-  border: 1px solid #0e2030;
-  background: #f6f6f6;
+  border: 1px solid var(--rbutton-text-color);
+  background: var(--background-color);
   padding: 0 15px 0 24px;
 }
 
 .searchInput::placeholder {
-  color: #0e2030;
+  color: var(--rbutton-text-color);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

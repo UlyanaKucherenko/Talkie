@@ -12,12 +12,18 @@ import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
 import { ThemeEnum } from '../../../../utils/const';
 import { themeSelector } from '../../../../store/theme';
+import { IconWrite } from '../../../icons/IconWrite';
 
 type Props = {
   item: Room;
   onUnauthorized?: () => void;
+  isMember?: boolean;
 };
-export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
+export const PublicRoomsListItem = ({
+  item,
+  onUnauthorized,
+  isMember,
+}: Props) => {
   const { userData } = useSelector(userSelector);
   const { mode } = useSelector(themeSelector);
 
@@ -28,6 +34,11 @@ export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
   };
   return (
     <div className={styles.listItem}>
+      {isMember && (
+        <div className={styles.member}>
+          <IconWrite />
+        </div>
+      )}
       <NavLink
         onClick={(event) => {
           if (!userData) {
