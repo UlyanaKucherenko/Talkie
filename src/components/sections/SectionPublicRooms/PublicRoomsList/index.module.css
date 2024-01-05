@@ -12,7 +12,7 @@ h3 {
 
 .list {
   display: grid ;
-  grid-template-columns: repeat(3, 300px);
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   justify-items: center;
   gap: 20px;
@@ -21,12 +21,12 @@ h3 {
 
 @media screen and (max-width: 980px) {
   .list {
-    grid-template-columns: repeat(2, 300px);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 768px) {
   .list {
-    grid-template-columns: repeat(1, 300px);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
