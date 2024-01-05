@@ -34,7 +34,8 @@
 }
 
 .button.secondary {
-  background: none;
+  /* background: none; */
+  background: var(--rbutton-secondary-bg-hover);
   border-radius: 10px;
   border: 2px solid var(--rbutton-secondary-color);
   color: var(--rbutton-secondary-color);

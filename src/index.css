@@ -77,6 +77,12 @@
   --border-chat-room: var(--room-header-bg-color);
   --private-room-header-color: #c5ddf6;
   --border-chat-room-private: var(--private-room-header-color);
+  --chat-details-members-bg: var(--counts-black);
+  --chat-details-members-border: var(--background-color);
+  --search-bg: var(--counts-black);
+  --search-border: var(--dark-white);
+  --search-bg-hover: var(--brain-freeze);
+  --search-border-hover: var(--brain-freeze);
 
   /* theme light */
   .lightTheme {
@@ -121,6 +127,12 @@
     --border-chat-room: 'transparent';
     --private-room-header-color: #c5ddf6;
     --border-chat-room-private: var(--private-room-header-color);
+    --chat-details-members-bg: var(--background-color);
+    --chat-details-members-border: var(--olympus-white);
+    --search-bg: var(--dark-white);
+    --search-border: var(--counts-black);
+    --search-bg-hover: var(--brain-freeze);
+    --search-border-hover: var(--brain-freeze);
   }
 }
 

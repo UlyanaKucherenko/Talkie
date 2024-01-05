@@ -44,7 +44,6 @@ const Home = () => {
         <h3>{t('main.description')}</h3>
       </section>
       <SearchFilter />
-      <SectionPublicRooms ref={publicRooms} />
 
       {userData && status === Status.Succeeded && (
         <>
@@ -70,10 +69,6 @@ const Home = () => {
             <SectionPrivateRooms ref={privateRooms} />
           )}
         </>
-      )}
-
-      {userData && status === Status.Succeeded && (
-        <SectionPrivateRooms ref={privateRooms} />
       )}
     </div>
   );
