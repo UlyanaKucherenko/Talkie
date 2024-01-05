@@ -3,7 +3,7 @@
 }
 
 .filterBtn:hover, .filterBtn.active {
-  color: #00f0ff;
+  color: var(--rbutton-primary-bg-hover);
 }
 
 .filters {
@@ -11,10 +11,11 @@
   top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #0e2030;
+  color: var(--rbutton-text-color);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -26,6 +27,6 @@
   font-size: 30px;
   background: none;
   border: none;
-  color: #d7224d;
+  color: var(--warning-color);
   cursor: pointer;
 }

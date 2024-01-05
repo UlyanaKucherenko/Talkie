@@ -12,15 +12,20 @@ import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
 import { ThemeEnum } from '../../../../utils/const';
 import { themeSelector } from '../../../../store/theme';
+import { IconWrite } from '../../../icons/IconWrite';
 
 type Props = {
   item: Room;
   onUnauthorized?: () => void;
+  isMember?: boolean;
 };
-export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
+export const PublicRoomsListItem = ({
+  item,
+  onUnauthorized,
+  isMember,
+}: Props) => {
   const { userData } = useSelector(userSelector);
   const { mode } = useSelector(themeSelector);
-
   const dispatch: AppDispatch = useDispatch();
   const roomDelete = async () => {
     await dispatch(roomsThunks.deleteRoom(item._id));
@@ -28,6 +33,11 @@ export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
   };
   return (
     <div className={styles.listItem}>
+      {isMember && (
+        <div className={styles.member}>
+          <IconWrite />
+        </div>
+      )}
       <NavLink
         onClick={(event) => {
           if (!userData) {
@@ -43,6 +53,9 @@ export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
         // eslint-disable-next-line no-underscore-dangle
         key={item._id}
       >
+        <div className={styles.image}>
+          {item?.img && <img src={item.img} alt={item.title} />}
+        </div>
         <div className={styles.title}>{item.title}</div>
         <div className={styles.description}>{item.description}</div>
         <div className={styles.topic}>{Topics[item.topic]}</div>

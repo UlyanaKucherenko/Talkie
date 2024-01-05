@@ -77,6 +77,7 @@
   --border-chat-room: var(--room-header-bg-color);
   --private-room-header-color: #c5ddf6;
   --border-chat-room-private: var(--private-room-header-color);
+  --filter-btn: var(--distant-horizon);
 
   /* theme light */
   .lightTheme {
@@ -121,6 +122,7 @@
     --border-chat-room: 'transparent';
     --private-room-header-color: #c5ddf6;
     --border-chat-room-private: var(--private-room-header-color);
+    --filter-btn: var(--distant-horizon);
   }
 }
 
