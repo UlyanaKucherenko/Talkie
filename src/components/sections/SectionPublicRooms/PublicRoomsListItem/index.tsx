@@ -26,7 +26,6 @@ export const PublicRoomsListItem = ({
 }: Props) => {
   const { userData } = useSelector(userSelector);
   const { mode } = useSelector(themeSelector);
-
   const dispatch: AppDispatch = useDispatch();
   const roomDelete = async () => {
     await dispatch(roomsThunks.deleteRoom(item._id));
@@ -54,6 +53,9 @@ export const PublicRoomsListItem = ({
         // eslint-disable-next-line no-underscore-dangle
         key={item._id}
       >
+        <div className={styles.image}>
+          {item?.img && <img src={item.img} alt={item.title} />}
+        </div>
         <div className={styles.title}>{item.title}</div>
         <div className={styles.description}>{item.description}</div>
         <div className={styles.topic}>{Topics[item.topic]}</div>
