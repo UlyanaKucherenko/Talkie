@@ -24,13 +24,6 @@
   box-shadow: 0 0 4px 2px var(--brain-freeze);
 }
 
-.sent .avatarWrap:hover .avatar {
-  box-shadow: none;
-}
-.sent .avatarWrap:hover .avatar {
-  cursor: auto;
-}
-
 .avatar img {
   width: 100%;
   height: 100%;
@@ -60,15 +53,17 @@
   background-color: var(--clean-pool);
   color: var(--counts-black);
 }
-.sent .btnSendPrivateMsg {
-  display: none;
-}
 
 .active {
   box-shadow: 0 0 4px 2px var(--brain-freeze);
 }
 
 .noActive:hover .avatar {
+  box-shadow: none;
+  cursor: auto;
+}
+
+.noActive {
   box-shadow: none;
   cursor: auto;
 }

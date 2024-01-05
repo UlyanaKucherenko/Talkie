@@ -35,6 +35,7 @@ export const MessageItem = ({
         avatarUrl={avatarUrl}
         username={username}
         roomType={roomType}
+        isSent={isSent}
       />
     </div>
   );
