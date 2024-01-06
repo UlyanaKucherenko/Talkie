@@ -44,6 +44,7 @@
   top: 16px;
   display: flex;
   justify-content: center;
+  color: var(--font-main-color);
 }
 
 .userWrap {
@@ -90,6 +91,7 @@
   text-transform: uppercase;
   word-wrap: break-word;
   word-break: break-word;
+  text-align: center;
 }
 
 .navWrap {

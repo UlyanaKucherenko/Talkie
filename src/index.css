@@ -85,6 +85,8 @@
   --search-border-hover: var(--brain-freeze);
   --filter-btn: var(--distant-horizon);
   --text-room-card: var(--dark-white);
+  --section-private-bg: var(--counts-black);
+  --section-private-border: transparent;
 
   /* theme light */
   .lightTheme {
@@ -115,7 +117,7 @@
     --message-received-bg-color: var(--dawn-departs);
     --message-sent-bg-color: var(--placebo-turquoise);
     --message-input-bg-color: var(--dark-blue);
-    --text-users-typing-color: var(--gray);
+    --text-users-typing-color: var(--black-manga);
     --chat-details-desc-font-color: var(--counts-black);
     --navlink-color: var(--counts-black);
     --navlink-hover-color: var(--clean-pool);
@@ -137,6 +139,8 @@
     --search-border-hover: var(--brain-freeze);
     --filter-btn: var(--distant-horizon);
     --text-room-card: var(--counts-black);
+    --section-private-bg: var(--background-color);
+    --section-private-border: var(--olympus-white);
   }
 }
 
