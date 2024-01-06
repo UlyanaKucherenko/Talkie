@@ -25,6 +25,9 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
 
   return (
     <div className={styles.roomDetails} ref={ref}>
+      <div className={styles.roomImage}>
+        <img src={room.img} alt={room.title} />
+      </div>
       <RButtonIcon
         className={styles.close}
         icon={IconClose}
@@ -33,23 +36,25 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
         onClick={onClose}
         defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
       />
-      {!room && <p>No data</p>}
-      {room && (
-        <>
-          <h2 className={styles.roomTitle}>{room.title}</h2>
-          <div className={styles.roomCreatedAt}>
-            {new Date(room.createdAt).toLocaleDateString('uk-UA')}
-          </div>
-          <div className={styles.roomDescription}>{room.description}</div>
-          <div className={styles.members}>
-            <div className={styles.membersTitle}>{t('chat.members')}</div>
-            <RoomDetailsUserList
-              owner={room.owner as User}
-              members={room.users}
-            />
-          </div>
-        </>
-      )}
+      <div className={styles.container}>
+        {!room && <p>No data</p>}
+        {room && (
+          <>
+            <h2 className={styles.roomTitle}>{room.title}</h2>
+            <div className={styles.roomCreatedAt}>
+              {new Date(room.createdAt).toLocaleDateString('uk-UA')}
+            </div>
+            <div className={styles.roomDescription}>{room.description}</div>
+            <div className={styles.members}>
+              <div className={styles.membersTitle}>{t('chat.members')}</div>
+              <RoomDetailsUserList
+                owner={room.owner as User}
+                members={room.users}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 });
