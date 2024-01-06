@@ -50,7 +50,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [loadingMoreMessages, setLoadingMoreMessages] = useState(false);
-  const [inputValueError, setInputValueError] = useState<boolean>(false);
+  const [inputValueError /* setInputValueError */] = useState<boolean>(false);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
