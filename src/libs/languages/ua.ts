@@ -35,6 +35,8 @@ export const uaTranslation = {
     titlePlaceholder: 'Введіть назву кімнати',
     descriptionPlaceholder: 'Введіть опис кімнати',
     topicPlaceholder: 'Виберіть тему кімнати',
+    createdRooms: 'Створено кімнат',
+    listIsEmpty: 'Список порожній',
   },
   search: {
     title: 'Результати пошуку',

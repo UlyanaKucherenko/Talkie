@@ -34,7 +34,6 @@
   --olympus-white: #d3d6d7;
   --industrial-revolution: #737373;
   --dark-blue: #0f3a5a;
-
   /* theme dark */
   --background-color: var(--black-manga);
   --font-main-color: var(--white);
@@ -83,8 +82,12 @@
   --search-border: var(--dark-white);
   --search-bg-hover: var(--brain-freeze);
   --search-border-hover: var(--brain-freeze);
-  --filter-btn: var(--distant-horizon);
+  --filter-btn: var(--dark-white);
+  --filter-bg: var(--distant-horizon);
+  --filter-applied-color: var(--dark-white);
   --text-room-card: var(--dark-white);
+  --pagination-color: var(--light-white);
+  --create-form-input-border: var(--counts-black);
 
   /* theme light */
   .lightTheme {
@@ -133,10 +136,14 @@
     --chat-details-members-border: var(--olympus-white);
     --search-bg: var(--dark-white);
     --search-border: var(--counts-black);
+    --filter-btn: var(--counts-black);
     --search-bg-hover: var(--brain-freeze);
     --search-border-hover: var(--brain-freeze);
-    --filter-btn: var(--distant-horizon);
+    --filter-bg: var(--distant-horizon);
+    --filter-applied-color: var(--counts-black);
     --text-room-card: var(--counts-black);
+    --pagination-color: var(--counts-black);
+    --create-form-input-border: var(--counts-black);
   }
 }
 
