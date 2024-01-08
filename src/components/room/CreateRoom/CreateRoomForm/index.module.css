@@ -19,15 +19,21 @@
   border: none;
   height: 26px;
   background: none;
-  color: var(--dark-gray);
+  color: var(--create-form-input-border);
+  border-bottom: 1px solid var(--create-form-input-border);
   font-size: 16px;
   line-height: 1;
 }
 
 select.input {
-  border: 1px solid var(--dark-gray);
+  border: 1px solid var(--create-form-input-border);
+  width: 60%;
+  border-radius: 5px;
 }
 
+.input:focus, select.input:focus {
+  outline: none
+}
 .input.error {
   border-color: var(--warning-color);
 }
@@ -35,7 +41,7 @@ select.input {
 .formAction {
   display: flex;
   justify-content: center;
-  margin-top: 48px;
+  margin-top: 20px;
 }
 
 .formAction button {

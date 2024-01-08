@@ -34,6 +34,8 @@ export const enTranslation = {
     titlePlaceholder: 'Enter room title',
     descriptionPlaceholder: 'Enter room description',
     topicPlaceholder: 'Select room topic',
+    createdRooms: 'Created rooms',
+    listIsEmpty: 'List is empty',
   },
   search: {
     title: 'Search Result',

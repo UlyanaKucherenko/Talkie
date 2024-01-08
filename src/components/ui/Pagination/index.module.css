@@ -3,7 +3,8 @@
   justify-content: center;
   gap: 1rem;
   list-style: none;
-  margin: 10px 0;
+  margin: 20px 0;
+  color: var(--pagination-color)
 }
 
 .pageItem a {
@@ -35,4 +36,6 @@
   background: none;
   border: none;
   cursor: pointer;
+  color: var(--pagination-color)
+
 }
