@@ -24,7 +24,7 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.roomDetails} ref={ref}>
+    <div className={`${styles.roomDetails}`} ref={ref}>
       <div className={styles.roomImage}>
         <img src={room.img} alt={room.title} />
       </div>
