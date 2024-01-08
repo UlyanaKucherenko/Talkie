@@ -4,5 +4,6 @@
 }
 
 .themeButton {
-  color: var(--header-font-color)
+  color: var(--header-font-color);
+  width: 25px;
 }
