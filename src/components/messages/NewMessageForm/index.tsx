@@ -12,6 +12,7 @@ type Props = {
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
   userTypingData: string;
   roomType: string;
+  errorValid?: boolean;
 };
 
 export const NewMessageForm = ({
@@ -21,6 +22,7 @@ export const NewMessageForm = ({
   onKeyDown,
   userTypingData,
   roomType,
+  errorValid,
 }: Props) => {
   const { t } = useTranslation();
   return (
@@ -36,13 +38,21 @@ export const NewMessageForm = ({
         <TextareaAutosize
           onKeyDown={onKeyDown}
           maxRows={3}
-          className={styles.messageInput}
+          className={`${styles.messageInput} ${
+            errorValid ? styles.inputError : ''
+          }`}
           placeholder={t('chat.placeholder')}
           onChange={onChange}
           value={value}
           maxLength={1000}
         />
         <RButtonIcon icon={IconSend} type="submit" className={styles.send} />
+
+        {errorValid && (
+          <div className={styles.textValidError}>
+            Input error, too many characters
+          </div>
+        )}
       </div>
     </form>
   );

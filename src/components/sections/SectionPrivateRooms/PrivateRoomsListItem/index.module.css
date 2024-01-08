@@ -67,6 +67,7 @@
   right: 0;
   transform: translateY(-50%);
   display: none;
+  color: var(--font-main-color);
 }
 
 .listItem:hover .btnDelete {

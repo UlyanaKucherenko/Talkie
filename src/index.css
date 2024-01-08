@@ -86,6 +86,8 @@
   --filter-bg: var(--distant-horizon);
   --filter-applied-color: var(--dark-white);
   --text-room-card: var(--dark-white);
+  --section-private-bg: var(--counts-black);
+  --section-private-border: transparent;
   --pagination-color: var(--light-white);
   --create-form-input-border: var(--counts-black);
 
@@ -118,7 +120,7 @@
     --message-received-bg-color: var(--dawn-departs);
     --message-sent-bg-color: var(--placebo-turquoise);
     --message-input-bg-color: var(--dark-blue);
-    --text-users-typing-color: var(--gray);
+    --text-users-typing-color: var(--black-manga);
     --chat-details-desc-font-color: var(--counts-black);
     --navlink-color: var(--counts-black);
     --navlink-hover-color: var(--clean-pool);
@@ -142,6 +144,8 @@
     --filter-bg: var(--distant-horizon);
     --filter-applied-color: var(--counts-black);
     --text-room-card: var(--counts-black);
+    --section-private-bg: var(--background-color);
+    --section-private-border: var(--olympus-white);
     --pagination-color: var(--counts-black);
     --create-form-input-border: var(--counts-black);
   }

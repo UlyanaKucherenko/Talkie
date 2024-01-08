@@ -9,6 +9,7 @@ import { roomsThunks } from '../../../store/rooms';
 import styles from './index.module.css';
 
 type CreatePrivateRoomProps = {
+  isSent: boolean;
   roomType: string;
   avatarUrl: string;
   username: string;
@@ -17,6 +18,7 @@ type CreatePrivateRoomProps = {
   onClose?: () => void;
 };
 export const CreatePrivateRoom = ({
+  isSent = false,
   roomType = 'public',
   avatarUrl,
   username,
@@ -66,11 +68,11 @@ export const CreatePrivateRoom = ({
         onClick={() => setShowBtnSendPrivateMsg(!showBtnSendPrivateMsg)}
         className={`${classNameAvatar} ${
           roomType === 'public' && showBtnSendPrivateMsg ? styles.active : ''
-        }  ${roomType === 'private' && styles.noActive}`}
+        }  ${roomType === 'private' || isSent === true ? styles.noActive : ''}`}
       >
         <img className={`${styles.avatar}`} src={avatarUrl} alt={username} />
       </button>
-      {showBtnSendPrivateMsg && roomType === 'public' && (
+      {showBtnSendPrivateMsg && roomType === 'public' && isSent === false && (
         <button
           ref={btnSendMsgRef}
           type="button"
