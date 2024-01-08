@@ -1,8 +1,3 @@
-.formWrap {
-  width: 100%;
-  height: 100%;
-}
-
 .filterMenu {
   position: absolute;
   top: calc(100% + 10px);
