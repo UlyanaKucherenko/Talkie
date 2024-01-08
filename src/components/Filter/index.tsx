@@ -19,7 +19,7 @@ export const Filter = ({ onSubmit }: Props) => {
   const [topicFilter, setTopicFilter] = useState<string>('');
   const [isFilterApplied, setIsFilterApplied] = useState(false);
 
-  const filterRef = useRef<HTMLFormElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(filterRef, () => setShowFilter(false));
 
@@ -38,11 +38,11 @@ export const Filter = ({ onSubmit }: Props) => {
   };
 
   return (
-    <div className={styles.filter}>
+    <div className={styles.filter} ref={filterRef}>
       <RButtonIcon
         className={`${styles.filterBtn} ${showFilter && styles.active}`}
         icon={IconFilter}
-        onClick={() => setShowFilter(true)}
+        onClick={() => setShowFilter(!showFilter)}
       />
       <div className={styles.filters}>
         {topicFilter && isFilterApplied && (
@@ -65,7 +65,6 @@ export const Filter = ({ onSubmit }: Props) => {
           onFilterSubmit={filterFormHandler}
           onFilterReset={filterResetHandler}
           isFilterApplied={isFilterApplied}
-          ref={filterRef}
         />
       )}
     </div>

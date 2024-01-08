@@ -6,9 +6,10 @@
 }
 
 .content {
-  min-height: 200px;
+  min-height: 300px;
   position: relative;
   width: 100%;
+  gap: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,4 +30,8 @@
 
 .createRoom button {
   height: 44px;
+}
+
+.createRoom button:disabled {
+  color: var(--dark-gray)
 }
