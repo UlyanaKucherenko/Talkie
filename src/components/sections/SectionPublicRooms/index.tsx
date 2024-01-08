@@ -37,10 +37,16 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
 
   useEffect(() => {
     const getPublicRooms = async () => {
+      let page = currentPage;
+
+      if (filter || searchQuery) {
+        page = 1;
+        setCurrentPage(1);
+      }
       if (userData && userStatus === Status.Succeeded) {
         await dispatch(
           roomsThunks.getPublicRoomsWithoutOwn({
-            currentPage,
+            currentPage: page,
             topic: filter,
             query: searchQuery,
           })
@@ -50,7 +56,7 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
       if (!userData && userStatus === Status.Idle) {
         await dispatch(
           roomsThunks.getPublicRooms({
-            currentPage,
+            currentPage: page,
             topic: filter,
             query: searchQuery,
           })

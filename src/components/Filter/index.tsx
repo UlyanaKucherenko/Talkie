@@ -42,7 +42,7 @@ export const Filter = ({ onSubmit }: Props) => {
       <RButtonIcon
         className={`${styles.filterBtn} ${showFilter && styles.active}`}
         icon={IconFilter}
-        onClick={() => setShowFilter(true)}
+        onClick={() => setShowFilter((prevState) => !prevState)}
       />
       <div className={styles.filters}>
         {topicFilter && isFilterApplied && (
