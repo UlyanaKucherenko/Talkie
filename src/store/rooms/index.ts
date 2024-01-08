@@ -4,6 +4,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../index.js';
 import { Status } from '../../utils/enums/status.enum.js';
 import {
+  EditRoomData,
   GetRoomsProps,
   PrivateRoomsData,
   PublicRoomsData,
@@ -22,6 +23,8 @@ const initialState: RoomsState = {
   privateRoomsStatus: Status.Idle,
   privateRoomsError: null,
   privateRoomsIds: [],
+  roomData: null,
+  statusRoom: Status.Idle,
 };
 export const roomsThunks = {
   // public
@@ -90,6 +93,21 @@ export const roomsThunks = {
     // console.log('createPrivateRoom Store:', response);
     return response;
   }),
+
+  getRoomById: createAsyncThunk('rooms/getRoomById', async (roomId: string) => {
+    const response = await http.rooms.getRoomById(roomId);
+    // console.log('getRoomById Store:', response);
+    return response;
+  }),
+
+  editRoom: createAsyncThunk(
+    'rooms/editRoom',
+    async ({ id, data }: { id: string; data: EditRoomData }) => {
+      const response = await http.rooms.editPublicRoom({ id, data });
+      console.log('editRoom Store:', response);
+      return response;
+    }
+  ),
 };
 
 export const roomsSlice = createSlice({
@@ -180,6 +198,25 @@ export const roomsSlice = createSlice({
           ...state,
           status: Status.Failed,
           error: error.message || null,
+        })
+      )
+      // .addCase(roomsThunks.getRoomById.pending, (state) => ({
+      //   ...state,
+      //   statusRoom: Status.Loading,
+      // }))
+      // .addCase(
+      //   roomsThunks.getRoomById.fulfilled,
+      //   (state, { payload }: PayloadAction<Room>) => ({
+      //     ...state,
+      //     statusRoom: Status.Succeeded,
+      //     roomData: {},
+      //   })
+      // )
+      .addCase(
+        roomsThunks.getRoomById.rejected,
+        (state): RoomsState => ({
+          ...state,
+          statusRoom: Status.Failed,
         })
       );
   },

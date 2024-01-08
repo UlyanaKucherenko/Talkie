@@ -9,6 +9,7 @@ import { RButtonIcon } from '../ui/RButtonIcon';
 import { IconLightTheme } from '../icons/IconLightTheme';
 import styles from './index.module.css';
 import { ThemeEnum } from '../../utils/const';
+import { IconDarkTheme } from '../icons/IconDarkTheme';
 
 type ThemeLangSwitcherProps = {
   colorIcon: 'dark' | 'light';
@@ -45,7 +46,7 @@ export const ThemeLangSwitcher = ({
         }
       />
       <RButtonIcon
-        icon={IconLightTheme}
+        icon={mode === ThemeEnum.DARK ? IconLightTheme : IconDarkTheme}
         type="button"
         defaultColorIcon={colorIcon}
         onClick={() => onSwitchTheme()}

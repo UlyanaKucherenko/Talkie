@@ -1,6 +1,7 @@
 export const uaTranslation = {
   main: {
-    title: 'Вітаємо у чаті',
+    siteName: 'Talkie',
+    title: 'Вітаємо у ',
     description:
       "Спілкуйтеся, підключайтеся, залишайтеся на зв'язку і робіть спілкування простим.",
     ourTeem: 'Наша команда',
@@ -26,8 +27,8 @@ export const uaTranslation = {
     logoutWarningConfirmButton: 'Добре',
   },
   rooms: {
-    public: 'Публічні кімнати',
-    private: 'Приватні кімнати',
+    publicRoom: 'Публічні кімнати',
+    privateRoom: 'Приватні кімнати',
     myPublicRooms: 'Мої Публічні кімнати',
     title: 'Назва',
     description: 'Опис',
@@ -35,6 +36,17 @@ export const uaTranslation = {
     titlePlaceholder: 'Введіть назву кімнати',
     descriptionPlaceholder: 'Введіть опис кімнати',
     topicPlaceholder: 'Виберіть тему кімнати',
+    createPublicRoom: 'Створити мою публічну кімнату',
+    editPublicRoom: 'Редагувати мою публічну кімнату',
+    btnEditRoom: 'Редагувати кімнату',
+    btnCreateRoom: 'Створити кімнату',
+    edit: 'Редагувати',
+    delete: 'Видалити',
+    yes: 'Так',
+    doYouWantToDelete: 'Ви хочете видалити',
+    room: 'кімнату',
+    private: 'приватну',
+    public: 'публічну',
     createdRooms: 'Створено кімнат',
     listIsEmpty: 'Список порожній',
   },

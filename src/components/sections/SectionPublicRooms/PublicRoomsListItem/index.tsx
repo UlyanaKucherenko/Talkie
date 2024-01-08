@@ -6,13 +6,10 @@ import { Room } from '../../../../utils/types/rooms.type';
 import styles from './index.module.css';
 import { userSelector } from '../../../../store/user';
 import { Topics } from '../../../../utils/constants/topic';
-import { RButtonIcon } from '../../../ui/RButtonIcon';
-import { IconClose } from '../../../icons/IconClose';
 import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
-import { ThemeEnum } from '../../../../utils/const';
-import { themeSelector } from '../../../../store/theme';
 import { IconWrite } from '../../../icons/IconWrite';
+import { RoomActions } from '../../../room/RoomActions';
 
 type Props = {
   item: Room;
@@ -25,7 +22,6 @@ export const PublicRoomsListItem = ({
   isMember,
 }: Props) => {
   const { userData } = useSelector(userSelector);
-  const { mode } = useSelector(themeSelector);
   const dispatch: AppDispatch = useDispatch();
   const roomDelete = async () => {
     await dispatch(roomsThunks.deleteRoom(item._id));
@@ -61,11 +57,14 @@ export const PublicRoomsListItem = ({
         <div className={styles.topic}>{Topics[item.topic]}</div>
       </NavLink>
       {userData?.user._id && item?.owner === userData?.user._id && (
-        <RButtonIcon
-          icon={IconClose}
-          defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
-          onClick={() => roomDelete()}
+        <RoomActions
+          id={item._id}
+          roomTitle={item.title}
+          roomType="public"
           className={styles.btnDelete}
+          roomDelete={roomDelete}
+          isEdit
+          roomData={item}
         />
       )}
     </div>

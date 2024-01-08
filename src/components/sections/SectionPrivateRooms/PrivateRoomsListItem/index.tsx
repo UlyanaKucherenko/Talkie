@@ -6,11 +6,8 @@ import { PrivateRoom } from '../../../../utils/types/rooms.type';
 import styles from './index.module.css';
 import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
-import { RButtonIcon } from '../../../ui/RButtonIcon';
-import { IconClose } from '../../../icons/IconClose';
-import { themeSelector } from '../../../../store/theme';
-import { ThemeEnum } from '../../../../utils/const';
 import { userSelector } from '../../../../store/user';
+import { RoomActions } from '../../../room/RoomActions';
 
 type PrivateRoomsListItemProps = {
   item: PrivateRoom;
@@ -19,7 +16,6 @@ type PrivateRoomsListItemProps = {
 export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
   const { _id: id, title, img, owner } = item;
   const dispatch: AppDispatch = useDispatch();
-  const { mode } = useSelector(themeSelector);
   const { userData } = useSelector(userSelector);
 
   const roomDelete = async () => {
@@ -36,11 +32,12 @@ export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
         <div className={styles.title}>{title}</div>
       </NavLink>
       {owner._id === userData?.user._id && (
-        <RButtonIcon
-          icon={IconClose}
-          defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
-          onClick={() => roomDelete()}
-          className={styles.btnDelete}
+        <RoomActions
+          id={id}
+          roomTitle={title}
+          roomType="private"
+          className={styles.btnActions}
+          roomDelete={roomDelete}
         />
       )}
     </div>

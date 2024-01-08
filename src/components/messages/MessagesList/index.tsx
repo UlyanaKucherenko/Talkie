@@ -24,7 +24,7 @@ export const MessagesList = ({ messages, status, divRef, roomType }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.messageListWrap} ref={divRef}>
+    <div className={`${styles.messageListWrap} custom-scroll`} ref={divRef}>
       {status === Status.Loading && <RLoader css={{ top: '10px' }} size="sm" />}
 
       {status !== Status.Loading && messages.length === 0 && (
