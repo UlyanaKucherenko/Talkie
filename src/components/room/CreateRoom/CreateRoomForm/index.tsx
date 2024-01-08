@@ -86,6 +86,8 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+      <div className={styles.formTitle}>{t('rooms.createPublicRoom')}</div>
+
       <div className={styles.formControl}>
         <label htmlFor="title">{t('rooms.title')}</label>
         <input
@@ -136,7 +138,7 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
       <div className={styles.formAction}>
         <RButton type="submit" color="secondary">
           <IconPlus />
-          Create room
+          {t('rooms.btnCreateRoom')}
         </RButton>
       </div>
     </form>

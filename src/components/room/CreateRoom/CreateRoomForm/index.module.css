@@ -5,6 +5,16 @@
   width: 100%;
 }
 
+.formTitle {
+  color: var(--jedi-night);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 125.1%;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
 .formControl {
   display: flex;
   flex-direction: column;
@@ -28,11 +38,12 @@
 select.input {
   border: 1px solid var(--create-form-input-border);
   width: 60%;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
-.input:focus, select.input:focus {
-  outline: none
+.input:focus,
+select.input:focus {
+  outline: none;
 }
 .input.error {
   border-color: var(--warning-color);

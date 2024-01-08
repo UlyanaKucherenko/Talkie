@@ -12,6 +12,7 @@
   font-weight: 700;
   line-height: 125.1%;
   text-transform: capitalize;
+  margin-bottom: 20px;
 }
 
 .formControl {
@@ -28,14 +29,15 @@
   border: none;
   height: 26px;
   background: none;
-  color: var(--dark-gray);
+  color: var(--create-form-input-border);
+  border-bottom: 1px solid var(--create-form-input-border);
   font-size: 16px;
   line-height: 1;
 }
 
 select.input {
-  border: 1px solid var(--dark-gray);
-  max-width: 180px;
+  border: 1px solid var(--create-form-input-border);
+  width: 60%;
   border-radius: 8px;
 }
 
@@ -46,7 +48,7 @@ select.input {
 .formAction {
   display: flex;
   justify-content: center;
-  margin-top: 48px;
+  margin-top: 20px;
 }
 
 .formAction button {
