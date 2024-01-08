@@ -33,6 +33,11 @@ export type CreateRoomData = {
   description?: string;
 };
 
+export type EditRoomData = {
+  title: string;
+  description?: string;
+};
+
 // private rooms
 export type PrivateRoom = {
   _id: string;
@@ -75,6 +80,8 @@ export type RoomsState = {
   privateRoomsStatus: Status;
   privateRoomsError: string | null;
   privateRoomsIds: string[];
+  roomData: Room | null;
+  statusRoom: Status;
 };
 
 export type GetRoomsProps = {

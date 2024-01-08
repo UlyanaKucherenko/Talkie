@@ -1,6 +1,7 @@
 export const enTranslation = {
   main: {
-    title: 'Welcome to chat',
+    siteName: 'Talkie',
+    title: 'Welcome to ',
     description: 'Chat, connect, Stay in touch and make communication simple.',
     ourTeem: 'Our Team',
     version: 'Version',
@@ -25,8 +26,8 @@ export const enTranslation = {
     logoutWarningConfirmButton: 'Сonfirm',
   },
   rooms: {
-    public: 'Public Rooms',
-    private: 'Private Rooms',
+    publicRoom: 'Public Rooms',
+    privateRoom: 'Private Rooms',
     myPublicRooms: 'My Public rooms',
     title: 'Title',
     description: 'Description',
@@ -34,6 +35,15 @@ export const enTranslation = {
     titlePlaceholder: 'Enter room title',
     descriptionPlaceholder: 'Enter room description',
     topicPlaceholder: 'Select room topic',
+    editPublicRoom: 'Edit My Public Room',
+    btnEditRoom: 'Edit room',
+    edit: 'Edit',
+    delete: 'Delete',
+    yes: 'Yes',
+    doYouWantToDelete: 'Do you want to delete ',
+    room: 'room',
+    private: 'private',
+    public: 'public',
   },
   search: {
     title: 'Search Result',

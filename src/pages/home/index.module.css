@@ -9,24 +9,6 @@
   margin-bottom: 20px;
 }
 
-h1 {
-  color: var(--font-main-color);
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-h3 {
-  color: var(--font-main-color);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-transform: capitalize;
-  margin-bottom: 20px;
-}
-
 .createRoom {
   display: flex;
   justify-content: center;

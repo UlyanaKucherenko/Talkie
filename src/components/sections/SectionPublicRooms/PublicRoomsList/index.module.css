@@ -2,16 +2,8 @@
   padding-top: 40px;
 }
 
-h3 {
-  color: var(--font-main-color);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-transform: capitalize;
-}
-
 .list {
-  display: grid ;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   justify-items: center;

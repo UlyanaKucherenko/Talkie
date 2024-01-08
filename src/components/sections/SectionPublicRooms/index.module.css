@@ -20,14 +20,6 @@ h2 button {
   width: max-content;
 }
 
-h3 {
-  color: var(--font-main-color);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-transform: capitalize;
-}
-
 .content {
   min-height: 200px;
   position: relative;

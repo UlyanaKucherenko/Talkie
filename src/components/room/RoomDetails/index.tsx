@@ -36,7 +36,7 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
         onClick={onClose}
         defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
       />
-      <div className={styles.container}>
+      <div className={`${styles.container} custom-scroll`}>
         {!room && <p>No data</p>}
         {room && (
           <>

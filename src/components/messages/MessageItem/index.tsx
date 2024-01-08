@@ -1,6 +1,6 @@
 import { getFormatTime } from '../../../utils/format-time';
 import styles from './index.module.css';
-import { CreatePrivateRoom } from '../../room/CreatePrivateRoom';
+import { CreatePrivateRoom } from '../CreatePrivateRoom';
 
 type Props = {
   id: string;

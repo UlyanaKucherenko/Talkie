@@ -1,6 +1,6 @@
 .searchInput {
-  width: 200px;
-  height: 30px;
+  width: 260px;
+  height: 34px;
   border-radius: 8px;
   border: 1px solid var(--search-border);
   background: var(--search-bg);

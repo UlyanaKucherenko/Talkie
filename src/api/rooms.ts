@@ -4,6 +4,7 @@ import { getToken } from '../utils/user-token';
 import { apiRoutes } from './api-routes';
 import type {
   CreateRoomData,
+  EditRoomData,
   GetRoomsProps,
   PrivateRoom,
   PrivateRoomsData,
@@ -168,4 +169,25 @@ export const searchRooms = async ({
     }
   );
   return res.data;
+};
+
+export const editPublicRoom = async ({
+  id,
+  data,
+}: {
+  id: string;
+  data: EditRoomData;
+}): Promise<any> => {
+  const token = getToken();
+  try {
+    const res = await axios.patch(`${apiRoutes.rooms}/${id}`, data, {
+      headers: {
+        ApiKey: token,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log('Error editing public room', error);
+    throw error;
+  }
 };

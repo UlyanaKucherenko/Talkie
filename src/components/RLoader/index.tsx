@@ -21,7 +21,11 @@ function RLoader({ className, css, size = 'md' }: RLoaderProps) {
     width: sizeLoader[size],
     height: sizeLoader[size],
   };
-  return <div className={classNameRButton} style={stylesLouder} />;
+  return (
+    <div className={styles.wrapLoader} style={stylesLouder}>
+      <div className={classNameRButton} />
+    </div>
+  );
 }
 
 export { RLoader };
