@@ -45,6 +45,8 @@ export const uaTranslation = {
     room: 'кімнату',
     private: 'приватну',
     public: 'публічну',
+    createdRooms: 'Створено кімнат',
+    listIsEmpty: 'Список порожній',
   },
   search: {
     title: 'Результати пошуку',

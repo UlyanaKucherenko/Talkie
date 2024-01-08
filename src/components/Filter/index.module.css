@@ -1,8 +1,10 @@
 .filterBtn {
   transition: all 0.1s ease-in-out;
+  color: var(--filter-btn);
 }
 
-.filterBtn:hover, .filterBtn.active {
+.filterBtn:hover,
+.filterBtn.active {
   color: var(--rbutton-primary-bg-hover);
 }
 
@@ -15,7 +17,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--rbutton-text-color);
+  color: var(--filter-applied-color);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
