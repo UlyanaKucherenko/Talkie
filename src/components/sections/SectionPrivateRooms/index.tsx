@@ -37,7 +37,7 @@ export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <section id="private-rooms" className={styles.sectionPrivate} ref={ref}>
-      <RAccordion title={t('rooms.private')}>
+      <RAccordion title={t('rooms.privateRoom')}>
         <div className={styles.filtersWrap}>
           <div>
             <Search onChange={searchHandler} />

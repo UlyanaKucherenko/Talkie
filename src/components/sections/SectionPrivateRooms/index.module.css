@@ -9,7 +9,7 @@
   background-color: var(--section-private-bg);
 }
 .content {
-  min-height: 200px;
+  min-height: 150px;
   position: relative;
   display: flex;
   align-items: center;
@@ -24,14 +24,19 @@
   flex-wrap: wrap;
   gap: 10px;
   padding: 0 15px 10px;
-  border-bottom: 1px solid var(--olympus-white);
+  margin-bottom: 20px;
 }
 
 @media (min-width: 480px) {
+  .content {
+    min-height: 200px;
+  }
+
   .filtersWrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 8px 15px 10px;
+    margin-bottom: 40px;
   }
 }

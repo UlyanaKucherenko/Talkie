@@ -62,7 +62,7 @@ export const SectionPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
   }, [dispatch, userData, userStatus, currentPage, filter, searchQuery]);
   return (
     <section id="public-rooms" className={styles.sectionPublic} ref={ref}>
-      <h2>{t('rooms.public')}</h2>
+      <h2>{t('rooms.publicRoom')}</h2>
       <div className={styles.searchFilter}>
         <SearchFilter
           onFilterSubmit={(value) => setFilter(value)}

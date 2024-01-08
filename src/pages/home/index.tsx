@@ -34,7 +34,10 @@ const Home = () => {
   return (
     <div className={`container ${styles.homeContainer}`}>
       <section className={styles.sectionHero}>
-        <h1>{t('main.title')}</h1>
+        <h1>
+          {t('main.title')}
+          <span>{t('main.siteName')}</span>
+        </h1>
         <h3>{t('main.description')}</h3>
       </section>
 

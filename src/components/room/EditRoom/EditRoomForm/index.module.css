@@ -41,10 +41,6 @@ select.input {
   border-radius: 8px;
 }
 
-.input:focus,
-select.input:focus {
-  outline: none;
-}
 .input.error {
   border-color: var(--warning-color);
 }
