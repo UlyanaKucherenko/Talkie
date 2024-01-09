@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-underscore-dangle */
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { Room } from '../../../../utils/types/rooms.type';
 import styles from './index.module.css';
@@ -10,6 +13,7 @@ import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
 import { IconWrite } from '../../../icons/IconWrite';
 import { RoomActions } from '../../../room/RoomActions';
+import { IconUsers } from '../../../icons/IconUsers';
 
 type Props = {
   item: Room;
@@ -23,17 +27,20 @@ export const PublicRoomsListItem = ({
 }: Props) => {
   const { userData } = useSelector(userSelector);
   const dispatch: AppDispatch = useDispatch();
+  const { t } = useTranslation();
+
   const roomDelete = async () => {
-    await dispatch(roomsThunks.deleteRoom(item._id));
-    await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+    try {
+      await dispatch(roomsThunks.deleteRoom(item._id));
+      toast.success(t('success.publicRoomDeleted'));
+      await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+    } catch (error) {
+      console.error('Error deleting room', error);
+      toast.error(t('errors.publicRoomDeleted'));
+    }
   };
   return (
     <div className={styles.listItem}>
-      {isMember && (
-        <div className={styles.member}>
-          <IconWrite />
-        </div>
-      )}
       <NavLink
         onClick={(event) => {
           if (!userData) {
@@ -49,6 +56,19 @@ export const PublicRoomsListItem = ({
         // eslint-disable-next-line no-underscore-dangle
         key={item._id}
       >
+        <div className={styles.bottomIconsWrap}>
+          {isMember && (
+            <div className={styles.member}>
+              <IconWrite />
+            </div>
+          )}
+          {item.users?.length > 0 && (
+            <div className={styles.users}>
+              <IconUsers /> <span>{item.users?.length}</span>
+            </div>
+          )}
+        </div>
+
         <div className={styles.image}>
           {item?.img && <img src={item.img} alt={item.title} />}
         </div>

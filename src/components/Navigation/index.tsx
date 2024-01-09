@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { userSelector } from '../../store/user';
 import { Status } from '../../utils/enums/status.enum';
@@ -21,6 +21,8 @@ export const Navigation = ({ closeMenu, className }: Props) => {
   const disabledLink = !(userData && status === Status.Succeeded);
 
   const { t } = useTranslation();
+  const location = useLocation();
+  const tag = location.hash.replace('#', '');
 
   const showCreateRoomHandler = () => {
     if (closeMenu) closeMenu();
@@ -33,7 +35,9 @@ export const Navigation = ({ closeMenu, className }: Props) => {
         end
         to="/#public-rooms"
         onClick={closeMenu}
-        className={styles.navLink}
+        className={`${styles.navLink} ${
+          tag === 'public-rooms' ? styles.navLinkActive : ''
+        }`}
       >
         <span>{t('sidebar.publicRooms')}</span>
       </NavLink>
@@ -43,7 +47,7 @@ export const Navigation = ({ closeMenu, className }: Props) => {
         onClick={disabledLink ? undefined : closeMenu}
         className={`${styles.navLink} ${
           disabledLink ? styles.navLinkDisabled : ''
-        }`}
+        } ${tag === 'my-public-rooms' ? styles.navLinkActive : ''}`}
       >
         <span>{t('sidebar.myPublicRooms')}</span>
       </NavLink>
@@ -52,7 +56,7 @@ export const Navigation = ({ closeMenu, className }: Props) => {
         onClick={disabledLink ? undefined : closeMenu}
         className={`${styles.navLink} ${
           disabledLink ? styles.navLinkDisabled : ''
-        }`}
+        } ${tag === 'private-rooms' ? styles.navLinkActive : ''}`}
       >
         <span>{t('sidebar.privateRooms')}</span>
       </NavLink>

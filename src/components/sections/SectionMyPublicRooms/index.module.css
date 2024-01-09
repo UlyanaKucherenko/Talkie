@@ -1,6 +1,6 @@
 .sectionPublic {
   padding-top: 50px;
-  max-width: 1000px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
@@ -25,7 +25,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 48px;
 }
 
 .createRoom button {
@@ -33,5 +32,5 @@
 }
 
 .createRoom button:disabled {
-  color: var(--dark-gray)
+  color: var(--dark-gray);
 }

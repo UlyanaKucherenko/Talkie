@@ -33,7 +33,10 @@ export const SectionMyPublicRooms = forwardRef<HTMLDivElement>((_, ref) => {
     <section id="public-rooms" className={styles.sectionPublic} ref={ref}>
       <CreateRoomPopup show={showPopup} setIsShow={() => setShowPopup(false)} />
 
-      <RAccordion title={t('rooms.myPublicRooms')}>
+      <RAccordion
+        title={t('rooms.myPublicRooms')}
+        storageKey="myPublicRoomsSection"
+      >
         <div className={styles.content}>
           {myPublicRoomsStatus === Status.Loading && <RLoader />}
 
