@@ -21,7 +21,7 @@
 .owner {
   text-transform: lowercase;
   margin-left: auto;
-  font-size: 10px;
+  font-size: 14px;
   color: var(--font-main-color);
 }
 
