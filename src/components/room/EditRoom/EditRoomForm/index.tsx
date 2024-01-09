@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -8,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import { type Dispatch, type SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { i18n } from '../../../../libs/i18n';
 import styles from './index.module.css';
@@ -81,15 +83,21 @@ export const EditPublicRoomForm = ({
     if (!roomId) {
       return;
     }
-    await editPublicRoom({
-      id: roomId,
-      data: {
-        title: data.title,
-        ...(data.description && { description: data.description }),
-      },
-    });
-    await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
-    onClosePopup(true);
+    try {
+      await editPublicRoom({
+        id: roomId,
+        data: {
+          title: data.title,
+          ...(data.description && { description: data.description }),
+        },
+      });
+      await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+      onClosePopup(true);
+      toast.success(t('success.publicRoomEdited'));
+    } catch (error) {
+      console.error('Error editing room', error);
+      toast.error(t('errors.publicRoomEdited'));
+    }
   };
 
   return (

@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-underscore-dangle */
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { PrivateRoom } from '../../../../utils/types/rooms.type';
 import styles from './index.module.css';
@@ -17,10 +20,17 @@ export const PrivateRoomsListItem = ({ item }: PrivateRoomsListItemProps) => {
   const { _id: id, title, img, owner } = item;
   const dispatch: AppDispatch = useDispatch();
   const { userData } = useSelector(userSelector);
+  const { t } = useTranslation();
 
   const roomDelete = async () => {
-    await dispatch(roomsThunks.deleteRoom(id));
-    await dispatch(roomsThunks.getPrivateRooms({ page: 1 }));
+    try {
+      await dispatch(roomsThunks.deleteRoom(id));
+      toast.success(t('success.privateRoomDeleted'));
+      await dispatch(roomsThunks.getPrivateRooms({ page: 1 }));
+    } catch (error) {
+      console.error('Error deleting room', error);
+      toast.error(t('errors.privateRoomDeleted'));
+    }
   };
 
   return (

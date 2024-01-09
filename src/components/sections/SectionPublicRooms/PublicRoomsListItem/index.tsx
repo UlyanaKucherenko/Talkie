@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-underscore-dangle */
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { Room } from '../../../../utils/types/rooms.type';
 import styles from './index.module.css';
@@ -23,9 +26,17 @@ export const PublicRoomsListItem = ({
 }: Props) => {
   const { userData } = useSelector(userSelector);
   const dispatch: AppDispatch = useDispatch();
+  const { t } = useTranslation();
+
   const roomDelete = async () => {
-    await dispatch(roomsThunks.deleteRoom(item._id));
-    await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+    try {
+      await dispatch(roomsThunks.deleteRoom(item._id));
+      toast.success(t('success.publicRoomDeleted'));
+      await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+    } catch (error) {
+      console.error('Error deleting room', error);
+      toast.error(t('errors.publicRoomDeleted'));
+    }
   };
   return (
     <div className={styles.listItem}>

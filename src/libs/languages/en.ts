@@ -66,6 +66,13 @@ export const enTranslation = {
     pageNotFound: 'page not found',
     returnHome: 'Return to the main page',
   },
+  success: {
+    publicRoomEdited: 'Public room edited',
+    publicRoomCreated: 'Public room created',
+    privateRoomCreated: 'Private room created',
+    publicRoomDeleted: 'Public room deleted',
+    privateRoomDeleted: 'Private room deleted',
+  },
   errors: {
     userNameLengthValidation: 'Username must be 2-30 characters',
     userNameCharacterValidation: "Input only valid symbols('’._-)",
@@ -77,5 +84,10 @@ export const enTranslation = {
     publicRoomTopicValidation: 'Choose a topic',
     inputValidation:
       'The username must have at least 2 characters, but no more than 30.',
+    publicRoomEdited: 'Error editing public room',
+    publicRoomCreated: 'Error creating public room',
+    privateRoomCreated: 'Error creating private room',
+    publicRoomDeleted: 'Error deleting public room',
+    privateRoomDeleted: 'Error deleting private room',
   },
 } as const;

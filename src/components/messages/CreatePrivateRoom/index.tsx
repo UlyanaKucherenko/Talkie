@@ -1,8 +1,11 @@
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable import/no-extraneous-dependencies */
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
+import { toast } from 'react-toastify';
 import { AppDispatch } from '../../../store';
 import { useClickOutside } from '../../../hooks/use-click-outside';
 import { roomsThunks } from '../../../store/rooms';
@@ -30,6 +33,7 @@ export const CreatePrivateRoom = ({
   const navigate = useNavigate();
   const [showBtnSendPrivateMsg, setShowBtnSendPrivateMsg] = useState(false);
   const btnSendMsgRef = useRef<HTMLButtonElement>(null);
+  const { t } = useTranslation();
   let classNameAvatar = styles.avatarWrap;
   if (className) {
     classNameAvatar = `${classNameAvatar} ${className}`;
@@ -37,8 +41,9 @@ export const CreatePrivateRoom = ({
 
   useClickOutside(btnSendMsgRef, () => setShowBtnSendPrivateMsg(false));
 
-  const redirectToPrivateChat = (roomId: string) => {
+  const redirectToPrivateChat = (roomId: string, newRoom: boolean) => {
     navigate(`/private-chat/${roomId}`);
+    if (newRoom) toast.success(t('success.privateRoomCreated'));
   };
 
   const createPrivateRoom = async () => {
@@ -47,8 +52,10 @@ export const CreatePrivateRoom = ({
       if (res.payload) {
         // @ts-ignore
         const roomId = res.payload._id || res.payload?.roomId;
+        // @ts-ignore
+        const newRoom = !!res.payload._id;
         if (roomId) {
-          redirectToPrivateChat(roomId);
+          redirectToPrivateChat(roomId, newRoom);
           if (onClose) {
             onClose();
           }
@@ -56,9 +63,10 @@ export const CreatePrivateRoom = ({
         }
       }
 
-      console.warn('Invalid response payload:', res.payload);
+      toast.success(t('success.privateRoomCreated'));
     } catch (error) {
       console.error('Error executing createPrivateRoom thunk:', error);
+      toast.error(t('errors.privateRoomCreated'));
     }
   };
   return (
