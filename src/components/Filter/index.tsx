@@ -52,7 +52,7 @@ export const Filter = ({ onSubmit }: Props) => {
             {Topics[topicFilter as Topic]}
             <button
               type="button"
-              onClick={filterResetHandler}
+              onClick={() => filterResetHandler()}
               className={styles.resetBtn}
             >
               ×
