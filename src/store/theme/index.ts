@@ -8,7 +8,7 @@ export interface ITheme {
 }
 
 const initialState: ITheme = {
-  mode: ThemeEnum.LIGHT,
+  mode: ThemeEnum.DARK,
 };
 
 export const themeSlice = createSlice({
