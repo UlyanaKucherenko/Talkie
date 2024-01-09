@@ -12,14 +12,10 @@ import { ThemeEnum } from '../../utils/const';
 import { IconDarkTheme } from '../icons/IconDarkTheme';
 
 type ThemeLangSwitcherProps = {
-  colorIcon: 'dark' | 'light';
   className?: string;
 };
 
-export const ThemeLangSwitcher = ({
-  colorIcon = 'dark',
-  className,
-}: ThemeLangSwitcherProps) => {
+export const ThemeLangSwitcher = ({ className }: ThemeLangSwitcherProps) => {
   const { i18n } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { mode } = useSelector(themeSelector);

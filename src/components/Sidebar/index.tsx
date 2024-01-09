@@ -86,10 +86,7 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
 
         <div className={styles.navWrap}>
           <Navigation className={styles.navigation} closeMenu={closeMenu} />
-          <ThemeLangSwitcher
-            colorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
-            className={styles.wrapThemLang}
-          />
+          <ThemeLangSwitcher className={styles.wrapThemLang} />
         </div>
 
         <div className={styles.bottomWrap}>
