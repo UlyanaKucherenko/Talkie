@@ -56,16 +56,18 @@ export const PublicRoomsListItem = ({
         // eslint-disable-next-line no-underscore-dangle
         key={item._id}
       >
-        {isMember && (
-          <div className={styles.member}>
-            <IconWrite />
-          </div>
-        )}
-        {item.users?.length > 0 && (
-          <div className={styles.users}>
-            <IconUsers /> <span>{item.users?.length}</span>
-          </div>
-        )}
+        <div className={styles.bottomIconsWrap}>
+          {isMember && (
+            <div className={styles.member}>
+              <IconWrite />
+            </div>
+          )}
+          {item.users?.length > 0 && (
+            <div className={styles.users}>
+              <IconUsers /> <span>{item.users?.length}</span>
+            </div>
+          )}
+        </div>
 
         <div className={styles.image}>
           {item?.img && <img src={item.img} alt={item.title} />}

@@ -32,5 +32,11 @@
   text-align: center;
   color: var(--font-main-color);
   font-family: Inter;
-  font-size: 12px;
+  font-size: 16px;
+}
+
+@media (min-width: 420px) {
+  .dayDate {
+    font-size: 18px;
+  }
 }

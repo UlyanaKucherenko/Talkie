@@ -99,26 +99,31 @@
   color: var(--font-main-color);
 }
 
-.member {
+.bottomIconsWrap {
   position: absolute;
   display: flex;
-  bottom: 16px;
+  bottom: 10px;
   right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.member {
+  display: flex;
   width: 25px;
   height: 25px;
   color: var(--text-room-card);
 }
 
 .users {
-  position: absolute;
-  top: 10px;
-  right: 16px;
   color: var(--text-room-card);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 
   svg {
