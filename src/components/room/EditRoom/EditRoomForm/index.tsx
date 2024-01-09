@@ -19,6 +19,7 @@ import { CreateRoomData, Room } from '../../../../utils/types/rooms.type';
 import { roomsThunks } from '../../../../store/rooms';
 import { AppDispatch } from '../../../../store';
 import { IconPlus } from '../../../icons/IconPlus';
+import { Topics } from '../../../../utils/constants/topic';
 
 const editPublicRoomSchema = z.object({
   title: z
@@ -133,7 +134,7 @@ export const EditPublicRoomForm = ({
       </div>
       <div className={styles.formControl}>
         <label>{t('rooms.topic')}</label>
-        {roomData?.topic}
+        {roomData && Topics[roomData.topic]}
       </div>
       <div className={styles.formAction}>
         <RButton type="submit" color="secondary">
