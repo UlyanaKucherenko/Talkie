@@ -1,4 +1,5 @@
 .listItem {
+  max-width: 350px;
   position: relative;
   border-radius: 10px;
   border: 1px solid #8ef4ae;
@@ -37,13 +38,13 @@
 .image {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .image img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 .title {
   color: var(--text-room-card);
@@ -60,7 +61,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 6px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: var(--text-room-card);
   text-align: center;
   font-size: 16px;
@@ -113,8 +115,16 @@
   z-index: 2;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .listItem {
-    max-width: 350px;
+    max-width: 100%;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .topic {
+    font-size: 16px;
   }
 }

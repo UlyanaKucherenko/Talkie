@@ -199,25 +199,6 @@ export const roomsSlice = createSlice({
           status: Status.Failed,
           error: error.message || null,
         })
-      )
-      // .addCase(roomsThunks.getRoomById.pending, (state) => ({
-      //   ...state,
-      //   statusRoom: Status.Loading,
-      // }))
-      // .addCase(
-      //   roomsThunks.getRoomById.fulfilled,
-      //   (state, { payload }: PayloadAction<Room>) => ({
-      //     ...state,
-      //     statusRoom: Status.Succeeded,
-      //     roomData: {},
-      //   })
-      // )
-      .addCase(
-        roomsThunks.getRoomById.rejected,
-        (state): RoomsState => ({
-          ...state,
-          statusRoom: Status.Failed,
-        })
       );
   },
 });

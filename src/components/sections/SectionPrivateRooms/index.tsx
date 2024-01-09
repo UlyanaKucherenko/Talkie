@@ -22,14 +22,23 @@ export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
   const { privateRoomsData, privateRoomsStatus } = useSelector(roomsSelector);
 
   const searchHandler = (value: string) => {
-    setSearchQuery(value);
+    if (value.length > 2) {
+      setSearchQuery(value);
+    } else {
+      setSearchQuery('');
+    }
   };
 
   useEffect(() => {
+    let page = currentPage;
+
+    if (searchQuery) {
+      page = 1;
+      setCurrentPage(1);
+    }
+
     const getPrivateRooms = async () => {
-      await dispatch(
-        roomsThunks.getPrivateRooms({ page: currentPage, query: searchQuery })
-      );
+      await dispatch(roomsThunks.getPrivateRooms({ page, query: searchQuery }));
     };
 
     getPrivateRooms();
@@ -45,13 +54,14 @@ export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
           <div>
             <Search onChange={searchHandler} />
           </div>
-          {searchQuery && privateRoomsData?.rooms && (
-            <div> Search results: {privateRoomsData?.rooms.length}</div>
-          )}
         </div>
         <div className={styles.content}>
           {privateRoomsStatus === Status.Loading && <RLoader />}
-          {privateRoomsData?.rooms.length === 0 &&
+          {searchQuery && privateRoomsData?.rooms.length === 0 && (
+            <span className={styles.textResults}>{t('search.notFound')}</span>
+          )}
+          {!searchQuery &&
+            privateRoomsData?.rooms.length === 0 &&
             privateRoomsStatus === Status.Succeeded && <RListIsEmpty />}
           {privateRoomsData &&
             privateRoomsData?.rooms.length > 0 &&
