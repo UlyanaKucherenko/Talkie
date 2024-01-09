@@ -29,6 +29,10 @@
 }
 
 @media (min-width: 768px) {
+  .sectionPrivate {
+    margin-top: 80px;
+  }
+
   .content {
     min-height: 200px;
   }
