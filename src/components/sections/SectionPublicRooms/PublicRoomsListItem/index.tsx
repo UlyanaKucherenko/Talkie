@@ -13,6 +13,7 @@ import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
 import { IconWrite } from '../../../icons/IconWrite';
 import { RoomActions } from '../../../room/RoomActions';
+import { IconUsers } from '../../../icons/IconUsers';
 
 type Props = {
   item: Room;
@@ -40,11 +41,6 @@ export const PublicRoomsListItem = ({
   };
   return (
     <div className={styles.listItem}>
-      {isMember && (
-        <div className={styles.member}>
-          <IconWrite />
-        </div>
-      )}
       <NavLink
         onClick={(event) => {
           if (!userData) {
@@ -60,6 +56,17 @@ export const PublicRoomsListItem = ({
         // eslint-disable-next-line no-underscore-dangle
         key={item._id}
       >
+        {isMember && (
+          <div className={styles.member}>
+            <IconWrite />
+          </div>
+        )}
+        {item.users?.length > 0 && (
+          <div className={styles.users}>
+            <IconUsers /> <span>{item.users?.length}</span>
+          </div>
+        )}
+
         <div className={styles.image}>
           {item?.img && <img src={item.img} alt={item.title} />}
         </div>
