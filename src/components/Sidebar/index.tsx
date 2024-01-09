@@ -28,7 +28,7 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
     const [horizontalSidebar, setHorizontalSidebar] = useState<boolean>(false);
 
     const sidebarStyle = {
-      transform: menuOpen ? 'translate(0, 0)' : ' translate(-102%, 0)',
+      transform: menuOpen ? 'translate(0, 0)' : ' translate(-110%, 0)',
     };
 
     useEffect(() => {

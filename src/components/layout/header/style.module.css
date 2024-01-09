@@ -62,6 +62,10 @@
 .username {
   display: none;
   color: var(--rbutton-bg-color);
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .avatar {
