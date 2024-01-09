@@ -47,4 +47,8 @@
     cursor: not-allowed;
     color: var(--disabled);
   }
+
+  .navLinkActive {
+    color: var(--navlink-hover-color);
+  }
 }
