@@ -40,15 +40,14 @@ export const ThemeLangSwitcher = ({
       <RButtonIcon
         icon={i18n.language === 'en' ? IconUA : IconEN}
         type="button"
-        defaultColorIcon={colorIcon}
         onClick={() =>
           i18n.changeLanguage(i18n.language === 'en' ? 'ua' : 'en')
         }
+        className={styles.langButton}
       />
       <RButtonIcon
         icon={mode === ThemeEnum.DARK ? IconLightTheme : IconDarkTheme}
         type="button"
-        defaultColorIcon={colorIcon}
         onClick={() => onSwitchTheme()}
         className={styles.themeButton}
       />

@@ -127,6 +127,7 @@
   align-items: flex-start;
   gap: 14px;
   width: 100%;
+  color: var(--navlink-color);
 }
 
 .bottomWrap {

@@ -4,6 +4,10 @@
 }
 
 .themeButton {
-  color: var(--header-font-color);
+  color: inherit;
   width: 25px;
+}
+
+.langButton {
+  color: inherit;
 }

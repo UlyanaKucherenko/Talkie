@@ -55,6 +55,7 @@
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
+  min-height: 40px;
 }
 
 .description {
