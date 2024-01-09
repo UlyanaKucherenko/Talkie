@@ -49,7 +49,7 @@ export const FilterForm = forwardRef<Ref, Props>(
           </div>
         ))}
         <div className={styles.formAction}>
-          <RButton type="submit" color="secondary">
+          <RButton type="submit" color="secondary" disabled={!value}>
             Apply
           </RButton>
         </div>

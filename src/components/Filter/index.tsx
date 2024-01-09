@@ -25,6 +25,7 @@ export const Filter = ({ onSubmit }: Props) => {
 
   const filterFormHandler = (event: React.FormEvent) => {
     event.preventDefault();
+    if (!topicFilter) return;
     onSubmit(topicFilter as TopicState);
     setIsFilterApplied(true);
     setShowFilter(false);

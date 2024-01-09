@@ -98,7 +98,7 @@
     right: 20px;
     left: auto;
     width: 307px;
-    height: calc(100dvh - 103px);
+    height: 70dvb;
     transform: none;
     border: 1px solid var(--olympus-white);
     border-radius: 8px;
