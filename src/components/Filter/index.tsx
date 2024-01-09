@@ -30,11 +30,13 @@ export const Filter = ({ onSubmit }: Props) => {
     setShowFilter(false);
   };
 
-  const filterResetHandler = () => {
+  const filterResetHandler = (hideForm = true) => {
     onSubmit('');
     setTopicFilter('');
     setIsFilterApplied(false);
-    setShowFilter(false);
+    if (hideForm) {
+      setShowFilter(false);
+    }
   };
 
   return (
@@ -50,7 +52,7 @@ export const Filter = ({ onSubmit }: Props) => {
             {Topics[topicFilter as Topic]}
             <button
               type="button"
-              onClick={filterResetHandler}
+              onClick={() => filterResetHandler()}
               className={styles.resetBtn}
             >
               ×

@@ -5,7 +5,7 @@
   transform: translateX(-50%);
   width: 100%;
   max-width: 100%;
-  height: calc(100dvh - 150px);
+  height: calc(100dvh - 103px);
   z-index: 10;
   background: var(--background-color);
   overflow: hidden;
@@ -98,6 +98,7 @@
     right: 20px;
     left: auto;
     width: 307px;
+    height: calc(100dvh - 103px);
     transform: none;
     border: 1px solid var(--olympus-white);
     border-radius: 8px;
