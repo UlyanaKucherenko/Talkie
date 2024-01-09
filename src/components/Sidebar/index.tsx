@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useEffect, forwardRef } from 'react';
+import { useEffect, forwardRef, useState } from 'react';
 
 import styles from './index.module.css';
 import { themeSelector } from '../../store/theme';
@@ -25,6 +25,7 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
     const { status, userData } = useSelector(userSelector);
     const { t } = useTranslation();
     const { mode } = useSelector(themeSelector);
+    const [horizontalSidebar, setHorizontalSidebar] = useState<boolean>(false);
 
     const sidebarStyle = {
       transform: menuOpen ? 'translate(0, 0)' : ' translate(-102%, 0)',
@@ -37,6 +38,9 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
         } else {
           document.body.style.overflow = 'visible';
         }
+
+        const isHorizontal = window.innerHeight <= 420;
+        setHorizontalSidebar(isHorizontal);
       };
 
       window.addEventListener('resize', handleWindowResize);
@@ -49,7 +53,13 @@ const Sidebar = forwardRef<Ref, SidebarProps>(
     }, [menuOpen]);
 
     return (
-      <div className={styles.sidebar} style={sidebarStyle} ref={ref}>
+      <div
+        className={`${styles.sidebar} ${
+          horizontalSidebar ? styles.horizontalSidebarStyle : ''
+        }`}
+        style={sidebarStyle}
+        ref={ref}
+      >
         <RButtonIcon
           icon={IconClose}
           type="button"

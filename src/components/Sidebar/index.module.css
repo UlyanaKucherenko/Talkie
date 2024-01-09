@@ -184,8 +184,40 @@
   margin-top: 30px;
 }
 
-@media (min-width: 480px) {
+.horizontalSidebarStyle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontalSidebarStyle > .bottomWrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.horizontalSidebarStyle > .navWrap {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 420px) {
+  .navWrap {
+    width: 30%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 900px) {
   .sidebar {
     width: 380px;
+  }
+
+  .navWrap {
+    width: 100%;
+    margin: 0 auto;
   }
 }
