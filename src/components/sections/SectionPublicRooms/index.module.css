@@ -1,23 +1,12 @@
 .sectionPublic {
   padding-top: 50px;
-  max-width: 1000px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
 
-h2 button {
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: inherit;
-  color: inherit;
-  width: max-content;
+.titleSection {
+  padding: 15px;
 }
 
 .content {
@@ -28,14 +17,13 @@ h2 button {
 .searchFilter {
   display: flex;
   width: 100%;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 20px 0;
   margin-bottom: 40px;
 }
 
-
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .searchFilter {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }

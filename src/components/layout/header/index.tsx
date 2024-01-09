@@ -47,12 +47,12 @@ const Header = ({ openMenu }: HeaderProps) => {
                 </RButton>
               )}
               <div className={styles.desctopSwitcher}>
-                <ThemeLangSwitcher colorIcon="light" />
+                <ThemeLangSwitcher />
               </div>
               {userData && status === Status.Succeeded && (
                 <div className={styles.user}>
                   <div className={styles.mobileSwitcher}>
-                    <ThemeLangSwitcher colorIcon="light" />
+                    <ThemeLangSwitcher />
                   </div>
                   <div className={styles.usernameWrap}>
                     <div className={styles.avatar}>

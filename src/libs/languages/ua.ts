@@ -67,6 +67,13 @@ export const uaTranslation = {
     pageNotFound: 'сторінку не знайдено',
     returnHome: 'Повернутися на головну сторінку',
   },
+  success: {
+    publicRoomEdited: 'Відредагована публічна кімната',
+    publicRoomCreated: 'Створена публічна кімната',
+    privateRoomCreated: 'Створена приватна кімната',
+    publicRoomDeleted: 'Видалена публічна кімната',
+    privateRoomDeleted: 'Видалена приватна кімната',
+  },
   errors: {
     userNameLengthValidation: "Ім'я тільки з 2-30 символів",
     userNameCharacterValidation: "Введіть тільки допустимі символи('’._-)",
@@ -77,5 +84,10 @@ export const uaTranslation = {
     publicRoomDescriptionCharacterValidation: `Введіть тільки допустимі символи(.,&@'’():;!?"$*+/%-=_)`,
     publicRoomTopicValidation: 'Виберіть тему',
     inputValidation: 'Імя має бути не менше 2 символів і не більше 30',
+    publicRoomEdited: 'Помилка редаговання публічної кімнати',
+    publicRoomCreated: 'Помилка створення публічної кімнати',
+    privateRoomCreated: 'Помилка створення приватної кімната',
+    publicRoomDeleted: 'Помилка видалення  публічної кімната',
+    privateRoomDeleted: 'Помилка видалення приватної кімната',
   },
 } as const;

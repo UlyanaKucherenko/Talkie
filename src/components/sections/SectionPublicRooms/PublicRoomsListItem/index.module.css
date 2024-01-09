@@ -1,4 +1,5 @@
 .listItem {
+  max-width: 350px;
   position: relative;
   border-radius: 10px;
   border: 1px solid #8ef4ae;
@@ -14,6 +15,7 @@
   overflow: hidden;
 
   border-radius: 8px;
+  transition: background 0.2s ease;
 
   &:hover {
     background: linear-gradient(
@@ -33,17 +35,18 @@
   text-decoration: none;
   height: 100%;
   padding: 15px 10px 16px;
+  /* transition: padding 0.2s ease; */
 }
 .image {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .image img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 .title {
   color: var(--text-room-card);
@@ -52,6 +55,7 @@
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
+  min-height: 40px;
 }
 
 .description {
@@ -60,7 +64,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 6px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: var(--text-room-card);
   text-align: center;
   font-size: 16px;
@@ -94,15 +99,6 @@
   color: var(--font-main-color);
 }
 
-.listItem:hover .btnDelete {
-  display: block;
-}
-
-.listItem:hover .title,
-.listItem:hover .description {
-  color: var(--dark-white);
-}
-
 .member {
   position: absolute;
   display: flex;
@@ -110,11 +106,49 @@
   right: 10px;
   width: 25px;
   height: 25px;
-  z-index: 2;
+  color: var(--text-room-card);
 }
 
-@media screen and (max-width: 768px) {
+.users {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  color: var(--text-room-card);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+
+  svg {
+    width: 40px;
+    height: 20px;
+  }
+}
+
+.listItem:hover .btnDelete {
+  display: block;
+}
+
+.listItem:hover .title,
+.listItem:hover .description,
+.listItem:hover .member,
+.listItem:hover .users {
+  color: var(--dark-white);
+  transition: color 0.2s ease;
+}
+
+@media screen and (min-width: 768px) {
   .listItem {
-    max-width: 350px;
+    max-width: 100%;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .topic {
+    font-size: 16px;
   }
 }

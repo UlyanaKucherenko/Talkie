@@ -1,30 +1,4 @@
-// type IconCloseProps = {
-//   state: 'hover' | 'active' | 'default';
-//   defaultColor?: 'light' | 'dark';
-// };
-
 export const IconClose = () => (
-  // const iconFillDefault =
-  //   defaultColor === 'light'
-  //     ? 'var( --icon-lang-light)'
-  //     : 'var(--icon-lang-dark)';
-  // let iconFill = iconFillDefault;
-
-  // switch (state) {
-  //   case 'hover': {
-  //     iconFill = 'var(--clean-pool)';
-  //     break;
-  //   }
-  //   case 'active': {
-  //     iconFill = 'var(--clean-pool)';
-  //     break;
-  //   }
-  //   default: {
-  //     iconFill = iconFillDefault;
-  //     break;
-  //   }
-  // }
-
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

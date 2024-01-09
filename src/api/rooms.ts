@@ -144,7 +144,7 @@ export const deleteRoom = async (id: string): Promise<unknown> => {
         ApiKey: token,
       },
     });
-    console.log('deleteRoom', res);
+    // console.log('deleteRoom', res);
     return res.data;
   } catch (error) {
     console.log('Error deleteRoom ', error);

@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <div className={`container ${styles.homeContainer}`}>
-      <section className={styles.sectionHero}>
+      <section className={styles.sectionHero} id="hero">
         <h1>
           {t('main.title')}
           <span>{t('main.siteName')}</span>
