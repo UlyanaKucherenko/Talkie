@@ -91,7 +91,7 @@
   --text-room-card: var(--dark-white);
   --section-private-bg: var(--counts-black);
   --section-private-border: transparent;
-  --scrollbar-color: var(--dark-blue);
+  --scrollbar-color: var(--peptalk);
   --site-name: var(--brain-freeze);
   --pagination-color: var(--light-white);
   --create-form-input-border: var(--counts-black);
@@ -212,7 +212,7 @@ li {
   list-style: none;
 }
 
-.custom-scroll {
+body, .custom-scroll {
   &::-webkit-scrollbar {
     height: var(--scrollbar-width);
     width: var(--scrollbar-width);

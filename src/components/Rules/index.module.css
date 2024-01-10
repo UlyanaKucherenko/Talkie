@@ -1,0 +1,25 @@
+.rules {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.rules h2 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.rules svg {
+  width: 15px;
+}
+
+.rules ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+}
