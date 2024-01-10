@@ -66,14 +66,13 @@ export const enTranslation = {
   rules: {
     title: 'See the rules',
     items: [
-      'Будьте шанобливі: Ставтеся до всіх учасників з добротою та повагою. Уникайте будь-яких форм дискримінації, мови ворожнечі та особистих нападів',
-      "Залишайтеся в темі: Підтримуйте розмову на тему здоров'я та благополуччя. Обговорення, що не стосуються теми, можуть бути перенаправлені на відповідні канали",
-      'Уникайте медичних порад: Хоча обмін особистим досвідом вітається, утримайтеся від надання медичних порад. Зверніться до медичного працівника за індивідуальною консультацією.',
-      'Інформація, заснована на фактах: Діліться точною та науково обґрунтованою інформацією. Посилайтеся на джерела, якщо це доречно',
-      'Конфіденційність має значення: Захищайте свою приватність та приватність інших. Не діліться особистою або конфіденційною інформацією',
-      'Використовуйте конструктивну мову: Заохочуйте позитивні та конструктивні дискусії. Дебати вітаються, але з повагою ставтеся до різних думок',
-
-      'Без спаму: уникайте надмірних або повторюваних повідомлень. Слідкуйте за частотою спілкування в чаті',
+      'Be Respectful: Treat all participants with kindness and respect. Avoid any form of discrimination, hate speech, or personal attacks.',
+      'Stay On Topic: Keep the conversation related to health and wellness. Off-topic discussions may be redirected to appropriate channels.',
+      'Avoid Medical Advice: While sharing personal experiences is welcome, refrain from providing medical advice. Consult a healthcare professional for personalized guidance.',
+      'Fact-Based Information: Share accurate and evidence-based information. Cite sources if applicable.',
+      'Privacy Matters: Protect your privacy and the privacy of others. Do not share personal or confidential information.',
+      'Use Constructive Language: Encourage positive and constructive discussions. Debates are welcome, but be respectful of differing opinions.',
+      'No Spam: Avoid excessive or repetitive messaging. Stay mindful of chat frequency.',
     ],
   },
   pageError: {
