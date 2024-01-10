@@ -49,6 +49,7 @@ export const enTranslation = {
     public: 'public',
     createdRooms: 'Created rooms',
     listIsEmpty: 'List is empty',
+    more: 'more',
   },
   search: {
     title: 'Search Result',

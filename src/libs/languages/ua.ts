@@ -50,6 +50,7 @@ export const uaTranslation = {
     public: 'публічну',
     createdRooms: 'Створено кімнат',
     listIsEmpty: 'Список порожній',
+    more: 'ще',
   },
   search: {
     title: 'Результати пошуку',
