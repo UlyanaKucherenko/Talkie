@@ -6,7 +6,7 @@ import { IconArrowUp } from '../icons/IconArrowUp';
 type RAccordionProps = {
   title: string;
   children: ReactNode;
-  storageKey: string;
+  storageKey?: string;
   initialState?: boolean;
 };
 
@@ -17,12 +17,17 @@ export const RAccordion = ({
   initialState = true,
 }: RAccordionProps) => {
   const [isOpen, setOpen] = useState<boolean>(() => {
-    const storedState = localStorage.getItem(storageKey);
-    return storedState ? JSON.parse(storedState) : initialState;
+    if (storageKey) {
+      const storedState = localStorage.getItem(storageKey);
+      return storedState ? JSON.parse(storedState) : initialState;
+    }
+    return initialState;
   });
 
   useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify(isOpen));
+    if (storageKey) {
+      localStorage.setItem(storageKey, JSON.stringify(isOpen));
+    }
   }, [isOpen, storageKey]);
 
   const toggleAccordion = () => {

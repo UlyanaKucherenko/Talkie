@@ -95,6 +95,7 @@
   --site-name: var(--brain-freeze);
   --pagination-color: var(--light-white);
   --create-form-input-border: var(--counts-black);
+  --section-rules-border: transparent;
 
   /* theme light */
   .lightTheme {
@@ -155,6 +156,7 @@
     --site-name: var(--clean-pool);
     --pagination-color: var(--counts-black);
     --create-form-input-border: var(--counts-black);
+    --section-rules-border: var(--counts-black);
   }
 }
 
@@ -212,7 +214,8 @@ li {
   list-style: none;
 }
 
-body, .custom-scroll {
+body,
+.custom-scroll {
   &::-webkit-scrollbar {
     height: var(--scrollbar-width);
     width: var(--scrollbar-width);

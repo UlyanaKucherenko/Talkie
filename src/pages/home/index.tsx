@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 
 import { userSelector } from '../../store/user';
 import { Status } from '../../utils/enums/status.enum';
@@ -9,12 +8,11 @@ import { SectionPublicRooms } from '../../components/sections/SectionPublicRooms
 import { SectionPrivateRooms } from '../../components/sections/SectionPrivateRooms';
 import { SectionMyPublicRooms } from '../../components/sections/SectionMyPublicRooms';
 import styles from './index.module.css';
-import { Rulles } from '../../components/Rules';
+import { Hero } from '../../components/sections/Hero';
 
 const Home = () => {
   const { status, userData } = useSelector(userSelector);
   const location = useLocation();
-  const { t } = useTranslation();
   const publicRooms = useRef<HTMLDivElement>(null);
   const myPublicRooms = useRef<HTMLDivElement>(null);
   const privateRooms = useRef<HTMLDivElement>(null);
@@ -33,24 +31,19 @@ const Home = () => {
   }, [location]);
 
   return (
-    <div className={`container ${styles.homeContainer}`}>
-      <section className={styles.sectionHero} id="hero">
-        <h1>
-          {t('main.title')}
-          <span>{t('main.siteName')}</span>
-        </h1>
-        <h3>{t('main.description')}</h3>
-      </section>
-      <Rulles />
-      <SectionPublicRooms ref={publicRooms} />
+    <div className={` ${styles.homeContainer}`}>
+      <Hero />
+      <div className="container">
+        <SectionPublicRooms ref={publicRooms} />
 
-      {userData && status === Status.Succeeded && (
-        <SectionMyPublicRooms ref={myPublicRooms} />
-      )}
+        {userData && status === Status.Succeeded && (
+          <SectionMyPublicRooms ref={myPublicRooms} />
+        )}
 
-      {userData && status === Status.Succeeded && (
-        <SectionPrivateRooms ref={privateRooms} />
-      )}
+        {userData && status === Status.Succeeded && (
+          <SectionPrivateRooms ref={privateRooms} />
+        )}
+      </div>
     </div>
   );
 };
