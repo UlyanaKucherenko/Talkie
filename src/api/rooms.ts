@@ -63,12 +63,25 @@ export const getPublicRoomsWithoutOwn = async ({
 
 export const getRoomById = async (id: string): Promise<PublicRoomsData> => {
   const token = getToken();
-  const res = await axios.get(`${apiRoutes.rooms}/${id}`, {
-    headers: {
-      ApiKey: token,
-    },
-  });
-  return res.data;
+  try {
+    const res = await axios.get(`${apiRoutes.rooms}/${id}`, {
+      headers: {
+        ApiKey: token,
+      },
+    });
+    return res.data;
+  } catch (error: any) {
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      error.response.status === 404
+    ) {
+      window.location.href = '/404';
+    } else {
+      console.log('Error creating public room', error);
+    }
+    throw error;
+  }
 };
 
 export const createPublicRoom = async (data: CreateRoomData): Promise<any> => {

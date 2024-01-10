@@ -30,14 +30,14 @@ export const SectionPrivateRooms = forwardRef<HTMLDivElement>((_, ref) => {
   };
 
   useEffect(() => {
-    let page = currentPage;
-
-    if (searchQuery) {
-      page = 1;
-      setCurrentPage(1);
-    }
-
     const getPrivateRooms = async () => {
+      let page = currentPage;
+
+      if (searchQuery) {
+        page = 1;
+        setCurrentPage(1);
+      }
+
       await dispatch(roomsThunks.getPrivateRooms({ page, query: searchQuery }));
     };
 
