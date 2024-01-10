@@ -82,13 +82,20 @@
   border-radius: 10px;
   color: var(--font-main-color);
   background-color: var(--chat-details-members-bg);
-  
 }
 
 .membersTitle {
   text-align: center;
   font-size: 14px;
   text-transform: capitalize;
+}
+
+.btnMore {
+  color: var(--brain-freeze);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 @media screen and (min-width: 480px) {

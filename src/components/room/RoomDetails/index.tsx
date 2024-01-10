@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +22,15 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
   const room = useLoaderData() as Room;
   const { mode } = useSelector(themeSelector);
   const { t } = useTranslation();
+  const [showFullText, setShowFullText] = useState(false);
 
+  let displayedText = '';
+
+  if (room) {
+    displayedText = showFullText
+      ? room.description ?? ''
+      : (room.description ?? '').slice(0, 100);
+  }
   return (
     <div className={`${styles.roomDetails}`} ref={ref}>
       <div className={styles.roomImage}>
@@ -44,7 +52,18 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
             <div className={styles.roomCreatedAt}>
               {new Date(room.createdAt).toLocaleDateString('uk-UA')}
             </div>
-            <div className={styles.roomDescription}>{room.description}</div>
+            <div className={styles.roomDescription}>
+              {displayedText}{' '}
+              {!showFullText && (
+                <button
+                  type="button"
+                  className={styles.btnMore}
+                  onClick={() => setShowFullText(true)}
+                >
+                  ...{t('rooms.more')}
+                </button>
+              )}
+            </div>
             <div className={styles.members}>
               <div className={styles.membersTitle}>{t('chat.members')}</div>
               <RoomDetailsUserList
