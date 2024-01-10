@@ -13,17 +13,23 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://localhost:5173/" />
+    <meta property="og:url" content="https://develop-chat-tc.netlify.app/" />
     <meta property="og:title" content="Talkie" />
     <meta
       property="og:description"
       content="Chat, Connect, Stay In Touch And Make Communication Simple."
     />
-    <meta property="og:image" content="http://localhost:5173/meta-tags.png" />
+    <meta
+      property="og:image"
+      content="https://develop-chat-tc.netlify.app/main.png"
+    />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="http://localhost:5173/" />
+    <meta
+      property="twitter:url"
+      content="https://develop-chat-tc.netlify.app/"
+    />
     <meta property="twitter:title" content="Talkie" />
     <meta
       property="twitter:description"
@@ -31,21 +37,10 @@
     />
     <meta
       property="twitter:image"
-      content="http://localhost:5173/meta-tags.png"
+      content="https://develop-chat-tc.netlify.app/main.png"
     />
 
     <!-- Meta Tags Generated with https://metatags.io -->
-
-    <script>
-      // Your logic to dynamically generate the URL
-      const dynamicUrl = window.location.origin;
-
-      // Update the og:url meta tag with the dynamically generated URL
-      const ogUrlMetaTag = document.querySelector('meta[property="og:url"]');
-      if (ogUrlMetaTag) {
-        ogUrlMetaTag.content = dynamicUrl;
-      }
-    </script>
   </head>
   <body>
     <div id="root"></div>
