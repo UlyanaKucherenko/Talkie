@@ -1,6 +1,13 @@
 .rules {
   margin: 0 auto;
   max-width: 900px;
+  background-color: var(--filter-bg);
+  border-radius: 8px;
+  border: 1px solid var(--section-private-border);
+}
+
+.rules button {
+  padding: 8px;
 }
 
 .rules h2 {
@@ -8,10 +15,13 @@
   font-style: normal;
   font-weight: 500;
   text-transform: capitalize;
+  background-color: var(--filter-bg);
+  color: var(--dark-gray);
 }
 
 .rules svg {
   width: 15px;
+  color: var(--dark-gray);
 }
 
 .rules ul {
@@ -19,7 +29,9 @@
   flex-direction: column;
   gap: 10px;
   text-align: left;
-  font-family: Inter;
   font-size: 14px;
   font-weight: 400;
+  color: var(--dark-gray);
+  padding: 10px;
+  text-align: justify;
 }

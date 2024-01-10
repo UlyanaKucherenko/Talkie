@@ -5,6 +5,7 @@ export const enTranslation = {
     description: 'Chat, connect, Stay in touch and make communication simple.',
     ourTeem: 'Our Team',
     version: 'Version',
+    scrollDown: 'scroll down',
   },
   sidebar: {
     publicRooms: 'Public Rooms',
