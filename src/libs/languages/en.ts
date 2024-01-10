@@ -39,7 +39,7 @@ export const enTranslation = {
     createPublicRoom: 'Create My Public Room',
     editPublicRoom: 'Edit My Public Room',
     btnEditRoom: 'Edit room',
-    btnCreateRoom: 'Create кімнату',
+    btnCreateRoom: 'Create room',
     edit: 'Edit',
     delete: 'Delete',
     yes: 'Yes',
