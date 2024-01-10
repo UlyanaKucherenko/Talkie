@@ -95,6 +95,7 @@
   --site-name: var(--brain-freeze);
   --pagination-color: var(--light-white);
   --create-form-input-border: var(--counts-black);
+  --create-form-input-border-default: #757575;
   --section-rules-border: transparent;
 
   /* theme light */
@@ -156,6 +157,7 @@
     --site-name: var(--clean-pool);
     --pagination-color: var(--counts-black);
     --create-form-input-border: var(--counts-black);
+    --create-form-input-border-default: #757575;
     --section-rules-border: var(--counts-black);
   }
 }
