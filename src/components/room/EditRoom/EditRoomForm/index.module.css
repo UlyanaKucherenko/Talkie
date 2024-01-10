@@ -28,6 +28,7 @@
 
 .input {
   border: none;
+  border-radius: 0;
   height: 26px;
   background: none;
   color: var(--create-form-input-border);
