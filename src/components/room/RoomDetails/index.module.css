@@ -9,13 +9,15 @@
   z-index: 10;
   background: var(--background-color);
   overflow: hidden;
-  overflow-y: auto;
   transition: all 0.3s ease;
+  padding-bottom: 50px;
 }
 
 .container {
   padding: 16px;
-  height: 450px;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .roomImage {
@@ -76,7 +78,7 @@
   border: 1px solid var(--chat-details-members-border);
   padding-top: 12px;
   min-height: 100px;
-  overflow: hidden;
+
   border-radius: 10px;
   color: var(--font-main-color);
   background-color: var(--chat-details-members-bg);

@@ -9,6 +9,7 @@ import { SectionPublicRooms } from '../../components/sections/SectionPublicRooms
 import { SectionPrivateRooms } from '../../components/sections/SectionPrivateRooms';
 import { SectionMyPublicRooms } from '../../components/sections/SectionMyPublicRooms';
 import styles from './index.module.css';
+import { Rulles } from '../../components/Rules';
 
 const Home = () => {
   const { status, userData } = useSelector(userSelector);
@@ -40,7 +41,7 @@ const Home = () => {
         </h1>
         <h3>{t('main.description')}</h3>
       </section>
-
+      <Rulles />
       <SectionPublicRooms ref={publicRooms} />
 
       {userData && status === Status.Succeeded && (
