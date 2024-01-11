@@ -48,8 +48,10 @@ export const NewMessageForm = ({
         />
         <RButtonIcon icon={IconSend} type="submit" className={styles.send} />
 
-        {errorMessage && (
-          <div className={styles.textValidError}>{errorMessage}</div>
+        {(errorMessage || value.length > 980) && (
+          <div className={styles.textValidError}>
+            {errorMessage || `${value.length} / 1000`}
+          </div>
         )}
       </div>
     </form>
