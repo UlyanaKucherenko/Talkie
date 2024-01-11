@@ -53,16 +53,18 @@ export const RoomDetails = forwardRef<Ref, Props>(({ onClose }, ref) => {
               {new Date(room.createdAt).toLocaleDateString('uk-UA')}
             </div>
             <div className={styles.roomDescription}>
-              {displayedText}{' '}
-              {!showFullText && (
-                <button
-                  type="button"
-                  className={styles.btnMore}
-                  onClick={() => setShowFullText(true)}
-                >
-                  ...{t('rooms.more')}
-                </button>
-              )}
+              {displayedText}
+              {!showFullText &&
+                room.description &&
+                room.description.length >= 100 && (
+                  <button
+                    type="button"
+                    className={styles.btnMore}
+                    onClick={() => setShowFullText(true)}
+                  >
+                    ...{t('rooms.more')}
+                  </button>
+                )}
             </div>
             <div className={styles.members}>
               <div className={styles.membersTitle}>{t('chat.members')}</div>
