@@ -38,7 +38,7 @@ const Footer = () => {
             {t('main.ourTeem')}
           </a>
         </div>
-        <div>&copy; {new Date().getFullYear()}</div>
+        <div>&copy; 2024</div>
       </div>
     </footer>
   );
