@@ -211,6 +211,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
       roomId,
       content: inputMessage,
     };
+    setInputMessage('');
 
     const res = await dispatch(chatThunks.createMessage(message));
     const { msg } = res.payload as any;
@@ -222,7 +223,6 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
 
     if (msg) socket.emit('message', messageSocket);
 
-    setInputMessage('');
     setTimeout(() => {
       scrollToBottom();
     }, 500);
