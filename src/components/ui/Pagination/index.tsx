@@ -26,7 +26,7 @@ export const Pagination = ({ pageCount = 0, handlePageClick }: Props) => (
           </button>
         }
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={4}
         pageCount={pageCount}
         nextLabel={
           <button type="button" className={styles.arrowButton}>

@@ -5,6 +5,16 @@
   width: 100%;
 }
 
+.formTitle {
+  color: var(--jedi-night);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 125.1%;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
 .formControl {
   display: flex;
   flex-direction: column;
@@ -15,17 +25,31 @@
   font-size: 14px;
   line-height: 1;
 }
+
 .input {
   border: none;
+  border-radius: 0;
   height: 26px;
   background: none;
-  color: var(--dark-gray);
+  color: var(--create-form-input-border);
+  border-bottom: 1px solid var(--create-form-input-border-default);
   font-size: 16px;
   line-height: 1;
 }
 
 select.input {
-  border: 1px solid var(--dark-gray);
+  border: 1px solid var(--create-form-input-border-default);
+  width: 60%;
+  border-radius: 8px;
+}
+
+.input:focus {
+  border-bottom: 1px solid var(--create-form-input-border);
+}
+
+.input:focus,
+select.input:focus {
+  outline: none;
 }
 
 .input.error {
@@ -35,7 +59,7 @@ select.input {
 .formAction {
   display: flex;
   justify-content: center;
-  margin-top: 48px;
+  margin-top: 20px;
 }
 
 .formAction button {

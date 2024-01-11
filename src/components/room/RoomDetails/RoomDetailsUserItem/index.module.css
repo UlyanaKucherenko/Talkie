@@ -21,8 +21,8 @@
 .owner {
   text-transform: lowercase;
   margin-left: auto;
-  font-size: 10px;
-  color: var(--dark-gray);
+  font-size: 14px;
+  color: var(--font-main-color);
 }
 
 @media screen and (min-width: 480px) {

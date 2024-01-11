@@ -7,6 +7,7 @@ import { RButtonIcon } from '../../ui/RButtonIcon';
 
 type Props = {
   value: string;
+  errorMessage?: string | null;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
@@ -16,6 +17,7 @@ type Props = {
 
 export const NewMessageForm = ({
   value,
+  errorMessage,
   onSubmit,
   onChange,
   onKeyDown,
@@ -36,13 +38,21 @@ export const NewMessageForm = ({
         <TextareaAutosize
           onKeyDown={onKeyDown}
           maxRows={3}
-          className={styles.messageInput}
+          className={`${styles.messageInput} ${
+            errorMessage ? styles.inputError : ''
+          }`}
           placeholder={t('chat.placeholder')}
           onChange={onChange}
           value={value}
           maxLength={1000}
         />
         <RButtonIcon icon={IconSend} type="submit" className={styles.send} />
+
+        {(errorMessage || value.length > 980) && (
+          <div className={styles.textValidError}>
+            {errorMessage || `${value.length} / 1000`}
+          </div>
+        )}
       </div>
     </form>
   );

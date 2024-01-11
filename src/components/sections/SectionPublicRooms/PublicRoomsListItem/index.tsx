@@ -1,30 +1,43 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-underscore-dangle */
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { Room } from '../../../../utils/types/rooms.type';
 import styles from './index.module.css';
 import { userSelector } from '../../../../store/user';
 import { Topics } from '../../../../utils/constants/topic';
-import { RButtonIcon } from '../../../ui/RButtonIcon';
-import { IconClose } from '../../../icons/IconClose';
 import { AppDispatch } from '../../../../store';
 import { roomsThunks } from '../../../../store/rooms';
-import { ThemeEnum } from '../../../../utils/const';
-import { themeSelector } from '../../../../store/theme';
+import { IconWrite } from '../../../icons/IconWrite';
+import { RoomActions } from '../../../room/RoomActions';
+import { IconUsers } from '../../../icons/IconUsers';
 
 type Props = {
   item: Room;
-  onUnauthorized: () => void;
+  onUnauthorized?: () => void;
+  isMember?: boolean;
 };
-export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
+export const PublicRoomsListItem = ({
+  item,
+  onUnauthorized,
+  isMember,
+}: Props) => {
   const { userData } = useSelector(userSelector);
-  const { mode } = useSelector(themeSelector);
-
   const dispatch: AppDispatch = useDispatch();
+  const { t } = useTranslation();
+
   const roomDelete = async () => {
-    await dispatch(roomsThunks.deleteRoom(item._id));
-    await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+    try {
+      await dispatch(roomsThunks.deleteRoom(item._id));
+      toast.success(t('success.publicRoomDeleted'));
+      await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+    } catch (error) {
+      console.error('Error deleting room', error);
+      toast.error(t('errors.publicRoomDeleted'));
+    }
   };
   return (
     <div className={styles.listItem}>
@@ -32,7 +45,9 @@ export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
         onClick={(event) => {
           if (!userData) {
             event.preventDefault();
-            onUnauthorized();
+            if (onUnauthorized) {
+              onUnauthorized();
+            }
           }
         }}
         // eslint-disable-next-line no-underscore-dangle
@@ -41,16 +56,35 @@ export const PublicRoomsListItem = ({ item, onUnauthorized }: Props) => {
         // eslint-disable-next-line no-underscore-dangle
         key={item._id}
       >
+        <div className={styles.bottomIconsWrap}>
+          {isMember && (
+            <div className={styles.member}>
+              <IconWrite />
+            </div>
+          )}
+          {item.users?.length > 0 && (
+            <div className={styles.users}>
+              <IconUsers /> <span>{item.users?.length}</span>
+            </div>
+          )}
+        </div>
+
+        <div className={styles.image}>
+          {item?.img && <img src={item.img} alt={item.title} />}
+        </div>
         <div className={styles.title}>{item.title}</div>
         <div className={styles.description}>{item.description}</div>
         <div className={styles.topic}>{Topics[item.topic]}</div>
       </NavLink>
-      {item?.owner === userData?.user._id && (
-        <RButtonIcon
-          icon={IconClose}
-          defaultColorIcon={mode === ThemeEnum.LIGHT ? 'dark' : 'light'}
-          onClick={() => roomDelete()}
+      {userData?.user._id && item?.owner === userData?.user._id && (
+        <RoomActions
+          id={item._id}
+          roomTitle={item.title}
+          roomType="public"
           className={styles.btnDelete}
+          roomDelete={roomDelete}
+          isEdit
+          roomData={item}
         />
       )}
     </div>

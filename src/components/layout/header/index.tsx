@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 import { userSelector } from '../../../store/user';
 import { Status } from '../../../utils/enums/status.enum';
 import { Logo } from '../../Logo';
@@ -23,6 +24,12 @@ const Header = ({ openMenu }: HeaderProps) => {
   const { status, userData } = useSelector(userSelector);
 
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleLogoClick = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate('/');
+  }, [navigate]);
 
   return (
     <>
@@ -37,9 +44,11 @@ const Header = ({ openMenu }: HeaderProps) => {
               icon={IconMenu}
             />
             <Navigation className={styles.headerNav} />
-            <NavLink className={styles.logoLink} to="/">
-              <Logo />
-            </NavLink>
+            <RButtonIcon
+              icon={Logo}
+              className={styles.logoLink}
+              onClick={handleLogoClick}
+            />
             <div className={styles.headerAction}>
               {status === Status.Idle && (
                 <RButton onClick={() => setOpenPopup(true)}>
@@ -47,14 +56,23 @@ const Header = ({ openMenu }: HeaderProps) => {
                 </RButton>
               )}
               <div className={styles.desctopSwitcher}>
-                <ThemeLangSwitcher colorIcon="light" />
+                <ThemeLangSwitcher />
               </div>
               {userData && status === Status.Succeeded && (
                 <div className={styles.user}>
                   <div className={styles.mobileSwitcher}>
-                    <ThemeLangSwitcher colorIcon="light" />
+                    <ThemeLangSwitcher />
                   </div>
-                  <div className={styles.username}>{userData.user.name}</div>
+                  <div className={styles.usernameWrap}>
+                    <div className={styles.avatar}>
+                      <img
+                        src={userData.user.avatarURL}
+                        alt={userData.user.name}
+                      />
+                    </div>
+                    <div className={styles.username}>{userData.user.name}</div>
+                  </div>
+
                   <Logout className={styles.logoutBtn} variant="icon" />
                 </div>
               )}

@@ -1,0 +1,36 @@
+.sectionPublic {
+  padding-top: 50px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content {
+  min-height: 300px;
+  position: relative;
+  width: 100%;
+  gap: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.roomsCreated {
+  width: 100%;
+  text-align: right;
+  margin: 10px 0;
+}
+.createRoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createRoom button {
+  height: 44px;
+}
+
+.createRoom button:disabled {
+  color: var(--dark-gray);
+}

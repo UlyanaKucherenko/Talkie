@@ -11,16 +11,14 @@ import { getToken } from '../utils/user-token';
 export const getMessages = async ({
   roomId,
   page = 1,
-  limit = 10,
 }: {
   roomId: string;
   page?: number;
-  limit?: number;
 }): Promise<ResponseMessages> => {
   try {
     const token = getToken();
     const res = await axios.get(
-      `${apiRoutes.messages}/${roomId}?page=${page}&limit=${limit}`,
+      `${apiRoutes.messages}/${roomId}?page=${page}`,
       {
         headers: {
           ApiKey: token,

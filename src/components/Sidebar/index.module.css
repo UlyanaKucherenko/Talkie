@@ -44,6 +44,7 @@
   top: 16px;
   display: flex;
   justify-content: center;
+  color: var(--font-main-color);
 }
 
 .userWrap {
@@ -89,6 +90,12 @@
   line-height: 1;
   text-transform: uppercase;
   word-wrap: break-word;
+  word-break: break-word;
+  text-align: center;
+}
+
+.navWrap {
+  width: 100%;
 }
 
 .navLink {
@@ -120,6 +127,7 @@
   align-items: flex-start;
   gap: 14px;
   width: 100%;
+  color: var(--navlink-color);
 }
 
 .bottomWrap {
@@ -169,8 +177,48 @@
   color: var(--navlink-hover-color);
 }
 
-@media (min-width: 480px) {
+.createRoom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.horizontalSidebarStyle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontalSidebarStyle > .bottomWrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.horizontalSidebarStyle > .navWrap {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 420px) {
+  .navWrap {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 900px) {
   .sidebar {
     width: 380px;
+  }
+
+  .navWrap {
+    width: 100%;
+    margin: 0 auto;
   }
 }

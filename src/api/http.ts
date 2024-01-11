@@ -8,6 +8,7 @@ import {
   getOwnPublicRooms,
   getPublicRoomsWithoutOwn,
   searchRooms,
+  editPublicRoom,
 } from './rooms';
 import { getMessages, postMessage } from './chat';
 
@@ -26,6 +27,7 @@ const http = {
     getPrivateRooms,
     deleteRoom,
     searchRooms,
+    editPublicRoom,
   },
   chat: {
     getMessages,

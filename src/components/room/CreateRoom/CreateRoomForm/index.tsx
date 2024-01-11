@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 
@@ -7,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import type { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { i18n } from '../../../../libs/i18n';
 import styles from './index.module.css';
@@ -48,7 +50,6 @@ const createPublicRoomSchema = z.object({
         };
       },
     })
-    .min(1)
     .max(300)
     .regex(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s.,&@'’():;!?"$*+/%-=_]*$/)
     .optional(),
@@ -76,13 +77,25 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const submitHandler: SubmitHandler<CreatePublicRoom> = async (data) => {
-    await createPublicRoom(data);
-    await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
-    onClosePopup(true);
+    try {
+      await createPublicRoom({
+        title: data.title,
+        topic: data.topic,
+        ...(data.description && { description: data.description }),
+      });
+      await dispatch(roomsThunks.getOwnPublicRooms({ currentPage: 1 }));
+      onClosePopup(true);
+      toast.success(t('success.publicRoomCreated'));
+    } catch (error) {
+      console.error('Error creating room', error);
+      toast.error(t('errors.publicRoomCreated'));
+    }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+      <div className={styles.formTitle}>{t('rooms.createPublicRoom')}</div>
+
       <div className={styles.formControl}>
         <label htmlFor="title">{t('rooms.title')}</label>
         <input
@@ -133,7 +146,7 @@ export const CreatePublicRoomForm = ({ onClosePopup }: Props) => {
       <div className={styles.formAction}>
         <RButton type="submit" color="secondary">
           <IconPlus />
-          Create room
+          {t('rooms.btnCreateRoom')}
         </RButton>
       </div>
     </form>

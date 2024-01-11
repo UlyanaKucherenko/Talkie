@@ -9,14 +9,14 @@ export const IconSearch = () => (
     <g clipPath="url(#clip0_1593_3017)">
       <path
         d="M8.66207 15.8333C12.3725 15.8333 15.3804 12.8486 15.3804 9.16667C15.3804 5.48477 12.3725 2.5 8.66207 2.5C4.95163 2.5 1.94373 5.48477 1.94373 9.16667C1.94373 12.8486 4.95163 15.8333 8.66207 15.8333Z"
-        stroke="#0E2030"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M17.6899 17.5L14.0368 13.875"
-        stroke="#0E2030"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

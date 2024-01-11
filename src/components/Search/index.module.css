@@ -1,14 +1,22 @@
 .searchInput {
   width: 260px;
   height: 34px;
-  border-radius: 10px;
-  border: 1px solid #0e2030;
-  background: #f6f6f6;
-  padding: 0 30px;
+  border-radius: 8px;
+  border: 1px solid var(--search-border);
+  background: var(--search-bg);
+  color: var(--search-border);
+  padding: 0 15px 0 24px;
+}
+
+.searchInput:hover,
+.searchInput:focus-visible,
+.searchInput:focus {
+  border: 1px solid var(--search-border-hover);
+  color: var(--search-border-hoverr);
 }
 
 .searchInput::placeholder {
-  color: #0e2030;
+  color: var(--search-border);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -17,6 +25,7 @@
 
 .searchWrap {
   position: relative;
+  color: var(--search-border);
 }
 .searchIcon {
   position: absolute;
@@ -26,6 +35,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 16px;
+  color: var(--search-border);
 }
 
 .resetBtn {
@@ -37,4 +48,5 @@
   background: none;
   font-size: 20px;
   cursor: pointer;
+  color: var(--search-border);
 }

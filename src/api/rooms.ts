@@ -4,6 +4,7 @@ import { getToken } from '../utils/user-token';
 import { apiRoutes } from './api-routes';
 import type {
   CreateRoomData,
+  EditRoomData,
   GetRoomsProps,
   PrivateRoom,
   PrivateRoomsData,
@@ -13,9 +14,12 @@ import type {
 export const getPublicRooms = async ({
   currentPage,
   topic = '',
+  query,
 }: GetRoomsProps): Promise<PublicRoomsData> => {
   const res = await axios.get(
-    `${apiRoutes.publicRooms}?page=${currentPage}&topic=${topic}`
+    `${apiRoutes.publicRooms}?page=${currentPage}&topic=${topic}&${
+      query && `query=${query}`
+    }`
   );
   return res.data;
 };
@@ -23,10 +27,13 @@ export const getPublicRooms = async ({
 export const getOwnPublicRooms = async ({
   currentPage,
   topic = '',
+  query,
 }: GetRoomsProps): Promise<PublicRoomsData> => {
   const token = getToken();
   const res = await axios.get(
-    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}&topic=${topic}`,
+    `${apiRoutes.ownPublicRooms}?page=${currentPage || 1}&topic=${topic}&${
+      query && `query=${query}`
+    }`,
     {
       headers: {
         ApiKey: token,
@@ -38,10 +45,13 @@ export const getOwnPublicRooms = async ({
 export const getPublicRoomsWithoutOwn = async ({
   currentPage,
   topic = '',
+  query,
 }: GetRoomsProps): Promise<PublicRoomsData> => {
   const token = getToken();
   const res = await axios.get(
-    `${apiRoutes.publicRoomsWithoutOwn}?page=${currentPage}&topic=${topic}`,
+    `${apiRoutes.publicRoomsWithoutOwn}?page=${currentPage}&topic=${topic}&${
+      query && `query=${query}`
+    }`,
     {
       headers: {
         ApiKey: token,
@@ -53,12 +63,25 @@ export const getPublicRoomsWithoutOwn = async ({
 
 export const getRoomById = async (id: string): Promise<PublicRoomsData> => {
   const token = getToken();
-  const res = await axios.get(`${apiRoutes.rooms}/${id}`, {
-    headers: {
-      ApiKey: token,
-    },
-  });
-  return res.data;
+  try {
+    const res = await axios.get(`${apiRoutes.rooms}/${id}`, {
+      headers: {
+        ApiKey: token,
+      },
+    });
+    return res.data;
+  } catch (error: any) {
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      error.response.status === 404
+    ) {
+      window.location.href = '/404';
+    } else {
+      console.log('Error creating public room', error);
+    }
+    throw error;
+  }
 };
 
 export const createPublicRoom = async (data: CreateRoomData): Promise<any> => {
@@ -134,7 +157,7 @@ export const deleteRoom = async (id: string): Promise<unknown> => {
         ApiKey: token,
       },
     });
-    console.log('deleteRoom', res);
+    // console.log('deleteRoom', res);
     return res.data;
   } catch (error) {
     console.log('Error deleteRoom ', error);
@@ -159,4 +182,25 @@ export const searchRooms = async ({
     }
   );
   return res.data;
+};
+
+export const editPublicRoom = async ({
+  id,
+  data,
+}: {
+  id: string;
+  data: EditRoomData;
+}): Promise<any> => {
+  const token = getToken();
+  try {
+    const res = await axios.patch(`${apiRoutes.rooms}/${id}`, data, {
+      headers: {
+        ApiKey: token,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log('Error editing public room', error);
+    throw error;
+  }
 };

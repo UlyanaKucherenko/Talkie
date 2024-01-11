@@ -39,10 +39,12 @@
   padding: 10px 8px;
   padding-right: 36px;
   background: var(--message-input-bg-color);
+  border: 1px solid var(--message-input-bg-color);
   color: #fff;
   border-radius: 5px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  outline: none;
 }
 
 .messageInput::placeholder {
@@ -60,4 +62,22 @@
   padding: 0;
   background: none;
   color: white;
+}
+
+.inputError,
+.inputError:active,
+.inputError:focus {
+  border: 1px solid var(--warning-color);
+  outline: none;
+}
+
+.textValidError {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  width: 100%;
+  color: var(--warning-color);
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
 }

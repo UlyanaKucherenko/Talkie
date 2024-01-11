@@ -1,14 +1,10 @@
 .users {
   display: flex;
   flex-direction: column;
-  gap: 16px; 
+  gap: 16px;
   margin-top: 12px;
-  height: 240px;
-  overflow: hidden;
-  overflow-y: scroll;
   padding: 19px;
   padding-bottom: 10px;
-
 }
 
 @media screen and (min-width: 480px) {
@@ -16,5 +12,3 @@
     gap: 12px;
   }
 }
-
-

@@ -5,12 +5,32 @@
   transform: translateX(-50%);
   width: 100%;
   max-width: 100%;
-  height: calc(100dvh - 56px - 48px - 3px);
-  padding: 44px 16px;
+  height: calc(100dvh - 103px);
   z-index: 10;
   background: var(--background-color);
   overflow: hidden;
   transition: all 0.3s ease;
+  padding-bottom: 50px;
+}
+
+.container {
+  padding: 16px;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.roomImage {
+  background-color: rgb(247, 231, 210);
+  height: 60px;
+  position: relative;
+}
+
+.roomImage img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .roomTitle {
@@ -18,7 +38,6 @@
   font-weight: 400;
   text-align: center;
   color: var(--font-main-color);
-  padding: 0 19px;
   margin: 0;
 }
 
@@ -28,15 +47,13 @@
   text-align: center;
   color: var(--font-main-color);
   margin-top: 5px;
-  padding: 0 19px;
 }
 
 .roomDescription {
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   color: var(--chat-details-desc-font-color);
   margin-top: 8px;
-  padding: 0 19px;
 }
 
 .close {
@@ -51,23 +68,33 @@
   background: none;
   border: none;
   padding: 0;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  color: var(--font-main-color);
 }
 
 .members {
   margin-top: 24px;
-  border: 1px solid var(--dark-gray);
+  border: 1px solid var(--chat-details-members-border);
   padding-top: 12px;
-  height: 280px;
-  overflow: hidden;
+  min-height: 200px;
   border-radius: 10px;
-  color: var(--dark-gray);
-  background-color: var(--dark-white);
+  color: var(--font-main-color);
+  background-color: var(--chat-details-members-bg);
 }
 
 .membersTitle {
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   text-transform: capitalize;
+}
+
+.btnMore {
+  color: var(--brain-freeze);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 @media screen and (min-width: 480px) {
@@ -80,9 +107,9 @@
     right: 20px;
     left: auto;
     width: 307px;
-    min-height: 440px;
-    height: auto;
+    height: 70dvb;
     transform: none;
     border: 1px solid var(--olympus-white);
+    border-radius: 8px;
   }
 }

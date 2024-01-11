@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { debounce } from 'lodash';
 
 import io, { Socket } from 'socket.io-client';
@@ -43,6 +44,9 @@ type RoomBodyProps = {
 export const RoomBody = ({ roomType }: RoomBodyProps) => {
   const { messages, messagesStatus, pagination } = useSelector(chatSelector);
   const [inputMessage, setInputMessage] = useState<string>('');
+  const [inputErrorMessage, setInputErrorMessage] = useState<string | null>(
+    null
+  );
   const { userData } = useSelector(userSelector);
   const [isTyping, setIsTyping] = useState(false);
   const [userTyping, setUserTyping] = useState<string>('');
@@ -50,7 +54,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [loadingMoreMessages, setLoadingMoreMessages] = useState(false);
-
+  const { t } = useTranslation();
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
 
@@ -122,6 +126,18 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const message = event.target.value;
+
+    if (message.length >= 1001) {
+      setInputErrorMessage(t('errors.messageLengthValidation'));
+      return;
+    }
+    if (
+      !message.match(/^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\d\s.,&@'’():;!?"$*+/%-=_]*$/g)
+    ) {
+      setInputErrorMessage(t('errors.messageCharacterValidation'));
+    } else {
+      setInputErrorMessage(null);
+    }
     setInputMessage(message);
 
     // event user starts typing
@@ -198,12 +214,20 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
   };
 
   const sendMessage = async () => {
-    if (!inputMessage || inputMessage.trim() === '') return;
+    if (
+      !inputMessage ||
+      inputMessage.trim() === '' ||
+      inputMessage.length >= 1001
+    ) {
+      setInputErrorMessage(t('errors.messageLengthValidation'));
+      return;
+    }
 
     const message = {
       roomId,
       content: inputMessage,
     };
+    setInputMessage('');
 
     const res = await dispatch(chatThunks.createMessage(message));
     const { msg } = res.payload as any;
@@ -215,7 +239,6 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
 
     if (msg) socket.emit('message', messageSocket);
 
-    setInputMessage('');
     setTimeout(() => {
       scrollToBottom();
     }, 500);
@@ -241,7 +264,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
     >
       {loadingMoreMessages && (
         <div className={styles.loadMore}>
-          <RLoader css={{ top: '8px', left: '44%' }} size="sm" />
+          <RLoader css={{ top: '8px' }} size="sm" />
         </div>
       )}
 
@@ -253,6 +276,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
       />
       <NewMessageForm
         value={inputMessage}
+        errorMessage={inputErrorMessage}
         onSubmit={formSubmitHandler}
         onChange={inputChangeHandler}
         onKeyDown={keyDownHandler}

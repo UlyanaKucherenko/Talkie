@@ -2,25 +2,24 @@
   padding-top: 40px;
 }
 
-h2 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-h3 {
-  color: var(--font-main-color);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-transform: capitalize;
-}
-
 .list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
+  justify-items: center;
+  gap: 30px;
   margin: 0 auto;
 }
 
+@media screen and (max-width: 980px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

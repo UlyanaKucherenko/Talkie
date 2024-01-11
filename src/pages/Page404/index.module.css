@@ -1,5 +1,5 @@
 .wrap {
-  background-color: #6c6c6c;
+  background-color: var(--counts-black);
   min-height: 100dvh;
   padding: 76px 16px 58px;
   display: flex;

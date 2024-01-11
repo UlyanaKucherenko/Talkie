@@ -9,16 +9,13 @@ import { RButtonIcon } from '../ui/RButtonIcon';
 import { IconLightTheme } from '../icons/IconLightTheme';
 import styles from './index.module.css';
 import { ThemeEnum } from '../../utils/const';
+import { IconDarkTheme } from '../icons/IconDarkTheme';
 
 type ThemeLangSwitcherProps = {
-  colorIcon: 'dark' | 'light';
   className?: string;
 };
 
-export const ThemeLangSwitcher = ({
-  colorIcon = 'dark',
-  className,
-}: ThemeLangSwitcherProps) => {
+export const ThemeLangSwitcher = ({ className }: ThemeLangSwitcherProps) => {
   const { i18n } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { mode } = useSelector(themeSelector);
@@ -39,15 +36,14 @@ export const ThemeLangSwitcher = ({
       <RButtonIcon
         icon={i18n.language === 'en' ? IconUA : IconEN}
         type="button"
-        defaultColorIcon={colorIcon}
         onClick={() =>
           i18n.changeLanguage(i18n.language === 'en' ? 'ua' : 'en')
         }
+        className={styles.langButton}
       />
       <RButtonIcon
-        icon={IconLightTheme}
+        icon={mode === ThemeEnum.DARK ? IconLightTheme : IconDarkTheme}
         type="button"
-        defaultColorIcon={colorIcon}
         onClick={() => onSwitchTheme()}
         className={styles.themeButton}
       />

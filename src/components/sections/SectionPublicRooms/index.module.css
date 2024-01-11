@@ -1,37 +1,29 @@
 .sectionPublic {
-  padding-top: 40px;
+  padding-top: 50px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-h2 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-h2 button {
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: inherit;
-  color: inherit;
-  width: max-content;
-}
-
-h3 {
-  color: var(--font-main-color);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-transform: capitalize;
+.titleSection {
+  padding: 15px;
 }
 
 .content {
   min-height: 200px;
   position: relative;
+}
+
+.searchFilter {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .searchFilter {
+    justify-content: flex-start;
+  }
 }

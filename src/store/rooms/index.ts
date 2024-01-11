@@ -22,32 +22,40 @@ const initialState: RoomsState = {
   privateRoomsStatus: Status.Idle,
   privateRoomsError: null,
   privateRoomsIds: [],
-  foundRoomsData: null,
-  foundRoomsStatus: Status.Idle,
-  foundRoomsError: null,
+  roomData: null,
+  statusRoom: Status.Idle,
 };
 export const roomsThunks = {
   // public
   getPublicRooms: createAsyncThunk(
     'rooms/getPublicRooms',
-    async ({ currentPage, topic }: GetRoomsProps) => {
-      const data = await http.rooms.getPublicRooms({ currentPage, topic });
+    async ({ currentPage, topic, query }: GetRoomsProps) => {
+      const data = await http.rooms.getPublicRooms({
+        currentPage,
+        topic,
+        query,
+      });
       return data;
     }
   ),
   getOwnPublicRooms: createAsyncThunk(
     'rooms/getOwnPublicRooms',
-    async ({ currentPage, topic }: GetRoomsProps) => {
-      const data = await http.rooms.getOwnPublicRooms({ currentPage, topic });
+    async ({ currentPage, topic, query }: GetRoomsProps) => {
+      const data = await http.rooms.getOwnPublicRooms({
+        currentPage,
+        topic,
+        query,
+      });
       return data;
     }
   ),
   getPublicRoomsWithoutOwn: createAsyncThunk(
     'rooms/getPublicRoomsWithoutOwn',
-    async ({ currentPage, topic }: GetRoomsProps) => {
+    async ({ currentPage, topic, query }: GetRoomsProps) => {
       const data = await http.rooms.getPublicRoomsWithoutOwn({
         currentPage,
         topic,
+        query,
       });
       return data;
     }
@@ -85,13 +93,11 @@ export const roomsThunks = {
     return response;
   }),
 
-  searchRooms: createAsyncThunk(
-    'rooms/searchRoom',
-    async ({ query, currentPage }: { query: string; currentPage: number }) => {
-      const response = await http.rooms.searchRooms({ query, currentPage });
-      return response;
-    }
-  ),
+  getRoomById: createAsyncThunk('rooms/getRoomById', async (roomId: string) => {
+    const response = await http.rooms.getRoomById(roomId);
+    // console.log('getRoomById Store:', response);
+    return response;
+  }),
 };
 
 export const roomsSlice = createSlice({
@@ -182,26 +188,6 @@ export const roomsSlice = createSlice({
           ...state,
           status: Status.Failed,
           error: error.message || null,
-        })
-      )
-      .addCase(roomsThunks.searchRooms.pending, (state) => ({
-        ...state,
-        foundRoomsStatus: Status.Loading,
-      }))
-      .addCase(
-        roomsThunks.searchRooms.fulfilled,
-        (state, { payload }: PayloadAction<PublicRoomsData>) => ({
-          ...state,
-          foundRoomsStatus: Status.Succeeded,
-          foundRoomsData: payload,
-        })
-      )
-      .addCase(
-        roomsThunks.searchRooms.rejected,
-        (state, { error }): RoomsState => ({
-          ...state,
-          status: Status.Failed,
-          foundRoomsError: error.message || null,
         })
       );
   },

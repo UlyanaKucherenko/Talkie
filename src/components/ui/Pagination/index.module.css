@@ -3,7 +3,8 @@
   justify-content: center;
   gap: 1rem;
   list-style: none;
-  margin: 10px 0;
+  margin: 20px 0;
+  color: var(--pagination-color);
 }
 
 .pageItem a {
@@ -15,13 +16,18 @@
   align-items: center;
   border-radius: 5px;
   cursor: pointer;
-  color: var(--icon-lang-dark);
+  color: var(--pagination-color);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 125.1%;
-  background: var(--white);
 }
+
+.pageItem a:hover {
+  background: #4dcbf2;
+  color: var(--header-font-color);
+}
+
 .active a {
   background: #4dcbf2;
   color: var(--header-font-color);
@@ -35,4 +41,11 @@
   background: none;
   border: none;
   cursor: pointer;
+  color: var(--pagination-color);
+}
+
+@media screen and (min-width: 768px) {
+  .pagination {
+    justify-content: flex-end;
+  }
 }

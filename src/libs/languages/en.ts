@@ -1,9 +1,11 @@
 export const enTranslation = {
   main: {
-    title: 'Welcome to chat',
+    siteName: 'Talkie',
+    title: 'Welcome to ',
     description: 'Chat, connect, Stay in touch and make communication simple.',
     ourTeem: 'Our Team',
     version: 'Version',
+    scrollDown: 'scroll down',
   },
   sidebar: {
     publicRooms: 'Public Rooms',
@@ -25,8 +27,8 @@ export const enTranslation = {
     logoutWarningConfirmButton: 'Сonfirm',
   },
   rooms: {
-    public: 'Public Rooms',
-    private: 'Private Rooms',
+    publicRoom: 'Public Rooms',
+    privateRoom: 'Private Rooms',
     myPublicRooms: 'My Public rooms',
     title: 'Title',
     description: 'Description',
@@ -34,10 +36,25 @@ export const enTranslation = {
     titlePlaceholder: 'Enter room title',
     descriptionPlaceholder: 'Enter room description',
     topicPlaceholder: 'Select room topic',
+    createPublicRoom: 'Create My Public Room',
+    editPublicRoom: 'Edit My Public Room',
+    btnEditRoom: 'Edit room',
+    btnCreateRoom: 'Create room',
+    edit: 'Edit',
+    delete: 'Delete',
+    yes: 'Yes',
+    doYouWantToDelete: 'Do you want to delete ',
+    room: 'room',
+    private: 'private',
+    public: 'public',
+    createdRooms: 'Created rooms',
+    listIsEmpty: 'List is empty',
+    more: 'more',
   },
   search: {
     title: 'Search Result',
     notFound: 'No results found',
+    placeholder: 'Search...',
   },
   chat: {
     placeholder: 'Write a message...',
@@ -47,9 +64,28 @@ export const enTranslation = {
     today: 'today',
     yesterday: 'yesterday',
   },
+  rules: {
+    title: 'See the rules',
+    items: [
+      'Be Respectful: Treat all participants with kindness and respect. Avoid any form of discrimination, hate speech, or personal attacks.',
+      'Stay On Topic: Keep the conversation related to health and wellness. Off-topic discussions may be redirected to appropriate channels.',
+      'Avoid Medical Advice: While sharing personal experiences is welcome, refrain from providing medical advice. Consult a healthcare professional for personalized guidance.',
+      'Fact-Based Information: Share accurate and evidence-based information. Cite sources if applicable.',
+      'Privacy Matters: Protect your privacy and the privacy of others. Do not share personal or confidential information.',
+      'Use Constructive Language: Encourage positive and constructive discussions. Debates are welcome, but be respectful of differing opinions.',
+      'No Spam: Avoid excessive or repetitive messaging. Stay mindful of chat frequency.',
+    ],
+  },
   pageError: {
     pageNotFound: 'page not found',
     returnHome: 'Return to the main page',
+  },
+  success: {
+    publicRoomEdited: 'Public room edited',
+    publicRoomCreated: 'Public room created',
+    privateRoomCreated: 'Private room created',
+    publicRoomDeleted: 'Public room deleted',
+    privateRoomDeleted: 'Private room deleted',
   },
   errors: {
     userNameLengthValidation: 'Username must be 2-30 characters',
@@ -62,5 +98,12 @@ export const enTranslation = {
     publicRoomTopicValidation: 'Choose a topic',
     inputValidation:
       'The username must have at least 2 characters, but no more than 30.',
+    publicRoomEdited: 'Error editing public room',
+    publicRoomCreated: 'Error creating public room',
+    privateRoomCreated: 'Error creating private room',
+    publicRoomDeleted: 'Error deleting public room',
+    privateRoomDeleted: 'Error deleting private room',
+    messageLengthValidation: 'Message must be 1-1000 characters',
+    messageCharacterValidation: `Input only valid symbols(.,&@'’():;!?"$*+/%-=_)`,
   },
 } as const;

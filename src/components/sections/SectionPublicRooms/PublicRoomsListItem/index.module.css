@@ -1,4 +1,5 @@
 .listItem {
+  max-width: 350px;
   position: relative;
   border-radius: 10px;
   border: 1px solid #8ef4ae;
@@ -9,11 +10,12 @@
     rgba(123, 223, 229, 0.5) 97.9%
   );
 
-  width: 300px;
-  height: 160px;
+  width: 100%;
+  min-height: 180px;
   overflow: hidden;
 
   border-radius: 8px;
+  transition: background 0.2s ease;
 
   &:hover {
     background: linear-gradient(
@@ -32,16 +34,28 @@
   justify-content: space-between;
   text-decoration: none;
   height: 100%;
-  padding: 24px 10px 16px;
+  padding: 15px 10px 16px;
+  /* transition: padding 0.2s ease; */
+}
+.image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
+.image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
 .title {
-  color: #0e2030;
+  color: var(--text-room-card);
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 1;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  min-height: 40px;
 }
 
 .description {
@@ -50,21 +64,27 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 6px;
-  color: #0e2030;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: var(--text-room-card);
   text-align: center;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 1;
+  font-weight: 400;
+  line-height: 1.2;
   text-transform: capitalize;
 }
 
 .topic {
-  margin-top: 19px;
+  margin-top: 10px;
+  margin-right: auto;
+  padding: 2px 4px;
+  width: fit-content;
   color: #0e2030;
-  text-align: center;
-  font-size: 16px;
+  background-color: #f1fcf8;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 125.1%; /* 20.016px */
@@ -76,8 +96,64 @@
   top: 10px;
   right: 10px;
   display: none;
+  color: var(--font-main-color);
+}
+
+.bottomIconsWrap {
+  position: absolute;
+  display: flex;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.member {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  color: var(--text-room-card);
+}
+
+.users {
+  color: var(--text-room-card);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+
+  svg {
+    width: 40px;
+    height: 20px;
+  }
 }
 
 .listItem:hover .btnDelete {
   display: block;
+}
+
+.listItem:hover .title,
+.listItem:hover .description,
+.listItem:hover .member,
+.listItem:hover .users {
+  color: var(--dark-white);
+  transition: color 0.2s ease;
+}
+
+@media screen and (min-width: 768px) {
+  .listItem {
+    max-width: 100%;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .topic {
+    font-size: 16px;
+  }
 }

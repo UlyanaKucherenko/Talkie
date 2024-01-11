@@ -3,7 +3,7 @@
   color: var(--navlink-color);
   background: none;
   border: none;
-  line-height: 1;
+  line-height: 1.2;
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -30,6 +30,11 @@
   color: var(--disabled);
 }
 
+.createRoom {
+  padding: 4px 10px;
+  max-width: fit-content;
+}
+
 @media screen and (min-width: 1280px) {
   .navLink {
     color: var(--header-font-color);
@@ -41,5 +46,9 @@
   .navLinkDisabled:active {
     cursor: not-allowed;
     color: var(--disabled);
+  }
+
+  .navLinkActive {
+    color: var(--navlink-hover-color);
   }
 }

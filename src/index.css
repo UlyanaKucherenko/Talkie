@@ -1,8 +1,10 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 :root {
-  /* COLORS */
+  /* SIZE  */
 
+  --scrollbar-width: 2px;
+
+  /* COLORS */
   --white: #ffffff;
   --black: #000000;
   --dark-white: #f6f6f6;
@@ -35,7 +37,6 @@
   --olympus-white: #d3d6d7;
   --industrial-revolution: #737373;
   --dark-blue: #0f3a5a;
-
   /* theme dark */
   --background-color: var(--black-manga);
   --font-main-color: var(--white);
@@ -78,6 +79,24 @@
   --border-chat-room: var(--room-header-bg-color);
   --private-room-header-color: #c5ddf6;
   --border-chat-room-private: var(--private-room-header-color);
+  --chat-details-members-bg: var(--counts-black);
+  --chat-details-members-border: var(--background-color);
+  --search-bg: var(--counts-black);
+  --search-border: var(--dark-white);
+  --search-bg-hover: var(--brain-freeze);
+  --search-border-hover: var(--brain-freeze);
+  --filter-btn: var(--dark-white);
+  --filter-bg: var(--distant-horizon);
+  --filter-applied-color: var(--dark-white);
+  --text-room-card: var(--dark-white);
+  --section-private-bg: var(--counts-black);
+  --section-private-border: transparent;
+  --scrollbar-color: var(--peptalk);
+  --site-name: var(--brain-freeze);
+  --pagination-color: var(--light-white);
+  --create-form-input-border: var(--counts-black);
+  --create-form-input-border-default: #757575;
+  --section-rules-border: transparent;
 
   /* theme light */
   .lightTheme {
@@ -108,7 +127,7 @@
     --message-received-bg-color: var(--dawn-departs);
     --message-sent-bg-color: var(--placebo-turquoise);
     --message-input-bg-color: var(--dark-blue);
-    --text-users-typing-color: var(--gray);
+    --text-users-typing-color: var(--black-manga);
     --chat-details-desc-font-color: var(--counts-black);
     --navlink-color: var(--counts-black);
     --navlink-hover-color: var(--clean-pool);
@@ -122,6 +141,24 @@
     --border-chat-room: 'transparent';
     --private-room-header-color: #c5ddf6;
     --border-chat-room-private: var(--private-room-header-color);
+    --chat-details-members-bg: var(--background-color);
+    --chat-details-members-border: var(--olympus-white);
+    --search-bg: var(--dark-white);
+    --search-border: var(--counts-black);
+    --filter-btn: var(--counts-black);
+    --search-bg-hover: var(--brain-freeze);
+    --search-border-hover: var(--brain-freeze);
+    --filter-bg: var(--distant-horizon);
+    --filter-applied-color: var(--counts-black);
+    --text-room-card: var(--counts-black);
+    --section-private-bg: var(--background-color);
+    --section-private-border: var(--olympus-white);
+    --scrollbar-color: var(--olympus-white);
+    --site-name: var(--clean-pool);
+    --pagination-color: var(--counts-black);
+    --create-form-input-border: var(--counts-black);
+    --create-form-input-border-default: #757575;
+    --section-rules-border: var(--counts-black);
   }
 }
 
@@ -139,4 +176,89 @@ body {
   font-family: 'Rubik', sans-serif;
   line-height: 1.5;
   font-weight: 400;
+}
+
+h1 {
+  color: var(--font-main-color);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+h1 span {
+  color: var(--site-name);
+}
+
+h2 {
+  color: var(--font-main-color);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+h3 {
+  color: var(--font-main-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+ul,
+li {
+  padding: 0;
+  list-style: none;
+}
+
+body,
+.custom-scroll {
+  &::-webkit-scrollbar {
+    height: var(--scrollbar-width);
+    width: var(--scrollbar-width);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: var(--scrollbar-width);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: var(--scrollbar-width);
+  }
+}
+
+@media (min-width: 480px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 54px;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
 }

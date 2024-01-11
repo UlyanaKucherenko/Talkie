@@ -11,7 +11,7 @@ type JButtonProps = {
 };
 
 export const RButton = ({
-  size = 'small',
+  size,
   children,
   onClick,
   className,

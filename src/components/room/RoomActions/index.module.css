@@ -1,0 +1,93 @@
+.wrap {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  display: block;
+}
+
+.wrapActions {
+  position: relative;
+}
+
+.wrapActions:hover {
+  color: var(--rbutton-text-color-hover);
+}
+
+.roomActions {
+  transform: translateY(-50%) rotate(90deg);
+  color: var(--font-main-color);
+}
+
+.listActions {
+  position: absolute;
+  background-color: var(--white);
+  color: var(--black-manga);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  bottom: 0;
+  right: 30px;
+  border-radius: 2px;
+  border: 1px solid var(--olympus-white);
+  width: 150px;
+}
+
+.listActionsItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: var(--white);
+  color: var(--black-manga);
+  border: none;
+  border-top: 1px solid var(--olympus-white);
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+.listActionsItem:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border-top: 1px solid var(--dark-blue);
+}
+
+.listActionsItem:first-child {
+  border-top: none;
+}
+
+.actionsOpen {
+  display: flex;
+}
+
+.activeBtn {
+  color: var(--rbutton-text-color-hover);
+}
+
+.popupTitle {
+  color: var(--jedi-night);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 125.1%;
+  text-transform: capitalize;
+}
+
+.popupDescription {
+  color: var(--dark-gray);
+  text-align: center;
+  margin-top: 23px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 125.1%;
+}
+
+.popupActions {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 52px;
+}

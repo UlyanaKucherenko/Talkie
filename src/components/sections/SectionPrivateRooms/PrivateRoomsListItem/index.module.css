@@ -58,17 +58,4 @@
 
 .listItemLink:hover .avatar {
   box-shadow: 0 0 4px 2px var(--brain-freeze);
-  /* border: 1px solid transparent; */
-}
-
-.btnDelete {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  display: none;
-}
-
-.listItem:hover .btnDelete {
-  display: block;
 }

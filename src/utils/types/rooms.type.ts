@@ -5,6 +5,7 @@ import { User } from './user.type';
 export type Room = {
   _id: string;
   title: string;
+  img?: string;
   topic: Topic;
   type: string;
   description?: string;
@@ -12,6 +13,11 @@ export type Room = {
   updatedAt: string;
   users: User[];
   owner: User | string;
+};
+
+export type PublicRoomForRegisteredUser = {
+  room: Room;
+  member: boolean;
 };
 
 export type PublicRoomsData = {
@@ -27,10 +33,17 @@ export type CreateRoomData = {
   description?: string;
 };
 
+export type EditRoomData = {
+  title: string;
+  description?: string;
+};
+
 // private rooms
 export type PrivateRoom = {
   _id: string;
   title: string;
+  description: string;
+  img: string;
   type: string;
   owner: {
     _id: string;
@@ -67,12 +80,12 @@ export type RoomsState = {
   privateRoomsStatus: Status;
   privateRoomsError: string | null;
   privateRoomsIds: string[];
-  foundRoomsData: SearchRoomData | null;
-  foundRoomsStatus: Status;
-  foundRoomsError: string | null;
+  roomData: Room | null;
+  statusRoom: Status;
 };
 
 export type GetRoomsProps = {
   currentPage: number;
   topic?: typeof Topic | '';
+  query?: string;
 };
