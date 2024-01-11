@@ -50,7 +50,6 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [loadingMoreMessages, setLoadingMoreMessages] = useState(false);
-  const [inputValueError /* setInputValueError */] = useState<boolean>(false);
 
   const params = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -123,11 +122,6 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const message = event.target.value;
-    // if (message.length === 1001) {
-    //   setInputValueError(true);
-    //   return;
-    // }
-    // setInputValueError(false);
     setInputMessage(message);
 
     // event user starts typing
@@ -204,8 +198,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
   };
 
   const sendMessage = async () => {
-    if (!inputMessage || inputMessage.trim() === '' || inputValueError === true)
-      return;
+    if (!inputMessage || inputMessage.trim() === '') return;
 
     const message = {
       roomId,
@@ -265,7 +258,6 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
         onKeyDown={keyDownHandler}
         userTypingData={userTyping}
         roomType={roomType}
-        errorValid={inputValueError}
       />
     </div>
   );
