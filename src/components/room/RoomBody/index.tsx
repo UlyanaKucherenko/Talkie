@@ -248,7 +248,7 @@ export const RoomBody = ({ roomType }: RoomBodyProps) => {
     >
       {loadingMoreMessages && (
         <div className={styles.loadMore}>
-          <RLoader css={{ top: '8px', left: '44%' }} size="sm" />
+          <RLoader css={{ top: '8px' }} size="sm" />
         </div>
       )}
 
