@@ -7,22 +7,22 @@ import { RButtonIcon } from '../../ui/RButtonIcon';
 
 type Props = {
   value: string;
+  errorMessage?: string | null;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
   userTypingData: string;
   roomType: string;
-  errorValid?: boolean;
 };
 
 export const NewMessageForm = ({
   value,
+  errorMessage,
   onSubmit,
   onChange,
   onKeyDown,
   userTypingData,
   roomType,
-  errorValid,
 }: Props) => {
   const { t } = useTranslation();
   return (
@@ -39,7 +39,7 @@ export const NewMessageForm = ({
           onKeyDown={onKeyDown}
           maxRows={3}
           className={`${styles.messageInput} ${
-            errorValid ? styles.inputError : ''
+            errorMessage ? styles.inputError : ''
           }`}
           placeholder={t('chat.placeholder')}
           onChange={onChange}
@@ -48,10 +48,8 @@ export const NewMessageForm = ({
         />
         <RButtonIcon icon={IconSend} type="submit" className={styles.send} />
 
-        {errorValid && (
-          <div className={styles.textValidError}>
-            Input error, too many characters
-          </div>
+        {errorMessage && (
+          <div className={styles.textValidError}>{errorMessage}</div>
         )}
       </div>
     </form>
