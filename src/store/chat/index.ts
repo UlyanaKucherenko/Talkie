@@ -38,16 +38,8 @@ const initialState: IMessages = {
 export const chatThunks = {
   getMessages: createAsyncThunk(
     'chat/getMessages',
-    async ({
-      roomId,
-      page,
-      limit = 10,
-    }: {
-      roomId: string;
-      page?: number;
-      limit?: number;
-    }) => {
-      const data = await http.chat.getMessages({ roomId, page, limit });
+    async ({ roomId, page }: { roomId: string; page?: number }) => {
+      const data = await http.chat.getMessages({ roomId, page });
       // console.log('data =>', data);
       return data;
     }
