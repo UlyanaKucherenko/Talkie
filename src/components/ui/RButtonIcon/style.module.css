@@ -9,6 +9,8 @@
   cursor: pointer;
 }
 
-.button:hover {
+.button:hover,
+.button:active,
+.button:focus {
   color: var(--rbutton-text-color-hover);
 }
