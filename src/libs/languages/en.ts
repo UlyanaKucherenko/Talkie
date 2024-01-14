@@ -104,6 +104,6 @@ export const enTranslation = {
     publicRoomDeleted: 'Error deleting public room',
     privateRoomDeleted: 'Error deleting private room',
     messageLengthValidation: 'Message must be 1-1000 characters',
-    messageCharacterValidation: `Input only valid symbols(.,&@'’():;!?"$*+/%-=_)`,
+    messageCharacterValidation: `Valid symbols (.,&@'’():;!?"$*+/%-=_)`,
   },
 } as const;
