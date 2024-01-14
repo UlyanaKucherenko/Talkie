@@ -105,6 +105,6 @@ export const uaTranslation = {
     publicRoomDeleted: 'Помилка видалення  публічної кімната',
     privateRoomDeleted: 'Помилка видалення приватної кімната',
     messageLengthValidation: 'Повідомлення тільки з 1-1000 символів',
-    messageCharacterValidation: `Повідомлення тільки з допустимими символами(.,&@'’():;!?"$*+/%-=_)`,
+    messageCharacterValidation: `Доступні символи (.,&@'’():;!?"$*+/%-=_)`,
   },
 } as const;
